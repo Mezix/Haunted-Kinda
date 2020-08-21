@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\EventSystem.cs" />
     <Compile Include="Assets\Scripts\PixelateImageEffect.cs" />
+    <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <None Include="Assets\Shaders\PixelEffectShader.shader" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
