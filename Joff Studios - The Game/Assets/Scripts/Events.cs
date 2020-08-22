@@ -12,12 +12,21 @@ public class Events : MonoBehaviour
     }
 
     public event Action<float> OnHealthPctChanged;
+    public event Action<GameObject> GraveRobberDespawned;
 
     public void ChangeHealth(float healthChange)
     {
         if (OnHealthPctChanged != null)
         {
             OnHealthPctChanged(healthChange);
+        }
+    }
+
+    public void DespawnGraveRobber(GameObject graverobber)
+    {
+        if (GraveRobberDespawned != null)
+        {
+            GraveRobberDespawned(graverobber);
         }
     }
 }

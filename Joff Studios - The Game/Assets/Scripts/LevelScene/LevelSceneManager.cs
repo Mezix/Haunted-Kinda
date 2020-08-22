@@ -4,15 +4,34 @@ using UnityEngine;
 
 public class LevelSceneManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject GraveRobberPrefab;
+    public List<GameObject> GraveRobbers;
+
+    private void Awake()
     {
-        
+        Events.current.GraveRobberDespawned += RemoveGraveRobber;
+    }
+    private void Start()
+    {
+        GraveRobbers = new List<GameObject>();
+        SpawnGraveRobbers(3);
+    }
+    private void SpawnGraveRobbers(int amount)
+    {
+        for(int i = 0; i < amount; i++)
+        {
+            GameObject go = Instantiate(GraveRobberPrefab);
+            GraveRobbers.Add(go);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void RemoveGraveRobber(GameObject graveRobber)
     {
-        
+        GraveRobbers.Remove(graveRobber);
+        Destroy(graveRobber);
+        if(GraveRobbers.Count == 0)
+        {
+            Loader.Load(Loader.Scene.MainMenuScene);
+        }
     }
 }

@@ -67,6 +67,7 @@ public class GraveRobber : MonoBehaviour
             if(runAway)
             {
                 isRunning = runAway;
+                Events.current.DespawnGraveRobber(gameObject);
                 //StartCoroutine(RunAway());
             }
         }
