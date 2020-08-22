@@ -21,7 +21,7 @@ public class DayNightLighting : MonoBehaviour
         BlueGlobalLight.intensity = 0;
         WhiteGlobalLight.intensity = 1;
 
-        DayToNightRatio = 0;
+        DayToNightRatio = 1;
         DayToNight = true;
     }
 
@@ -88,7 +88,7 @@ public class DayNightLighting : MonoBehaviour
 
     private void UpdateWhiteLight()
     {
-        WhiteGlobalLight.intensity = 1 - DayToNightRatio;
+        WhiteGlobalLight.intensity = Mathf.Max((1 - DayToNightRatio), 0.1f);
     }
     private void UpdateAllLamps()
     {

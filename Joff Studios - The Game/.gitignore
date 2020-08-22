@@ -3,3 +3,6 @@
 
 /[Tt]emp/*
 /[Tt]emp/UnityLockFile
+
+/[Bb]uilds/
+/.vs/
