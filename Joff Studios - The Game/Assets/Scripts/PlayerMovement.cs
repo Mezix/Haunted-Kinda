@@ -27,8 +27,11 @@ public class PlayerMovement : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
+        if(!dashing) //if we arent dashing, continously set movement for the animations, otherwise override it
+        {
+            animator.SetFloat("Horizontal", movement.x);
+            animator.SetFloat("Vertical", movement.y);
+        }
         animator.SetFloat("Speed", movement.sqrMagnitude);
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -48,16 +51,24 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator Dash()
     {
+        print(dashing);
         int framesOfTryingToMove = 0;
 
         dashing = true;
+        
 
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        
         //either move to the position or the max distance, whichever is smaller
         Vector2 vectorToMove = Vector2.Min(((mousePos - rb.position).normalized * _dashDistance), (mousePos - rb.position));
         Vector2 initialRbPos = rb.position;
 
-        while(Vector2.Distance(rb.position, vectorToMove + initialRbPos) > 0.5f)
+        animator.SetBool("Dashing", dashing);
+        animator.SetFloat("Horizontal", vectorToMove.x);
+        animator.SetFloat("Vertical", vectorToMove.y);
+
+
+        while (Vector2.Distance(rb.position, vectorToMove + initialRbPos) > 0.5f)
         {
             rb.position = Vector2.Lerp(rb.position, initialRbPos + vectorToMove, 0.1f);
             yield return new WaitForFixedUpdate();
@@ -77,5 +88,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         dashing = false;
+        animator.SetBool("Dashing", dashing);
     }
 }

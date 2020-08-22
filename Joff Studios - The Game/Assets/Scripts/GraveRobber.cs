@@ -49,11 +49,9 @@ public class GraveRobber : MonoBehaviour
     {
         moving = true;
 
-        print("walk");
         movement.x = 1;
         yield return new WaitForSeconds(1f);
         movement.x = -1;
-        print(movement);
         yield return new WaitForSeconds(1f);
 
         moving = false;
