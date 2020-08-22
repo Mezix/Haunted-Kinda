@@ -62,7 +62,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\DayNightLighting.cs" />
     <Compile Include="Assets\Scripts\EventSystem.cs" />
+    <Compile Include="Assets\Scripts\GraveRobber.cs" />
     <Compile Include="Assets\Scripts\PixelateImageEffect.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <None Include="Assets\Shaders\PixelEffectShader.shader" />
@@ -668,6 +670,18 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>E:/Important/Unity Game Projects/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+      <HintPath>E:/Important/Unity Game Projects/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
+      <HintPath>E:/Important/Unity Game Projects/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+      <HintPath>E:/Important/Unity Game Projects/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Editor">
+      <HintPath>E:/Important/Unity Game Projects/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>

@@ -8,17 +8,19 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
 
+    [SerializeField]
     private Vector2 movement;
+    public float _dashDistance = 10f;
+    private bool dashing;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
-
     private void Start()
     {
-        
+
     }
     private void Update()
     {
@@ -31,19 +33,49 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Dash();
+            if(!dashing)
+            {
+                StartCoroutine(Dash());
+            }
         }
     }
 
     private void FixedUpdate()
     {
+        //make movement be more floaty
         rb.MovePosition(rb.position + movement.normalized * _moveSpeed * Time.fixedDeltaTime);
     }
 
-    private void Dash()
+    private IEnumerator Dash()
     {
-        print("dash");
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        transform.position = new Vector3(mousePos.x, mousePos.y, 0);
+        int framesOfTryingToMove = 0;
+
+        dashing = true;
+
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
+        //either move to the position or the max distance, whichever is smaller
+        Vector2 vectorToMove = Vector2.Min(((mousePos - rb.position).normalized * _dashDistance), (mousePos - rb.position));
+        Vector2 initialRbPos = rb.position;
+
+        while(Vector2.Distance(rb.position, vectorToMove + initialRbPos) > 0.5f)
+        {
+            rb.position = Vector2.Lerp(rb.position, initialRbPos + vectorToMove, 0.1f);
+            yield return new WaitForFixedUpdate();
+
+            if (framesOfTryingToMove > 15) //if we try to move enough, break out of our dash
+            {
+                break;
+            }
+            if (movement.magnitude > 0) //if we are trying to move, tick our timer up
+            {
+                framesOfTryingToMove++;
+            }
+            else
+            {
+                framesOfTryingToMove = 0;
+            }
+        }
+
+        dashing = false;
     }
 }
