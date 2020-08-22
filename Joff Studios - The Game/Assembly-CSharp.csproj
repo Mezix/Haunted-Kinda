@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\DayNightLighting.cs" />
     <Compile Include="Assets\Scripts\EventSystem.cs" />
+    <Compile Include="Assets\Scripts\GraveRobber.cs" />
     <Compile Include="Assets\Scripts\PixelateImageEffect.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <None Include="Assets\Shaders\PixelEffectShader.shader" />

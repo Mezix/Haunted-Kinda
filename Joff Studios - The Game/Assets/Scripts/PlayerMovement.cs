@@ -52,8 +52,9 @@ public class PlayerMovement : MonoBehaviour
 
         dashing = true;
 
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 vectorToMove = (mousePos - rb.position).normalized * _dashDistance;
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
+        //either move to the position or the max distance, whichever is smaller
+        Vector2 vectorToMove = Vector2.Min(((mousePos - rb.position).normalized * _dashDistance), (mousePos - rb.position));
         Vector2 initialRbPos = rb.position;
 
         while(Vector2.Distance(rb.position, vectorToMove + initialRbPos) > 0.5f)
