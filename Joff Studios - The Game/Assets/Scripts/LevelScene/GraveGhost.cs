@@ -8,6 +8,8 @@ public class GraveGhost : MonoBehaviour
     private UnityEngine.Experimental.Rendering.Universal.Light2D GhostGlow;
     private GameObject player;
 
+    private bool fadingIn;
+
     private void Awake()
     {
         player = GameObject.Find("PlayerCharacter");
@@ -21,24 +23,28 @@ public class GraveGhost : MonoBehaviour
     }
     private IEnumerator FadeIn()
     {
+        fadingIn = true;
         for(int i = 1; i < 98; i++)
         {
             opacityMat.SetFloat("Vector1_D5B527C2", 1.3f + 10f - (float) i/10); //the name of the alpha factor in the shader. (Find property names in the compiled shader code)
             GhostGlow.intensity = (float) i / 100;
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForEndOfFrame();
         }
+        fadingIn = false;
     }
     public void FadeAway()
     {
+        if(gameObject.activeSelf)
         StartCoroutine(FadeOut());
     }
     public IEnumerator FadeOut()
     {
+        yield return new WaitWhile(() => fadingIn);
         for (int i = 1; i < 98; i++)
         {
             opacityMat.SetFloat("Vector1_D5B527C2", 1.3f + (float) i/10); //the name of the alpha factor in the shader. (Find property names in the compiled shader code)
             GhostGlow.intensity = 1 - (float)i / 100;
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForEndOfFrame();
         }
         gameObject.SetActive(false);
     }

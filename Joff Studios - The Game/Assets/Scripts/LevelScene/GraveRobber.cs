@@ -6,12 +6,15 @@ public class GraveRobber : MonoBehaviour
 {
     public GameObject Player;
 
+    public FearLevel fear;
     public float _moveSpeed = 1f;
     private Rigidbody2D rb;
     private Animator animator;
 
     private Vector2 movement;
     private bool moving;
+
+    
 
     private void Awake()
     {

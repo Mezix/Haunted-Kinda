@@ -9,7 +9,11 @@ public class Gravestone : MonoBehaviour
 
     private void Awake()
     {
-        
+        if(!InhabitedGhost)
+        {
+            print("dont have a ghost! :(");
+            InhabitedGhost = null;
+        }
     }
     void Start()
     {

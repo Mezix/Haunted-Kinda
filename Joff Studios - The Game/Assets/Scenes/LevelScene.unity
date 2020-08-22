@@ -8638,12 +8638,12 @@ PrefabInstance:
     - target: {fileID: 2017824719322374033, guid: f3b50cc49faf3ad4dafdfd3fe7e20d95,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.04399991
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2017824719322374033, guid: f3b50cc49faf3ad4dafdfd3fe7e20d95,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.87
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 2017824719322374033, guid: f3b50cc49faf3ad4dafdfd3fe7e20d95,
         type: 3}
@@ -8694,16 +8694,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DadGhost
-      objectReference: {fileID: 0}
-    - target: {fileID: 2017824719322374035, guid: f3b50cc49faf3ad4dafdfd3fe7e20d95,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2017824719375364843, guid: f3b50cc49faf3ad4dafdfd3fe7e20d95,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9037911798607914532, guid: f3b50cc49faf3ad4dafdfd3fe7e20d95,
         type: 3}
