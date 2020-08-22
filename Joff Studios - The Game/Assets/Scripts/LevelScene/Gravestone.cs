@@ -11,7 +11,7 @@ public class Gravestone : MonoBehaviour
     {
         if(!InhabitedGhost)
         {
-            print("dont have a ghost! :(");
+            //print("dont have a ghost! :(");
             InhabitedGhost = null;
         }
     }
