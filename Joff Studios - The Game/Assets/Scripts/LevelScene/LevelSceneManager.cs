@@ -31,7 +31,12 @@ public class LevelSceneManager : MonoBehaviour
         Destroy(graveRobber);
         if(GraveRobbers.Count == 0)
         {
-            Loader.Load(Loader.Scene.MainMenuScene);
+            VictoryScreen();
         }
+    }
+
+    private void VictoryScreen()
+    {
+        Loader.Load(Loader.Scene.MainMenuScene);
     }
 }

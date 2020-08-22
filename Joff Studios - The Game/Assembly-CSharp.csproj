@@ -70,7 +70,7 @@
     <Compile Include="Assets\Scripts\LevelScene\Gravestone.cs" />
     <Compile Include="Assets\Scripts\LevelScene\HealthBarScript.cs" />
     <Compile Include="Assets\Scripts\LevelScene\LevelSceneManager.cs" />
-    <Compile Include="Assets\Scripts\LevelScene\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\LevelScene\Player.cs" />
     <Compile Include="Assets\Scripts\Loader.cs" />
     <Compile Include="Assets\Scripts\MenuScene\MenuSceneManager.cs" />
     <Compile Include="Assets\Scripts\PixelateImageEffect.cs" />

@@ -67,8 +67,8 @@ public class GraveRobber : MonoBehaviour
             if(runAway)
             {
                 isRunning = runAway;
-                Events.current.DespawnGraveRobber(gameObject);
-                //StartCoroutine(RunAway());
+                
+                StartCoroutine(RunAway());
             }
         }
         else
@@ -81,7 +81,7 @@ public class GraveRobber : MonoBehaviour
     {
         print("AHHHHHHHHHHHHHHHHHHHHHHHHH");
         yield return new WaitForSeconds(1f);
-        Destroy(gameObject);
+        Events.current.DespawnGraveRobber(gameObject);
     }
 
     public void EnemyBehaviour()
