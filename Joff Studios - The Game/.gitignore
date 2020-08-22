@@ -1,2 +1,5 @@
 /[Ll]ibrary/
-/[Tt]Temp/
+/[Tt]emp/
+
+/[Tt]emp/*
+/[Tt]emp/UnityLockFile
