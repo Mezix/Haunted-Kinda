@@ -17,6 +17,7 @@ public class FearLevel : MonoBehaviour
         maxFear = max;
         currentFear = 0;
     }
+    
     public bool AddFear(float fear)
     {
         health.healthbarbackground.gameObject.SetActive(true);
