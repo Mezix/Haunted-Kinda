@@ -13,7 +13,7 @@ public class Lootbag : MonoBehaviour
     private void Awake()
     {
         Player = GameObject.Find("PlayerCharacter");
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
     void Update()
     {
