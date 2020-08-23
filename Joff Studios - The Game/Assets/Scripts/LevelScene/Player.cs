@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
     private PosessableObject possessedObject;
     private float PossessionRange;
 
+    private List<Offering> Offerings;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -35,6 +37,8 @@ public class Player : MonoBehaviour
         timeSinceLastScream = screamCooldown;
         timeSinceLastDash = dashCooldown;
         PossessionRange = 5;
+
+        Offerings = new List<Offering>();
     }
     private void Update()
     {
@@ -83,7 +87,15 @@ public class Player : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.E))
         {
-
+            Interact();
+            PickUpOffering();
+        }
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            if(Offerings.Count>0)
+            {
+                PlaceDownOffering();
+            }
         }
     }
 
@@ -93,9 +105,36 @@ public class Player : MonoBehaviour
         rb.MovePosition(rb.position + movement.normalized * _moveSpeed * Time.fixedDeltaTime);
     }
 
-    private void PickUpCollectible()
-    { 
-}
+    void Interact()
+    {
+        PickUpOffering();
+    }
+    private void PickUpOffering()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, 1 << 9); 
+        if (hit.collider.TryGetComponent<Offering>(out Offering offering))
+        {
+            if(!offering.disappearing)
+            {
+                Offerings.Add(offering);
+                offering.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    private void PlaceDownOffering()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, 1 << 8); //the layer gravestones are on
+        if (hit.collider.TryGetComponent<Gravestone>(out Gravestone grave))
+        {
+            Offering offering = Offerings[0];
+            offering.gameObject.SetActive(true);
+            offering.transform.position = grave.OfferingPos.transform.position;
+            grave.Restore(offering.HealAmount);
+            offering.FadeAway();
+            Offerings.RemoveAt(0);
+        }
+    }
 
     private IEnumerator PossessObject()
     {

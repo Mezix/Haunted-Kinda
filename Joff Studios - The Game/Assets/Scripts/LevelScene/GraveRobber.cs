@@ -13,19 +13,19 @@ public class GraveRobber : MonoBehaviour
 
     private FearLevel fear;
     private bool canBeFearedByPlayer;
-    private bool isRunning;
+    private bool wasTerrified;
     private GameObject player;
 
     private List<Gravestone> AllPossibleGravestones = new List<Gravestone>();
     private Gravestone NearestGrave;
 
+    public GameObject LootBag;
     private void Awake()
     {
         player = GameObject.Find("PlayerCharacter");
         fear = GetComponent<FearLevel>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
-
     }
 
     void Start()
@@ -66,8 +66,10 @@ public class GraveRobber : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (isRunning)
+        if (wasTerrified)
         {
+            animator.SetBool("IsEscaping", false);
+            animator.SetBool("Digging", false);
             movement.x = 1;
             rb.MovePosition(rb.position + movement.normalized * 3 * _moveSpeed * Time.fixedDeltaTime);
         }
@@ -111,14 +113,10 @@ public class GraveRobber : MonoBehaviour
             Vector2 NearGravePos = new Vector2(NearestGrave.transform.position.x, NearestGrave.transform.position.y);
             while (Vector2.Distance(rb.position, NearGravePos) > 0.5f)
             {
-                if (isRunning)
-                {
-                    print("AH");
-                }
                 movement = (NearGravePos - rb.position).normalized;
                 yield return new WaitForFixedUpdate();
             }
-            if(!isRunning)
+            if(!wasTerrified)
             {
                 movement = Vector2.zero;
                 StartCoroutine(DigGrave());
@@ -132,7 +130,7 @@ public class GraveRobber : MonoBehaviour
         animator.SetBool("Digging", true);
         while(!NearestGrave.Destroyed)
         {
-            if(isRunning)
+            if(wasTerrified)
             {
                 animator.SetBool("Digging", false);
                 break;
@@ -140,7 +138,7 @@ public class GraveRobber : MonoBehaviour
             NearestGrave.TakeDamage(1f);
             yield return new WaitForSeconds(0.1f);
         }
-        if(!isRunning)
+        if(!wasTerrified)
         {
             animator.SetBool("Digging", false);
             if(FindNearestGravestone()) //repeat if we have another gravestone
@@ -157,11 +155,37 @@ public class GraveRobber : MonoBehaviour
 
     private IEnumerator RunAwayWithLoot()
     {
-        print("hehe suckers");
-        movement = new Vector2(1,0);
-        yield return new WaitForFixedUpdate();
+        //print("hehe suckers");
+        animator.SetBool("IsEscaping", true);
+        while(!wasTerrified)
+        {
+            movement = new Vector2(1, 0);
+            yield return new WaitForFixedUpdate();
+            if (CheckEscape()) //check to see if we ran away safely
+            {
+                EscapeAnimation();
+            }
+        }
+        if(wasTerrified)
+        {
+            DropLoot();
+        }
+    }
+    void DropLoot()
+    {
+        print("drop it and go boys");
+        Instantiate(LootBag, transform.position, transform.rotation);
     }
 
+    bool CheckEscape() //if we make it to the fence, were scott free
+    {
+        return false;
+    }
+
+    void EscapeAnimation()
+    {
+
+    }
     private void UpdateFear()
     {
         if(Vector2.Distance(player.transform.position, transform.position) <= 3 && canBeFearedByPlayer) //if close to player, continously add fear
@@ -169,7 +193,7 @@ public class GraveRobber : MonoBehaviour
             bool runAway = fear.AddFear(1f);
             if(runAway)
             {
-                isRunning = runAway;
+                wasTerrified = runAway;
                 
                 StartCoroutine(RunAway());
             }
@@ -183,8 +207,8 @@ public class GraveRobber : MonoBehaviour
     public IEnumerator RunAway()
     {
         animator.SetBool("Digging", false);
-        print("AHHHHHHHHHHHHHHHHHHHHHHHHH");
-        yield return new WaitForSeconds(2f);
+        //print("AHHHHHHHHHHHHHHHHHHHHHHHHH");
+        yield return new WaitForSeconds(10f);
         Events.current.DespawnGraveRobber(gameObject);
     }
 }

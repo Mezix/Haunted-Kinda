@@ -15,7 +15,7 @@ TagManager:
   - 
   - 
   - Possessable
-  - 
+  - Offerings
   - 
   - 
   - 
@@ -45,6 +45,12 @@ TagManager:
   - name: Background
     uniqueID: 3945748123
     locked: 0
+  - name: Offerings
+    uniqueID: 463808255
+    locked: 0
   - name: Units
     uniqueID: 698258075
+    locked: 0
+  - name: Foreground
+    uniqueID: 828161397
     locked: 0

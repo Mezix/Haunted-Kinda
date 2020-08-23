@@ -16,6 +16,8 @@ public class Gravestone : MonoBehaviour
     public float maxHealth;
     public float currentHealth;
 
+    public GameObject OfferingPos;
+
     private void Awake()
     {
         GravestoneRenderer = GetComponent<SpriteRenderer>();
@@ -35,21 +37,21 @@ public class Gravestone : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        CheckDestructionState(); ;
         if (currentHealth <= 0)
         {
             Destroyed = true;
         }
+        CheckDestructionState();
     }
     public void Restore(float heal)
     {
         currentHealth += heal;
-        CheckDestructionState();
         if (currentHealth >= maxHealth)
         {
             currentHealth = maxHealth;
             Destroyed = false;
         }
+        CheckDestructionState();
     }
 
     private void CheckDestructionState()
