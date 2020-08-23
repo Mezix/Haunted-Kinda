@@ -7,6 +7,9 @@ public class Lootbag : MonoBehaviour
     private GameObject Player;
     private bool opened;
     private Animator animator;
+
+    public GameObject lootPrefab;
+    public GameObject lootPos;
     private void Awake()
     {
         Player = GameObject.Find("PlayerCharacter");
@@ -25,5 +28,12 @@ public class Lootbag : MonoBehaviour
         opened = true;
         print("open 'er up");
         animator.SetBool("Opened", true);
+        StartCoroutine(SpawnLoot());
+    }
+
+    IEnumerator SpawnLoot()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Instantiate(lootPrefab, lootPos.transform.position, transform.rotation);
     }
 }
