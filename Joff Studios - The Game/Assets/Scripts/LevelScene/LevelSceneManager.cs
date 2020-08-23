@@ -9,6 +9,8 @@ public class LevelSceneManager : MonoBehaviour
 
     public List<Gravestone> AllGraves;
 
+    static bool paused;
+
     private void Awake()
     {
         Events.current.GraveRobberDespawned += RemoveGraveRobber;
@@ -18,6 +20,23 @@ public class LevelSceneManager : MonoBehaviour
         GraveRobbers = new List<GameObject>();
         SpawnGraveRobbers(3);
     }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (paused)
+            {
+                Time.timeScale = 1;
+                paused = false;
+            }
+            else
+            {
+                Time.timeScale = 0;
+                paused = true;
+            }
+        }
+    }
+
     private void SpawnGraveRobbers(int amount)
     {
         for (int i = 0; i < amount; i++)
