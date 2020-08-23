@@ -13,7 +13,7 @@ public class Lootbag : MonoBehaviour
     private void Awake()
     {
         Player = GameObject.Find("PlayerCharacter");
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
     void Update()
     {
@@ -26,14 +26,27 @@ public class Lootbag : MonoBehaviour
     void OpenLootbag()
     {
         opened = true;
-        print("open 'er up");
+        //print("open 'er up");
         animator.SetBool("Opened", true);
         StartCoroutine(SpawnLoot());
     }
 
     IEnumerator SpawnLoot()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         Instantiate(lootPrefab, lootPos.transform.position, transform.rotation);
+        StartCoroutine(Fade());
+
+    }
+    IEnumerator Fade()
+    {
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
+        SpriteRenderer sprite = GetComponentInChildren<SpriteRenderer>();
+        /*for(int i = 10; i >= 0; i++)
+        {
+            sprite.color = new Color(0, 0, 0, (float) i /10);
+            yield return new WaitForSeconds(0.1f);
+        }*/
     }
 }
