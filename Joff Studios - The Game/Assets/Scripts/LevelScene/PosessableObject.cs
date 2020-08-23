@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PosessableObject : MonoBehaviour
 {
+    [SerializeField]
     private bool isPossessed;
-    private bool canWalk;
+    public bool canWalk;
+    public bool isGrave;
     void Start()
     {
         canWalk = true;
@@ -24,10 +26,28 @@ public class PosessableObject : MonoBehaviour
     {
         if(isPossessed)
         {
-            if (canWalk)
+            if(isGrave)
+            {
+                StartCoroutine(RestoreGrave());
+            }
+            else if (canWalk)
             {
 
             }
+        }
+    }
+
+    IEnumerator RestoreGrave()
+    {
+        Gravestone grave = GetComponent<Gravestone>();
+        while(grave.currentHealth < grave.maxHealth)
+        {
+            if(!isPossessed)
+            {
+                break;
+            }
+            grave.Restore(0.5f);
+            yield return new WaitForSeconds(0.01f);
         }
     }
 }

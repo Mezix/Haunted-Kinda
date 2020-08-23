@@ -477,6 +477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 8351839596455107582}
+  healthbarbackground: {fileID: 4225332301684183531}
 --- !u!1 &7847330252067999033
 GameObject:
   m_ObjectHideFlags: 0

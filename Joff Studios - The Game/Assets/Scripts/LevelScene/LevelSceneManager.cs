@@ -7,6 +7,8 @@ public class LevelSceneManager : MonoBehaviour
     public GameObject GraveRobberPrefab;
     public List<GameObject> GraveRobbers;
 
+    public List<Gravestone> AllGraves;
+
     private void Awake()
     {
         Events.current.GraveRobberDespawned += RemoveGraveRobber;
@@ -18,10 +20,19 @@ public class LevelSceneManager : MonoBehaviour
     }
     private void SpawnGraveRobbers(int amount)
     {
-        for(int i = 0; i < amount; i++)
+        for (int i = 0; i < amount; i++)
         {
             GameObject go = Instantiate(GraveRobberPrefab);
+            go.transform.position += new Vector3(-i, 2 * i,0);
+            go.GetComponent<GraveRobber>().InitAllGravestones(AllGraves);
             GraveRobbers.Add(go);
+        }
+        for (int i = 0; i < GraveRobbers.Count; i++) //remove all robber collisions
+        {
+            for (int j = 0; j < GraveRobbers.Count; j++)
+            {
+                Physics2D.IgnoreCollision(GraveRobbers[i].GetComponent<Collider2D>(), GraveRobbers[j].GetComponent<Collider2D>());
+            }
         }
     }
 

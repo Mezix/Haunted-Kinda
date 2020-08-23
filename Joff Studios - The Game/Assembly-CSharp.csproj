@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Events.cs" />
+    <Compile Include="Assets\Scripts\LevelScene\CameraScript.cs" />
     <Compile Include="Assets\Scripts\LevelScene\DayNightLighting.cs" />
     <Compile Include="Assets\Scripts\LevelScene\FearLevel.cs" />
     <Compile Include="Assets\Scripts\LevelScene\GraveGhost.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Assets\Scripts\LevelScene\PosessableObject.cs" />
     <Compile Include="Assets\Scripts\Loader.cs" />
     <Compile Include="Assets\Scripts\MenuScene\MenuSceneManager.cs" />
+    <Compile Include="Assets\Scripts\MenuScene\PlayerLookAt.cs" />
     <Compile Include="Assets\Scripts\PixelateImageEffect.cs" />
     <None Include="Assets\Materials + Shaders\Shaders\PixelEffectShader.shader" />
     <Reference Include="UnityEngine">

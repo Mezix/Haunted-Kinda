@@ -12,8 +12,12 @@ public class GraveRobber : MonoBehaviour
     private Animator animator;
 
     private FearLevel fear;
+    private bool canBeFearedByPlayer;
     private bool isRunning;
     private GameObject player;
+
+    private List<Gravestone> AllPossibleGravestones = new List<Gravestone>();
+    private Gravestone NearestGrave;
 
     private void Awake()
     {
@@ -21,10 +25,14 @@ public class GraveRobber : MonoBehaviour
         fear = GetComponent<FearLevel>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
+
     }
 
     void Start()
     {
+        Events.current.ObjectPossessed += StopFearNearPlayer;
+
+        canBeFearedByPlayer = true;
         _moveSpeed = 2f;
         movement = new Vector2(0, 0);
         if(fear)
@@ -32,14 +40,25 @@ public class GraveRobber : MonoBehaviour
             fear.InitMaxFear(100);
         }
         Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+
+        FindNearestGravestone();
+        StartCoroutine(MoveToNearestGrave());
+    }
+
+    public void StopFearNearPlayer(GameObject possessed)
+    {
+        if(!possessed.Equals(player)) //if we are possessing anything than isnt the player, dont get feared by the players presence anymore
+        {
+            canBeFearedByPlayer = false;
+        }
+        else
+        {
+            canBeFearedByPlayer = true;
+        }
     }
 
     void Update()
     {
-        if (!moving && !isRunning)
-        {
-            EnemyBehaviour();
-        }
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
@@ -59,9 +78,93 @@ public class GraveRobber : MonoBehaviour
         }
     }
 
+    public void InitAllGravestones(List<Gravestone> graves)
+    {
+        AllPossibleGravestones = graves;
+        //print("all the graves!");
+    }
+    private bool FindNearestGravestone()
+    {
+        bool undestroyedGraveAvailable = false;
+        float Distance = 100;
+        //print("finding grave");
+        foreach (Gravestone grave in AllPossibleGravestones)
+        {
+            if(!grave.Destroyed)
+            {
+                if(Vector2.Distance(grave.transform.position, rb.transform.position) <= Distance)
+                {
+                    NearestGrave = grave;
+                    Distance = Vector2.Distance(grave.transform.position, rb.transform.position);
+                }
+                undestroyedGraveAvailable = true;
+                //print(NearestGrave);
+            }
+        }
+        return undestroyedGraveAvailable;
+    }
+    private IEnumerator MoveToNearestGrave()
+    {
+        //print("moving to grave");
+        if(NearestGrave)
+        {
+            Vector2 NearGravePos = new Vector2(NearestGrave.transform.position.x, NearestGrave.transform.position.y);
+            while (Vector2.Distance(rb.position, NearGravePos) > 0.5f)
+            {
+                if (isRunning)
+                {
+                    print("AH");
+                }
+                movement = (NearGravePos - rb.position).normalized;
+                yield return new WaitForFixedUpdate();
+            }
+            if(!isRunning)
+            {
+                movement = Vector2.zero;
+                StartCoroutine(DigGrave());
+            }
+        }
+    }
+
+    private IEnumerator DigGrave()
+    {
+       //print("i am a dwarf and im digging a holeeeeeeeee");
+        animator.SetBool("Digging", true);
+        while(!NearestGrave.Destroyed)
+        {
+            if(isRunning)
+            {
+                animator.SetBool("Digging", false);
+                break;
+            }
+            NearestGrave.TakeDamage(1f);
+            yield return new WaitForSeconds(0.1f);
+        }
+        if(!isRunning)
+        {
+            animator.SetBool("Digging", false);
+            if(FindNearestGravestone()) //repeat if we have another gravestone
+            {
+                FindNearestGravestone();
+                StartCoroutine(MoveToNearestGrave());
+            }
+            else
+            {
+                StartCoroutine(RunAwayWithLoot());
+            }
+        }
+    }
+
+    private IEnumerator RunAwayWithLoot()
+    {
+        print("hehe suckers");
+        movement = new Vector2(1,0);
+        yield return new WaitForFixedUpdate();
+    }
+
     private void UpdateFear()
     {
-        if(Vector2.Distance(player.transform.position, transform.position) <= 3) //if close to player, continously add fear
+        if(Vector2.Distance(player.transform.position, transform.position) <= 3 && canBeFearedByPlayer) //if close to player, continously add fear
         {
             bool runAway = fear.AddFear(1f);
             if(runAway)
@@ -79,24 +182,9 @@ public class GraveRobber : MonoBehaviour
 
     public IEnumerator RunAway()
     {
+        animator.SetBool("Digging", false);
         print("AHHHHHHHHHHHHHHHHHHHHHHHHH");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         Events.current.DespawnGraveRobber(gameObject);
-    }
-
-    public void EnemyBehaviour()
-    {
-        StartCoroutine(SwitchMovement());
-    }
-    private IEnumerator SwitchMovement()
-    {
-        moving = true;
-
-        movement.x = 1;
-        yield return new WaitForSeconds(1f);
-        movement.x = -1;
-        yield return new WaitForSeconds(1f);
-
-        moving = false;
     }
 }
