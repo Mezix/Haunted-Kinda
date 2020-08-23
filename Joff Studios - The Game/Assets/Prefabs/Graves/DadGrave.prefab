@@ -268,16 +268,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DadGhost
       objectReference: {fileID: 0}
-    - target: {fileID: 4865407945629645482, guid: f3b50cc49faf3ad4dafdfd3fe7e20d95,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 38665986af7d8574eb17eba6643ac4cf, type: 2}
-    - target: {fileID: 9037911798607914532, guid: f3b50cc49faf3ad4dafdfd3fe7e20d95,
-        type: 3}
-      propertyPath: defaultOpacity
-      value: 11
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3b50cc49faf3ad4dafdfd3fe7e20d95, type: 3}
 --- !u!1 &330383965307836611 stripped

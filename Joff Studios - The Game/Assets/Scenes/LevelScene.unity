@@ -22221,6 +22221,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 556079375}
     m_Modifications:
+    - target: {fileID: 846768091383613884, guid: 28d96a38cdf9c554fbf7ddffda494049,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 698258075
+      objectReference: {fileID: 0}
+    - target: {fileID: 846768091383613884, guid: 28d96a38cdf9c554fbf7ddffda494049,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3830356895844422962, guid: 28d96a38cdf9c554fbf7ddffda494049,
+        type: 3}
+      propertyPath: defaultOpacity
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 5956151856962221968, guid: 28d96a38cdf9c554fbf7ddffda494049,
         type: 3}
       propertyPath: m_LocalPosition.x

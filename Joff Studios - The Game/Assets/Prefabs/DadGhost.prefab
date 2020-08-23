@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   opacityMat: {fileID: 2100000, guid: 38665986af7d8574eb17eba6643ac4cf, type: 2}
+  defaultOpacity: 11
 --- !u!95 &2648045057101818730
 Animator:
   serializedVersion: 3
@@ -187,7 +188,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fdd20b63504a7114885f932b824a616f, type: 2}
+  - {fileID: 2100000, guid: 38665986af7d8574eb17eba6643ac4cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -206,7 +207,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 698258075
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bc33381250104d946a85252d3c6b7a8e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
