@@ -699,19 +699,6 @@
       <Name>Unity.2D.Tilemap.Extras</Name>
     </ProjectReference>
   </ItemGroup>
-<<<<<<< HEAD
-  <ItemGroup>
-    <ProjectReference Include="Unity.2D.Tilemap.Extras.Editor.csproj">
-      <Project>{2AF3CA37-EEAA-9F14-71ED-415384D74784}</Project>
-      <Name>Unity.2D.Tilemap.Extras.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.2D.Tilemap.Extras.csproj">
-      <Project>{B1267B14-4284-F7B9-2129-AF81C3A909F2}</Project>
-      <Name>Unity.2D.Tilemap.Extras</Name>
-    </ProjectReference>
-  </ItemGroup>
-=======
->>>>>>> 69ce2bb5649309d1241535fce6f700fa5f69d1da
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
