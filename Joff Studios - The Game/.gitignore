@@ -8,4 +8,4 @@
 /[Bb]uilds/
 
 /.vs/ #No idea what this is, but i cant add stuff with it in the files
-/.vs/Joff Studios - The Game/v16/Server/sqlite3/db.lock 
+/.vs/*
