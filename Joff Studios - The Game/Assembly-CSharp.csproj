@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\LevelScene\HealthBarScript.cs" />
     <Compile Include="Assets\Scripts\LevelScene\LevelSceneManager.cs" />
     <Compile Include="Assets\Scripts\LevelScene\Player.cs" />
+    <Compile Include="Assets\Scripts\LevelScene\PosessableObject.cs" />
     <Compile Include="Assets\Scripts\Loader.cs" />
     <Compile Include="Assets\Scripts\MenuScene\MenuSceneManager.cs" />
     <Compile Include="Assets\Scripts\PixelateImageEffect.cs" />

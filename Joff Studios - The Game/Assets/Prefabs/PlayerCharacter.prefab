@@ -82,7 +82,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2766420452868347882}
   - component: {fileID: 2766420452868347880}
-  - component: {fileID: 1211361743772031913}
   - component: {fileID: 2766420452868347877}
   - component: {fileID: 2766420452868347886}
   - component: {fileID: 2766420452868347883}
@@ -124,18 +123,6 @@ MonoBehaviour:
   _moveSpeed: 5
   movement: {x: 0, y: 0}
   _dashDistance: 10
---- !u!114 &1211361743772031913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2766420452868347876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6857cf2592b883e4295e492cc630edcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &2766420452868347877
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -154,7 +141,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fdd20b63504a7114885f932b824a616f, type: 2}
+  - {fileID: 2100000, guid: e7ea351830b053647af913417407398d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

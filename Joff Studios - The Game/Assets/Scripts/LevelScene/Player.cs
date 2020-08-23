@@ -10,11 +10,15 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private Vector2 movement;
+    private bool lockMovement;
     public float _dashDistance = 10f;
     private bool dashing;
 
     private float screamCooldown;
     private float timeSinceLastScream;
+
+    private bool isPossessing;
+    private PosessableObject possessedObject;
 
     private void Awake()
     {
@@ -30,8 +34,11 @@ public class Player : MonoBehaviour
     {
         timeSinceLastScream += Time.deltaTime;
 
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        if(!lockMovement)
+        {
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+        }
 
         if(!dashing) //if we arent dashing, continously set movement for the animations, otherwise override it
         {
@@ -55,12 +62,56 @@ public class Player : MonoBehaviour
                 StartCoroutine(Scream());
             }
         }
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            if(!isPossessing)
+            {
+                PossessObject();
+            }
+            else
+            {
+                DepossessObject();
+            }
+        }
     }
 
     private void FixedUpdate()
     {
         //make movement be more floaty
         rb.MovePosition(rb.position + movement.normalized * _moveSpeed * Time.fixedDeltaTime);
+    }
+
+    private void PossessObject()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+        if(hit.collider)
+        {
+            if(hit.collider.TryGetComponent<PosessableObject>(out PosessableObject possessable))
+            {
+                //print("possessing!");
+
+                movement = Vector2.zero; //make sure we dont move anymore
+                isPossessing = true;
+                lockMovement = true;
+                possessable.Possess();
+                possessedObject = possessable;
+                animator.SetBool("Disappear", true);
+            }
+        }
+    }
+
+    private void DepossessObject()
+    {
+        //print("back to moving!");
+
+        transform.position = possessedObject.transform.position;
+
+        isPossessing = false;
+        lockMovement = false;
+        animator.SetBool("Disappear", false);
+        possessedObject.Deposses();
+        possessedObject = null;
     }
 
     private IEnumerator Scream()
