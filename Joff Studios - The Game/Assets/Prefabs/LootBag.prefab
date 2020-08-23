@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2bd2e5afdbbffb44af1888b711395d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lootPrefab: {fileID: 5787650698131815977, guid: e337078895bd8c740a7c554836d19dc4,
+  lootPrefab: {fileID: 1048404689780524659, guid: 76805605007eb034cb84a333327469b7,
     type: 3}
   lootPos: {fileID: 3325123820296280132}
 --- !u!1 &3325123820296280132
@@ -173,7 +173,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3325123820296280132}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.487, y: -0.396, z: 0}
+  m_LocalPosition: {x: -0.795, y: -0.289, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1110423882093557276}
