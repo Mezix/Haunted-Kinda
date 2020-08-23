@@ -7,11 +7,13 @@ public class Player : MonoBehaviour
     public float _moveSpeed = 1f;
     private Rigidbody2D rb;
     private Animator animator;
+    public GameObject GhostGlow;
 
-    [SerializeField]
     private Vector2 movement;
     private bool lockMovement;
     public float _dashDistance = 10f;
+    private float dashCooldown;
+    private float timeSinceLastDash;
     private bool dashing;
 
     private float screamCooldown;
@@ -19,6 +21,7 @@ public class Player : MonoBehaviour
 
     private bool isPossessing;
     private PosessableObject possessedObject;
+    private float PossessionRange;
 
     private void Awake()
     {
@@ -27,12 +30,16 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
+        dashCooldown = 1;
         screamCooldown = 5;
         timeSinceLastScream = screamCooldown;
+        timeSinceLastDash = dashCooldown;
+        PossessionRange = 5;
     }
     private void Update()
     {
         timeSinceLastScream += Time.deltaTime;
+        timeSinceLastDash += Time.deltaTime;
 
         if(!lockMovement)
         {
@@ -47,14 +54,15 @@ public class Player : MonoBehaviour
         }
         animator.SetFloat("Speed", movement.sqrMagnitude);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            if(!dashing)
+            if(!dashing && timeSinceLastDash >= dashCooldown)
             {
+                timeSinceLastDash = 0;
                 StartCoroutine(Dash());
             }
         }
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(Input.GetKeyDown(KeyCode.Space))
         {
             if(timeSinceLastScream >= screamCooldown)
             {
@@ -62,16 +70,20 @@ public class Player : MonoBehaviour
                 StartCoroutine(Scream());
             }
         }
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.Q))
         {
             if(!isPossessing)
             {
-                PossessObject();
+                StartCoroutine(PossessObject());
             }
             else
             {
-                DepossessObject();
+                StartCoroutine(DepossessObject());
             }
+        }
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+
         }
     }
 
@@ -81,9 +93,13 @@ public class Player : MonoBehaviour
         rb.MovePosition(rb.position + movement.normalized * _moveSpeed * Time.fixedDeltaTime);
     }
 
-    private void PossessObject()
+    private void PickUpCollectible()
+    { 
+}
+
+    private IEnumerator PossessObject()
     {
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, 1 << 8); // 1 bitshift 8 is the 8th layer, where possesable things are at
 
         if(hit.collider)
         {
@@ -91,27 +107,36 @@ public class Player : MonoBehaviour
             {
                 //print("possessing!");
 
-                movement = Vector2.zero; //make sure we dont move anymore
-                isPossessing = true;
-                lockMovement = true;
-                possessable.Possess();
-                possessedObject = possessable;
-                animator.SetBool("Disappear", true);
+                if (Vector3.Distance(hit.transform.position, transform.position) <= PossessionRange)
+                {
+                    lockMovement = true;
+                    movement = Vector2.zero; //make sure we dont move anymore
+                    possessable.Possess();
+                    possessedObject = possessable;
+                    animator.SetBool("Disappear", true);
+                    GhostGlow.SetActive(false);
+                    Events.current.PossessObject(possessedObject.gameObject);
+                    yield return new WaitForSeconds(0.25f);
+                    isPossessing = true;
+                }
             }
         }
     }
 
-    private void DepossessObject()
+    private IEnumerator DepossessObject()
     {
         //print("back to moving!");
 
         transform.position = possessedObject.transform.position;
 
         isPossessing = false;
-        lockMovement = false;
         animator.SetBool("Disappear", false);
+        GhostGlow.SetActive(true);
         possessedObject.Deposses();
         possessedObject = null;
+        Events.current.PossessObject(gameObject);
+        yield return new WaitForSeconds(0.75f);
+        lockMovement = false;
     }
 
     private IEnumerator Scream()

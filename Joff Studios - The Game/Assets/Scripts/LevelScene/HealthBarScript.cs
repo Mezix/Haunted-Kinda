@@ -7,6 +7,7 @@ public class HealthBarScript : MonoBehaviour
 {
     [SerializeField]
     private Image healthbar;
+    public Image healthbarbackground;
     private void Awake()
     {
         //Events.current.OnHealthPctChanged += HandleHealthChange;

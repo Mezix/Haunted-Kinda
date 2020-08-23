@@ -13,6 +13,7 @@ public class Events : MonoBehaviour
 
     public event Action<float> OnHealthPctChanged;
     public event Action<GameObject> GraveRobberDespawned;
+    public event Action<GameObject> ObjectPossessed;
 
     public void ChangeHealth(float healthChange)
     {
@@ -21,12 +22,18 @@ public class Events : MonoBehaviour
             OnHealthPctChanged(healthChange);
         }
     }
-
     public void DespawnGraveRobber(GameObject graverobber)
     {
         if (GraveRobberDespawned != null)
         {
             GraveRobberDespawned(graverobber);
+        }
+    }
+    public void PossessObject(GameObject obj)
+    {
+        if (ObjectPossessed != null)
+        {
+            ObjectPossessed(obj);
         }
     }
 }

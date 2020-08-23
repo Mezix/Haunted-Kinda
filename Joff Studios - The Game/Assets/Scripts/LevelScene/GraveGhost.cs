@@ -7,11 +7,13 @@ public class GraveGhost : MonoBehaviour
     public Material opacityMat;
     private UnityEngine.Experimental.Rendering.Universal.Light2D GhostGlow;
     private GameObject player;
+    public float defaultOpacity = 11;
 
     private bool fadingIn;
 
     private void Awake()
     {
+        opacityMat.SetFloat("Vector1_D5B527C2", defaultOpacity);
         player = GameObject.Find("PlayerCharacter");
         GhostGlow = GetComponentInChildren<UnityEngine.Experimental.Rendering.Universal.Light2D>();
         gameObject.SetActive(false);

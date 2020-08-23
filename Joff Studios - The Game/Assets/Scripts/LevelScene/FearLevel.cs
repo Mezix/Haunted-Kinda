@@ -19,6 +19,7 @@ public class FearLevel : MonoBehaviour
     }
     public bool AddFear(float fear)
     {
+        health.healthbarbackground.gameObject.SetActive(true);
         currentFear = Mathf.Min(maxFear, currentFear + fear);
         health.HandleHealthChange(currentFear / maxFear);
         if (currentFear >= maxFear)
@@ -34,6 +35,10 @@ public class FearLevel : MonoBehaviour
         {
             currentFear = Mathf.Max(0, currentFear - fear);
             health.HandleHealthChange(currentFear / maxFear);
+        }
+        else
+        {
+            health.healthbarbackground.gameObject.SetActive(false);
         }
     }
 }
