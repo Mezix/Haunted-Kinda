@@ -1,5 +1,5 @@
-/[Ll]ibrary/
-/[Ll]ibrary/ArtifactDB/
+/[Ll]ibrary/*
+/[Ll]ibrary/ArtifactDB
 /[Tt]emp/
 
 /[Tt]emp/*
