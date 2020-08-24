@@ -98,13 +98,12 @@ public class LevelSceneManager : MonoBehaviour
 
     private void SpawnOfferings()
     {
-        
         for(int i = 0; i < OfferingSpawnPositions.Count; i++)
         {
             GameObject go = Instantiate(AllOfferingTypes[Random.Range(0, AllOfferingTypes.Count)]);
             go.transform.position = OfferingSpawnPositions[i].transform.position;
             go.transform.parent = OfferingsParent.transform;
-            print("offer");
+            //print("offer");
         }
     }
     
