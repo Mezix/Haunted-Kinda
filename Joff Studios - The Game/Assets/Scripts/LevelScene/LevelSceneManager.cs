@@ -1,13 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelSceneManager : MonoBehaviour
 {
-    public int NightLength;
-    public int DayLength;
+    public int NightLength = 3;
+    public int DayLength = 3;
+    public int AmountOfDays = 7;
+    private int DaysPassed = 0;
 
     public DayNightLighting Lighting;
+    public UI ui;
 
     public GameObject GraveRobberPrefab;
     public List<GameObject> GraveRobbers;
@@ -22,10 +26,13 @@ public class LevelSceneManager : MonoBehaviour
     private void Awake()
     {
         Events.current.GraveRobberDespawned += RemoveGraveRobber;
+        Events.current.DayIsOver += FinishDay;
     }
+
     private void Start()
     {
-        SetupLighting();
+        ui.StartGame();
+        SetupDayAndNight();
 
         GraveRobbers = new List<GameObject>();
         StartCoroutine(SpawnGraveRobbers(6));
@@ -47,11 +54,24 @@ public class LevelSceneManager : MonoBehaviour
         }
     }
 
-    void SetupLighting()
+    void SetupDayAndNight()
     {
         Lighting.DayLength = DayLength;
         Lighting.NightLength = NightLength;
+
         StartCoroutine(Lighting.Night(Lighting.NightLength));
+    }
+    private void FinishDay()
+    {
+        DaysPassed++;
+        if(DaysPassed >= AmountOfDays) //week over => game over
+        {
+            EndOfGame();
+        }
+        else //start a new day
+        {
+            SetupDayAndNight();
+        }
     }
 
     private IEnumerator SpawnGraveRobbers(int amount)
@@ -84,8 +104,10 @@ public class LevelSceneManager : MonoBehaviour
         //}
     }
 
-    private void VictoryScreen()
+    private void EndOfGame()
     {
-        Loader.Load(Loader.Scene.MainMenuScene);
+        print("VICTORY");
+        ui.ShowEndScreen();
+        //Loader.Load(Loader.Scene.MainMenuScene);
     }
 }

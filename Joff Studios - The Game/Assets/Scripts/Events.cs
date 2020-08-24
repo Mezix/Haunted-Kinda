@@ -14,6 +14,7 @@ public class Events : MonoBehaviour
     public event Action<float> OnHealthPctChanged;
     public event Action<GameObject> GraveRobberDespawned;
     public event Action<GameObject> ObjectPossessed;
+    public event Action DayIsOver;
 
     public void ChangeHealth(float healthChange)
     {
@@ -34,6 +35,13 @@ public class Events : MonoBehaviour
         if (ObjectPossessed != null)
         {
             ObjectPossessed(obj);
+        }
+    }
+    public void DayOver()
+    {
+        if(DayIsOver != null)
+        {
+            DayIsOver();
         }
     }
 }

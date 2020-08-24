@@ -5,15 +5,41 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject portrait;
+    public GameObject DashMeter;
+    public GameObject EndScreen;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void StartGame()
+    {
+        //enabled
+        portrait.SetActive(true);
+        DashMeter.SetActive(true);
+
+        //disabled
+        EndScreen.SetActive(false);
+    }
+
+    public void UIDash()
+    {
+
+    }
+    public void UIScream()
+    {
+
+    }
+
+    public void ShowEndScreen()
+    {
+        EndScreen.SetActive(true);
     }
 }

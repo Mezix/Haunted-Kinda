@@ -98,7 +98,8 @@ public class DayNightLighting : MonoBehaviour
         DayToNightRatio = 0.75f;
         //print("dayOver");
 
-        StartCoroutine(Night(NightLength));
+        //StartCoroutine(Night(NightLength));
+        Events.current.DayOver();
     }
 
     private void UpdateRedLight()
