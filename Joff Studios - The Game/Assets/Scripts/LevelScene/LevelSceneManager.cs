@@ -26,6 +26,8 @@ public class LevelSceneManager : MonoBehaviour
 
     public static bool paused;
 
+    public AudioSource EndingMusic;
+
     private void Awake()
     {
         Events.current.GraveRobberDespawned += RemoveGraveRobber;
@@ -129,6 +131,7 @@ public class LevelSceneManager : MonoBehaviour
     private void EndOfGame()
     {
         print("VICTORY");
+        EndingMusic.Play();
         ui.ShowEndScreen();
     }
 

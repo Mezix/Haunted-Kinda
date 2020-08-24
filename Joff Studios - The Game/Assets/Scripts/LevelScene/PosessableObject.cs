@@ -8,6 +8,8 @@ public class PosessableObject : MonoBehaviour
     private bool isPossessed;
     public bool canWalk;
     public bool isGrave;
+
+    public GameObject ExclamationMark;
     void Start()
     {
         canWalk = true;
@@ -28,7 +30,7 @@ public class PosessableObject : MonoBehaviour
         {
             if(isGrave)
             {
-                StartCoroutine(RestoreGrave());
+                //StartCoroutine(RestoreGrave());
             }
             else if (canWalk)
             {

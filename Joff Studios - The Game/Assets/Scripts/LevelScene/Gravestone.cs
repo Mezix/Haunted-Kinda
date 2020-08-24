@@ -18,10 +18,13 @@ public class Gravestone : MonoBehaviour
 
     public GameObject OfferingPos;
 
+    private AudioSource Healing;
+
     private void Awake()
     {
         GravestoneRenderer = GetComponent<SpriteRenderer>();
         initialSprite = GravestoneRenderer.sprite;
+        Healing = GetComponent<AudioSource>();
     }
     void Start()
     {
@@ -45,6 +48,7 @@ public class Gravestone : MonoBehaviour
     }
     public void Restore(float heal)
     {
+        Healing.Play();
         currentHealth += heal;
         if (currentHealth >= maxHealth)
         {
