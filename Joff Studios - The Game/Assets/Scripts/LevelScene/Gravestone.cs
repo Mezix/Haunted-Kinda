@@ -16,6 +16,7 @@ public class Gravestone : MonoBehaviour
     public float currentHealth;
 
     public GameObject OfferingPos;
+    public Offering currentOffering;
 
     private AudioSource Healing;
 

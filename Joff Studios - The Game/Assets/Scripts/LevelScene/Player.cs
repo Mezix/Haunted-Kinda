@@ -145,11 +145,15 @@ public class Player : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, 1 << 8); //the layer gravestones are on
         if (hit.collider.TryGetComponent<Gravestone>(out Gravestone grave))
         {
+            if(grave.currentOffering != null)
+            {
+                return;
+            }
             Offering offering = CollectedOfferings[0];
             offering.gameObject.SetActive(true);
             offering.transform.position = grave.OfferingPos.transform.position;
             grave.Restore(offering.HealAmount);
-            offering.FadeAway();
+            offering.FadeAway(grave);
             CollectedOfferings.RemoveAt(0);
         }
     }
