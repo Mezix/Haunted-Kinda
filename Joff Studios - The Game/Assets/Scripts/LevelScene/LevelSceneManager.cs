@@ -44,6 +44,7 @@ public class LevelSceneManager : MonoBehaviour
         SetupDayAndNight();
 
         GraveRobbers = new List<GameObject>();
+        SpawnOfferings();
         StartCoroutine(SpawnGraveRobbers(6));
     }
     private void Update()
@@ -97,10 +98,13 @@ public class LevelSceneManager : MonoBehaviour
 
     private void SpawnOfferings()
     {
+        
         for(int i = 0; i < OfferingSpawnPositions.Count; i++)
         {
             GameObject go = Instantiate(AllOfferingTypes[Random.Range(0, AllOfferingTypes.Count)]);
             go.transform.position = OfferingSpawnPositions[i].transform.position;
+            go.transform.parent = OfferingsParent.transform;
+            print("offer");
         }
     }
     
@@ -126,6 +130,7 @@ public class LevelSceneManager : MonoBehaviour
         GameObject go = Instantiate(GraveRobberPrefab);
         go.transform.position = GraveRobberPositions[Random.Range(0, GraveRobberPositions.Length)].transform.position;
         go.GetComponent<GraveRobber>().Init(AllGraves, GraveRobberEscapePos);
+        go.transform.parent = GraveRobberParent.transform;
         GraveRobbers.Add(go);
     }
     private void RemoveGraveRobber(GameObject graveRobber)
