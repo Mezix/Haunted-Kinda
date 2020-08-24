@@ -20,11 +20,14 @@ public class DayNightLighting : MonoBehaviour
 
     void Start()
     {
+        DayLength = 3;
+        NightLength = 1;
+
         RedGlobalLight.intensity = 0;
         BlueGlobalLight.intensity = 0;
         WhiteGlobalLight.intensity = 1;
 
-        DayToNightRatio = 1;
+        DayToNightRatio = 0.75f;
         DayToNight = true;
 
         StartCoroutine(Night(NightLength));
@@ -97,27 +100,7 @@ public class DayNightLighting : MonoBehaviour
         DayToNightRatio = 0.75f;
         //print("dayOver");
 
-        StartCoroutine(Night(1));
-    }
-
-    private void DayToNightCycle()
-    {
-        if(DayToNightRatio <= 0)
-        {
-            DayToNight = true; //go forwards
-        }
-        if (DayToNightRatio >= 1)
-        {
-            DayToNight = false; //go back
-        }
-        if(DayToNight)
-        {
-            DayToNightRatio += 0.001f;
-        }
-        else
-        {
-            DayToNightRatio -= 0.001f;
-        }
+        StartCoroutine(Night(NightLength));
     }
 
     private void UpdateRedLight()
