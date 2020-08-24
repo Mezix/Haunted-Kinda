@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class LevelSceneManager : MonoBehaviour
 {
+    public int NightLength;
+    public int DayLength;
+
+    public DayNightLighting Lighting;
+
     public GameObject GraveRobberPrefab;
     public List<GameObject> GraveRobbers;
+    public GameObject [] GraveRobberPositions;
 
     public List<Gravestone> AllGraves;
+
+    public List<Offering> AllOfferingTypes;
 
     static bool paused;
 
@@ -17,8 +25,10 @@ public class LevelSceneManager : MonoBehaviour
     }
     private void Start()
     {
+        SetupLighting();
+
         GraveRobbers = new List<GameObject>();
-        SpawnGraveRobbers(3);
+        StartCoroutine(SpawnGraveRobbers(6));
     }
     private void Update()
     {
@@ -37,14 +47,22 @@ public class LevelSceneManager : MonoBehaviour
         }
     }
 
-    private void SpawnGraveRobbers(int amount)
+    void SetupLighting()
+    {
+        Lighting.DayLength = DayLength;
+        Lighting.NightLength = NightLength;
+        StartCoroutine(Lighting.Night(Lighting.NightLength));
+    }
+
+    private IEnumerator SpawnGraveRobbers(int amount)
     {
         for (int i = 0; i < amount; i++)
         {
             GameObject go = Instantiate(GraveRobberPrefab);
-            go.transform.position += new Vector3(-i, 2 * i,0);
+            go.transform.position = GraveRobberPositions[i % GraveRobberPositions.Length].transform.position;
             go.GetComponent<GraveRobber>().InitAllGravestones(AllGraves);
             GraveRobbers.Add(go);
+            yield return new WaitForSeconds(0.5f);
         }
         for (int i = 0; i < GraveRobbers.Count; i++) //remove all robber collisions
         {
@@ -59,10 +77,11 @@ public class LevelSceneManager : MonoBehaviour
     {
         GraveRobbers.Remove(graveRobber);
         Destroy(graveRobber);
-        if(GraveRobbers.Count == 0)
-        {
-            VictoryScreen();
-        }
+
+        //if(GraveRobbers.Count == 0)
+        //{
+        //    VictoryScreen();
+        //}
     }
 
     private void VictoryScreen()

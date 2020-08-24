@@ -415,6 +415,36 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &338853680
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 338853681}
+  m_Layer: 0
+  m_Name: GraveRobberPos3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &338853681
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338853680}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 17.32, y: -4.99, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1370889069}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &425288447
 GameObject:
   m_ObjectHideFlags: 0
@@ -16060,7 +16090,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556079374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.2, y: -2.12, z: -4.56}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1786781911}
@@ -18106,6 +18136,36 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2766420453033166178}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1199812583
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1199812584}
+  m_Layer: 0
+  m_Name: GraveRobberPos2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1199812584
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199812583}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.98, y: -11.04, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1370889069}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1268370722
 GameObject:
   m_ObjectHideFlags: 0
@@ -18273,7 +18333,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.11, y: 0.021000013, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1803479457}
+  - {fileID: 1199812584}
+  - {fileID: 338853681}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18292,9 +18355,14 @@ MonoBehaviour:
   GraveRobberPrefab: {fileID: 6633286194476850704, guid: fad074e2e73829a4da4ca635331e33f1,
     type: 3}
   GraveRobbers: []
+  GraveRobberPositions:
+  - {fileID: 1803479456}
+  - {fileID: 1199812583}
+  - {fileID: 338853680}
   AllGraves:
   - {fileID: 1786781913}
   - {fileID: 1940406192644031315}
+  AllOfferingTypes: []
 --- !u!1 &1496699628
 GameObject:
   m_ObjectHideFlags: 0
@@ -18658,6 +18726,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: affb6bb1a17414740a4ad783a2ada62b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1803479456
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1803479457}
+  m_Layer: 0
+  m_Name: GraveRobberPos1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1803479457
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803479456}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.64, y: -3.77, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1370889069}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1813936726
 GameObject:
   m_ObjectHideFlags: 0
@@ -42997,6 +43095,8 @@ MonoBehaviour:
   - {fileID: 1496699629}
   DayToNightRatio: 1
   DayToNight: 0
+  DayLength: 0
+  NightLength: 0
 --- !u!1 &2141642001
 GameObject:
   m_ObjectHideFlags: 0
@@ -43155,15 +43255,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: DadGrave
       objectReference: {fileID: 0}
+    - target: {fileID: 1771324859771884122, guid: 847beb8b23689c8438528bee69e19dcb,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1771324859771884123, guid: 847beb8b23689c8438528bee69e19dcb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.7499998
+      value: 7.9
       objectReference: {fileID: 0}
     - target: {fileID: 1771324859771884123, guid: 847beb8b23689c8438528bee69e19dcb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.6499999
+      value: -8.69
       objectReference: {fileID: 0}
     - target: {fileID: 1771324859771884123, guid: 847beb8b23689c8438528bee69e19dcb,
         type: 3}
@@ -43341,12 +43446,12 @@ PrefabInstance:
     - target: {fileID: 5956151856962221968, guid: 28d96a38cdf9c554fbf7ddffda494049,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.48
+      value: 9.83
       objectReference: {fileID: 0}
     - target: {fileID: 5956151856962221968, guid: 28d96a38cdf9c554fbf7ddffda494049,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.74
+      value: -8.62
       objectReference: {fileID: 0}
     - target: {fileID: 5956151856962221968, guid: 28d96a38cdf9c554fbf7ddffda494049,
         type: 3}
@@ -43392,6 +43497,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956151856962221969, guid: 28d96a38cdf9c554fbf7ddffda494049,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5956151856962221970, guid: 28d96a38cdf9c554fbf7ddffda494049,
         type: 3}

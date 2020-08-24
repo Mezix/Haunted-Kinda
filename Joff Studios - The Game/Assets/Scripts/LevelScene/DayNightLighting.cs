@@ -29,8 +29,6 @@ public class DayNightLighting : MonoBehaviour
 
         DayToNightRatio = 0.75f;
         DayToNight = true;
-
-        StartCoroutine(Night(NightLength));
     }
 
     void Update()
@@ -47,7 +45,7 @@ public class DayNightLighting : MonoBehaviour
         //DayToNightCycle();
     }
 
-    private IEnumerator Night(int length)
+    public IEnumerator Night(int length)
     {
         int halfNight = (length * 100) / 2;
 
@@ -75,7 +73,7 @@ public class DayNightLighting : MonoBehaviour
         StartCoroutine(Day(DayLength));
     }
 
-    private IEnumerator Day(int length)
+    public IEnumerator Day(int length)
     {
         int halfNight = (length * 100) / 2;
 
