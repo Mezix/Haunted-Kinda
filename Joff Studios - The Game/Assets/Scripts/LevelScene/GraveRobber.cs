@@ -45,17 +45,6 @@ public class GraveRobber : MonoBehaviour
         StartCoroutine(MoveToNearestGrave());
     }
 
-    public void StopFearNearPlayer(GameObject possessed)
-    {
-        if(!possessed.Equals(player)) //if we are possessing anything than isnt the player, dont get feared by the players presence anymore
-        {
-            canBeFearedByPlayer = false;
-        }
-        else
-        {
-            canBeFearedByPlayer = true;
-        }
-    }
 
     void Update()
     {
@@ -76,7 +65,7 @@ public class GraveRobber : MonoBehaviour
         else
         {
             rb.MovePosition(rb.position + movement.normalized * _moveSpeed * Time.fixedDeltaTime);
-            UpdateFear();
+            ReduceFearWhenFarAway();
         }
     }
 
@@ -186,21 +175,33 @@ public class GraveRobber : MonoBehaviour
     {
 
     }
-    private void UpdateFear()
+    private void ReduceFearWhenFarAway()
     {
-        if(Vector2.Distance(player.transform.position, transform.position) <= 3 && canBeFearedByPlayer) //if close to player, continously add fear
+        if(Vector2.Distance(player.transform.position, transform.position) >= 6) //if close to player, continously add fear
         {
-            bool runAway = fear.AddFear(1f);
-            if(runAway)
-            {
-                wasTerrified = runAway;
-                
-                StartCoroutine(RunAway());
-            }
+            fear.ReduceFear(0.1f);
+        }
+    }
+    public void TakeFearDamage(float dmg)
+    {
+        bool runAway = fear.AddFear(dmg);
+        if (runAway)
+        {
+            wasTerrified = runAway;
+
+            StartCoroutine(RunAway());
+        }
+    }
+
+    public void StopFearNearPlayer(GameObject possessed)
+    {
+        if (!possessed.Equals(player)) //if we are possessing anything than isnt the player, dont get feared by the players presence anymore
+        {
+            canBeFearedByPlayer = false;
         }
         else
         {
-            fear.ReduceFear(1f);
+            canBeFearedByPlayer = true;
         }
     }
 

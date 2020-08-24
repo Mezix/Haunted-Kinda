@@ -11,6 +11,8 @@ public class FearLevel : MonoBehaviour
     private void Awake()
     {
         health = GetComponentInChildren<HealthBarScript>();
+        health.healthbarbackground.gameObject.SetActive(false);
+
     }
     public void InitMaxFear(float max)
     {

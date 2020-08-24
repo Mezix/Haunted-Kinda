@@ -90,7 +90,7 @@ AnimatorController:
   m_Name: Portrait
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Screaming
+  - m_Name: Scream
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -124,7 +124,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: Screaming
+    m_ConditionEvent: Scream
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: Dash
@@ -152,7 +152,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: Screaming
+    m_ConditionEvent: Scream
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3529228186312374365}
@@ -205,7 +205,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Screaming
+    m_ConditionEvent: Scream
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2044901321133817525}
@@ -230,7 +230,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Screaming
+    m_ConditionEvent: Scream
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2044901321133817525}

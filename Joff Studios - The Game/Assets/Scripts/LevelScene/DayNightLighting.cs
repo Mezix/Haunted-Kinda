@@ -27,7 +27,7 @@ public class DayNightLighting : MonoBehaviour
         BlueGlobalLight.intensity = 0;
         WhiteGlobalLight.intensity = 1;
 
-        DayToNightRatio = 0.75f;
+        DayToNightRatio = 0.5f;
         DayToNight = true;
     }
 
@@ -49,14 +49,14 @@ public class DayNightLighting : MonoBehaviour
     {
         int halfNight = (length * 100) / 2;
 
-        DayToNightRatio = 0.75f;
+        DayToNightRatio = 0.5f;
         
         //for half of night go to 1
 
         for(int i = 0; i < halfNight; i ++)
         {
             yield return new WaitForSeconds(0.01f);
-            DayToNightRatio += 0.25f / (halfNight);
+            DayToNightRatio += 0.5f / (halfNight);
         }
         DayToNightRatio = 1;
 
@@ -65,9 +65,9 @@ public class DayNightLighting : MonoBehaviour
         for (int i = 0; i < halfNight; i++)
         {
             yield return new WaitForSeconds(0.01f);
-            DayToNightRatio += -0.25f / (halfNight);
+            DayToNightRatio += -0.5f / (halfNight);
         }
-        DayToNightRatio = 0.75f;
+        DayToNightRatio = 0.5f;
         //print("nightOver");
 
         StartCoroutine(Day(DayLength));
@@ -77,14 +77,14 @@ public class DayNightLighting : MonoBehaviour
     {
         int halfNight = (length * 100) / 2;
 
-        DayToNightRatio = 0.75f;
+        DayToNightRatio = 0.5f;
 
         //for half of night go to 1
 
         for (int i = 0; i < halfNight; i++)
         {
             yield return new WaitForSeconds(0.01f);
-            DayToNightRatio -= 0.75f / (halfNight);
+            DayToNightRatio -= 0.5f / (halfNight);
         }
         DayToNightRatio = 0;
 
@@ -93,9 +93,9 @@ public class DayNightLighting : MonoBehaviour
         for (int i = 0; i < halfNight; i++)
         {
             yield return new WaitForSeconds(0.01f);
-            DayToNightRatio += 0.75f / (halfNight);
+            DayToNightRatio += 0.5f / (halfNight);
         }
-        DayToNightRatio = 0.75f;
+        DayToNightRatio = 0.5f;
         //print("dayOver");
 
         //StartCoroutine(Night(NightLength));

@@ -21,7 +21,7 @@ public class LevelSceneManager : MonoBehaviour
 
     public List<Offering> AllOfferingTypes;
 
-    static bool paused;
+    public static bool paused;
 
     private void Awake()
     {
@@ -31,6 +31,8 @@ public class LevelSceneManager : MonoBehaviour
 
     private void Start()
     {
+        Unpause();
+
         ui.StartGame();
         SetupDayAndNight();
 
@@ -43,15 +45,26 @@ public class LevelSceneManager : MonoBehaviour
         {
             if (paused)
             {
-                Time.timeScale = 1;
-                paused = false;
+                Unpause();
             }
             else
             {
-                Time.timeScale = 0;
-                paused = true;
+                Pause();
             }
         }
+    }
+
+    public void Pause()
+    {
+        ui.UIPause();
+        Time.timeScale = 0;
+        paused = true;
+    }
+    public void Unpause()
+    {
+        ui.UIUnpause();
+        Time.timeScale = 1;
+        paused = false;
     }
 
     void SetupDayAndNight()
@@ -108,6 +121,10 @@ public class LevelSceneManager : MonoBehaviour
     {
         print("VICTORY");
         ui.ShowEndScreen();
-        //Loader.Load(Loader.Scene.MainMenuScene);
+    }
+
+    public void GoToMainMenu()
+    {
+        Loader.Load(Loader.Scene.MainMenuScene);
     }
 }

@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\LevelScene\Offering.cs" />
     <Compile Include="Assets\Scripts\LevelScene\Player.cs" />
     <Compile Include="Assets\Scripts\LevelScene\PosessableObject.cs" />
+    <Compile Include="Assets\Scripts\LevelScene\TriggerReturnCollissions.cs" />
     <Compile Include="Assets\Scripts\LevelScene\UI.cs" />
     <Compile Include="Assets\Scripts\Loader.cs" />
     <Compile Include="Assets\Scripts\MenuScene\MenuSceneManager.cs" />
