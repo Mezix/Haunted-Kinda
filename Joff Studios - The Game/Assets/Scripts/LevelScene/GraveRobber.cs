@@ -102,8 +102,8 @@ public class GraveRobber : MonoBehaviour
         //print("moving to grave");
         if(NearestGrave)
         {
-            Vector2 NearGravePos = new Vector2(NearestGrave.transform.position.x, NearestGrave.transform.position.y);
-            while (Vector2.Distance(rb.position, NearGravePos) > 0.5f)
+            Vector2 NearGravePos = new Vector2(NearestGrave.transform.position.x, NearestGrave.transform.position.y) + new Vector2(0.5f, -0.25f);
+            while (Vector2.Distance(rb.position, NearGravePos) > 0.1f)
             {
                 movement = (NearGravePos - rb.position).normalized;
                 yield return new WaitForFixedUpdate();
@@ -127,7 +127,7 @@ public class GraveRobber : MonoBehaviour
                 animator.SetBool("Digging", false);
                 break;
             }
-            NearestGrave.TakeDamage(1f);
+            NearestGrave.TakeDamage(0.3f);
             yield return new WaitForSeconds(0.1f);
         }
         if(!wasTerrified)

@@ -90,6 +90,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   OfferingPos: {fileID: 550000552207145079}
+  currentOffering: {fileID: 0}
 --- !u!212 &1771324859771884122
 SpriteRenderer:
   m_ObjectHideFlags: 0
