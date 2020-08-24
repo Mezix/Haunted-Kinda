@@ -44716,7 +44716,11 @@ MonoBehaviour:
   SunDialObject: {fileID: 543257345}
   SunDial: {fileID: 1785207000}
   Buttons: {fileID: 1735720557}
+<<<<<<< HEAD
+  buttonRend: {fileID: 2116282883}
+=======
   buttonWithSprite: {fileID: 0}
+>>>>>>> 45ac9b61893f3767059428ff444ec48b95d13a5b
   Instructions: {fileID: 904291253}
   E: {fileID: 21300000, guid: e40df4b3d2edbc841b3d72f885d8bae0, type: 3}
   Q: {fileID: 21300000, guid: b61c220001f79354c8cfc4561007d0db, type: 3}
