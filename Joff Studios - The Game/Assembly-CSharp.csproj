@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Events.cs" />
     <Compile Include="Assets\Scripts\LevelScene\CameraScript.cs" />
+    <Compile Include="Assets\Scripts\LevelScene\Cursor.cs" />
     <Compile Include="Assets\Scripts\LevelScene\DayNightLighting.cs" />
     <Compile Include="Assets\Scripts\LevelScene\FearLevel.cs" />
     <Compile Include="Assets\Scripts\LevelScene\GraveGhost.cs" />
