@@ -16,7 +16,7 @@ public class UI : MonoBehaviour
     public GameObject SunDialObject;
     public GameObject SunDial;
     public GameObject Buttons;
-    public GameObject buttonWithSprite;
+    public Image buttonRend;
     public GameObject Instructions;
 
     public Sprite E;
@@ -33,16 +33,26 @@ public class UI : MonoBehaviour
 
     private void SelectButtonToShow()
     {
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, 1 << 9);
-        if (hit.collider.TryGetComponent<Offering>(out Offering offering))
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        Offering offering = hit.collider.GetComponent<Offering>();
+        if (offering is object)
         {
-
             if (!offering.disappearing)
             {
-                
-                offering.gameObject.SetActive(false);
+                buttonRend.sprite = E;
+                Buttons.SetActive(true);
+                return;
             }
         }
+        hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        PosessableObject posessable = hit.collider.GetComponent<PosessableObject>();
+        if (posessable is object)
+        {
+            buttonRend.sprite = Q;
+            Buttons.SetActive(true);
+            return;
+        }
+        Buttons.SetActive(false);
     }
 
     void SetDashmeterFill()

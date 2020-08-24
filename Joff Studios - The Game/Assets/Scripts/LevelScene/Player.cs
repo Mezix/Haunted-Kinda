@@ -130,8 +130,8 @@ public class Player : MonoBehaviour
     }
     private void PickUpOffering()
     {
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, 1 << 9); 
-        if (hit.collider.TryGetComponent<Offering>(out Offering offering))
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, 1 << 9);
+        if (hit.collider.TryGetComponent(out Offering offering))
         {
             if(!offering.disappearing)
             {
