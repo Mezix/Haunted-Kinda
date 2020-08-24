@@ -236,7 +236,7 @@ public class GraveRobber : MonoBehaviour
     public IEnumerator RunAway()
     {
         animator.SetBool("Digging", false);
-        print("AHHHHHHHHHHHHHHHHHHHHHHHHH");
+        //print("AHHHHHHHHHHHHHHHHHHHHHHHHH");
         float time = 0f;
         while(!EscapePossible() && time <= 10f)
         {

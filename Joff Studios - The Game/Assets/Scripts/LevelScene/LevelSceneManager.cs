@@ -18,11 +18,13 @@ public class LevelSceneManager : MonoBehaviour
     public List<GameObject> GraveRobbers;
     public GameObject [] GraveRobberPositions;
     public GameObject GraveRobberEscapePos;
+    public GameObject GraveRobberParent;
 
     public List<Gravestone> AllGraves;
 
     public List<GameObject> AllOfferingTypes;
     public List<GameObject> OfferingSpawnPositions;
+    public GameObject OfferingsParent;
 
     public static bool paused;
 
@@ -89,13 +91,17 @@ public class LevelSceneManager : MonoBehaviour
         else //start a new day
         {
             SetupDayAndNight();
+            SpawnGraveRobbers(Random.Range(3, 6));
         }
     }
 
-    private void SpawnOffering()
+    private void SpawnOfferings()
     {
-        GameObject go = Instantiate(AllOfferingTypes[Random.Range(0, AllOfferingTypes.Count)]);
-        go.transform.position = OfferingSpawnPositions[0].transform.position;
+        for(int i = 0; i < OfferingSpawnPositions.Count; i++)
+        {
+            GameObject go = Instantiate(AllOfferingTypes[Random.Range(0, AllOfferingTypes.Count)]);
+            go.transform.position = OfferingSpawnPositions[i].transform.position;
+        }
     }
     
     private IEnumerator SpawnGraveRobbers(int amount)
