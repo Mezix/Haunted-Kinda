@@ -74,6 +74,7 @@
      <Compile Include="Assets\Scripts\MenuScene\PlayerLookAt.cs" />
      <Compile Include="Assets\Scripts\PixelateImageEffect.cs" />
      <None Include="Assets\Materials + Shaders\Shaders\PixelEffectShader.shader" />
+     <None Include="Assets\Sounds &amp; Music\Put this in Credits for Copyright.txt" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
