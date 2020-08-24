@@ -135,10 +135,13 @@ public class DayNightLighting : MonoBehaviour
     }
     private void UpdateAllLamps()
     {
-        foreach(UnityEngine.Experimental.Rendering.Universal.Light2D lamp in Lamps)
+        if(Lamps.Count > 0)
         {
-            lamp.intensity = DayToNightRatio;
-            lamp.pointLightOuterRadius = 2.5f + 2.5f * DayToNightRatio;
+            foreach (UnityEngine.Experimental.Rendering.Universal.Light2D lamp in Lamps)
+            {
+                lamp.intensity = DayToNightRatio;
+                lamp.pointLightOuterRadius = 2.5f + 2.5f * DayToNightRatio;
+            }
         }
     }
 
