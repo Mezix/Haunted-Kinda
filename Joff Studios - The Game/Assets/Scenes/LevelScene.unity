@@ -40451,14 +40451,12 @@ MonoBehaviour:
   - {fileID: 5787650698131815977, guid: e337078895bd8c740a7c554836d19dc4, type: 3}
   OfferingSpawnPositions:
   - {fileID: 1833086367}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  OfferingsParent: {fileID: 0}
+  - {fileID: 128365642}
+  - {fileID: 353080715}
+  - {fileID: 905028784}
+  - {fileID: 1282773753}
+  - {fileID: 765525429}
+  OfferingsParent: {fileID: 511610596}
   EndingMusic: {fileID: 2118313490}
 --- !u!4 &1451682650 stripped
 Transform:
