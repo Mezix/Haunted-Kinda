@@ -154,7 +154,7 @@ public class GraveRobber : MonoBehaviour
             movement = (EscapePosition.transform.position - transform.position).normalized;
             if (EscapePossible()) //check to see if we ran away safely
             {
-                EscapeWithLootAnimation();
+                StartCoroutine(EscapeWithLootAnimation());
             }
             yield return new WaitForFixedUpdate();
         }
@@ -178,18 +178,26 @@ public class GraveRobber : MonoBehaviour
         return false;
     }
 
-    void EscapeWithLootAnimation()
+    IEnumerator EscapeWithLootAnimation()
     {
+        canBeFearedByPlayer = false;
         print("cya suckers");
-
+        animator.SetBool("HasEscaped", true);
+        for(int i = 100; i > 0; i--)
+        {
+            rend.color = new Color(1, 1, 1, i/100f);
+            yield return new WaitForSeconds(0.01f);
+        }
         Destroy(gameObject);
     }
 
     IEnumerator FleeAnimation()
     {
-        rend.color = new Color(1, 1, 1, 0.5f);
-        yield return new WaitForSeconds(5f);
-        print("deleete");
+        for (int i = 100; i > 0; i--)
+        {
+            rend.color = new Color(1, 1, 1, i / 100f);
+            yield return new WaitForSeconds(0.005f);
+        }
         Destroy(gameObject);
     }
     private void ReduceFearWhenFarAway()
