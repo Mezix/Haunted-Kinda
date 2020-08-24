@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DadGhost
+  m_Name: CoolGhost
   m_Shader: {fileID: -6465566751694194690, guid: 99ffbbec2fe83d742baa48ba0dc92f2a,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
@@ -40,7 +40,7 @@ Material:
     - Vector1_554A5CB7: 1
     - Vector1_C2460C5: 1
     - Vector1_CE2DC0E6: 1
-    - Vector1_D5B527C2: 5.8
+    - Vector1_D5B527C2: 11
     - Vector1_EE5FB436: 1
     - _EnableExternalAlpha: 0
     m_Colors:
