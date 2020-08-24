@@ -92,7 +92,9 @@ public class LevelSceneManager : MonoBehaviour
         else //start a new day
         {
             SetupDayAndNight();
-            SpawnGraveRobbers(Random.Range(3, 6));
+            StartCoroutine(SpawnGraveRobbers(Random.Range(3, 6)));
+            print("new day");
+            SpawnOfferings();
         }
     }
 

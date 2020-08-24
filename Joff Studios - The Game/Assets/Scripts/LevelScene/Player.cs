@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public Animator scream;
+    public GameObject screamObj;
+
     public UI ui;
     public float _moveSpeed = 1f;
     private Rigidbody2D rb;
@@ -205,6 +208,8 @@ public class Player : MonoBehaviour
 
     private IEnumerator Scream()
     {
+        screamObj.SetActive(true);
+        scream.SetBool("Scream", true);
         ui.UIScream();
         ScreamSound.Play();
 
@@ -215,6 +220,8 @@ public class Player : MonoBehaviour
         }
         yield return new WaitForSeconds(1f);
         animator.SetBool("Screaming", false);
+        scream.SetBool("Scream", false);
+        screamObj.SetActive(false);
     }
 
     private IEnumerator Dash()
