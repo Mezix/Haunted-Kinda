@@ -15,6 +15,9 @@ public class DayNightLighting : MonoBehaviour
     public float DayToNightRatio;
     public bool DayToNight; //true -> day to night. False -> night to day
 
+    public int DayLength;
+    public int NightLength;
+
     void Start()
     {
         RedGlobalLight.intensity = 0;
@@ -23,6 +26,8 @@ public class DayNightLighting : MonoBehaviour
 
         DayToNightRatio = 1;
         DayToNight = true;
+
+        StartCoroutine(Night(NightLength));
     }
 
     void Update()
@@ -36,7 +41,63 @@ public class DayNightLighting : MonoBehaviour
 
     private void FixedUpdate()
     {
-        DayToNightCycle();
+        //DayToNightCycle();
+    }
+
+    private IEnumerator Night(int length)
+    {
+        int halfNight = (length * 100) / 2;
+
+        DayToNightRatio = 0.75f;
+        
+        //for half of night go to 1
+
+        for(int i = 0; i < halfNight; i ++)
+        {
+            yield return new WaitForSeconds(0.01f);
+            DayToNightRatio += 0.25f / (halfNight);
+        }
+        DayToNightRatio = 1;
+
+        //For other half go back to 0.75
+
+        for (int i = 0; i < halfNight; i++)
+        {
+            yield return new WaitForSeconds(0.01f);
+            DayToNightRatio += -0.25f / (halfNight);
+        }
+        DayToNightRatio = 0.75f;
+        //print("nightOver");
+
+        StartCoroutine(Day(DayLength));
+    }
+
+    private IEnumerator Day(int length)
+    {
+        int halfNight = (length * 100) / 2;
+
+        DayToNightRatio = 0.75f;
+
+        //for half of night go to 1
+
+        for (int i = 0; i < halfNight; i++)
+        {
+            yield return new WaitForSeconds(0.01f);
+            DayToNightRatio -= 0.75f / (halfNight);
+        }
+        DayToNightRatio = 0;
+
+        //For other half go back to 0.75
+
+        for (int i = 0; i < halfNight; i++)
+        {
+            yield return new WaitForSeconds(0.01f);
+            DayToNightRatio += 0.75f / (halfNight);
+        }
+        DayToNightRatio = 0.75f;
+        //print("dayOver");
+
+        StartCoroutine(Night(1));
     }
 
     private void DayToNightCycle()
