@@ -211,9 +211,20 @@ public class Player : MonoBehaviour
         ui.UIDash();
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        
+
         //either move to the position or the max distance, whichever is smaller
-        Vector2 vectorToMove = Vector2.Min(((mousePos - rb.position).normalized * _dashDistance), (mousePos - rb.position));
+        Vector2 maxDash = (mousePos - rb.position).normalized * _dashDistance;
+        Vector2 cursorDash = (mousePos - rb.position);
+
+        Vector2 vectorToMove;
+        if (maxDash.magnitude < cursorDash.magnitude)
+        {
+            vectorToMove = maxDash;
+        }
+        else
+        {
+            vectorToMove = cursorDash;
+        }
         Vector2 initialRbPos = rb.position;
 
         animator.SetBool("Dashing", dashing);
@@ -231,7 +242,12 @@ public class Player : MonoBehaviour
                     AlreadyDamagedRobbers.Add(robber);
                 }
             }
+
+
             rb.position = Vector2.Lerp(rb.position, initialRbPos + vectorToMove, 0.1f);
+            //rb.MovePosition(rb.position + (initialRbPos + vectorToMove).normalized * _moveSpeed * Time.deltaTime);
+            print((initialRbPos + vectorToMove).normalized * _moveSpeed * Time.deltaTime);
+
             yield return new WaitForFixedUpdate();
 
             if (framesOfTryingToMove > 15) //if we try to move enough, break out of our dash

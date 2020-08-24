@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class LevelSceneManager : MonoBehaviour
 {
@@ -19,7 +20,8 @@ public class LevelSceneManager : MonoBehaviour
 
     public List<Gravestone> AllGraves;
 
-    public List<Offering> AllOfferingTypes;
+    public List<GameObject> AllOfferingTypes;
+    public List<GameObject> OfferingSpawnPositions;
 
     public static bool paused;
 
@@ -87,6 +89,12 @@ public class LevelSceneManager : MonoBehaviour
         }
     }
 
+    private void SpawnOffering()
+    {
+        GameObject go = Instantiate(AllOfferingTypes[Random.Range(0, AllOfferingTypes.Count)]);
+        go.transform.position = OfferingSpawnPositions[0].transform.position;
+    }
+    
     private IEnumerator SpawnGraveRobbers(int amount)
     {
         for (int i = 0; i < amount; i++)
@@ -110,11 +118,6 @@ public class LevelSceneManager : MonoBehaviour
     {
         GraveRobbers.Remove(graveRobber);
         Destroy(graveRobber);
-
-        //if(GraveRobbers.Count == 0)
-        //{
-        //    VictoryScreen();
-        //}
     }
 
     private void EndOfGame()
