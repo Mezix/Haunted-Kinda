@@ -17,6 +17,7 @@ public class LevelSceneManager : MonoBehaviour
     public GameObject GraveRobberPrefab;
     public List<GameObject> GraveRobbers;
     public GameObject [] GraveRobberPositions;
+    public GameObject GraveRobberEscapePos;
 
     public List<Gravestone> AllGraves;
 
@@ -99,11 +100,9 @@ public class LevelSceneManager : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            GameObject go = Instantiate(GraveRobberPrefab);
-            go.transform.position = GraveRobberPositions[i % GraveRobberPositions.Length].transform.position;
-            go.GetComponent<GraveRobber>().InitAllGravestones(AllGraves);
-            GraveRobbers.Add(go);
+            SpawnGraveRobber();
             yield return new WaitForSeconds(0.5f);
+
         }
         for (int i = 0; i < GraveRobbers.Count; i++) //remove all robber collisions
         {
@@ -114,6 +113,13 @@ public class LevelSceneManager : MonoBehaviour
         }
     }
 
+    private void SpawnGraveRobber()
+    {
+        GameObject go = Instantiate(GraveRobberPrefab);
+        go.transform.position = GraveRobberPositions[Random.Range(0, GraveRobberPositions.Length)].transform.position;
+        go.GetComponent<GraveRobber>().Init(AllGraves, GraveRobberEscapePos);
+        GraveRobbers.Add(go);
+    }
     private void RemoveGraveRobber(GameObject graveRobber)
     {
         GraveRobbers.Remove(graveRobber);

@@ -298,8 +298,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 104b389fcab57914895ff833ed19097e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rend: {fileID: 5791755157202934720}
   _moveSpeed: 1
   LootBag: {fileID: 1110423882093557277, guid: 03ba46fb85b4d6c4ba11e11cb4426268, type: 3}
+  EscapePosition: {fileID: 0}
 --- !u!114 &6507663872487307908
 MonoBehaviour:
   m_ObjectHideFlags: 0

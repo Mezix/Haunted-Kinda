@@ -30,10 +30,14 @@ public class Player : MonoBehaviour
     public TriggerReturnCollissions DashCollider;
     public TriggerReturnCollissions ScreamCollider;
 
+    public Collider2D WaterTilemap;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        Physics2D.IgnoreCollision(WaterTilemap, GetComponent<Collider2D>());
     }
     private void Start()
     {
@@ -65,7 +69,7 @@ public class Player : MonoBehaviour
             }
             animator.SetFloat("Speed", movement.sqrMagnitude);
 
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (Input.GetKeyDown(KeyCode.LeftShift) && !isPossessing)
             {
                 if (!dashing && timeSinceLastDash >= dashCooldown)
                 {
@@ -73,7 +77,7 @@ public class Player : MonoBehaviour
                     StartCoroutine(Dash());
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && !isPossessing)
             {
                 if (timeSinceLastScream >= screamCooldown)
                 {
@@ -243,11 +247,7 @@ public class Player : MonoBehaviour
                 }
             }
 
-
             rb.position = Vector2.Lerp(rb.position, initialRbPos + vectorToMove, 0.1f);
-            //rb.MovePosition(rb.position + (initialRbPos + vectorToMove).normalized * _moveSpeed * Time.deltaTime);
-            print((initialRbPos + vectorToMove).normalized * _moveSpeed * Time.deltaTime);
-
             yield return new WaitForFixedUpdate();
 
             if (framesOfTryingToMove > 15) //if we try to move enough, break out of our dash
