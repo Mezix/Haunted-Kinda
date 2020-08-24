@@ -32,6 +32,11 @@ public class Player : MonoBehaviour
 
     public Collider2D WaterTilemap;
 
+    //SOUND
+
+    public AudioSource DashSound;
+    public AudioSource ScreamSound;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -196,6 +201,7 @@ public class Player : MonoBehaviour
     private IEnumerator Scream()
     {
         ui.UIScream();
+        ScreamSound.Play();
 
         animator.SetBool("Screaming", true);
         foreach(GraveRobber robber in ScreamCollider.GraveRobbersInCollider)
@@ -213,6 +219,8 @@ public class Player : MonoBehaviour
         dashing = true;
 
         ui.UIDash();
+
+        DashSound.Play();
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
