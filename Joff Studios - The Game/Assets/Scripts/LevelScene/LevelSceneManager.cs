@@ -18,11 +18,13 @@ public class LevelSceneManager : MonoBehaviour
     public List<GameObject> GraveRobbers;
     public GameObject [] GraveRobberPositions;
     public GameObject GraveRobberEscapePos;
+    public GameObject GraveRobberParent;
 
     public List<Gravestone> AllGraves;
 
     public List<GameObject> AllOfferingTypes;
     public List<GameObject> OfferingSpawnPositions;
+    public GameObject OfferingsParent;
 
     public static bool paused;
 
@@ -42,6 +44,7 @@ public class LevelSceneManager : MonoBehaviour
         SetupDayAndNight();
 
         GraveRobbers = new List<GameObject>();
+        SpawnOfferings();
         StartCoroutine(SpawnGraveRobbers(6));
     }
     private void Update()
@@ -89,13 +92,20 @@ public class LevelSceneManager : MonoBehaviour
         else //start a new day
         {
             SetupDayAndNight();
+            SpawnGraveRobbers(Random.Range(3, 6));
         }
     }
 
-    private void SpawnOffering()
+    private void SpawnOfferings()
     {
-        GameObject go = Instantiate(AllOfferingTypes[Random.Range(0, AllOfferingTypes.Count)]);
-        go.transform.position = OfferingSpawnPositions[0].transform.position;
+        
+        for(int i = 0; i < OfferingSpawnPositions.Count; i++)
+        {
+            GameObject go = Instantiate(AllOfferingTypes[Random.Range(0, AllOfferingTypes.Count)]);
+            go.transform.position = OfferingSpawnPositions[i].transform.position;
+            go.transform.parent = OfferingsParent.transform;
+            print("offer");
+        }
     }
     
     private IEnumerator SpawnGraveRobbers(int amount)
@@ -120,6 +130,7 @@ public class LevelSceneManager : MonoBehaviour
         GameObject go = Instantiate(GraveRobberPrefab);
         go.transform.position = GraveRobberPositions[Random.Range(0, GraveRobberPositions.Length)].transform.position;
         go.GetComponent<GraveRobber>().Init(AllGraves, GraveRobberEscapePos);
+        go.transform.parent = GraveRobberParent.transform;
         GraveRobbers.Add(go);
     }
     private void RemoveGraveRobber(GameObject graveRobber)

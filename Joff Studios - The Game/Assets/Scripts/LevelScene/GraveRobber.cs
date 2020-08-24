@@ -181,7 +181,7 @@ public class GraveRobber : MonoBehaviour
     IEnumerator EscapeWithLootAnimation()
     {
         canBeFearedByPlayer = false;
-        print("cya suckers");
+        //print("cya suckers");
         animator.SetBool("HasEscaped", true);
         for(int i = 100; i > 0; i--)
         {
@@ -236,7 +236,7 @@ public class GraveRobber : MonoBehaviour
     public IEnumerator RunAway()
     {
         animator.SetBool("Digging", false);
-        print("AHHHHHHHHHHHHHHHHHHHHHHHHH");
+        //print("AHHHHHHHHHHHHHHHHHHHHHHHHH");
         float time = 0f;
         while(!EscapePossible() && time <= 10f)
         {

@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
         screamCooldown = 5;
         timeSinceLastScream = screamCooldown;
         timeSinceLastDash = dashCooldown;
-        PossessionRange = 10;
+        PossessionRange = 20;
 
         CollectedOfferings = new List<Offering>();
     }
