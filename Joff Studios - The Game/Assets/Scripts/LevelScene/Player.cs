@@ -47,10 +47,11 @@ public class Player : MonoBehaviour
     private void Start()
     {
         dashCooldown = 1;
+        _dashDistance = 5;
         screamCooldown = 5;
         timeSinceLastScream = screamCooldown;
         timeSinceLastDash = dashCooldown;
-        PossessionRange = 5;
+        PossessionRange = 10;
 
         CollectedOfferings = new List<Offering>();
     }
@@ -229,6 +230,7 @@ public class Player : MonoBehaviour
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         //either move to the position or the max distance, whichever is smaller
+
         Vector2 maxDash = (mousePos - rb.position).normalized * _dashDistance;
         Vector2 cursorDash = (mousePos - rb.position);
 
@@ -239,7 +241,8 @@ public class Player : MonoBehaviour
         }
         else
         {
-            vectorToMove = cursorDash;
+            vectorToMove = maxDash; //always go maxdistance
+            //vectorToMove = cursorDash; 
         }
         Vector2 initialRbPos = rb.position;
 
