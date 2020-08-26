@@ -12,7 +12,7 @@ public class LevelSceneManager : MonoBehaviour
     private int DaysPassed = 0;
 
     public DayNightLighting Lighting;
-    public UI ui;
+    public UIScript ui;
 
     public GameObject GraveRobberPrefab;
     public List<GameObject> GraveRobbers;

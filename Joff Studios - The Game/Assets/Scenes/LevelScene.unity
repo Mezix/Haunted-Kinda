@@ -15002,7 +15002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c88f5cead0c0b2a4eb05b5900433f8d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AssetsPPU: 100
+  m_AssetsPPU: 25
   m_RefResolutionX: 320
   m_RefResolutionY: 180
   m_UpscaleRT: 0
@@ -87207,14 +87207,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2766420452868347880, guid: c073b36170cbb4241b0bfaf686f741de,
         type: 3}
-      propertyPath: ui
-      value: 
-      objectReference: {fileID: 1908170319}
-    - target: {fileID: 2766420452868347880, guid: c073b36170cbb4241b0bfaf686f741de,
-        type: 3}
-      propertyPath: WaterTilemap
+      propertyPath: _waterTilemap
       value: 
       objectReference: {fileID: 2083138076}
+    - target: {fileID: 2766420452868347880, guid: c073b36170cbb4241b0bfaf686f741de,
+        type: 3}
+      propertyPath: _ui
+      value: 
+      objectReference: {fileID: 1908170319}
     - target: {fileID: 2766420452868347882, guid: c073b36170cbb4241b0bfaf686f741de,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -87269,31 +87269,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4560099793726918585, guid: c073b36170cbb4241b0bfaf686f741de,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4560099793726918585, guid: c073b36170cbb4241b0bfaf686f741de,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 9936ac04ef96f8944bcffb5cae99a4f6, type: 3}
-    - target: {fileID: 9092339924767096333, guid: c073b36170cbb4241b0bfaf686f741de,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: e470a70de5430ba47bf4435b655d5607, type: 3}
-    - target: {fileID: 9092339924767096333, guid: c073b36170cbb4241b0bfaf686f741de,
-        type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9092339924767096333, guid: c073b36170cbb4241b0bfaf686f741de,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c073b36170cbb4241b0bfaf686f741de, type: 3}

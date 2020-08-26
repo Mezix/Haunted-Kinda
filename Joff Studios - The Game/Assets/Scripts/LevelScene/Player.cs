@@ -4,117 +4,130 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Animator scream;
-    public GameObject screamObj;
+    //REFERENCES TO OBJECTS ON PLAYER
 
-    public UI ui;
-    public float _moveSpeed = 1f;
-    private Rigidbody2D rb;
-    private Animator animator;
-    public GameObject GhostGlow;
-    public GameObject Shadow;
+    public GameObject _screamObj; //the object containing our scream animation
+    private Animator screamAnim; //the animator component of our scream
+    private Rigidbody2D playerRB; //the rigidbody component for our player
+    private Animator playerAnimator; //the animator component for our player
+    public GameObject _ghostGlow; //the Glowy Background of our Ghost
+    public GameObject _shadow; //the shadow below our ghost
 
-    private Vector2 movement;
-    private bool lockMovement;
-    public float _dashDistance = 10f;
-    public float dashCooldown;
-    public float timeSinceLastDash;
-    private bool dashing;
+    //MOVEMENT AND ABILITIES
 
-    private float screamCooldown;
-    private float timeSinceLastScream;
+    public float _moveSpeed = 1f; 
+    private Vector2 movement; //the vector that controls where our player will move to
+    private bool lockMovement; //stops our x and y movement vector from being changed
+    public float _dashDistance = 10f; //the distance in units that we will dash
+    public float _dashCooldown; //the cooldown of our dash in seconds
+    public float TimeSinceLastDash { get; private set; } //time elapsed since we last dashed, to determine when we can dash next
+    private bool dashing; //check if we are dashing, so we can't dash again immediately
 
-    private bool isPossessing;
-    private PosessableObject possessedObject;
-    private float PossessionRange;
+    public float _screamCooldown; //the cooldown of our scream
+    private float timeSinceLastScream; //time elapsed since we last screamed, to determine when we can scream next
 
-    private List<Offering> CollectedOfferings;
+    //POSSESSION
 
-    public TriggerReturnCollissions DashCollider;
-    public TriggerReturnCollissions ScreamCollider;
+    private bool isPossessing; //checks if we are possesing any object
+    private PosessableObject possessedObject; //the script of the object were possessing
+    public float _possessionRange; //the range at which we can start to possess objects
 
-    public Collider2D WaterTilemap;
+    //INVENTORY
+    private List<Offering> collectedOfferings = new List<Offering>(); //all of the offerings we have collected and can place down
+
+    //COLLIDERS FOR FEARING
+
+    public TriggerReturnCollissions _dashCollider; //the script of two objects that contain colliders, 
+    public TriggerReturnCollissions _screamCollider; //which simply returns all enemies in them so we can fear them
+
+    //MISC STUFF
+    public Collider2D _waterTilemap; //the water is collidable, but our ghost should be able to float over it, so we need to ignore collisions with this layer!
+    public UIScript _ui;
 
     //SOUND
 
-    public AudioSource DashSound;
-    public AudioSource ScreamSound;
+    public AudioSource _dashSound; //audio sources that the player needs, located within empty gameobjects with the same names 
+    public AudioSource _screamSound; //that house only these sounds
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        playerRB = GetComponent<Rigidbody2D>(); //get all the references to the private gameobjects we need
+        playerAnimator = GetComponent<Animator>();
+        screamAnim = _screamObj.GetComponentInChildren<Animator>();
 
-        Physics2D.IgnoreCollision(WaterTilemap, GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(_waterTilemap, GetComponent<Collider2D>()); //make sure we dont collide with the water
     }
     private void Start()
     {
-        dashCooldown = 1;
+        _dashCooldown = 1; //set our starting values
         _dashDistance = 5;
-        screamCooldown = 5;
-        timeSinceLastScream = screamCooldown;
-        timeSinceLastDash = dashCooldown;
-        PossessionRange = 20;
+        _screamCooldown = 5;
+        _possessionRange = 20;
 
-        CollectedOfferings = new List<Offering>();
+        timeSinceLastScream = _screamCooldown; //make sure we can scream and dash right away
+        TimeSinceLastDash = _dashCooldown;
+
     }
     private void Update()
     {
-        timeSinceLastScream += Time.deltaTime;
-        timeSinceLastDash += Time.deltaTime;
+        timeSinceLastScream += Time.deltaTime; //tick up our timers for our dash and scream
+        TimeSinceLastDash += Time.deltaTime;
 
-        if(!LevelSceneManager.paused)
+        if(!LevelSceneManager.paused) //if the game is paused we shoudnt even be able to make any inputs
         {
-            if (!lockMovement)
+            if (!lockMovement) //if our movement is locked, for example with a dash, we shouldnt be able to change the movement vector
             {
                 movement.x = Input.GetAxisRaw("Horizontal");
                 movement.y = Input.GetAxisRaw("Vertical");
             }
-
-            if (!dashing) //if we arent dashing, continously set movement for the animations, otherwise override it
+            if (!dashing) //if we aren't dashing, continously set movement for the animations, otherwise override it
             {
-                animator.SetFloat("Horizontal", movement.x);
-                animator.SetFloat("Vertical", movement.y);
+                playerAnimator.SetFloat("Horizontal", movement.x);
+                playerAnimator.SetFloat("Vertical", movement.y);
             }
-            animator.SetFloat("Speed", movement.sqrMagnitude);
+            playerAnimator.SetFloat("Speed", movement.sqrMagnitude); // continously set the speed, so our animator can switch states as required
 
-            if (Input.GetKeyDown(KeyCode.LeftShift) && !isPossessing)
+            if(!isPossessing) // if we are possesing, dont let us use our abilites (which wouldnt do aynthing, but set them on cooldown)
             {
-                if (!dashing && timeSinceLastDash >= dashCooldown)
+                if (Input.GetKeyDown(KeyCode.LeftShift)) //Dash
                 {
-                    timeSinceLastDash = 0;
-                    StartCoroutine(Dash());
+                    // as long as we arent already dashing, and weve waited enough since the last time, we can dash
+                    if (!dashing && TimeSinceLastDash >= _dashCooldown) 
+                    {
+                        TimeSinceLastDash = 0; //reset our time
+                        StartCoroutine(Dash());
+                    }
                 }
-            }
-            if (Input.GetKeyDown(KeyCode.Space) && !isPossessing)
-            {
-                if (timeSinceLastScream >= screamCooldown)
+                if (Input.GetKeyDown(KeyCode.Space)) //Scream
                 {
-                    timeSinceLastScream = 0;
-                    StartCoroutine(Scream());
+                    // if weve waited enough since the last time, we can scream
+                    if (timeSinceLastScream >= _screamCooldown)
+                    {
+                        timeSinceLastScream = 0;
+                        StartCoroutine(Scream());
+                    }
+                }
+                if (Input.GetKeyDown(KeyCode.E)) //pressing E picks up an offering
+                {
+                    PickUpOffering();
+                }
+                if (Input.GetKeyDown(KeyCode.F)) //press F to pay respects
+                {
+                    if (collectedOfferings.Count > 0)
+                    {
+                        PlaceDownOffering();
+                    }
                 }
             }
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                if (!isPossessing)
+                if (!isPossessing) //if we arent possessing yet, do so
                 {
                     StartCoroutine(PossessObject());
                 }
                 else
                 {
-                    StartCoroutine(DepossessObject());
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Interact();
-                PickUpOffering();
-            }
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                if (CollectedOfferings.Count > 0)
-                {
-                    PlaceDownOffering();
+                    StartCoroutine(DepossessObject()); //if we are possessing, depossess
                 }
             }
         }
@@ -123,123 +136,25 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //make movement be more floaty
-        rb.MovePosition(rb.position + movement.normalized * _moveSpeed * Time.fixedDeltaTime);
+        //TODO: make movement feel more floaty
+        playerRB.MovePosition(playerRB.position + movement.normalized * _moveSpeed * Time.fixedDeltaTime);
     }
-
-    void Interact()
-    {
-        PickUpOffering();
-    }
-    private void PickUpOffering()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, 1 << 9);
-        if (hit.collider.TryGetComponent(out Offering offering))
-        {
-            if(!offering.disappearing)
-            {
-                CollectedOfferings.Add(offering);
-                offering.gameObject.SetActive(false);
-            }
-        }
-    }
-
-    private void PlaceDownOffering()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, 1 << 8); //the layer gravestones are on
-        if (hit.collider.TryGetComponent<Gravestone>(out Gravestone grave))
-        {
-            if(grave.currentOffering != null)
-            {
-                return;
-            }
-            Offering offering = CollectedOfferings[0];
-            offering.gameObject.SetActive(true);
-            offering.transform.position = grave.OfferingPos.transform.position;
-            grave.Restore(offering.HealAmount);
-            offering.FadeAway(grave);
-            CollectedOfferings.RemoveAt(0);
-        }
-    }
-
-    private IEnumerator PossessObject()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, 1 << 8); // 1 bitshift 8 is the 8th layer, where possesable things are at
-
-        if(hit.collider)
-        {
-            if(hit.collider.TryGetComponent<PosessableObject>(out PosessableObject possessable))
-            {
-                //print("possessing!");
-
-                if (Vector3.Distance(hit.transform.position, transform.position) <= PossessionRange)
-                {
-                    lockMovement = true;
-                    movement = Vector2.zero; //make sure we dont move anymore
-                    possessable.Possess();
-                    possessedObject = possessable;
-                    animator.SetBool("Disappear", true);
-                    GhostGlow.SetActive(false);
-                    Shadow.SetActive(false);
-                    Events.current.PossessObject(possessedObject.gameObject);
-                    yield return new WaitForSeconds(0.25f);
-                    isPossessing = true;
-                }
-            }
-        }
-    }
-
-    private IEnumerator DepossessObject()
-    {
-        //print("back to moving!");
-
-        transform.position = possessedObject.transform.position;
-
-        isPossessing = false;
-        animator.SetBool("Disappear", false);
-        GhostGlow.SetActive(true);
-        Shadow.SetActive(true);
-        possessedObject.Deposses();
-        possessedObject = null;
-        Events.current.PossessObject(gameObject);
-        yield return new WaitForSeconds(0.75f);
-        lockMovement = false;
-    }
-
-    private IEnumerator Scream()
-    {
-        screamObj.SetActive(true);
-        scream.SetBool("Scream", true);
-        ui.UIScream();
-        ScreamSound.Play();
-
-        animator.SetBool("Screaming", true);
-        foreach(GraveRobber robber in ScreamCollider.GraveRobbersInCollider)
-        {
-            robber.TakeFearDamage(60f);
-        }
-        yield return new WaitForSeconds(1f);
-        animator.SetBool("Screaming", false);
-        scream.SetBool("Scream", false);
-        screamObj.SetActive(false);
-    }
-
+    
     private IEnumerator Dash()
     {
-        int framesOfTryingToMove = 0;
+        int framesOfTryingToMove = 0; //this variable makes it possible for us to break out of a dash if we hold down the movement keys
 
-        dashing = true;
+        dashing = true; //set bool to true so we cant call the dash coroutine immediately again
 
-        ui.UIDash();
-
-        DashSound.Play();
+        _ui.UIDash(); //play the dash animation on the player portrait
+        _dashSound.Play();
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         //either move to the position or the max distance, whichever is smaller
 
-        Vector2 maxDash = (mousePos - rb.position).normalized * _dashDistance;
-        Vector2 cursorDash = (mousePos - rb.position);
+        Vector2 maxDash = (mousePos - playerRB.position).normalized * _dashDistance;
+        Vector2 cursorDash = (mousePos - playerRB.position);
 
         Vector2 vectorToMove;
         if (maxDash.magnitude < cursorDash.magnitude)
@@ -251,30 +166,30 @@ public class Player : MonoBehaviour
             vectorToMove = maxDash; //always go maxdistance
             //vectorToMove = cursorDash; 
         }
-        Vector2 initialRbPos = rb.position;
+        Vector2 initialRbPos = playerRB.position;
 
-        animator.SetBool("Dashing", dashing);
-        animator.SetFloat("Horizontal", vectorToMove.x);
-        animator.SetFloat("Vertical", vectorToMove.y);
+        playerAnimator.SetBool("Dashing", dashing);
+        playerAnimator.SetFloat("Horizontal", vectorToMove.x);
+        playerAnimator.SetFloat("Vertical", vectorToMove.y);
 
         List<GraveRobber> AlreadyDamagedRobbers = new List<GraveRobber>();
-        while (Vector2.Distance(rb.position, vectorToMove + initialRbPos) > 0.5f)
+        while (Vector2.Distance(playerRB.position, vectorToMove + initialRbPos) > 0.5f)
         {
-            foreach(GraveRobber robber in DashCollider.GraveRobbersInCollider)
+            foreach (GraveRobber robber in _dashCollider.GraveRobbersInCollider)
             {
-                if(!AlreadyDamagedRobbers.Contains(robber))
+                if (!AlreadyDamagedRobbers.Contains(robber))
                 {
                     robber.TakeFearDamage(30f);
                     AlreadyDamagedRobbers.Add(robber);
                 }
             }
 
-            rb.position = Vector2.Lerp(rb.position, initialRbPos + vectorToMove, 0.1f);
+            playerRB.position = Vector2.Lerp(playerRB.position, initialRbPos + vectorToMove, 0.1f);
             yield return new WaitForFixedUpdate();
 
             if (framesOfTryingToMove > 15) //if we try to move enough, break out of our dash
             {
-                animator.SetBool("Dashing", false);
+                playerAnimator.SetBool("Dashing", false);
                 break;
             }
             if (movement.magnitude > 0) //if we are trying to move, tick our timer up
@@ -287,7 +202,93 @@ public class Player : MonoBehaviour
             }
         }
 
-        animator.SetBool("Dashing", false);
+        playerAnimator.SetBool("Dashing", false);
         dashing = false;
+    }
+    private IEnumerator Scream()
+    {
+        _screamObj.SetActive(true);
+        screamAnim.SetBool("Scream", true);
+        _ui.UIScream();
+        _screamSound.Play();
+
+        playerAnimator.SetBool("Screaming", true);
+        foreach (GraveRobber robber in _screamCollider.GraveRobbersInCollider)
+        {
+            robber.TakeFearDamage(60f);
+        }
+        yield return new WaitForSeconds(1f);
+        playerAnimator.SetBool("Screaming", false);
+        screamAnim.SetBool("Scream", false);
+        _screamObj.SetActive(false);
+    }
+    private IEnumerator PossessObject()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, 1 << 8); // 1 bitshift 8 is the 8th layer, where possesable things are at
+
+        if(hit.collider)
+        {
+            if(hit.collider.TryGetComponent<PosessableObject>(out PosessableObject possessable))
+            {
+                //print("possessing!");
+
+                if (Vector3.Distance(hit.transform.position, transform.position) <= _possessionRange)
+                {
+                    lockMovement = true;
+                    movement = Vector2.zero; //make sure we dont move anymore
+                    possessable.Possess();
+                    possessedObject = possessable;
+                    playerAnimator.SetBool("Disappear", true);
+                    _ghostGlow.SetActive(false);
+                    _shadow.SetActive(false);
+                    Events.current.PossessObject(possessedObject.gameObject);
+                    yield return new WaitForSeconds(0.25f);
+                    isPossessing = true;
+                }
+            }
+        }
+    }
+    private IEnumerator DepossessObject()
+    {
+        transform.position = possessedObject.transform.position;
+
+        isPossessing = false;
+        playerAnimator.SetBool("Disappear", false);
+        _ghostGlow.SetActive(true);
+        _shadow.SetActive(true);
+        possessedObject.Deposses();
+        possessedObject = null;
+        Events.current.PossessObject(gameObject);
+        yield return new WaitForSeconds(0.75f);
+        lockMovement = false;
+    }
+    private void PickUpOffering()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, 1 << 9);
+        if (hit.collider.TryGetComponent(out Offering offering))
+        {
+            if (!offering.disappearing)
+            {
+                collectedOfferings.Add(offering);
+                offering.gameObject.SetActive(false);
+            }
+        }
+    }
+    private void PlaceDownOffering()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, 1 << 8); //the layer gravestones are on
+        if (hit.collider.TryGetComponent<Gravestone>(out Gravestone grave))
+        {
+            if (grave.currentOffering != null)
+            {
+                return;
+            }
+            Offering offering = collectedOfferings[0];
+            offering.gameObject.SetActive(true);
+            offering.transform.position = grave.OfferingPos.transform.position;
+            grave.Restore(offering.HealAmount);
+            offering.FadeAway(grave);
+            collectedOfferings.RemoveAt(0);
+        }
     }
 }

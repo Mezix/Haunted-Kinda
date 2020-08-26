@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI : MonoBehaviour
+public class UIScript : MonoBehaviour
 {
     public DayNightLighting lighting;
     public Player player;
@@ -57,7 +57,7 @@ public class UI : MonoBehaviour
 
     void SetDashmeterFill()
     {
-        DashMeter.transform.Find("bar").GetComponent<Image>().fillAmount = Mathf.Min(1, player.timeSinceLastDash)/player.dashCooldown;
+        DashMeter.transform.Find("bar").GetComponent<Image>().fillAmount = Mathf.Min(1, player.TimeSinceLastDash)/player._dashCooldown;
     }
     void SetSundialRotation()
     {
