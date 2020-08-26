@@ -20,11 +20,13 @@ public class Player : MonoBehaviour
     private bool lockMovement; //stops our x and y movement vector from being changed
     public float _dashDistance = 10f; //the distance in units that we will dash
     public float _dashCooldown; //the cooldown of our dash in seconds
+    public float _dashDamage = 30f;
     public float TimeSinceLastDash { get; private set; } //time elapsed since we last dashed, to determine when we can dash next
     private bool dashing; //check if we are dashing, so we can't dash again immediately
 
     public float _screamCooldown; //the cooldown of our scream
-    private float timeSinceLastScream; //time elapsed since we last screamed, to determine when we can scream next
+    public float _screamDamage = 50f;
+    public float TimeSinceLastScream { get; private set; } //time elapsed since we last screamed, to determine when we can scream next
 
     //POSSESSION
 
@@ -64,18 +66,18 @@ public class Player : MonoBehaviour
         _screamCooldown = 5;
         _possessionRange = 20;
 
-        timeSinceLastScream = _screamCooldown; //make sure we can scream and dash right away
+        TimeSinceLastScream = _screamCooldown; //make sure we can scream and dash right away
         TimeSinceLastDash = _dashCooldown;
 
     }
     private void Update()
     {
-        timeSinceLastScream += Time.deltaTime; //tick up our timers for our dash and scream
+        TimeSinceLastScream += Time.deltaTime; //tick up our timers for our dash and scream
         TimeSinceLastDash += Time.deltaTime;
 
         if(!LevelSceneManager.paused) //if the game is paused we shoudnt even be able to make any inputs
         {
-            if (!lockMovement) //if our movement is locked, for example with a dash, we shouldnt be able to change the movement vector
+            if (!lockMovement) //if our movement is locked, for example through possesion, we shouldnt be able to change the movement vector
             {
                 movement.x = Input.GetAxisRaw("Horizontal");
                 movement.y = Input.GetAxisRaw("Vertical");
@@ -101,9 +103,9 @@ public class Player : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Space)) //Scream
                 {
                     // if weve waited enough since the last time, we can scream
-                    if (timeSinceLastScream >= _screamCooldown)
+                    if (TimeSinceLastScream >= _screamCooldown)
                     {
-                        timeSinceLastScream = 0;
+                        TimeSinceLastScream = 0;
                         StartCoroutine(Scream());
                     }
                 }
@@ -131,79 +133,68 @@ public class Player : MonoBehaviour
                 }
             }
         }
-        
     }
-
     private void FixedUpdate()
     {
         //TODO: make movement feel more floaty
         playerRB.MovePosition(playerRB.position + movement.normalized * _moveSpeed * Time.fixedDeltaTime);
     }
-    
     private IEnumerator Dash()
     {
-        int framesOfTryingToMove = 0; //this variable makes it possible for us to break out of a dash if we hold down the movement keys
-
         dashing = true; //set bool to true so we cant call the dash coroutine immediately again
 
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); //find the position which our mouse was over when we decided to dash
+        int framesOfTryingToMove = 0; //this variable makes it possible for us to break out of a dash if we hold down the movement keys
         _ui.UIDash(); //play the dash animation on the player portrait
-        _dashSound.Play();
-
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        _dashSound.Play(); //play our dash sound
 
         //either move to the position or the max distance, whichever is smaller
 
         Vector2 maxDash = (mousePos - playerRB.position).normalized * _dashDistance;
-        Vector2 cursorDash = (mousePos - playerRB.position);
-
-        Vector2 vectorToMove;
-        if (maxDash.magnitude < cursorDash.magnitude)
-        {
-            vectorToMove = maxDash;
-        }
-        else
-        {
-            vectorToMove = maxDash; //always go maxdistance
-            //vectorToMove = cursorDash; 
-        }
+        //Vector2 cursorDash = (mousePos - playerRB.position);
         Vector2 initialRbPos = playerRB.position;
 
-        playerAnimator.SetBool("Dashing", dashing);
-        playerAnimator.SetFloat("Horizontal", vectorToMove.x);
-        playerAnimator.SetFloat("Vertical", vectorToMove.y);
+        Vector2 vectorToMove; //compare cursor and max dash to find the one we want, then use this variable to determine distance
+        vectorToMove = maxDash;
 
-        List<GraveRobber> AlreadyDamagedRobbers = new List<GraveRobber>();
-        while (Vector2.Distance(playerRB.position, vectorToMove + initialRbPos) > 0.5f)
+        playerAnimator.SetBool("Dashing", dashing);             //  Set our dashing animator bool, so move to the dashing blend tree.
+        playerAnimator.SetFloat("Horizontal", vectorToMove.x);  //  Set our horizontal and vertical move values, so our dash animation... 
+        playerAnimator.SetFloat("Vertical", vectorToMove.y);    //  ...is determined by the direction we are dashing towards!
+
+        List<GraveRobber> AlreadyDamagedRobbers = new List<GraveRobber>(); //since our collider moves, we might damage robbers twice, which we dont want
+
+        while (Vector2.Distance(playerRB.position, vectorToMove + initialRbPos) > 0.3f) 
         {
-            foreach (GraveRobber robber in _dashCollider.GraveRobbersInCollider)
+            foreach (GraveRobber robber in _dashCollider.GraveRobbersInCollider) //constantly damage all robbers in our collider, but only once per dash
             {
-                if (!AlreadyDamagedRobbers.Contains(robber))
+                if (!AlreadyDamagedRobbers.Contains(robber)) //if we havent damaged this certain robber...
                 {
-                    robber.TakeFearDamage(30f);
-                    AlreadyDamagedRobbers.Add(robber);
+                    robber.TakeFearDamage(_dashDamage); //...take damage...
+                    AlreadyDamagedRobbers.Add(robber);  //...and add him to the robbers we cant damage anymore
                 }
             }
 
-            playerRB.position = Vector2.Lerp(playerRB.position, initialRbPos + vectorToMove, 0.1f);
-            yield return new WaitForFixedUpdate();
+            playerRB.position = Vector2.Lerp(playerRB.position, initialRbPos + vectorToMove, 0.1f); //constantly lerp towards the dash position
+            yield return new WaitForFixedUpdate(); //use fixedupdate, since thats what our normal movement also uses
 
             if (framesOfTryingToMove > 15) //if we try to move enough, break out of our dash
             {
+                //TODO: change this so our inputs change the position we aiming towards instead of breaking completely
+
                 playerAnimator.SetBool("Dashing", false);
-                break;
+                break; //breaks out of the movement part of the dash, cutting straight to stopping the dash animation
             }
             if (movement.magnitude > 0) //if we are trying to move, tick our timer up
             {
                 framesOfTryingToMove++;
             }
-            else
+            else //if we lay off the movement however, reset this short window of breaking the dash
             {
                 framesOfTryingToMove = 0;
             }
         }
-
-        playerAnimator.SetBool("Dashing", false);
-        dashing = false;
+        playerAnimator.SetBool("Dashing", false); //once our dash is complete, stop the animation
+        dashing = false; //free us up to potentially dashing again
     }
     private IEnumerator Scream()
     {
@@ -215,7 +206,7 @@ public class Player : MonoBehaviour
         playerAnimator.SetBool("Screaming", true);
         foreach (GraveRobber robber in _screamCollider.GraveRobbersInCollider)
         {
-            robber.TakeFearDamage(60f);
+            robber.TakeFearDamage(_screamDamage);
         }
         yield return new WaitForSeconds(1f);
         playerAnimator.SetBool("Screaming", false);
