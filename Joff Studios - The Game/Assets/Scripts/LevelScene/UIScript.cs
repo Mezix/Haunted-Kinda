@@ -35,25 +35,29 @@ public class UIScript : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-        Offering offering = hit.collider.GetComponent<Offering>();
-        if (offering is object)
+        if(hit.collider)
         {
-            if (!offering.disappearing)
+            if (hit.collider.TryGetComponent(out Offering offering))
             {
-                buttonRend.sprite = E;
-                Buttons.SetActive(true);
-                return;
+                if (!offering.disappearing)
+                {
+                    buttonRend.sprite = E;
+                    Buttons.SetActive(true);
+                    return;
+                }
             }
         }
 
         hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-        PosessableObject posessable = hit.collider.GetComponent<PosessableObject>();
-        if (posessable is object)
+        if (hit.collider)
         {
-            buttonRend.sprite = Q;
-            Buttons.SetActive(true);
-            return;
+            if (hit.collider.TryGetComponent(out PosessableObject possessable))
+            {
+                buttonRend.sprite = Q;
+                Buttons.SetActive(true);
+                return;
+            }
         }
         Buttons.SetActive(false);
     }

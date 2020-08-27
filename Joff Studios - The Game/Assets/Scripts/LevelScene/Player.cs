@@ -259,30 +259,38 @@ public class Player : MonoBehaviour
     private void PickUpOffering()
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, 1 << 9); //offerings are on layer 9, so use that layermask
-        if (hit.collider.TryGetComponent(out Offering offering))
+
+        if (hit.collider)
         {
-            if (!offering.disappearing) // only pick up offerings which havent been given away to other ghosts
+            if (hit.collider.TryGetComponent(out Offering offering))
             {
-                collectedOfferings.Add(offering); //add to our internal inventory system
-                offering.gameObject.SetActive(false); //disable the gameobject
+                if (!offering.disappearing) // only pick up offerings which havent been given away to other ghosts
+                {
+                    collectedOfferings.Add(offering); //add to our internal inventory system
+                    offering.gameObject.SetActive(false); //disable the gameobject
+                }
             }
         }
     }
     private void PlaceDownOffering()
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, 1 << 8); //the layer gravestones are on
-        if (hit.collider.TryGetComponent(out Gravestone grave))
+
+        if (hit.collider)
         {
-            if (grave.currentOffering != null) //if the grave already has a offering currently, return out of the function
+            if (hit.collider.TryGetComponent(out Gravestone grave))
             {
-                return;
+                if (grave.currentOffering != null) //if the grave already has a offering currently, return out of the function
+                {
+                    return;
+                }
+                Offering offering = collectedOfferings[0]; //take the first offering off our list
+                offering.gameObject.SetActive(true); //reenable this offering
+                offering.transform.position = grave.OfferingPos.transform.position; //and move it our graves offering position
+                grave.Restore(offering.HealAmount); //heal our grave
+                offering.FadeAway(grave); //slowly fade it away
+                collectedOfferings.RemoveAt(0); //remove the offering from our list
             }
-            Offering offering = collectedOfferings[0]; //take the first offering off our list
-            offering.gameObject.SetActive(true); //reenable this offering
-            offering.transform.position = grave.OfferingPos.transform.position; //and move it our graves offering position
-            grave.Restore(offering.HealAmount); //heal our grave
-            offering.FadeAway(grave); //slowly fade it away
-            collectedOfferings.RemoveAt(0); //remove the offering from our list
         }
     }
 }
