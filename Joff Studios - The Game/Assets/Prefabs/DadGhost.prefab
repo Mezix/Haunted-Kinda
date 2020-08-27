@@ -46,8 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 074e6c5bd91e3274182df060c294c3fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  opacityMat: {fileID: 2100000, guid: 38665986af7d8574eb17eba6643ac4cf, type: 2}
-  defaultOpacity: 11
 --- !u!95 &2648045057101818730
 Animator:
   serializedVersion: 3
@@ -188,7 +186,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 38665986af7d8574eb17eba6643ac4cf, type: 2}
+  - {fileID: 2100000, guid: cd15ba00b2162bc4a9fc5ac92f6ed681, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

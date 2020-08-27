@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DadGhost
+  m_Name: GraveGhost
   m_Shader: {fileID: -6465566751694194690, guid: 99ffbbec2fe83d742baa48ba0dc92f2a,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
