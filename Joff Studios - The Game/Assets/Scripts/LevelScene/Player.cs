@@ -198,88 +198,91 @@ public class Player : MonoBehaviour
     }
     private IEnumerator Scream()
     {
-        _screamObj.SetActive(true);
-        screamAnim.SetBool("Scream", true);
-        _ui.UIScream();
-        _screamSound.Play();
+        _screamObj.SetActive(true); //turn on the object which houses the scream animation
+        screamAnim.SetBool("Scream", true); //play the scream AOE animation
 
-        playerAnimator.SetBool("Screaming", true);
-        foreach (GraveRobber robber in _screamCollider.GraveRobbersInCollider)
+        _ui.UIScream(); //set the UI scream animation
+        _screamSound.Play(); //play the scream sound
+
+        playerAnimator.SetBool("Screaming", true); //finally, play the ghosts scream animation
+        foreach (GraveRobber robber in _screamCollider.GraveRobbersInCollider) //damage each enemy in the screams range
         {
             robber.TakeFearDamage(_screamDamage);
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f); //wait for the animation to end and then stop it
         playerAnimator.SetBool("Screaming", false);
+
         screamAnim.SetBool("Scream", false);
-        _screamObj.SetActive(false);
+        _screamObj.SetActive(false); //turn off the scream AOE Animation
     }
     private IEnumerator PossessObject()
     {
+        //TODO: currently can possess multiple objects while we havent finished this function
+
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, 1 << 8); // 1 bitshift 8 is the 8th layer, where possesable things are at
 
         if(hit.collider)
         {
-            if(hit.collider.TryGetComponent<PosessableObject>(out PosessableObject possessable))
+            if(hit.collider.TryGetComponent(out PosessableObject possessable))
             {
-                //print("possessing!");
-
                 if (Vector3.Distance(hit.transform.position, transform.position) <= _possessionRange)
                 {
-                    lockMovement = true;
+                    lockMovement = true; //stops the player from being able to move
                     movement = Vector2.zero; //make sure we dont move anymore
-                    possessable.Possess();
-                    possessedObject = possessable;
-                    playerAnimator.SetBool("Disappear", true);
-                    _ghostGlow.SetActive(false);
+                    possessable.Possess(); //possess the highlighted object
+                    possessedObject = possessable; //set our local ref to the object were possessing
+                    playerAnimator.SetBool("Disappear", true); //play the dissappear animation
+
+                    _ghostGlow.SetActive(false); //disable the glowy effect and our shadow
                     _shadow.SetActive(false);
-                    Events.current.PossessObject(possessedObject.gameObject);
-                    yield return new WaitForSeconds(0.25f);
-                    isPossessing = true;
+                    Events.current.PossessObject(possessedObject.gameObject); //send out an event that we are possessing something
+                    yield return new WaitForSeconds(0.538f); //lock us from depossessing for the duration of the animation
+                    isPossessing = true; //finally set the bool so we can depossess again
                 }
             }
         }
     }
     private IEnumerator DepossessObject()
     {
-        transform.position = possessedObject.transform.position;
+        transform.position = possessedObject.transform.position; //move our player to the possessed object so we can reemerge
 
-        isPossessing = false;
-        playerAnimator.SetBool("Disappear", false);
-        _ghostGlow.SetActive(true);
+        playerAnimator.SetBool("Disappear", false); //play disappear animation
+        possessedObject.Deposses(); //leave the possessed object so we may inhabit it again later
+        possessedObject = null; //remove the ref to any possessed object
+        Events.current.PossessObject(gameObject); //send out a possession event, to say we are back in our own body (important for grave robbers and Cameras)
+        yield return new WaitForSeconds(0.75f); //unlock movement around 3/4 through the animation
+        _ghostGlow.SetActive(true); //turn back on our glow and shadow
         _shadow.SetActive(true);
-        possessedObject.Deposses();
-        possessedObject = null;
-        Events.current.PossessObject(gameObject);
-        yield return new WaitForSeconds(0.75f);
-        lockMovement = false;
+        lockMovement = false; //unlock movement
+        isPossessing = false; //and the ability to possess again
     }
     private void PickUpOffering()
     {
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, 1 << 9);
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, 1 << 9); //offerings are on layer 9, so use that layermask
         if (hit.collider.TryGetComponent(out Offering offering))
         {
-            if (!offering.disappearing)
+            if (!offering.disappearing) // only pick up offerings which havent been given away to other ghosts
             {
-                collectedOfferings.Add(offering);
-                offering.gameObject.SetActive(false);
+                collectedOfferings.Add(offering); //add to our internal inventory system
+                offering.gameObject.SetActive(false); //disable the gameobject
             }
         }
     }
     private void PlaceDownOffering()
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, 1 << 8); //the layer gravestones are on
-        if (hit.collider.TryGetComponent<Gravestone>(out Gravestone grave))
+        if (hit.collider.TryGetComponent(out Gravestone grave))
         {
-            if (grave.currentOffering != null)
+            if (grave.currentOffering != null) //if the grave already has a offering currently, return out of the function
             {
                 return;
             }
-            Offering offering = collectedOfferings[0];
-            offering.gameObject.SetActive(true);
-            offering.transform.position = grave.OfferingPos.transform.position;
-            grave.Restore(offering.HealAmount);
-            offering.FadeAway(grave);
-            collectedOfferings.RemoveAt(0);
+            Offering offering = collectedOfferings[0]; //take the first offering off our list
+            offering.gameObject.SetActive(true); //reenable this offering
+            offering.transform.position = grave.OfferingPos.transform.position; //and move it our graves offering position
+            grave.Restore(offering.HealAmount); //heal our grave
+            offering.FadeAway(grave); //slowly fade it away
+            collectedOfferings.RemoveAt(0); //remove the offering from our list
         }
     }
 }

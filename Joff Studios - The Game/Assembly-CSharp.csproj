@@ -618,6 +618,9 @@
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:/Important/Unity Game Projects/FixRepo/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.PixelPerfect.Editor">
+      <HintPath>E:/Important/Unity Game Projects/FixRepo/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
       <HintPath>E:/Important/Unity Game Projects/FixRepo/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
     </Reference>
@@ -678,6 +681,9 @@
     <Reference Include="Unity.2D.SpriteShape.Runtime">
       <HintPath>E:/Important/Unity Game Projects/FixRepo/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.PixelPerfect">
+      <HintPath>E:/Important/Unity Game Projects/FixRepo/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
       <HintPath>E:/Important/Unity Game Projects/FixRepo/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
@@ -698,12 +704,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>E:/Important/Unity Game Projects/FixRepo/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.PixelPerfect.Editor">
-      <HintPath>E:/Important/Unity Game Projects/FixRepo/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.PixelPerfect">
-      <HintPath>E:/Important/Unity Game Projects/FixRepo/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

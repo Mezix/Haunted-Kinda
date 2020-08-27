@@ -34,6 +34,7 @@ public class UIScript : MonoBehaviour
     private void SelectButtonToShow()
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
         Offering offering = hit.collider.GetComponent<Offering>();
         if (offering is object)
         {
@@ -44,7 +45,9 @@ public class UIScript : MonoBehaviour
                 return;
             }
         }
+
         hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
         PosessableObject posessable = hit.collider.GetComponent<PosessableObject>();
         if (posessable is object)
         {
