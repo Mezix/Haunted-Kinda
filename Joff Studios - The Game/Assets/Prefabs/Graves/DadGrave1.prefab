@@ -156,7 +156,7 @@ MonoBehaviour:
   isPossessed: 0
   canWalk: 0
   isGrave: 1
-  ExclamationMark: {fileID: 0}
+  exclamation: {fileID: 0}
 --- !u!58 &1771324859771884116
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -366,6 +366,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DadGhost
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037911798607914532, guid: f3b50cc49faf3ad4dafdfd3fe7e20d95,
+        type: 3}
+      propertyPath: defaultOpacity
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3b50cc49faf3ad4dafdfd3fe7e20d95, type: 3}

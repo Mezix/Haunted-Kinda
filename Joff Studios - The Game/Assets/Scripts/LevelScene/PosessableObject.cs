@@ -57,7 +57,7 @@ public class PosessableObject : MonoBehaviour
 
     IEnumerator Animate()
     {
-        print("Animate");
+        //print("Animate");
         exclamation.SetActive(true);
         exclamation.GetComponent<Animator>().SetBool("Possessed", true);
         yield return new WaitForSeconds(0.1f);

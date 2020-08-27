@@ -51302,11 +51302,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DadGrave1
       objectReference: {fileID: 0}
-    - target: {fileID: 1771324859771884122, guid: 847beb8b23689c8438528bee69e19dcb,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 1771324859771884123, guid: 847beb8b23689c8438528bee69e19dcb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -87482,11 +87477,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DadGrave
-      objectReference: {fileID: 0}
-    - target: {fileID: 1771324859771884122, guid: 847beb8b23689c8438528bee69e19dcb,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1771324859771884123, guid: 847beb8b23689c8438528bee69e19dcb,
         type: 3}

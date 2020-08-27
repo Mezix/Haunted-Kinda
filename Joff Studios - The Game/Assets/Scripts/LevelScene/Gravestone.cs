@@ -63,21 +63,4 @@ public class Gravestone : MonoBehaviour
         int index = Mathf.RoundToInt((1f - (currentHealth / maxHealth)) * (DestructionStates.Length - 1));
         GravestoneRenderer.sprite = DestructionStates[index];
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.GetComponent<Player>())
-        {
-            if(InhabitedGhost)
-            InhabitedGhost.SetActive(true);
-        }
-    }
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.GetComponent<Player>())
-        {
-            if(InhabitedGhost)
-            InhabitedGhost.GetComponent<GraveGhost>().FadeAway();
-        }
-    }
 }

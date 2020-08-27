@@ -4,50 +4,61 @@ using UnityEngine;
 
 public class GraveGhost : MonoBehaviour
 {
-    public Material opacityMat;
-    private UnityEngine.Experimental.Rendering.Universal.Light2D GhostGlow;
-    private GameObject player;
-    public float defaultOpacity = 11;
-
-    private bool fadingIn;
+    private UnityEngine.Experimental.Rendering.Universal.Light2D GhostGlow; //the glow of our ghost
+    private GameObject player; //reference to the player in the scene
+    private SpriteRenderer ghostRenderer; //the sprite rendered of our ghost
+    private float ghostSpriteOpacity; //the current opacity of our ghost
+    private float ghostSpriteMaxOpacity; //the max opacity our ghost should achieve
+    private float fadeAmount; //the amount to change our opacity every frame
 
     private void Awake()
     {
-        opacityMat.SetFloat("Vector1_D5B527C2", defaultOpacity);
-        player = GameObject.Find("PlayerCharacter");
+        player = GameObject.Find("PlayerCharacter"); //find reference to the player by searching in the scene
         GhostGlow = GetComponentInChildren<UnityEngine.Experimental.Rendering.Universal.Light2D>();
-        gameObject.SetActive(false);
+        ghostRenderer = GetComponentInChildren<SpriteRenderer>();
     }
-    private void OnEnable()
+    private void Start()
     {
-        GhostGlow.intensity = 0;
-        StartCoroutine(FadeIn());
+        ghostSpriteOpacity = 0; //set our ghost to be hidden by default
+        ghostSpriteMaxOpacity = 0.6f; //our ghost should always be slightly opaque, so keep this value below 0
+        fadeAmount = 0.05f;
+        ghostRenderer.color = new Color(1, 1, 1, ghostSpriteOpacity); //apply the ghostopacity value
     }
-    private IEnumerator FadeIn()
+    private void FixedUpdate()
     {
-        fadingIn = true;
-        for(int i = 1; i < 98; i++)
+        if(Vector2.Distance(player.transform.position, transform.position) <= 3f ) //as long as we close to the player, show the ghost
         {
-            opacityMat.SetFloat("Vector1_D5B527C2", 1.3f + 10f - (float) i/10); //the name of the alpha factor in the shader. (Find property names in the compiled shader code)
-            GhostGlow.intensity = (float) i / 100;
-            yield return new WaitForEndOfFrame();
+            if(ghostSpriteOpacity < ghostSpriteMaxOpacity) //as long as we havent reached our max opacity, make less opaque
+            {
+                FadeIn();
+            }
         }
-        fadingIn = false;
-    }
-    public void FadeAway()
-    {
-        if(gameObject.activeSelf)
-        StartCoroutine(FadeOut());
-    }
-    public IEnumerator FadeOut()
-    {
-        yield return new WaitWhile(() => fadingIn);
-        for (int i = 1; i < 98; i++)
+        else if(ghostSpriteOpacity > 0) //otherwise slowly fadeout
         {
-            opacityMat.SetFloat("Vector1_D5B527C2", 1.3f + (float) i/10); //the name of the alpha factor in the shader. (Find property names in the compiled shader code)
-            GhostGlow.intensity = 1 - (float)i / 100;
-            yield return new WaitForEndOfFrame();
+            FadeOut();
         }
-        gameObject.SetActive(false);
+    }
+    private void FadeIn()
+    {
+        if(ghostSpriteOpacity > ghostSpriteMaxOpacity) //make sure we dont exceed the max alpha value we want
+        {
+            ghostSpriteOpacity = ghostSpriteMaxOpacity;
+            return;
+        }
+        ghostSpriteOpacity += fadeAmount;
+        ghostRenderer.color = new Color(1, 1, 1, ghostSpriteOpacity);
+        GhostGlow.intensity = ghostSpriteOpacity / ghostSpriteMaxOpacity; //swing between 0 and 1, depending on our fade
+    }
+    public void FadeOut()
+    {
+        if (ghostSpriteOpacity < 0)
+        {
+            ghostSpriteOpacity = 0;
+            GhostGlow.intensity = 0; //this value becomes negative if we dont set it to 0
+            return;
+        }
+        ghostSpriteOpacity -= fadeAmount;
+        ghostRenderer.color = new Color(1, 1, 1, ghostSpriteOpacity);
+        GhostGlow.intensity = Mathf.Max(0, ghostSpriteOpacity / ghostSpriteMaxOpacity);
     }
 }
