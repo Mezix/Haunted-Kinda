@@ -130,7 +130,7 @@ public class LevelSceneManager : MonoBehaviour
     {
         GameObject go = Instantiate(GraveRobberPrefab);
         go.transform.position = GraveRobberPositions[Random.Range(0, GraveRobberPositions.Length)].transform.position;
-        go.GetComponent<GraveRobber>().Init(AllGraves, GraveRobberEscapePos);
+        go.GetComponent<GraveRobber>().InitRobber(AllGraves, GraveRobberEscapePos);
         go.transform.parent = GraveRobberParent.transform;
         GraveRobbers.Add(go);
     }

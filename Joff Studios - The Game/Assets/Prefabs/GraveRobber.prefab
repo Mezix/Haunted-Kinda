@@ -263,6 +263,7 @@ GameObject:
   - component: {fileID: 6507663872487307908}
   - component: {fileID: 6633286194476850700}
   - component: {fileID: 6633286194476850707}
+  - component: {fileID: 6858072140920397954}
   m_Layer: 0
   m_Name: GraveRobber
   m_TagString: Untagged
@@ -278,7 +279,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6633286194476850704}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.11, y: 0.021, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4036644840152517469}
@@ -298,10 +299,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 104b389fcab57914895ff833ed19097e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rend: {fileID: 5791755157202934720}
   _moveSpeed: 1
-  LootBag: {fileID: 1110423882093557277, guid: 03ba46fb85b4d6c4ba11e11cb4426268, type: 3}
-  EscapePosition: {fileID: 0}
+  _lootBagPrefab: {fileID: 1110423882093557277, guid: 03ba46fb85b4d6c4ba11e11cb4426268,
+    type: 3}
 --- !u!114 &6507663872487307908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,6 +364,34 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6904762, y: 0.97619045}
   m_EdgeRadius: 0
+--- !u!114 &6858072140920397954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6633286194476850704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
 --- !u!1 &7638010438796364860
 GameObject:
   m_ObjectHideFlags: 0
