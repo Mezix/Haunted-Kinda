@@ -34,6 +34,7 @@ public class GraveRobber : MonoBehaviour
     //PATHFINDING
 
     private Path path;
+    private AIPath aiPath;
     private int currentWaypoint = 0;
     private float nextWayPointDistance = 3f;
     private bool reachedEndOfPath = false;
@@ -70,11 +71,9 @@ public class GraveRobber : MonoBehaviour
     }
     void Update()
     {
-        
-        animator.SetFloat("Horizontal", movement.x); //constantly give our animator values so we can show the right movement animation
-        animator.SetFloat("Vertical", movement.y);
-        animator.SetFloat("Speed", movement.sqrMagnitude);
-
+        animator.SetFloat("Horizontal", path.vectorPath[currentWaypoint].x - transform.position.x); //constantly give our animator values so we can show the right movement animation
+        animator.SetFloat("Vertical", path.vectorPath[currentWaypoint].y - transform.position.y);
+        animator.SetFloat("Speed", (transform.position - path.vectorPath[currentWaypoint]).sqrMagnitude);
     }
     private void FixedUpdate()
     {
