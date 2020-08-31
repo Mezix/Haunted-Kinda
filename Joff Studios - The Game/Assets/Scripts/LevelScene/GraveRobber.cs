@@ -8,7 +8,6 @@ public class GraveRobber : MonoBehaviour
     //MOVEMENT
 
     public float _moveSpeed = 1f;
-    private bool moving; //a bool determíning if we should move or not
 
     //REFERNCES TO OBJECTS ON OUR ROBBER
 
@@ -20,7 +19,7 @@ public class GraveRobber : MonoBehaviour
 
     private FearLevel fear; //the fear script on our player
     private bool canBeFeared; //wether or not the robber can be feared by the player
-    private bool wasTerrified; //if our robber hits max fear, this should be true
+    private bool isTerrified; //if our robber hits max fear, this should be true
 
     //MISC
 
@@ -86,7 +85,7 @@ public class GraveRobber : MonoBehaviour
         }
         GraveRobberBehaviour();
 
-        if (wasTerrified) //if we have been terrified, set our bools appropriately for the animator
+        if (isTerrified) //if we have been terrified, set our bools appropriately for the animator
         {
             animator.SetBool("IsEscaping", false);
             animator.SetBool("Digging", false);
@@ -108,12 +107,11 @@ public class GraveRobber : MonoBehaviour
         {
             MoveOnPath();
         }
-        else if (reachedEndOfPath && !hasLoot && !isDigging) //if we reached the end of our Path, and dont have loot, we must be at a grave, so start digging
+        else if (reachedEndOfPath && !hasLoot && !isDigging && !isTerrified) //if we reached the end of our Path, and dont have loot, we must be at a grave, so start digging
         {
             StartCoroutine(DigGrave());
         }
-
-        if (EscapePossible() && hasLoot) //if we are at the escapePosition, and have loot, were home free!
+        if (EscapePossible() && !isTerrified) //if we are at the escapePosition, and have loot, were home free!
         {
             StartCoroutine(EscapeWithLootAnimation());
         }
@@ -240,10 +238,10 @@ public class GraveRobber : MonoBehaviour
         Vector2 currentPos = robberRB.position;
         while(!nearestGrave._destroyed) //as long as the grave we are targetting isnt destroyed, keep digging
         {
-            //robberRB.position = currentPos; //stay in place, dont get bumped by other robbers
+            robberRB.position = currentPos; //stay in place, dont get bumped by other robbers
             robberRB.velocity = Vector2.zero;
 
-            if(wasTerrified) //if weve gotten terrified, break the digging loop
+            if(isTerrified) //if weve gotten terrified, break the digging loop
             {
                 animator.SetBool("Digging", false);
                 break;
@@ -251,7 +249,7 @@ public class GraveRobber : MonoBehaviour
             nearestGrave.TakeDamage(2f);
             yield return new WaitForSeconds(0.1f);
         }
-        if(!wasTerrified) //if we exited the loop and werent terrified, runaway with our loot!
+        if(!isTerrified) //if we exited the loop and werent terrified, runaway with our loot!
         {
             animator.SetBool("Digging", false);
             hasLoot = true;
@@ -266,11 +264,11 @@ public class GraveRobber : MonoBehaviour
     private IEnumerator RunAwayWithLoot()
     {
         animator.SetBool("IsEscaping", true);
-        while(!wasTerrified) //as long as we aren't terrified, continue on
+        while(!isTerrified) //as long as we aren't terrified, continue on
         {
             yield return new WaitForFixedUpdate();
         }
-        if(wasTerrified) //if we exit the loop by being terrified, drop the loot
+        if(isTerrified) //if we exit the loop by being terrified, drop the loot
         {
             DropLoot();
         }
@@ -282,8 +280,11 @@ public class GraveRobber : MonoBehaviour
     private IEnumerator Flee()
     {
         _moveSpeed = 6f; //triple our movespeed
-        wasTerrified = true; //set the terrified bool to true
-        nearestGrave._isBeingAttacked = false; //stop attacking the nearest grave
+        isTerrified = true; //set the terrified bool to true
+        if(nearestGrave)
+        {
+            nearestGrave._isBeingAttacked = false; //stop attacking the nearest grave
+        }
         positionToSeekOut = escapePosition; //set the position and update the path
         UpdatePath(positionToSeekOut);
         animator.SetBool("Digging", false); //stop digging if we were
