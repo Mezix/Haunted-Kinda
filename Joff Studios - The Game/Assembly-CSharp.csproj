@@ -710,14 +710,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Unity.2D.Tilemap.Extras.Editor.csproj">
-      <Project>{2AF3CA37-EEAA-9F14-71ED-415384D74784}</Project>
-      <Name>Unity.2D.Tilemap.Extras.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.2D.Tilemap.Extras.csproj">
-      <Project>{B1267B14-4284-F7B9-2129-AF81C3A909F2}</Project>
-      <Name>Unity.2D.Tilemap.Extras</Name>
-    </ProjectReference>
     <ProjectReference Include="AstarPathfindingProject.csproj">
       <Project>{244A3ED6-B816-90B6-F02A-AF6A9E248F17}</Project>
       <Name>AstarPathfindingProject</Name>
@@ -726,9 +718,17 @@
       <Project>{50F3F7BC-2B1C-DF2E-0399-7AD7D134B6F7}</Project>
       <Name>PackageToolsEditor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.2D.Tilemap.Extras.Editor.csproj">
+      <Project>{2AF3CA37-EEAA-9F14-71ED-415384D74784}</Project>
+      <Name>Unity.2D.Tilemap.Extras.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="AstarPathfindingProjectEditor.csproj">
       <Project>{F18D5F1D-7E28-F5D2-6774-972F22E4D70A}</Project>
       <Name>AstarPathfindingProjectEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.2D.Tilemap.Extras.csproj">
+      <Project>{B1267B14-4284-F7B9-2129-AF81C3A909F2}</Project>
+      <Name>Unity.2D.Tilemap.Extras</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

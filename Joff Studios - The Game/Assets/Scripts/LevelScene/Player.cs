@@ -163,9 +163,10 @@ public class Player : MonoBehaviour
 
         List<GraveRobber> AlreadyDamagedRobbers = new List<GraveRobber>(); //since our collider moves, we might damage robbers twice, which we dont want
 
-        while (Vector2.Distance(playerRB.position, vectorToMove + initialRbPos) > 0.3f) 
+        while (Vector2.Distance(playerRB.position, vectorToMove + initialRbPos) > 0.3f)
         {
-            foreach (GraveRobber robber in _dashCollider.GraveRobbersInCollider) //constantly damage all robbers in our collider, but only once per dash
+            List<GraveRobber> allRobbers = _dashCollider.GraveRobbersInCollider;
+            foreach (GraveRobber robber in allRobbers) //constantly damage all robbers in our collider, but only once per dash
             {
                 if (!AlreadyDamagedRobbers.Contains(robber)) //if we havent damaged this certain robber...
                 {

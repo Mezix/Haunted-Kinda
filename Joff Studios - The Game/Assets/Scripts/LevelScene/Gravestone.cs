@@ -6,7 +6,8 @@ public class Gravestone : MonoBehaviour
 {
     [SerializeField]
     private GameObject InhabitedGhost;
-    public bool Destroyed;
+    public bool _destroyed;
+    public bool _isBeingAttacked;
 
     public SpriteRenderer GravestoneRenderer;
     public Sprite initialSprite;
@@ -42,7 +43,7 @@ public class Gravestone : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
-            Destroyed = true;
+            _destroyed = true;
         }
         CheckDestructionState();
     }
@@ -53,7 +54,7 @@ public class Gravestone : MonoBehaviour
         if (currentHealth >= maxHealth)
         {
             currentHealth = maxHealth;
-            Destroyed = false;
+            _destroyed = false;
         }
         CheckDestructionState();
     }
