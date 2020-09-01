@@ -235,13 +235,13 @@ public class GraveRobber : MonoBehaviour
     {
         isDigging = true; //stop us digging multiple times
         animator.SetBool("Digging", true); //set the animator bool so we start digging
-        Vector2 currentPos = robberRB.position;
+        //Vector2 currentPos = robberRB.position;
         while(!nearestGrave._destroyed) //as long as the grave we are targetting isnt destroyed, keep digging
         {
-            robberRB.position = currentPos; //stay in place, dont get bumped by other robbers
-            robberRB.velocity = Vector2.zero;
-
-            if(isTerrified) //if weve gotten terrified, break the digging loop
+            //robberRB.position = currentPos; //stay in place, dont get bumped by other robbers
+            //robberRB.velocity = Vector2.zero;
+            GetComponent<Collider2D>().isTrigger = true; //stop all collisions
+            if (isTerrified) //if weve gotten terrified, break the digging loop
             {
                 animator.SetBool("Digging", false);
                 break;
@@ -255,6 +255,8 @@ public class GraveRobber : MonoBehaviour
             hasLoot = true;
             StartCoroutine(RunAwayWithLoot());
         }
+
+        GetComponent<Collider2D>().isTrigger = false; //start collisions again
         nearestGrave._isBeingAttacked = false; //stop attacking the grave, freeing up others to potentially attack it
         isDigging = false;
         positionToSeekOut = escapePosition; //set our target as the escape position, and update our path

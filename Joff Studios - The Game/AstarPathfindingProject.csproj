@@ -378,10 +378,10 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="Pathfinding.Ionic.Zip.Reduced">
-      <HintPath>E:/Important/Unity Game Projects/FixRepo/Joff-Studios-Game-Jam/Joff Studios - The Game/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+      <HintPath>E:/Important/Unity Game Projects/Joff-Studios-Game-Jam/Joff Studios - The Game/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.NRefactory">
-      <HintPath>E:/Important/Unity Game Projects/FixRepo/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/PackageCache/com.unity.render-pipelines.core@7.3.1/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
+      <HintPath>E:/Important/Unity Game Projects/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/PackageCache/com.unity.render-pipelines.core@7.3.1/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.8f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -729,10 +729,10 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.8f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>E:/Important/Unity Game Projects/FixRepo/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>E:/Important/Unity Game Projects/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>E:/Important/Unity Game Projects/FixRepo/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>E:/Important/Unity Game Projects/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>
