@@ -13,41 +13,40 @@ public class GraveRobber : MonoBehaviour
 
     private Rigidbody2D robberRB;
     private Animator animator;
-    private SpriteRenderer rend; //the sprite renderer of our robber
+    private SpriteRenderer graverobberRenderer; //the sprite renderer of our robber
 
     //FEAR
 
-    private FearLevel fear; //the fear script on our player
+    private FearLevel fearLevel; //the fear script on our player
     private bool canBeFeared; //wether or not the robber can be feared by the player
     private bool isTerrified; //if our robber hits max fear, this should be true
 
     //MISC
 
     private GameObject player; //reference to the player in the scene
-    private List<Gravestone> AllPossibleGravestones = new List<Gravestone>(); //all gravestones in the scene, for pathfinding purposes
+    private List<Gravestone> allPossibleGravestones = new List<Gravestone>(); //all gravestones in the scene, for pathfinding purposes
     private Gravestone nearestGrave; //the gravestone we will initially seek out
     public GameObject _lootBagPrefab; //the prefab of our lootbag that we spawn when we are terrifed
     private GameObject escapePosition; //the position we will flee to if terrified
     private bool hasLoot;
-    private bool isDigging;
+    private bool isDigging; //determines wether we are currently digging
 
     //PATHFINDING
 
-    private Path path;
-    private AIPath aiPath;
-    private int currentWaypoint = 0;
-    private float nextWayPointDistance = 0.5f;
-    private bool reachedEndOfPath = false;
-    private Seeker seeker;
-    private GameObject positionToSeekOut;
+    private Seeker seeker; //the seeker component which creates paths
+    private Path path; //the path our unit needs to take
+    private int currentWaypoint = 0; //the index of our path.vectorPath
+    private float nextWayPointDistance = 0.5f; //the distance before we seek out our next waypoint => the higher, the smoother the movement
+    private bool reachedEndOfPath = false; //wether or not we have gotten to our last checkpoint
+    private GameObject positionToSeekOut; //the gameobject we are currently looking to get to (e.g. escapePos, nearestGrave)
 
     private void Awake()
     {
-        player = GameObject.Find("PlayerCharacter"); //get all references
-        fear = GetComponent<FearLevel>();
+        player = References.Player;
+        fearLevel = GetComponent<FearLevel>();
         robberRB = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
-        rend = GetComponentInChildren<SpriteRenderer>();
+        graverobberRenderer = GetComponentInChildren<SpriteRenderer>();
         seeker = GetComponent<Seeker>();
     }
 
@@ -58,11 +57,12 @@ public class GraveRobber : MonoBehaviour
         canBeFeared = true; //by default, our robber should be fearable
         _moveSpeed = 2f;
         Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>()); //dont collide with the player
-        if (fear)
+        if (fearLevel)
         {
-            fear.InitMaxFear(100); //init our max fear level
+            fearLevel.InitMaxFear(100); //init our max fear level
         }
-        FindNearestGravestone();
+
+        FindNearestGravestone(); //find a gravestone initially
         if (!nearestGrave) //if no grave is available, continously check to see if we can access one
         {
             InvokeRepeating("Idle", 0f, .5f);
@@ -70,7 +70,7 @@ public class GraveRobber : MonoBehaviour
     }
     void Update()
     {
-        if (path != null)
+        if (path != null) //as long as we have a path to follow, we have movement, and can set our animator values accordingly
         {
             animator.SetFloat("Horizontal", path.vectorPath[currentWaypoint].x - transform.position.x); //constantly give our animator values so we can show the right movement animation
             animator.SetFloat("Vertical", path.vectorPath[currentWaypoint].y - transform.position.y);
@@ -81,10 +81,9 @@ public class GraveRobber : MonoBehaviour
     {
         if (nearestGrave)
         {
-            CancelInvoke("Idle");
+            CancelInvoke("Idle"); //stop us idling/finding a new gravestone
         }
         GraveRobberBehaviour();
-
         if (isTerrified) //if we have been terrified, set our bools appropriately for the animator
         {
             animator.SetBool("IsEscaping", false);
@@ -95,12 +94,12 @@ public class GraveRobber : MonoBehaviour
             ReduceFearWhenFarAway(); //otherwise continously reduce our fear over time if we are far enough from the player
         }
     }
+
     public void InitRobber(List<Gravestone> graves, GameObject escapePos) //sets our escape position for the robber and all gravestones in the scene
     {
-        AllPossibleGravestones = graves;
+        allPossibleGravestones = graves;
         escapePosition = escapePos;
     }
-
     private void GraveRobberBehaviour() //this script handles all our graverobbers actions
     {
         if(!reachedEndOfPath) //if we havent reached the end of our path, always move to our paths location
@@ -177,14 +176,14 @@ public class GraveRobber : MonoBehaviour
     {
         if (Vector2.Distance(player.transform.position, transform.position) >= 6 && !canBeFeared) //if close to player, continously add fear
         {
-            fear.ReduceFear(0.1f);
+            fearLevel.ReduceFear(0.1f);
         }
     }
     public void TakeFearDamage(float dmg)
     {
         if (canBeFeared)
         {
-            bool runAway = fear.AddFear(dmg); //if we take enough damage...
+            bool runAway = fearLevel.AddFear(dmg); //if we take enough damage...
             if (runAway)
             {
                 StartCoroutine(Flee()); //...flee
@@ -210,7 +209,7 @@ public class GraveRobber : MonoBehaviour
     {
         bool undestroyedGraveAvailable = false; //checks to see if we all gravestones have been destroyed or not
         float Distance = 100;
-        foreach (Gravestone grave in AllPossibleGravestones) //check all possible gravestones
+        foreach (Gravestone grave in allPossibleGravestones) //check all possible gravestones
         {
             if(!grave._destroyed && !grave._isBeingAttacked) //as long as the grave we are looking at isnt destroyed and not focused by another robber
             {
@@ -310,7 +309,7 @@ public class GraveRobber : MonoBehaviour
         GetComponent<Collider2D>().isTrigger = true; //stop all collisions
         for (int i = 500; i > 0; i--) //lower our opacity continously
         {
-            rend.color = new Color(1, 1, 1, i / 500f);
+            graverobberRenderer.color = new Color(1, 1, 1, i / 500f);
             yield return new WaitForSeconds(0.001f);
         }
         Events.current.DespawnGraveRobber(gameObject); //and disappear
@@ -318,7 +317,7 @@ public class GraveRobber : MonoBehaviour
     private IEnumerator EscapeWithLootAnimation()
     {
         canBeFeared = false; //stop us from being feared while we are already free
-        fear.ReduceFear(100f); //reset our fear, which at the same time hides the healthbar
+        fearLevel.ReduceFear(100f); //reset our fear, which at the same time hides the healthbar
         animator.SetBool("HasEscaped", true); //set our animation to the escape!
 
         Vector2 currentPos = robberRB.position; //stop us being pushed around
@@ -326,7 +325,7 @@ public class GraveRobber : MonoBehaviour
         for(int i = 500; i > 0; i--)
         {
             robberRB.position = currentPos;
-            rend.color = new Color(1, 1, 1, i/500f);
+            graverobberRenderer.color = new Color(1, 1, 1, i/500f);
             yield return new WaitForSeconds(0.001f);
         }
         Events.current.DespawnGraveRobber(gameObject); //finally destroy our grave robber through the level scenemanager

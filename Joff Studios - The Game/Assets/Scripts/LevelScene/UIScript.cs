@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UIScript : MonoBehaviour
 {
     public DayNightLighting lighting;
-    public Player player;
+    private Player player;
 
     public GameObject portrait;
     public GameObject DashMeter;
@@ -22,7 +22,6 @@ public class UIScript : MonoBehaviour
     public Sprite E;
     public Sprite Q;
 
-
     private void Update()
     {
         SetSundialRotation();
@@ -30,7 +29,10 @@ public class UIScript : MonoBehaviour
 
         SelectButtonToShow();
     }
-
+    public void SetPlayerRef()
+    {
+        player = References.Player.GetComponent<Player>();
+    }
     private void SelectButtonToShow()
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);

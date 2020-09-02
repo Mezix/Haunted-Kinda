@@ -5,6 +5,7 @@ using UnityEngine;
 public class GraveGhost : MonoBehaviour
 {
     private UnityEngine.Experimental.Rendering.Universal.Light2D GhostGlow; //the glow of our ghost
+    [SerializeField]
     private GameObject player; //reference to the player in the scene
     private SpriteRenderer ghostRenderer; //the sprite rendered of our ghost
     private float ghostSpriteOpacity; //the current opacity of our ghost
@@ -13,7 +14,6 @@ public class GraveGhost : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("PlayerCharacter"); //find reference to the player by searching in the scene
         GhostGlow = GetComponentInChildren<UnityEngine.Experimental.Rendering.Universal.Light2D>();
         ghostRenderer = GetComponentInChildren<SpriteRenderer>();
     }
@@ -21,22 +21,32 @@ public class GraveGhost : MonoBehaviour
     {
         ghostSpriteOpacity = 0; //set our ghost to be hidden by default
         ghostSpriteMaxOpacity = 0.6f; //our ghost should always be slightly opaque, so keep this value below 0
-        fadeAmount = 0.05f;
         ghostRenderer.color = new Color(1, 1, 1, ghostSpriteOpacity); //apply the ghostopacity value
+        GhostGlow.intensity = 0;
+        fadeAmount = 0.05f;
     }
     private void FixedUpdate()
     {
-        if(Vector2.Distance(player.transform.position, transform.position) <= 3f ) //as long as we close to the player, show the ghost
+        if(player is object)
         {
-            if(ghostSpriteOpacity < ghostSpriteMaxOpacity) //as long as we havent reached our max opacity, make less opaque
+            if (Vector2.Distance(player.transform.position, transform.position) <= 3f) //as long as we close to the player, show the ghost
             {
-                FadeIn();
+                if (ghostSpriteOpacity < ghostSpriteMaxOpacity) //as long as we havent reached our max opacity, make less opaque
+                {
+                    FadeIn();
+                }
+            }
+            else if (ghostSpriteOpacity > 0) //otherwise slowly fadeout
+            {
+                FadeOut();
             }
         }
-        else if(ghostSpriteOpacity > 0) //otherwise slowly fadeout
-        {
-            FadeOut();
-        }
+    }
+
+    public void SetPlayerReference()
+    {
+        player = References.Player;
+        print(player);
     }
     private void FadeIn()
     {

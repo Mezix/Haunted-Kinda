@@ -16,6 +16,7 @@ public class Events : MonoBehaviour
     public event Action<GameObject> ObjectPossessed;
     public event Action DayIsOver;
 
+    
     public void ChangeHealth(float healthChange)
     {
         if (OnHealthPctChanged != null)

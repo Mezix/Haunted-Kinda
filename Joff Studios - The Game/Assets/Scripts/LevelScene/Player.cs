@@ -57,7 +57,6 @@ public class Player : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         screamAnim = _screamObj.GetComponentInChildren<Animator>();
 
-        Physics2D.IgnoreCollision(_waterTilemap, GetComponent<Collider2D>()); //make sure we dont collide with the water
     }
     private void Start()
     {

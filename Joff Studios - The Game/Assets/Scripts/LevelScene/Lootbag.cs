@@ -12,7 +12,7 @@ public class Lootbag : MonoBehaviour
     public GameObject lootPos;
     private void Awake()
     {
-        Player = GameObject.Find("PlayerCharacter");
+        Player = References.Player;
         animator = GetComponentInChildren<Animator>();
     }
     void Update()

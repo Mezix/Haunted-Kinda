@@ -11,20 +11,27 @@ public class LevelSceneManager : MonoBehaviour
     public int AmountOfDays = 7;
     private int DaysPassed = 0;
 
-    public DayNightLighting Lighting;
-    public UIScript ui;
+    public DayNightLighting _lighting;
+    public UIScript _UIScript;
+    public CameraScript _cameraScript;
 
-    public GameObject GraveRobberPrefab;
-    public List<GameObject> GraveRobbers;
-    public GameObject [] GraveRobberPositions;
-    public GameObject GraveRobberEscapePos;
+    public GameObject _playerPrefab;
+    public Collider2D _nonCollidableTiles;
+
     public GameObject GraveRobberParent;
+    public GameObject _graveRobberPrefab;
+    private List<GameObject> _graveRobbers;
+    public GameObject _graveRobberPositionParent;
+    private List<GameObject> graveRobberSpawnPositions = new List<GameObject>();
+    public GameObject _graveRobberEscapePos;
 
-    public List<Gravestone> AllGraves;
+    public GameObject _graveParent;
+    private List<Gravestone> _allGraves = new List<Gravestone>();
 
-    public List<GameObject> AllOfferingTypes;
-    public List<GameObject> OfferingSpawnPositions;
-    public GameObject OfferingsParent;
+    public List<GameObject> _allOfferingTypes;
+    public GameObject _offeringsParent;
+    public GameObject _offeringPosParent;
+    private List<GameObject> offeringSpawnPositions = new List<GameObject>();
 
     public static bool paused;
 
@@ -34,17 +41,22 @@ public class LevelSceneManager : MonoBehaviour
     {
         Events.current.GraveRobberDespawned += RemoveGraveRobber;
         Events.current.DayIsOver += FinishDay;
+
+        GetAllGravesInScene();
+        GetAllRobberSpawnPositions();
+        GetAllOfferingPositions();
     }
 
     private void Start()
     {
         Unpause();
-
-        ui.StartGame();
+        _UIScript.StartGame();
         SetupDayAndNight();
 
-        GraveRobbers = new List<GameObject>();
+        SpawnPlayer();
+        SetPlayerReferencesInScene();
         SpawnOfferings();
+        _graveRobbers = new List<GameObject>();
         StartCoroutine(SpawnGraveRobbers(6));
     }
     private void Update()
@@ -61,26 +73,57 @@ public class LevelSceneManager : MonoBehaviour
             }
         }
     }
+    private void GetAllGravesInScene()
+    {
+        foreach(Gravestone grave in _graveParent.GetComponentsInChildren<Gravestone>())
+        {
+            _allGraves.Add(grave);
+        }
+    }
+    private void GetAllOfferingPositions()
+    {
+        foreach(Transform offering in _offeringPosParent.GetComponentsInChildren<Transform>())
+        {
+            offeringSpawnPositions.Add(offering.gameObject);
+        }
+        offeringSpawnPositions.Remove(_offeringPosParent);
+    }
+    private void GetAllRobberSpawnPositions()
+    {
+        foreach(Transform spawnPos in _graveRobberPositionParent.GetComponentsInChildren<Transform>())
+        {
+            graveRobberSpawnPositions.Add(spawnPos.gameObject);
+        }
+        graveRobberSpawnPositions.Remove(_graveRobberPositionParent);
+    }
+    private void SetPlayerReferencesInScene()
+    {
+        foreach(Gravestone grave in _allGraves)
+        {
+            grave.GetComponentInChildren<GraveGhost>().SetPlayerReference();
+        }
+        _UIScript.SetPlayerRef();
+        _cameraScript.SetPlayerRef();
+    }
 
     public void Pause()
     {
-        ui.UIPause();
+        _UIScript.UIPause();
         Time.timeScale = 0;
         paused = true;
     }
     public void Unpause()
     {
-        ui.UIUnpause();
+        _UIScript.UIUnpause();
         Time.timeScale = 1;
         paused = false;
     }
-
     void SetupDayAndNight()
     {
-        Lighting.DayLength = DayLength;
-        Lighting.NightLength = NightLength;
+        _lighting.DayLength = DayLength;
+        _lighting.NightLength = NightLength;
 
-        StartCoroutine(Lighting.Night(Lighting.NightLength));
+        StartCoroutine(_lighting.Night(_lighting.NightLength));
     }
     private void FinishDay()
     {
@@ -98,17 +141,30 @@ public class LevelSceneManager : MonoBehaviour
         }
     }
 
+    //SPAWN STUFF
+
+    private void SpawnPlayer()
+    {
+        GameObject spawnedPlayer = Instantiate(_playerPrefab);
+        References.Player = spawnedPlayer.gameObject;
+        Player playerscript = spawnedPlayer.GetComponent<Player>();
+        playerscript._ui = _UIScript;
+        playerscript._waterTilemap = _nonCollidableTiles;
+        Physics2D.IgnoreCollision(_nonCollidableTiles, spawnedPlayer.GetComponent<Collider2D>()); //make sure we dont collide with the water
+
+        _UIScript.SetPlayerRef();
+    }
+
     private void SpawnOfferings()
     {
-        for(int i = 0; i < OfferingSpawnPositions.Count; i++)
+        for(int i = 0; i < offeringSpawnPositions.Count; i++)
         {
-            GameObject go = Instantiate(AllOfferingTypes[Random.Range(0, AllOfferingTypes.Count)]);
-            go.transform.position = OfferingSpawnPositions[i].transform.position;
-            go.transform.parent = OfferingsParent.transform;
+            GameObject go = Instantiate(_allOfferingTypes[Random.Range(0, _allOfferingTypes.Count)]);
+            go.transform.position = offeringSpawnPositions[i].transform.position;
+            go.transform.parent = _offeringsParent.transform;
             //print("offer");
         }
     }
-    
     private IEnumerator SpawnGraveRobbers(int amount)
     {
         for (int i = 0; i < amount; i++)
@@ -117,26 +173,26 @@ public class LevelSceneManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
 
         }
-        for (int i = 0; i < GraveRobbers.Count; i++) //remove all robber collisions
+        for (int i = 0; i < _graveRobbers.Count; i++) //remove all robber collisions
         {
-            for (int j = 0; j < GraveRobbers.Count; j++)
+            for (int j = 0; j < _graveRobbers.Count; j++)
             {
-                Physics2D.IgnoreCollision(GraveRobbers[i].GetComponent<Collider2D>(), GraveRobbers[j].GetComponent<Collider2D>());
+                Physics2D.IgnoreCollision(_graveRobbers[i].GetComponent<Collider2D>(), _graveRobbers[j].GetComponent<Collider2D>());
             }
         }
     }
 
     private void SpawnGraveRobber()
     {
-        GameObject go = Instantiate(GraveRobberPrefab);
-        go.transform.position = GraveRobberPositions[Random.Range(0, GraveRobberPositions.Length)].transform.position;
-        go.GetComponent<GraveRobber>().InitRobber(AllGraves, GraveRobberEscapePos);
+        GameObject go = Instantiate(_graveRobberPrefab);
+        go.transform.position = graveRobberSpawnPositions[Random.Range(0, graveRobberSpawnPositions.Count)].transform.position;
+        go.GetComponent<GraveRobber>().InitRobber(_allGraves, _graveRobberEscapePos);
         go.transform.parent = GraveRobberParent.transform;
-        GraveRobbers.Add(go);
+        _graveRobbers.Add(go);
     }
     private void RemoveGraveRobber(GameObject graveRobber)
     {
-        GraveRobbers.Remove(graveRobber);
+        _graveRobbers.Remove(graveRobber);
         Destroy(graveRobber);
     }
 
@@ -144,7 +200,7 @@ public class LevelSceneManager : MonoBehaviour
     {
         print("VICTORY");
         EndingMusic.Play();
-        ui.ShowEndScreen();
+        _UIScript.ShowEndScreen();
     }
 
     public void GoToMainMenu()
