@@ -1,17 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
     public GameObject _UIOfferingPrefab;
-    //public List<UIOffering> UIOfferings;
     public Dictionary<UIOffering, int> _UIOfferings = new Dictionary<UIOffering, int>();
     private void Start()
     {
         Events.current.OfferingPickedUp += PickUp;
+        Events.current.OfferingPlacedDown += PlaceDown;
     }
-
     private void PickUp(Offering newOffering)
     {
         bool isNewOffering = true;
@@ -29,8 +29,6 @@ public class InventoryUI : MonoBehaviour
         }
         if(isNewOffering)
         {
-            print("new offering");
-
             GameObject InstantiatedOffering = Instantiate(_UIOfferingPrefab);
             InstantiatedOffering.GetComponent<RectTransform>().anchoredPosition += new Vector2(100 * _UIOfferings.Count,0);
             uiOffering = InstantiatedOffering.GetComponent<UIOffering>();
@@ -46,7 +44,33 @@ public class InventoryUI : MonoBehaviour
             {
                 _UIOfferings[uiOffering] += 1;
                 uiOffering._text.text = "x" + _UIOfferings[uiOffering];
-                print("old :(");
+            }
+        }
+    }
+    private void PlaceDown(Offering offeringToRemove)
+    {
+        UIOffering uiOffering = null;
+        if (_UIOfferings.Count > 0)
+        {
+            foreach (UIOffering offering in _UIOfferings.Keys)
+            {
+                if (offering.CompareTag(offeringToRemove.tag)) //if an offering with this tag already exists, skip it! and add +1 to text
+                {
+                    uiOffering = offering;
+                }
+            }
+            if(uiOffering)
+            {
+                if(_UIOfferings[uiOffering] > 1)
+                {
+                    _UIOfferings[uiOffering] -= 1;
+                    uiOffering._text.text = "x" + _UIOfferings[uiOffering];
+                }
+                else
+                {
+                    Destroy(uiOffering.gameObject);
+                    _UIOfferings.Remove(uiOffering);
+                }
             }
         }
     }

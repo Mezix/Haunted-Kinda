@@ -287,8 +287,7 @@ public class Player : MonoBehaviour
             {
                 collectedOfferings.Add(closestOffering); //add to our internal inventory system
                 closestOffering.gameObject.SetActive(false); //disable the gameobject
-                Events.current.PickUpOffering(closestOffering);
-                
+                Events.current.PickUpOffering(closestOffering); //set off an event for the UI to listen to
             }
         }
 
@@ -313,24 +312,6 @@ public class Player : MonoBehaviour
         }
     }
     
-    
-
-    private void PickUpOffering()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, 1 << 9); //offerings are on layer 9, so use that layermask
-
-        if (hit.collider)
-        {
-            if (hit.collider.TryGetComponent(out Offering offering))
-            {
-                if (!offering.disappearing) // only pick up offerings which havent been given away to other ghosts
-                {
-                    collectedOfferings.Add(offering); //add to our internal inventory system
-                    offering.gameObject.SetActive(false); //disable the gameobject
-                }
-            }
-        }
-    }
     private void PlaceDownOffering()
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, 1 << 8); //the layer gravestones are on
@@ -349,6 +330,7 @@ public class Player : MonoBehaviour
                 grave.Restore(offering.HealAmount); //heal our grave
                 offering.FadeAway(grave); //slowly fade it away
                 collectedOfferings.RemoveAt(0); //remove the offering from our list
+                Events.current.PlaceDownOffering(offering);
             }
         }
     }

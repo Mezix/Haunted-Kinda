@@ -383,6 +383,7 @@ MonoBehaviour:
   _dashDamage: 30
   AfterImagePrefab: {fileID: 5421470715018780270, guid: 85a8551d10c711641a5422ef37b31e7a,
     type: 3}
+  lastAfterImagePos: {x: 0, y: 0, z: 0}
   _screamCooldown: 0
   _screamDamage: 50
   _possessionRange: 0
@@ -434,7 +435,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 698258075
   m_SortingLayer: 3
-  m_SortingOrder: 2
+  m_SortingOrder: 5
   m_Sprite: {fileID: -2122573830198585739, guid: 26ab5ec2c8ee5214d81dab045ea362f6,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

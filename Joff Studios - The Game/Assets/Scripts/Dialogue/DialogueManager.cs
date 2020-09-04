@@ -16,18 +16,20 @@ public class DialogueManager : MonoBehaviour
     public Image _speakerRightImage;
     private bool playingConversation;
 
+    public float speakerHeight;
+
     [SerializeField]
     private Queue<Line> sentences = new Queue<Line>();
 
     private void Awake()
     {
         instance = this;
+        speakerHeight = _speakerRightImage.rectTransform.sizeDelta.y;
     }
     public void StartDialogue(ConversationScriptObj convo)
     {
         if(!playingConversation)
         {
-            print("start");
             playingConversation = true;
             sentences.Clear();
 
@@ -57,11 +59,19 @@ public class DialogueManager : MonoBehaviour
         {
             _speakerLeft.SetActive(true);
             _speakerLeftImage.sprite = line.characterLeft.portrait;
+            if(line.characterLeft.width > 0 && line.characterLeft.height > 0)
+            {
+                _speakerLeftImage.rectTransform.sizeDelta = new Vector2(((float) line.characterLeft.width/line.characterLeft.height) * speakerHeight, speakerHeight);
+            }
         }
         if (line.characterRight)
         {
             _speakerRight.SetActive(true);
             _speakerRightImage.sprite = line.characterRight.portrait;
+            if (line.characterRight.width > 0 && line.characterRight.height > 0)
+            {
+                _speakerRightImage.rectTransform.sizeDelta = new Vector2(((float) line.characterRight.width / line.characterRight.height) * speakerHeight, speakerHeight);
+            }
         }
     }
 

@@ -11,6 +11,7 @@ public class UIScript : MonoBehaviour
 
     public GameObject portrait;
     public GameObject DashMeter;
+    public GameObject ScreamMeter;
     public GameObject EndScreen;
     public GameObject PauseScreen;
     public GameObject SunDialObject;
@@ -31,10 +32,11 @@ public class UIScript : MonoBehaviour
     private void Update()
     {
         SetSundialRotation();
-        SetDashmeterFill();
-
+        SetDashMeterFill();
+        SetScreamMeterFill();
         SelectButtonToShow();
     }
+
     public void SetPlayerRef()
     {
         player = References.Player.GetComponent<Player>();
@@ -65,9 +67,13 @@ public class UIScript : MonoBehaviour
         Buttons.SetActive(false);
     }
 
-    void SetDashmeterFill()
+    void SetDashMeterFill()
     {
-        DashMeter.transform.Find("bar").GetComponent<Image>().fillAmount = Mathf.Min(1, player.TimeSinceLastDash)/player._dashCooldown;
+        DashMeter.transform.Find("bar").GetComponent<Image>().fillAmount = Mathf.Min(1, player.TimeSinceLastDash/player._dashCooldown);
+    }
+    private void SetScreamMeterFill()
+    {
+        ScreamMeter.transform.Find("bar").GetComponent<Image>().fillAmount = Mathf.Min(1, player.TimeSinceLastScream/player._screamCooldown);
     }
     void SetSundialRotation()
     {

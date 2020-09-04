@@ -82,10 +82,14 @@ public class LevelSceneManager : MonoBehaviour
                 Pause();
             }
         }
-        if(Input.GetKeyDown(KeyCode.T))
+        if(!paused)
         {
-            DialogueManager.instance.DisplayNextSentence();
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                DialogueManager.instance.DisplayNextSentence();
+            }
         }
+        
     }
 
 

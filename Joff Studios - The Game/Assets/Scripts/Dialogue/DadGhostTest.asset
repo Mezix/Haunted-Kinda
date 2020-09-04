@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fullName: Dad
   portrait: {fileID: 21300000, guid: bc33381250104d946a85252d3c6b7a8e, type: 3}
+  width: 29
+  height: 35

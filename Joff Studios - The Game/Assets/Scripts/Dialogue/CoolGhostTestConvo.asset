@@ -23,4 +23,10 @@ MonoBehaviour:
     text: ..........
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 7c8336ac0420e4a4ca7c5e34c00e43df, type: 2}
-    text: ........suuuuuuuup'
+    text: ........................
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 7c8336ac0420e4a4ca7c5e34c00e43df, type: 2}
+    text: ....................................................................
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 7c8336ac0420e4a4ca7c5e34c00e43df, type: 2}
+    text: Sup'

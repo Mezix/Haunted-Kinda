@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fullName: Cool Dude
   portrait: {fileID: 21300000, guid: d9c13c4c838d54c44949f7093457d732, type: 3}
+  width: 23
+  height: 44
