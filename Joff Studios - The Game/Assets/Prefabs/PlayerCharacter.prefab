@@ -153,6 +153,71 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &429325421146837126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6287959906489489178}
+  - component: {fileID: 7153782722172022581}
+  - component: {fileID: 1043911471708159393}
+  m_Layer: 0
+  m_Name: PossessableInArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6287959906489489178
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429325421146837126}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2766420452868347882}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &7153782722172022581
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429325421146837126}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
+--- !u!114 &1043911471708159393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429325421146837126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1d2a8431ac42c4ebe210c3eda93c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GraveRobbersInCollider: []
+  GhostsInCollider: []
+  GravesInCollider: []
+  OfferingsInCollider: []
+  PossessablesInCollider: []
 --- !u!1 &2089916928533411849
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,6 +249,71 @@ Transform:
   m_Father: {fileID: 2766420452868347882}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2571919688580767234
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3322777984366042694}
+  - component: {fileID: 8674571483690997069}
+  - component: {fileID: 3562542543238437783}
+  m_Layer: 0
+  m_Name: OfferingsInArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3322777984366042694
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2571919688580767234}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2766420452868347882}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &8674571483690997069
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2571919688580767234}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
+--- !u!114 &3562542543238437783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2571919688580767234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1d2a8431ac42c4ebe210c3eda93c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GraveRobbersInCollider: []
+  GhostsInCollider: []
+  GravesInCollider: []
+  OfferingsInCollider: []
+  PossessablesInCollider: []
 --- !u!1 &2766420452868347876
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,6 +353,10 @@ Transform:
   - {fileID: 5952608376967820229}
   - {fileID: 3268320945981008784}
   - {fileID: 511627805239537254}
+  - {fileID: 7987991874386133966}
+  - {fileID: 2131105170735606084}
+  - {fileID: 3322777984366042694}
+  - {fileID: 6287959906489489178}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -242,12 +376,21 @@ MonoBehaviour:
   _ghostGlow: {fileID: 532659806}
   _shadow: {fileID: 435146994}
   _moveSpeed: 5
+  lastMovementDir: {x: 0, y: 0}
   _dashDistance: 10
+  _dashSpeed: 0
+  _dashTime: 0
   _dashCooldown: 0
+  _dashDamage: 30
   _screamCooldown: 0
+  _screamDamage: 50
   _possessionRange: 0
   _dashCollider: {fileID: 236815685441882335}
   _screamCollider: {fileID: 3292341581732449292}
+  _graveGhostsCollider: {fileID: 7203757889154317408}
+  _gravesCollider: {fileID: 2482843633231504290}
+  _offeringsCollider: {fileID: 3562542543238437783}
+  _possessableCollider: {fileID: 1043911471708159393}
   _waterTilemap: {fileID: 0}
   _ui: {fileID: 0}
   _dashSound: {fileID: 9092339924767096333}
@@ -341,9 +484,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -496,6 +639,71 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &4518240498910733831
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7987991874386133966}
+  - component: {fileID: 273279156202439697}
+  - component: {fileID: 7203757889154317408}
+  m_Layer: 0
+  m_Name: GraveGhostsInAreaCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7987991874386133966
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4518240498910733831}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2766420452868347882}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &273279156202439697
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4518240498910733831}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
+--- !u!114 &7203757889154317408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4518240498910733831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1d2a8431ac42c4ebe210c3eda93c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GraveRobbersInCollider: []
+  GhostsInCollider: []
+  GravesInCollider: []
+  OfferingsInCollider: []
+  PossessablesInCollider: []
 --- !u!1 &4571567712807941550
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,6 +765,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GraveRobbersInCollider: []
+  GhostsInCollider: []
+  GravesInCollider: []
+  OfferingsInCollider: []
+  PossessablesInCollider: []
 --- !u!1 &4624710431811384300
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,6 +932,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GraveRobbersInCollider: []
+  GhostsInCollider: []
+  GravesInCollider: []
+  OfferingsInCollider: []
+  PossessablesInCollider: []
 --- !u!1 &8289779493239651179
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,3 +1063,68 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &8326276189249935859
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2131105170735606084}
+  - component: {fileID: 876361373440090353}
+  - component: {fileID: 2482843633231504290}
+  m_Layer: 0
+  m_Name: GravesInArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2131105170735606084
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8326276189249935859}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2766420452868347882}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &876361373440090353
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8326276189249935859}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
+--- !u!114 &2482843633231504290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8326276189249935859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1d2a8431ac42c4ebe210c3eda93c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GraveRobbersInCollider: []
+  GhostsInCollider: []
+  GravesInCollider: []
+  OfferingsInCollider: []
+  PossessablesInCollider: []

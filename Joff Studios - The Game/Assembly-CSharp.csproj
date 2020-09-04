@@ -62,6 +62,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Dialogue\ConversationScriptObj.cs" />
+    <Compile Include="Assets\Scripts\Dialogue\DialogueCharacterScriptObj.cs" />
+    <Compile Include="Assets\Scripts\Dialogue\DialogueManager.cs" />
     <Compile Include="Assets\Scripts\Events.cs" />
     <Compile Include="Assets\Scripts\LevelScene\CameraScript.cs" />
     <Compile Include="Assets\Scripts\LevelScene\Cursor.cs" />

@@ -6,6 +6,8 @@ using Random = UnityEngine.Random;
 
 public class LevelSceneManager : MonoBehaviour
 {
+    public static LevelSceneManager level;
+
     public int NightLength = 3;
     public int DayLength = 3;
     public int AmountOfDays = 7;
@@ -37,10 +39,15 @@ public class LevelSceneManager : MonoBehaviour
 
     public AudioSource EndingMusic;
 
+
+    private bool playingConversation;
+
     private void Awake()
     {
         Events.current.GraveRobberDespawned += RemoveGraveRobber;
         Events.current.DayIsOver += FinishDay;
+
+        level = this;
 
         GetAllGravesInScene();
         GetAllRobberSpawnPositions();
@@ -72,7 +79,33 @@ public class LevelSceneManager : MonoBehaviour
                 Pause();
             }
         }
+        //if(Input.GetKeyDown(KeyCode.E))
+        //{
+        //    TriggerDialogue(test);
+        //}
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            DialogueManager.instance.DisplayNextSentence();
+        }
     }
+
+    //DIALOGUE TEST
+
+    public void TriggerDialogue(ConversationScriptObj convo)
+    {
+        _UIScript.TurnOnDialogue();
+        DialogueManager.instance.StartDialogue(convo);
+    }
+
+
+
+
+
+
+
+
+
+
     private void GetAllGravesInScene()
     {
         foreach(Gravestone grave in _graveParent.GetComponentsInChildren<Gravestone>())

@@ -22,6 +22,11 @@ public class UIScript : MonoBehaviour
     public Sprite E;
     public Sprite Q;
 
+    //DIALOGUE
+
+    public GameObject UIDialogObj;
+
+
     private void Update()
     {
         SetSundialRotation();
@@ -35,11 +40,9 @@ public class UIScript : MonoBehaviour
     }
     private void SelectButtonToShow()
     {
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-
-        if(hit.collider)
+        if(player._offeringsCollider.OfferingsInCollider.Count > 0)
         {
-            if (hit.collider.TryGetComponent(out Offering offering))
+            foreach(Offering offering in player._offeringsCollider.OfferingsInCollider)
             {
                 if (!offering.disappearing)
                 {
@@ -49,12 +52,9 @@ public class UIScript : MonoBehaviour
                 }
             }
         }
-
-        hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-
-        if (hit.collider)
+        if (player._possessableCollider.PossessablesInCollider.Count > 0)
         {
-            if (hit.collider.TryGetComponent(out PosessableObject possessable))
+            if(!player.IsPossessing)
             {
                 buttonRend.sprite = Q;
                 Buttons.SetActive(true);
@@ -71,7 +71,7 @@ public class UIScript : MonoBehaviour
     void SetSundialRotation()
     {
         Quaternion q = SunDial.transform.rotation;
-        q.eulerAngles = new Vector3(0,0,lighting.DayToNightRatio * 180);
+        q.eulerAngles = new Vector3(0, 0, lighting.DayToNightRatio * 180);
         SunDial.transform.rotation = q;
 
     }
@@ -88,6 +88,7 @@ public class UIScript : MonoBehaviour
         PauseScreen.SetActive(false);
         Instructions.SetActive(false);
         Buttons.SetActive(false);
+        UIDialogObj.SetActive(false);
     }
 
     public void UIDash()
@@ -117,6 +118,21 @@ public class UIScript : MonoBehaviour
         portrait.GetComponentInChildren<Animator>().SetBool("Scream", false);
     }
 
+    public void ShowPlayerUI()
+    {
+        portrait.SetActive(true);
+        DashMeter.SetActive(true);
+        SunDialObject.SetActive(true);
+        SunDial.SetActive(true);
+    }
+    public void HidePlayerUI()
+    {
+        portrait.SetActive(false);
+        DashMeter.SetActive(false);
+        SunDialObject.SetActive(false);
+        SunDial.SetActive(false);
+    }
+
     public void UIPause()
     {
         PauseScreen.SetActive(true);
@@ -137,5 +153,18 @@ public class UIScript : MonoBehaviour
         {
             Instructions.SetActive(true);
         }
+    }
+
+    //DIALOGUE
+
+    public void TurnOnDialogue()
+    {
+        UIDialogObj.SetActive(true);
+        HidePlayerUI();
+    }
+    public void TurnOffDialogue()
+    {
+        UIDialogObj.SetActive(false);
+        ShowPlayerUI();
     }
 }

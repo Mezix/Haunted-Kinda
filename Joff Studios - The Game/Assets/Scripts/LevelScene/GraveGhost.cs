@@ -12,6 +12,11 @@ public class GraveGhost : MonoBehaviour
     private float ghostSpriteMaxOpacity; //the max opacity our ghost should achieve
     private float fadeAmount; //the amount to change our opacity every frame
 
+    //CONVERSATIONS
+
+    public ConversationScriptObj[] _conversations;
+    public int _conversationIndex;
+
     private void Awake()
     {
         GhostGlow = GetComponentInChildren<UnityEngine.Experimental.Rendering.Universal.Light2D>();
@@ -24,6 +29,7 @@ public class GraveGhost : MonoBehaviour
         ghostRenderer.color = new Color(1, 1, 1, ghostSpriteOpacity); //apply the ghostopacity value
         GhostGlow.intensity = 0;
         fadeAmount = 0.05f;
+        _conversationIndex = 0;
     }
     private void FixedUpdate()
     {
@@ -46,8 +52,20 @@ public class GraveGhost : MonoBehaviour
     public void SetPlayerReference()
     {
         player = References.Player;
-        print(player);
     }
+
+    public void PlayConversation()
+    {
+        if(_conversations.Length > 0)
+        {
+            if (_conversations[_conversationIndex])
+            {
+                LevelSceneManager.level.TriggerDialogue(_conversations[_conversationIndex]);
+                //print("ghost dialogue;");
+            }
+        }
+    }
+
     private void FadeIn()
     {
         if(ghostSpriteOpacity > ghostSpriteMaxOpacity) //make sure we dont exceed the max alpha value we want

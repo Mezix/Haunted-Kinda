@@ -80,7 +80,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InhabitedGhost: {fileID: 0}
-  Destroyed: 0
+  _destroyed: 0
+  _isBeingAttacked: 0
   GravestoneRenderer: {fileID: 0}
   initialSprite: {fileID: 0}
   DestructionStates:
@@ -90,6 +91,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   OfferingPos: {fileID: 421448455123369196}
+  currentOffering: {fileID: 0}
 --- !u!212 &1940406192481580737
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -155,7 +157,7 @@ MonoBehaviour:
   isPossessed: 0
   canWalk: 0
   isGrave: 1
-  ExclamationMark: {fileID: 0}
+  exclamation: {fileID: 0}
 --- !u!58 &1940406192481580751
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -171,7 +173,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1
 --- !u!82 &6220594401920972719
 AudioSource:
   m_ObjectHideFlags: 0
