@@ -25,6 +25,7 @@ public class GraveRobber : MonoBehaviour
 
     private GameObject player; //reference to the player in the scene
     private List<Gravestone> allPossibleGravestones = new List<Gravestone>(); //all gravestones in the scene, for pathfinding purposes
+    public List<Gravestone> blockedGraves = new List<Gravestone>();
     private Gravestone nearestGrave; //the gravestone we will initially seek out
     public GameObject _lootBagPrefab; //the prefab of our lootbag that we spawn when we are terrifed
     private GameObject escapePosition; //the position we will flee to if terrified
@@ -211,7 +212,7 @@ public class GraveRobber : MonoBehaviour
         float Distance = 100;
         foreach (Gravestone grave in allPossibleGravestones) //check all possible gravestones
         {
-            if(!grave._destroyed && !grave._isBeingAttacked) //as long as the grave we are looking at isnt destroyed and not focused by another robber
+            if(!grave._destroyed && !grave._isBeingAttacked && !blockedGraves.Contains(grave)) //as long as the grave we are looking at isnt destroyed and not focused by another robber
             {
                 if(Vector2.Distance(grave.transform.position, robberRB.transform.position) <= Distance) //..and the distance is closer than the last grave we checked
                 {
@@ -329,5 +330,30 @@ public class GraveRobber : MonoBehaviour
             yield return new WaitForSeconds(0.001f);
         }
         Events.current.DespawnGraveRobber(gameObject); //finally destroy our grave robber through the level scenemanager
+    }
+
+    public void BlockGrave(Gravestone grave)
+    {
+        if(!blockedGraves.Contains(grave))
+        {
+            blockedGraves.Add(grave);
+        }
+        if(nearestGrave.Equals(grave))
+        {
+            nearestGrave._isBeingAttacked = false;
+            nearestGrave = null;
+            isDigging = false;
+            animator.SetBool("Digging", false);
+            StopAllCoroutines();
+            FindNearestGravestone();
+        }
+    }
+
+    public void UnblockGrave(Gravestone grave)
+    {
+        if(blockedGraves.Contains(grave))
+        {
+            blockedGraves.Remove(grave);
+        }
     }
 }

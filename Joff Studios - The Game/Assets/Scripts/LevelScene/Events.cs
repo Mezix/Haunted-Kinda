@@ -15,8 +15,9 @@ public class Events : MonoBehaviour
     public event Action<GameObject> GraveRobberDespawned;
     public event Action<GameObject> ObjectPossessed;
     public event Action DayIsOver;
+    public event Action<Gravestone> GravestoneBlocked;
+    public event Action<Gravestone> GravestoneUnblocked;
 
-    
     public void ChangeHealth(float healthChange)
     {
         if (OnHealthPctChanged != null)
@@ -43,6 +44,20 @@ public class Events : MonoBehaviour
         if(DayIsOver != null)
         {
             DayIsOver();
+        }
+    }
+    public void BlockGravestone(Gravestone grave)
+    {
+        if (GravestoneBlocked != null)
+        {
+            GravestoneBlocked(grave);
+        }
+    }
+    public void UnblockGravestone(Gravestone grave)
+    {
+        if (GravestoneUnblocked != null)
+        {
+            GravestoneUnblocked(grave);
         }
     }
 }

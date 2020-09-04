@@ -28,7 +28,8 @@ public class LevelSceneManager : MonoBehaviour
     public GameObject _graveRobberEscapePos;
 
     public GameObject _graveParent;
-    private List<Gravestone> _allGraves = new List<Gravestone>();
+    private List<Gravestone> allGraves = new List<Gravestone>();
+    private List<Gravestone> blockedGraves = new List<Gravestone>();
 
     public List<GameObject> _allOfferingTypes;
     public GameObject _offeringsParent;
@@ -46,6 +47,8 @@ public class LevelSceneManager : MonoBehaviour
     {
         Events.current.GraveRobberDespawned += RemoveGraveRobber;
         Events.current.DayIsOver += FinishDay;
+        Events.current.GravestoneBlocked += BlockGrave;
+        Events.current.GravestoneUnblocked += UnblockGrave;
 
         level = this;
 
@@ -79,17 +82,45 @@ public class LevelSceneManager : MonoBehaviour
                 Pause();
             }
         }
-        //if(Input.GetKeyDown(KeyCode.E))
-        //{
-        //    TriggerDialogue(test);
-        //}
         if(Input.GetKeyDown(KeyCode.T))
         {
             DialogueManager.instance.DisplayNextSentence();
         }
     }
 
-    //DIALOGUE TEST
+
+
+    //EVENT STUFF
+
+
+
+    private void RemoveGraveRobber(GameObject graveRobber)
+    {
+        _graveRobbers.Remove(graveRobber);
+        Destroy(graveRobber);
+    }
+    private void BlockGrave(Gravestone grave)
+    {
+        blockedGraves.Add(grave);
+        foreach(GameObject robber in _graveRobbers)
+        {
+            robber.GetComponent<GraveRobber>().BlockGrave(grave);
+        }
+    }
+    private void UnblockGrave(Gravestone grave)
+    {
+        blockedGraves.Remove(grave);
+        foreach (GameObject robber in _graveRobbers)
+        {
+            robber.GetComponent<GraveRobber>().UnblockGrave(grave);
+        }
+    }
+
+
+
+    //DIALOGUE
+
+
 
     public void TriggerDialogue(ConversationScriptObj convo)
     {
@@ -99,10 +130,7 @@ public class LevelSceneManager : MonoBehaviour
 
 
 
-
-
-
-
+    //GET REFERENCES TO STUFF IN THE SCENE
 
 
 
@@ -110,7 +138,7 @@ public class LevelSceneManager : MonoBehaviour
     {
         foreach(Gravestone grave in _graveParent.GetComponentsInChildren<Gravestone>())
         {
-            _allGraves.Add(grave);
+            allGraves.Add(grave);
         }
     }
     private void GetAllOfferingPositions()
@@ -131,13 +159,19 @@ public class LevelSceneManager : MonoBehaviour
     }
     private void SetPlayerReferencesInScene()
     {
-        foreach(Gravestone grave in _allGraves)
+        foreach(Gravestone grave in allGraves)
         {
             grave.GetComponentInChildren<GraveGhost>().SetPlayerReference();
         }
         _UIScript.SetPlayerRef();
         _cameraScript.SetPlayerRef();
     }
+
+
+
+    //GAME PAUSING
+
+
 
     public void Pause()
     {
@@ -200,6 +234,8 @@ public class LevelSceneManager : MonoBehaviour
     }
     private IEnumerator SpawnGraveRobbers(int amount)
     {
+        yield return new WaitForSeconds(3);
+
         for (int i = 0; i < amount; i++)
         {
             SpawnGraveRobber();
@@ -218,16 +254,13 @@ public class LevelSceneManager : MonoBehaviour
     private void SpawnGraveRobber()
     {
         GameObject go = Instantiate(_graveRobberPrefab);
-        go.transform.position = graveRobberSpawnPositions[Random.Range(0, graveRobberSpawnPositions.Count)].transform.position;
-        go.GetComponent<GraveRobber>().InitRobber(_allGraves, _graveRobberEscapePos);
+        go.transform.position = graveRobberSpawnPositions[1].transform.position; //Random.Range(0, graveRobberSpawnPositions.Count
+        go.GetComponent<GraveRobber>().InitRobber(allGraves, _graveRobberEscapePos);
         go.transform.parent = GraveRobberParent.transform;
         _graveRobbers.Add(go);
+        go.GetComponent<GraveRobber>().blockedGraves = blockedGraves;
     }
-    private void RemoveGraveRobber(GameObject graveRobber)
-    {
-        _graveRobbers.Remove(graveRobber);
-        Destroy(graveRobber);
-    }
+    
 
     private void EndOfGame()
     {

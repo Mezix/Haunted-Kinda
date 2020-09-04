@@ -65,10 +65,11 @@
     <Compile Include="Assets\Scripts\Dialogue\ConversationScriptObj.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DialogueCharacterScriptObj.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DialogueManager.cs" />
-    <Compile Include="Assets\Scripts\Events.cs" />
+    <Compile Include="Assets\Scripts\LevelScene\BlockGravestones.cs" />
     <Compile Include="Assets\Scripts\LevelScene\CameraScript.cs" />
     <Compile Include="Assets\Scripts\LevelScene\Cursor.cs" />
     <Compile Include="Assets\Scripts\LevelScene\DayNightLighting.cs" />
+    <Compile Include="Assets\Scripts\LevelScene\Events.cs" />
     <Compile Include="Assets\Scripts\LevelScene\FearLevel.cs" />
     <Compile Include="Assets\Scripts\LevelScene\GraveGhost.cs" />
     <Compile Include="Assets\Scripts\LevelScene\GraveRobber.cs" />
