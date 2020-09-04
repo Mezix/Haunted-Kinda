@@ -27,6 +27,7 @@ public class PossessableObject : MonoBehaviour
         isPossessed = true;
         if(_canMove)
         {
+            StopCoroutine(DropPossessable());
             StartCoroutine(FloatPossessable());
         }
         StartCoroutine(ExclamationMark());
@@ -36,6 +37,7 @@ public class PossessableObject : MonoBehaviour
     {
         if (_canMove)
         {
+            StopCoroutine(FloatPossessable());
             StartCoroutine(DropPossessable());
         }
         isPossessed = false;
@@ -80,6 +82,7 @@ public class PossessableObject : MonoBehaviour
 
     private IEnumerator FloatPossessable()
     {
+        _moveablePart.transform.localPosition = Vector2.zero;
         while (Vector2.Distance(_moveablePart.transform.localPosition, new Vector2(0, 0.5f)) > 0.05f)
         {
             _moveablePart.transform.localPosition = Vector2.Lerp(_moveablePart.transform.localPosition, new Vector2(0, 0.5f), 0.05f);
@@ -89,6 +92,7 @@ public class PossessableObject : MonoBehaviour
     }
     private IEnumerator DropPossessable()
     {
+        _moveablePart.transform.localPosition = new Vector2(0, 0.5f);
         while (Vector2.Distance(_moveablePart.transform.localPosition, new Vector2(0, 0)) > 0.05f)
         {
             _moveablePart.transform.localPosition = Vector2.Lerp(_moveablePart.transform.localPosition, new Vector2(0, 0f), 0.05f);

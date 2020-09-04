@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
     //POSSESSION
 
     public bool IsPossessing { get; private set; } //checks if we are possesing any object
+    private bool startingPossession; //intermediating bool between the start and end of possession
     private PossessableObject possessedObject; //the script of the object were possessing
     public float _possessionRange; //the range at which we can start to possess objects
 
@@ -103,7 +104,7 @@ public class Player : MonoBehaviour
             }
             playerAnimator.SetFloat("Speed", movement.sqrMagnitude); // continously set the speed, so our animator can switch states as required
 
-            if(!IsPossessing) // if we are possesing, dont let us use our abilites (which wouldnt do aynthing, but set them on cooldown)
+            if(!IsPossessing && !startingPossession) // if we are possesing, dont let us use our abilites (which wouldnt do aynthing, but set them on cooldown)
             {
                 if (Input.GetKeyDown(KeyCode.LeftShift)) //Dash
                 {
@@ -137,13 +138,16 @@ public class Player : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                if (!IsPossessing) //if we arent possessing yet, do so
+                if(!startingPossession)
                 {
-                    StartCoroutine(PossessObject());
-                }
-                else
-                {
-                    StartCoroutine(DepossessObject()); //if we are possessing, depossess
+                    if (!IsPossessing) //if we arent possessing yet, do so
+                    {
+                        StartCoroutine(PossessObject());
+                    }
+                    else
+                    {
+                        StartCoroutine(DepossessObject()); //if we are possessing, depossess
+                    }
                 }
             }
         }
@@ -218,6 +222,7 @@ public class Player : MonoBehaviour
     }
     private IEnumerator PossessObject()
     {
+        startingPossession = true;
         //TODO: currently can possess multiple objects while we havent finished this function
 
         if (_possessableCollider.PossessablesInCollider.Count > 0)
@@ -240,15 +245,19 @@ public class Player : MonoBehaviour
             possessedObject = closestPossessable; //set our local ref to the object were possessing
             playerAnimator.SetBool("Disappear", true); //play the dissappear animation
 
+            //TODO: track object when its a moveable one!
+
             _ghostGlow.SetActive(false); //disable the glowy effect and our shadow
             _shadow.SetActive(false);
             Events.current.PossessObject(possessedObject.gameObject); //send out an event that we are possessing something
             yield return new WaitForSeconds(0.538f); //lock us from depossessing for the duration of the animation
-            IsPossessing = true; //finally set the bool so we can depossess again    
+            IsPossessing = true; //finally set the bool so we can depossess again
+            startingPossession = false;
         }
     }
     private IEnumerator DepossessObject()
     {
+        startingPossession = true;
         transform.position = possessedObject.transform.position; //move our player to the possessed object so we can reemerge
 
         playerAnimator.SetBool("Disappear", false); //play disappear animation
@@ -259,7 +268,8 @@ public class Player : MonoBehaviour
         _ghostGlow.SetActive(true); //turn back on our glow and shadow
         _shadow.SetActive(true);
         lockMovement = false; //unlock movement
-        IsPossessing = false; //and the ability to possess again
+        IsPossessing = false; //and the ability to possess againstartingPossession
+        startingPossession = false;
     }
 
     private void Interact()

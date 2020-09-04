@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 6583949429745895791}
   - component: {fileID: 1258010976750688287}
   m_Layer: 8
-  m_Name: VaseSprite
+  m_Name: MoveablePart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
