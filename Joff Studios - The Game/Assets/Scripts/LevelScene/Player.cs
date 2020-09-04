@@ -27,6 +27,9 @@ public class Player : MonoBehaviour
     public float TimeSinceLastDash { get; private set; } //time elapsed since we last dashed, to determine when we can dash next
     private bool dashing; //check if we are dashing, so we can't dash again immediately
 
+    public GameObject AfterImagePrefab;
+    public Vector3 lastAfterImagePos;
+
     public float _screamCooldown; //the cooldown of our scream
     public float _screamDamage = 50f;
     public float TimeSinceLastScream { get; private set; } //time elapsed since we last screamed, to determine when we can scream next
@@ -34,7 +37,7 @@ public class Player : MonoBehaviour
     //POSSESSION
 
     public bool IsPossessing { get; private set; } //checks if we are possesing any object
-    private PosessableObject possessedObject; //the script of the object were possessing
+    private PossessableObject possessedObject; //the script of the object were possessing
     public float _possessionRange; //the range at which we can start to possess objects
 
     //INVENTORY
@@ -164,8 +167,17 @@ public class Player : MonoBehaviour
         List<GraveRobber> AlreadyDamagedRobbers = new List<GraveRobber>(); //since our collider moves, we might damage robbers twice, which we dont want
 
         float timer = 0;
+
+        Instantiate(AfterImagePrefab, transform.position, transform.rotation);
+        lastAfterImagePos = transform.position;
         while (timer <= _dashTime)
         {
+            if(Vector3.Distance(transform.position, lastAfterImagePos) >= 0.5f)
+            {
+                Instantiate(AfterImagePrefab, transform.position, transform.rotation);
+                lastAfterImagePos = transform.position;
+            }
+
             timer += Time.deltaTime;
             playerRB.velocity = direction * _dashSpeed - (timer * direction * 20); //decrease our speed over time
 
@@ -210,11 +222,11 @@ public class Player : MonoBehaviour
 
         if (_possessableCollider.PossessablesInCollider.Count > 0)
         {
-            List<PosessableObject> possessables = _possessableCollider.PossessablesInCollider;
+            List<PossessableObject> possessables = _possessableCollider.PossessablesInCollider;
 
             float Distance = Vector2.Distance(playerRB.position, possessables[0].transform.position);
-            PosessableObject closestPossessable = possessables[0];
-            foreach (PosessableObject possessable in possessables)
+            PossessableObject closestPossessable = possessables[0];
+            foreach (PossessableObject possessable in possessables)
             {
                 if (Vector2.Distance(playerRB.position, possessable.transform.position) < Distance)
                 {

@@ -35,7 +35,6 @@ public class DialogueManager : MonoBehaviour
             {
                 sentences.Enqueue(line);
             }
-
             DisplayNextSentence();
         }
     }

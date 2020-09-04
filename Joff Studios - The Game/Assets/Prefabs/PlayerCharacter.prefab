@@ -377,11 +377,12 @@ MonoBehaviour:
   _shadow: {fileID: 435146994}
   _moveSpeed: 5
   lastMovementDir: {x: 0, y: 0}
-  _dashDistance: 10
   _dashSpeed: 0
   _dashTime: 0
   _dashCooldown: 0
   _dashDamage: 30
+  AfterImagePrefab: {fileID: 5421470715018780270, guid: 85a8551d10c711641a5422ef37b31e7a,
+    type: 3}
   _screamCooldown: 0
   _screamDamage: 50
   _possessionRange: 0
@@ -751,7 +752,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 6
+  m_Radius: 5
 --- !u!114 &3292341581732449292
 MonoBehaviour:
   m_ObjectHideFlags: 0

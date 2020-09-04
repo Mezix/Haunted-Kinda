@@ -8,7 +8,7 @@ public class TriggerReturnCollissions : MonoBehaviour
     public List<GraveGhost> GhostsInCollider;
     public List<Gravestone> GravesInCollider;
     public List<Offering> OfferingsInCollider;
-    public List<PosessableObject> PossessablesInCollider;
+    public List<PossessableObject> PossessablesInCollider;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -28,9 +28,9 @@ public class TriggerReturnCollissions : MonoBehaviour
         {
             OfferingsInCollider.Add(collision.GetComponent<Offering>());
         }
-        if (collision.GetComponent<PosessableObject>())
+        if (collision.GetComponent<PossessableObject>())
         {
-            PossessablesInCollider.Add(collision.GetComponent<PosessableObject>());
+            PossessablesInCollider.Add(collision.GetComponent<PossessableObject>());
         }
     }
 
@@ -52,9 +52,9 @@ public class TriggerReturnCollissions : MonoBehaviour
         {
             OfferingsInCollider.Remove(collision.GetComponent<Offering>());
         }
-        if (collision.GetComponent<PosessableObject>())
+        if (collision.GetComponent<PossessableObject>())
         {
-            PossessablesInCollider.Remove(collision.GetComponent<PosessableObject>());
+            PossessablesInCollider.Remove(collision.GetComponent<PossessableObject>());
         }
     }
 }

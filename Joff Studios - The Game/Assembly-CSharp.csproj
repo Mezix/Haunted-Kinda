@@ -78,14 +78,14 @@
     <Compile Include="Assets\Scripts\LevelScene\Lootbag.cs" />
     <Compile Include="Assets\Scripts\LevelScene\Offering.cs" />
     <Compile Include="Assets\Scripts\LevelScene\Player.cs" />
-    <Compile Include="Assets\Scripts\LevelScene\PosessableObject.cs" />
+    <Compile Include="Assets\Scripts\LevelScene\PlayerAfterImage.cs" />
+    <Compile Include="Assets\Scripts\LevelScene\PossessableObject.cs" />
     <Compile Include="Assets\Scripts\LevelScene\References.cs" />
     <Compile Include="Assets\Scripts\LevelScene\TriggerReturnCollissions.cs" />
     <Compile Include="Assets\Scripts\LevelScene\UIScript.cs" />
     <Compile Include="Assets\Scripts\Loader.cs" />
     <Compile Include="Assets\Scripts\MenuScene\MenuSceneManager.cs" />
     <Compile Include="Assets\Scripts\MenuScene\PlayerLookAt.cs" />
-    <Compile Include="Assets\Scripts\PixelateImageEffect.cs" />
     <None Include="Assets\Materials + Shaders\Shaders\PixelEffectShader.shader" />
     <None Include="Assets\Sounds &amp; Music\Put this in Credits for Copyright.txt" />
     <Reference Include="UnityEngine">
