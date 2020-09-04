@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\LevelScene\GraveRobber.cs" />
     <Compile Include="Assets\Scripts\LevelScene\Gravestone.cs" />
     <Compile Include="Assets\Scripts\LevelScene\HealthBarScript.cs" />
+    <Compile Include="Assets\Scripts\LevelScene\InventoryUI.cs" />
     <Compile Include="Assets\Scripts\LevelScene\LevelSceneManager.cs" />
     <Compile Include="Assets\Scripts\LevelScene\Lootbag.cs" />
     <Compile Include="Assets\Scripts\LevelScene\Offering.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Assets\Scripts\LevelScene\PossessableObject.cs" />
     <Compile Include="Assets\Scripts\LevelScene\References.cs" />
     <Compile Include="Assets\Scripts\LevelScene\TriggerReturnCollissions.cs" />
+    <Compile Include="Assets\Scripts\LevelScene\UIOffering.cs" />
     <Compile Include="Assets\Scripts\LevelScene\UIScript.cs" />
     <Compile Include="Assets\Scripts\Loader.cs" />
     <Compile Include="Assets\Scripts\MenuScene\MenuSceneManager.cs" />

@@ -17,6 +17,7 @@ public class Events : MonoBehaviour
     public event Action DayIsOver;
     public event Action<Gravestone> GravestoneBlocked;
     public event Action<Gravestone> GravestoneUnblocked;
+    public event Action<Offering> OfferingPickedUp;
 
     public void ChangeHealth(float healthChange)
     {
@@ -58,6 +59,14 @@ public class Events : MonoBehaviour
         if (GravestoneUnblocked != null)
         {
             GravestoneUnblocked(grave);
+        }
+    }
+
+    public void PickUpOffering(Offering offering)
+    {
+        if (OfferingPickedUp != null)
+        {
+            OfferingPickedUp(offering);
         }
     }
 }

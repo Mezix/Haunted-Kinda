@@ -286,7 +286,9 @@ public class Player : MonoBehaviour
             if(!closestOffering.disappearing)
             {
                 collectedOfferings.Add(closestOffering); //add to our internal inventory system
-                closestOffering.gameObject.SetActive(false); //disable the gameobject 
+                closestOffering.gameObject.SetActive(false); //disable the gameobject
+                Events.current.PickUpOffering(closestOffering);
+                
             }
         }
 

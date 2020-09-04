@@ -25,6 +25,7 @@ public class UIScript : MonoBehaviour
     //DIALOGUE
 
     public GameObject UIDialogObj;
+    public InventoryUI _inventory;
 
 
     private void Update()

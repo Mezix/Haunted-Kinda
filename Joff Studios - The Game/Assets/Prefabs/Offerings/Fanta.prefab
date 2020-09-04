@@ -86,8 +86,8 @@ GameObject:
   - component: {fileID: 5787650698131815989}
   - component: {fileID: 5787650698131815990}
   m_Layer: 9
-  m_Name: BunOffering 3
-  m_TagString: Untagged
+  m_Name: Fanta
+  m_TagString: Fanta
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

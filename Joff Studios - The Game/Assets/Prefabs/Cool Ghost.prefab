@@ -48,7 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  _conversations: []
+  _conversations:
+  - {fileID: 11400000, guid: 9b50c33add1b12c4489dd6030996be76, type: 2}
   _conversationIndex: 0
 --- !u!95 &2648045057101818730
 Animator:
