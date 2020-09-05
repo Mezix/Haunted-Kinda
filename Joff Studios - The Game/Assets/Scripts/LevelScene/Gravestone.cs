@@ -7,7 +7,11 @@ public class Gravestone : MonoBehaviour
     [SerializeField]
     private GameObject InhabitedGhost;
     public bool _destroyed;
-    public bool _isBeingAttacked;
+    public bool IsBeingTargeted { get; set; }
+
+    public GameObject _dirtParticlesPrefab;
+    private GameObject currentDirtParticles;
+    public GameObject _dirtPos;
 
     public SpriteRenderer GravestoneRenderer;
     public Sprite initialSprite;
@@ -63,5 +67,23 @@ public class Gravestone : MonoBehaviour
     {
         int index = Mathf.RoundToInt((1f - (currentHealth / maxHealth)) * (DestructionStates.Length - 1));
         GravestoneRenderer.sprite = DestructionStates[index];
+    }
+
+    public void AttackGrave()
+    {
+        IsBeingTargeted = true;
+
+        if(_dirtParticlesPrefab && _dirtPos)
+        {
+            currentDirtParticles = Instantiate(_dirtParticlesPrefab, _dirtPos.transform.position, _dirtPos.transform.rotation);
+        }
+    }
+    public void StopAttackingGrave()
+    {
+        IsBeingTargeted = false;
+        if(currentDirtParticles)
+        {
+            Destroy(currentDirtParticles);
+        }
     }
 }

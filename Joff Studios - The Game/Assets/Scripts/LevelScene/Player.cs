@@ -222,11 +222,11 @@ public class Player : MonoBehaviour
     }
     private IEnumerator PossessObject()
     {
-        startingPossession = true;
         //TODO: currently can possess multiple objects while we havent finished this function
 
         if (_possessableCollider.PossessablesInCollider.Count > 0)
         {
+            startingPossession = true;
             List<PossessableObject> possessables = _possessableCollider.PossessablesInCollider;
 
             float Distance = Vector2.Distance(playerRB.position, possessables[0].transform.position);

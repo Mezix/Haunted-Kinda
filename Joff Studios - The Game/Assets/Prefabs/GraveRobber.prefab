@@ -300,6 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 1
+  blockedGraves: []
   _lootBagPrefab: {fileID: 1110423882093557277, guid: 03ba46fb85b4d6c4ba11e11cb4426268,
     type: 3}
 --- !u!114 &6507663872487307908

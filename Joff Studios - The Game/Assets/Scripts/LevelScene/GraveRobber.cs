@@ -212,7 +212,7 @@ public class GraveRobber : MonoBehaviour
         float Distance = 100;
         foreach (Gravestone grave in allPossibleGravestones) //check all possible gravestones
         {
-            if(!grave._destroyed && !grave._isBeingAttacked && !blockedGraves.Contains(grave)) //as long as the grave we are looking at isnt destroyed and not focused by another robber
+            if(!grave._destroyed && !grave.IsBeingTargeted && !blockedGraves.Contains(grave)) //as long as the grave we are looking at isnt destroyed and not focused by another robber
             {
                 if(Vector2.Distance(grave.transform.position, robberRB.transform.position) <= Distance) //..and the distance is closer than the last grave we checked
                 {
@@ -225,7 +225,7 @@ public class GraveRobber : MonoBehaviour
         }
         if(undestroyedGraveAvailable) //only if we exited the previous loop having found a grave...
         {
-            nearestGrave._isBeingAttacked = true; //attack that grave, so others cant
+            nearestGrave.IsBeingTargeted = true; //attack that grave, so others cant
             UpdatePath(positionToSeekOut); //update our path to this gravestone
         }
         return undestroyedGraveAvailable; //return wether or not undestroyed gravestones are actually available
@@ -235,6 +235,7 @@ public class GraveRobber : MonoBehaviour
     {
         isDigging = true; //stop us digging multiple times
         animator.SetBool("Digging", true); //set the animator bool so we start digging
+        nearestGrave.AttackGrave();
         //Vector2 currentPos = robberRB.position;
         while(!nearestGrave._destroyed) //as long as the grave we are targetting isnt destroyed, keep digging
         {
@@ -257,7 +258,7 @@ public class GraveRobber : MonoBehaviour
         }
 
         GetComponent<Collider2D>().isTrigger = false; //start collisions again
-        nearestGrave._isBeingAttacked = false; //stop attacking the grave, freeing up others to potentially attack it
+        nearestGrave.StopAttackingGrave(); //stop attacking the grave, freeing up others to potentially attack it
         isDigging = false;
         positionToSeekOut = escapePosition; //set our target as the escape position, and update our path
         UpdatePath(positionToSeekOut);
@@ -285,7 +286,7 @@ public class GraveRobber : MonoBehaviour
         isTerrified = true; //set the terrified bool to true
         if(nearestGrave)
         {
-            nearestGrave._isBeingAttacked = false; //stop attacking the nearest grave
+            nearestGrave.StopAttackingGrave(); //stop attacking the nearest grave
         }
         positionToSeekOut = escapePosition; //set the position and update the path
         UpdatePath(positionToSeekOut);
@@ -340,7 +341,7 @@ public class GraveRobber : MonoBehaviour
         }
         if(nearestGrave.Equals(grave))
         {
-            nearestGrave._isBeingAttacked = false;
+            nearestGrave.StopAttackingGrave();
             nearestGrave = null;
             isDigging = false;
             animator.SetBool("Digging", false);
