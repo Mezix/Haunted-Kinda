@@ -9,25 +9,35 @@ public class UIScript : MonoBehaviour
     public DayNightLighting lighting;
     private Player player;
 
+    //enabled at the start of the scene
+
     public GameObject portrait;
     public GameObject DashMeter;
     public GameObject ScreamMeter;
-    public GameObject EndScreen;
-    public GameObject PauseScreen;
     public GameObject SunDialObject;
     public GameObject SunDial;
+    public GameObject Inventory;
+
+    //disabled at the start of the scene
+
+    public GameObject EndScreen;
+    public GameObject PauseScreen;
     public GameObject Buttons;
-    public Image buttonRend;
     public GameObject Instructions;
 
+    public Image buttonRend;
     public Sprite E;
     public Sprite Q;
 
     //DIALOGUE
 
     public GameObject UIDialogObj;
-    public InventoryUI _inventory;
+    private InventoryUI _inventory;
 
+    private void Awake()
+    {
+        _inventory = Inventory.GetComponent<InventoryUI>();
+    }
 
     private void Update()
     {
@@ -43,25 +53,28 @@ public class UIScript : MonoBehaviour
     }
     private void SelectButtonToShow()
     {
-        if(player._offeringsCollider.OfferingsInCollider.Count > 0)
+        if(!LevelSceneManager.paused)
         {
-            foreach(Offering offering in player._offeringsCollider.OfferingsInCollider)
+            if (player._offeringsCollider.OfferingsInCollider.Count > 0)
             {
-                if (!offering.disappearing)
+                foreach (Offering offering in player._offeringsCollider.OfferingsInCollider)
                 {
-                    buttonRend.sprite = E;
+                    if (!offering.disappearing)
+                    {
+                        buttonRend.sprite = E;
+                        Buttons.SetActive(true);
+                        return;
+                    }
+                }
+            }
+            if (player._possessableCollider.PossessablesInCollider.Count > 0)
+            {
+                if (!player.IsPossessing)
+                {
+                    buttonRend.sprite = Q;
                     Buttons.SetActive(true);
                     return;
                 }
-            }
-        }
-        if (player._possessableCollider.PossessablesInCollider.Count > 0)
-        {
-            if(!player.IsPossessing)
-            {
-                buttonRend.sprite = Q;
-                Buttons.SetActive(true);
-                return;
             }
         }
         Buttons.SetActive(false);
@@ -85,10 +98,7 @@ public class UIScript : MonoBehaviour
     public void StartGame()
     {
         //enabled
-        portrait.SetActive(true);
-        DashMeter.SetActive(true);
-        SunDialObject.SetActive(true);
-        SunDial.SetActive(true);
+        ShowPlayerUI();
 
         //disabled
         EndScreen.SetActive(false);
@@ -129,25 +139,31 @@ public class UIScript : MonoBehaviour
     {
         portrait.SetActive(true);
         DashMeter.SetActive(true);
+        ScreamMeter.SetActive(true);
         SunDialObject.SetActive(true);
         SunDial.SetActive(true);
+        Inventory.SetActive(true);
     }
     public void HidePlayerUI()
     {
         portrait.SetActive(false);
         DashMeter.SetActive(false);
+        ScreamMeter.SetActive(false);
         SunDialObject.SetActive(false);
         SunDial.SetActive(false);
+        Inventory.SetActive(false);
     }
 
     public void UIPause()
     {
         PauseScreen.SetActive(true);
+        TurnOffDialogue();
     }
     public void UIUnpause()
     {
         PauseScreen.SetActive(false);
         Instructions.SetActive(false);
+        TurnOnDialogue();
     }
 
     public void Help()
