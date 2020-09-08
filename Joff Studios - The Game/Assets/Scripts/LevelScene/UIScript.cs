@@ -163,6 +163,8 @@ public class UIScript : MonoBehaviour
     {
         PauseScreen.SetActive(false);
         Instructions.SetActive(false);
+
+        // TODO: if dialogue should be displayed only!!!
         TurnOnDialogue();
     }
 
