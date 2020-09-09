@@ -46543,7 +46543,7 @@ GameObject:
   - component: {fileID: 1407493062}
   m_Layer: 0
   m_Name: Gravestone
-  m_TagString: 3D UI
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69242,7 +69242,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2119859101}
-  m_LocalRotation: {x: 0.0063481964, y: 0.32599685, z: 0.0033315956, w: 0.9453437}
+  m_LocalRotation: {x: 0.0056303525, y: 0.14778025, z: 0.004434976, w: 0.98899424}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -69252,7 +69252,7 @@ Transform:
   - {fileID: 1184386663}
   m_Father: {fileID: 1520414071}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.563, y: 38.056004, z: 0.59800005}
+  m_LocalEulerAnglesHint: {x: 0.563, y: 17, z: 0.59800005}
 --- !u!1 &2121133532
 GameObject:
   m_ObjectHideFlags: 0
@@ -70084,37 +70084,37 @@ PrefabInstance:
     - target: {fileID: 3473974983413435866, guid: 527e0d4b19671f649ae81afe0552da8b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.08
+      value: 0.157
       objectReference: {fileID: 0}
     - target: {fileID: 3473974983413435866, guid: 527e0d4b19671f649ae81afe0552da8b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.265
       objectReference: {fileID: 0}
     - target: {fileID: 3473974983413435866, guid: 527e0d4b19671f649ae81afe0552da8b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.29
+      value: -0.994
       objectReference: {fileID: 0}
     - target: {fileID: 3473974983413435866, guid: 527e0d4b19671f649ae81afe0552da8b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0.054020826
       objectReference: {fileID: 0}
     - target: {fileID: 3473974983413435866, guid: 527e0d4b19671f649ae81afe0552da8b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.23277508
+      value: -0.3177417
       objectReference: {fileID: 0}
     - target: {fileID: 3473974983413435866, guid: 527e0d4b19671f649ae81afe0552da8b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.018135587
       objectReference: {fileID: 0}
     - target: {fileID: 3473974983413435866, guid: 527e0d4b19671f649ae81afe0552da8b,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.97253066
+      value: 0.94646347
       objectReference: {fileID: 0}
     - target: {fileID: 3473974983413435866, guid: 527e0d4b19671f649ae81afe0552da8b,
         type: 3}

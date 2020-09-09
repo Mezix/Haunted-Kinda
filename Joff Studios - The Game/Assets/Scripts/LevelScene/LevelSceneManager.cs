@@ -8,6 +8,8 @@ public class LevelSceneManager : MonoBehaviour
 {
     public static LevelSceneManager level;
 
+    public GameObject playerSpawn;
+
     public int NightLength = 3;
     public int DayLength = 3;
     public int AmountOfDays = 7;
@@ -40,8 +42,12 @@ public class LevelSceneManager : MonoBehaviour
 
     public AudioSource EndingMusic;
 
+    //TUTORIAL
 
-    private bool playingConversation;
+    public TutorialGhost _tutorialGhost;
+    public bool _playTutorial = true;
+    public List<ConversationScriptObj> TutorialConversations;
+    public int tutorialIndex = 0;
 
     private void Awake()
     {
@@ -59,15 +65,14 @@ public class LevelSceneManager : MonoBehaviour
 
     private void Start()
     {
-        Unpause();
-        _UIScript.StartGame();
-        SetupDayAndNight();
-
-        SpawnPlayer();
-        SetPlayerReferencesInScene();
-        SpawnOfferings();
-        _graveRobbers = new List<GameObject>();
-        StartCoroutine(SpawnGraveRobbers(6));
+        if(_playTutorial)
+        {
+            StartCoroutine(StartTutorial());
+        }
+        else
+        {
+            StartGame();
+        }
     }
     private void Update()
     {
@@ -106,9 +111,12 @@ public class LevelSceneManager : MonoBehaviour
     private void BlockGrave(Gravestone grave)
     {
         blockedGraves.Add(grave);
-        foreach(GameObject robber in _graveRobbers)
+        if(_graveRobbers is object)
         {
-            robber.GetComponent<GraveRobber>().BlockGrave(grave);
+            foreach (GameObject robber in _graveRobbers)
+            {
+                robber.GetComponent<GraveRobber>().BlockGrave(grave);
+            }
         }
     }
     private void UnblockGrave(Gravestone grave)
@@ -118,6 +126,49 @@ public class LevelSceneManager : MonoBehaviour
         {
             robber.GetComponent<GraveRobber>().UnblockGrave(grave);
         }
+    }
+
+    //TUTORIAL
+
+    private void StartGame()
+    {
+        Unpause();
+        _UIScript.StartGame();
+        SetupDayAndNight();
+
+        SpawnPlayer();
+        SetPlayerReferencesInScene();
+        SpawnOfferings();
+        _graveRobbers = new List<GameObject>();
+        StartCoroutine(SpawnGraveRobbers(6));
+    }
+
+    private IEnumerator StartTutorial()
+    {
+        print("starting tutorial");
+
+        //  Setup of Scene for the tutorial
+        _UIScript.HidePlayerUI();
+        _UIScript.proximityButtonsEnabled = false;
+        SpawnPlayer();
+        SetPlayerReferencesInScene();
+        References.Player.GetComponent<Player>().HidePlayer();
+        References.Player.GetComponent<Player>().LockMovement();
+
+        //  First Scene, display dialogue
+        _cameraScript.Zoom(50, 1);
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(_tutorialGhost.FadeIn());
+        yield return new WaitForSeconds(1f);
+
+        TriggerDialogue(TutorialConversations[tutorialIndex]);
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
+
+
+        StartCoroutine(_tutorialGhost.FadeOut());
+        _cameraScript.Zoom(15, 1);
+
+        References.Player.GetComponent<Player>().ShowPlayer();
     }
 
 
@@ -216,7 +267,7 @@ public class LevelSceneManager : MonoBehaviour
 
     private void SpawnPlayer()
     {
-        GameObject spawnedPlayer = Instantiate(_playerPrefab);
+        GameObject spawnedPlayer = Instantiate(_playerPrefab, playerSpawn.transform.position, playerSpawn.transform.rotation);
         References.Player = spawnedPlayer.gameObject;
         Player playerscript = spawnedPlayer.GetComponent<Player>();
         playerscript._ui = _UIScript;

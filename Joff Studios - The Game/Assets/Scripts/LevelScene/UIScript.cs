@@ -33,10 +33,12 @@ public class UIScript : MonoBehaviour
 
     public GameObject UIDialogObj;
     private InventoryUI _inventory;
+    public bool proximityButtonsEnabled;
 
     private void Awake()
     {
         _inventory = Inventory.GetComponent<InventoryUI>();
+        proximityButtonsEnabled = true;
     }
 
     private void Update()
@@ -53,7 +55,7 @@ public class UIScript : MonoBehaviour
     }
     private void SelectButtonToShow()
     {
-        if(!LevelSceneManager.paused)
+        if(!LevelSceneManager.paused && proximityButtonsEnabled)
         {
             if (player._offeringsCollider.OfferingsInCollider.Count > 0)
             {

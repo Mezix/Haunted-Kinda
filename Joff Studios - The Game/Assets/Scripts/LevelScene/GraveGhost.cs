@@ -66,7 +66,7 @@ public class GraveGhost : MonoBehaviour
         }
     }
 
-    private void FadeIn()
+    public void FadeIn()
     {
         if(ghostSpriteOpacity > ghostSpriteMaxOpacity) //make sure we dont exceed the max alpha value we want
         {

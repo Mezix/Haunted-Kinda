@@ -62,12 +62,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Dialogue\ConversationScriptObj.cs" />
+    <Compile Include="Assets\Dialogue\DialogueCharacterScriptObj.cs" />
+    <Compile Include="Assets\Dialogue\DialogueManager.cs" />
     <Compile Include="Assets\Jarrod Scene\Scripts\PixelViewer.cs" />
     <Compile Include="Assets\Jarrod Scene\Scripts\PixelateImageEffect.cs" />
     <Compile Include="Assets\Jarrod Scene\Scripts\SimpleCameraController.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\ConversationScriptObj.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\DialogueCharacterScriptObj.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\DialogueManager.cs" />
     <Compile Include="Assets\Scripts\LevelScene\BlockGravestones.cs" />
     <Compile Include="Assets\Scripts\LevelScene\CameraScript.cs" />
     <Compile Include="Assets\Scripts\LevelScene\Cursor.cs" />
@@ -87,6 +87,7 @@
     <Compile Include="Assets\Scripts\LevelScene\PossessableObject.cs" />
     <Compile Include="Assets\Scripts\LevelScene\References.cs" />
     <Compile Include="Assets\Scripts\LevelScene\TriggerReturnCollissions.cs" />
+    <Compile Include="Assets\Scripts\LevelScene\TutorialGhost.cs" />
     <Compile Include="Assets\Scripts\LevelScene\UIOffering.cs" />
     <Compile Include="Assets\Scripts\LevelScene\UIScript.cs" />
     <Compile Include="Assets\Scripts\Loader.cs" />

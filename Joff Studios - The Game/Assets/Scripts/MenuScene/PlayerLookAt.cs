@@ -35,17 +35,17 @@ public class PlayerLookAt : MonoBehaviour
         //newRotation = Vector3.Lerp(currentRotation, newRotation, 0.5f);
         //Quaternion q = Quaternion.identity;
         //q.eulerAngles = newRotation;
-        //transform.rotation = q;
+        //transform.rotation = q; 
     }
     private void MouseHover()
     {
         if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
         {
             GameObject hitObj = hit.collider.gameObject;
-            print(hitObj);
+            //print(hitObj);
             if (hitObj.CompareTag("3D UI"))
             {
-                print("foudn somethin");
+                //print("foudn somethin");
                 objectToLookAt = hitObj;
             }
             else
@@ -55,7 +55,7 @@ public class PlayerLookAt : MonoBehaviour
         }
         else
         {
-            print("nothing");
+            //print("nothing");
             objectToLookAt = DefaultLookAtObj;
         }
     }

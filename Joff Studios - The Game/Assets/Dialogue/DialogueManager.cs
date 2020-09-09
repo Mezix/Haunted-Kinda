@@ -14,7 +14,10 @@ public class DialogueManager : MonoBehaviour
     public Image _speakerLeftImage;
     public GameObject _speakerRight;
     public Image _speakerRightImage;
-    private bool playingConversation;
+    public static bool playingConversation;
+
+    public static int dialogueSpeed;
+    private int FramesBetweenCharacters;
 
     public float speakerHeight;
 
@@ -25,6 +28,11 @@ public class DialogueManager : MonoBehaviour
     {
         instance = this;
         speakerHeight = _speakerRightImage.rectTransform.sizeDelta.y;
+    }
+    private void Start()
+    {
+        dialogueSpeed = 8; // => 0 frames between text, this is max dialogue speed
+        FramesBetweenCharacters = 4 / dialogueSpeed;
     }
     public void StartDialogue(ConversationScriptObj convo)
     {
@@ -81,7 +89,10 @@ public class DialogueManager : MonoBehaviour
         foreach(char letter in sentence.ToCharArray())
         {
             _dialogueText.text += letter;
-            yield return null;
+            for(int i = 0; i <= FramesBetweenCharacters; i++)
+            {
+                yield return new WaitForFixedUpdate();
+            }
         }
     }
 

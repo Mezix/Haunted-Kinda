@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -343,5 +344,26 @@ public class Player : MonoBehaviour
                 Events.current.PlaceDownOffering(offering);
             }
         }
+    }
+
+    public void LockMovement()
+    {
+        lockMovement = true;
+    }
+    public void UnlockMovement()
+    {
+        lockMovement = false;
+    }
+    public void HidePlayer()
+    {
+        playerAnimator.SetBool("Disappear", true); //play the dissappear animation
+        _ghostGlow.SetActive(false); //disable the glowy effect and our shadow
+        _shadow.SetActive(false);
+    }
+    public void ShowPlayer()
+    {
+        playerAnimator.SetBool("Disappear", false); //play the dissappear animation
+        _ghostGlow.SetActive(true); //disable the glowy effect and our shadow
+        _shadow.SetActive(true);
     }
 }
