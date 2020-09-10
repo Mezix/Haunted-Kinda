@@ -328,6 +328,7 @@ GameObject:
   - component: {fileID: 2766420452868347886}
   - component: {fileID: 2766420452868347883}
   - component: {fileID: 2766420452868347881}
+  - component: {fileID: 6541982510644414304}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -376,6 +377,7 @@ MonoBehaviour:
   _ghostGlow: {fileID: 532659806}
   _shadow: {fileID: 435146994}
   _moveSpeed: 5
+  movement: {x: 0, y: 0}
   lastMovementDir: {x: 0, y: 0}
   _dashSpeed: 0
   _dashTime: 0
@@ -397,6 +399,8 @@ MonoBehaviour:
   _ui: {fileID: 0}
   _dashSound: {fileID: 9092339924767096333}
   _screamSound: {fileID: 4560099793726918585}
+  reachedEndOfPath: 0
+  positionsToSeekOut: []
 --- !u!212 &2766420452868347877
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -514,6 +518,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6541982510644414304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2766420452868347876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
 --- !u!1 &3519390477328031930
 GameObject:
   m_ObjectHideFlags: 0

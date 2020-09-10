@@ -46,8 +46,11 @@ public class LevelSceneManager : MonoBehaviour
 
     public TutorialGhost _tutorialGhost;
     public bool _playTutorial = true;
+    public static bool _isPlayingTutorial = false;
     public List<ConversationScriptObj> TutorialConversations;
     public int tutorialIndex = 0;
+
+    public List<Transform> playerTutorialPositions;
 
     private void Awake()
     {
@@ -91,10 +94,10 @@ public class LevelSceneManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.T))
             {
+                _UIScript.HidePlayerUI();
                 DialogueManager.instance.DisplayNextSentence();
             }
         }
-        
     }
 
 
@@ -143,33 +146,6 @@ public class LevelSceneManager : MonoBehaviour
         StartCoroutine(SpawnGraveRobbers(6));
     }
 
-    private IEnumerator StartTutorial()
-    {
-        print("starting tutorial");
-
-        //  Setup of Scene for the tutorial
-        _UIScript.HidePlayerUI();
-        _UIScript.proximityButtonsEnabled = false;
-        SpawnPlayer();
-        SetPlayerReferencesInScene();
-        References.Player.GetComponent<Player>().HidePlayer();
-        References.Player.GetComponent<Player>().LockMovement();
-
-        //  First Scene, display dialogue
-        _cameraScript.Zoom(50, 1);
-        yield return new WaitForSeconds(1f);
-        StartCoroutine(_tutorialGhost.FadeIn());
-        yield return new WaitForSeconds(1f);
-
-        TriggerDialogue(TutorialConversations[tutorialIndex]);
-        yield return new WaitWhile(() => DialogueManager.playingConversation);
-
-
-        StartCoroutine(_tutorialGhost.FadeOut());
-        _cameraScript.Zoom(15, 1);
-
-        References.Player.GetComponent<Player>().ShowPlayer();
-    }
 
 
 
@@ -269,9 +245,11 @@ public class LevelSceneManager : MonoBehaviour
     {
         GameObject spawnedPlayer = Instantiate(_playerPrefab, playerSpawn.transform.position, playerSpawn.transform.rotation);
         References.Player = spawnedPlayer.gameObject;
+        References.playerScript = References.Player.GetComponent<Player>();
         Player playerscript = spawnedPlayer.GetComponent<Player>();
         playerscript._ui = _UIScript;
         playerscript._waterTilemap = _nonCollidableTiles;
+        playerscript.positionsToSeekOut = playerTutorialPositions;
         Physics2D.IgnoreCollision(_nonCollidableTiles, spawnedPlayer.GetComponent<Collider2D>()); //make sure we dont collide with the water
 
         _UIScript.SetPlayerRef();
@@ -315,7 +293,6 @@ public class LevelSceneManager : MonoBehaviour
         _graveRobbers.Add(go);
         go.GetComponent<GraveRobber>().blockedGraves = blockedGraves;
     }
-    
 
     private void EndOfGame()
     {
@@ -327,5 +304,96 @@ public class LevelSceneManager : MonoBehaviour
     public void GoToMainMenu()
     {
         Loader.Load(Loader.Scene.MainMenuScene);
+    }
+
+    //      TUTORIAL
+
+    private IEnumerator StartTutorial()
+    {
+        print("starting tutorial");
+        _isPlayingTutorial = true;
+        //  Setup of Scene for the tutorial
+        _UIScript.HidePlayerUI();
+        _UIScript.proximityButtonsEnabled = false;
+        SpawnPlayer();
+        SetPlayerReferencesInScene();
+        References.playerScript.HidePlayer();
+        References.playerScript.LockMovement();
+        DayNightLighting.freezeDayNight = true;
+        SetupDayAndNight();
+
+        //  First Scene; Zooms In and caretaker talks to you
+
+        StartCoroutine(_UIScript.FadeFromBlack());
+        yield return new WaitForSeconds(2f);
+        _cameraScript.Zoom(30, 0.75f);
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(_tutorialGhost.FadeIn());
+        yield return new WaitForSeconds(1f);
+
+        TriggerDialogue(TutorialConversations[tutorialIndex]);
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
+        _UIScript.HidePlayerUI();
+        tutorialIndex++;
+
+        References.playerScript.ShowPlayer();
+
+        //  Scene #1; 
+
+        yield return new WaitForSeconds(1.5f);
+
+        //player looks around...
+        References.playerScript.lastMovementDir = References.playerScript.movement = new Vector2(-1, -1);
+        yield return new WaitForSeconds(0.5f);
+        References.playerScript.lastMovementDir = References.playerScript.movement = new Vector2(0, -1);
+        yield return new WaitForSeconds(0.5f);
+        References.playerScript.lastMovementDir = References.playerScript.movement = new Vector2(1, -1);
+        yield return new WaitForSeconds(1f);
+        References.playerScript.lastMovementDir = References.playerScript.movement = new Vector2(0, -1);
+        yield return new WaitForSeconds(0.1f);
+        References.playerScript.lastMovementDir = References.playerScript.movement = new Vector2(-1, 0);
+        yield return new WaitForSeconds(0.1f);
+        References.playerScript.lastMovementDir = References.playerScript.movement = new Vector2(-1, 1);
+        yield return new WaitForSeconds(0.5f);
+
+        TriggerDialogue(TutorialConversations[tutorialIndex]);
+        tutorialIndex++;
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
+
+        //Move our ghosts to the next dialogue location
+
+        _tutorialGhost.MoveToNextPos();
+        yield return new WaitForSeconds(1.5f);
+        References.playerScript.MoveToNextPos();
+        yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
+        yield return new WaitWhile(() => !_tutorialGhost.reachedEndOfPath);
+        References.playerScript.lastMovementDir = References.playerScript.movement = new Vector2(-1, 0); //player looks at tutorial ghost
+        yield return new WaitForSeconds(0.5f);
+
+        // Scene #3
+
+        TriggerDialogue(TutorialConversations[tutorialIndex]);
+        tutorialIndex++;
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
+        yield return new WaitForSeconds(1f);
+
+        // Scene #4
+
+
+
+        //  Final Scene! Play final dialogue, relinquish the lock on the player and then finally start the game!
+
+        TriggerDialogue(TutorialConversations[tutorialIndex]);
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
+
+        StartCoroutine(_tutorialGhost.FadeOut());
+        yield return new WaitForSeconds(1f);
+
+        _cameraScript.Zoom(15, 0.2f);
+        _isPlayingTutorial = false;
+        References.playerScript.UnlockMovement();
+        References.playerScript.path = null;
+        DayNightLighting.freezeDayNight = false;
+        _UIScript.proximityButtonsEnabled = true;
     }
 }

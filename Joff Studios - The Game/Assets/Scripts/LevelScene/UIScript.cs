@@ -17,6 +17,7 @@ public class UIScript : MonoBehaviour
     public GameObject SunDialObject;
     public GameObject SunDial;
     public GameObject Inventory;
+    public GameObject DarkOverlay;
 
     //disabled at the start of the scene
 
@@ -168,6 +169,27 @@ public class UIScript : MonoBehaviour
 
         // TODO: if dialogue should be displayed only!!!
         TurnOnDialogue();
+    }
+
+    public IEnumerator FadeFromBlack()
+    {
+        Image overlay = DarkOverlay.GetComponent<Image>();
+        overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 1);
+        for (int i = 256; i > 0; i--)
+        {
+            overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, (i / 255f));
+            yield return new WaitForFixedUpdate();
+        }
+    }
+    public IEnumerator FadeToBlack()
+    {
+        Image overlay = DarkOverlay.GetComponent<Image>();
+        overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0);
+        for (int i = 0; i < 256; i++)
+        {
+            overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, (i / 255f));
+            yield return new WaitForFixedUpdate();
+        }
     }
 
     public void Help()

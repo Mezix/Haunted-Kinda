@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class Player : MonoBehaviour
 {
@@ -17,9 +18,8 @@ public class Player : MonoBehaviour
     //MOVEMENT AND ABILITIES
 
     public float _moveSpeed = 1f; 
-    private Vector2 movement; //the vector that controls where our player will move to
-    [SerializeField]
-    private Vector2 lastMovementDir; //a vector that points in the direction we last faced, for idle animations/the dash function
+    public Vector2 movement; //the vector that controls where our player will move to
+    public Vector2 lastMovementDir; //a vector that points in the direction we last faced, for idle animations/the dash function
     private bool lockMovement; //stops our x and y movement vector from being changed
     public float _dashSpeed; //the Velocity multiplier of our dash
     public float _dashTime; //how long does our dash last
@@ -63,12 +63,22 @@ public class Player : MonoBehaviour
     public AudioSource _dashSound; //audio sources that the player needs, located within empty gameobjects with the same names 
     public AudioSource _screamSound; //that house only these sounds
 
+    //PATHFINDING
+
+    private Seeker seeker; //the seeker component which creates paths
+    public Path path; //the path our unit needs to take
+    private int currentWaypoint = 0; //the index of our path.vectorPath
+    private float nextWayPointDistance = 0.5f; //the distance before we seek out our next waypoint => the higher, the smoother the movement
+    public bool reachedEndOfPath = false; //wether or not we have gotten to our last checkpoint
+    public List<Transform> positionsToSeekOut; //the gameobject we are currently looking to get to (e.g. escapePos, nearestGrave)
+    private int positionIndex = 0;
+
     private void Awake()
     {
         playerRB = GetComponent<Rigidbody2D>(); //get all the references to the private gameobjects we need
         playerAnimator = GetComponent<Animator>();
         screamAnim = _screamObj.GetComponentInChildren<Animator>();
-
+        seeker = GetComponent<Seeker>();
     }
     private void Start()
     {
@@ -98,7 +108,7 @@ public class Player : MonoBehaviour
                     lastMovementDir = movement;
                 }
             }
-            if (!dashing) //if we aren't dashing, continously set movement for the animations, otherwise override it
+            if (!dashing && path == null) //if we aren't dashing, continously set movement for the animations, otherwise override it
             {
                 playerAnimator.SetFloat("Horizontal", lastMovementDir.x);
                 playerAnimator.SetFloat("Vertical", lastMovementDir.y);
@@ -155,9 +165,18 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(!dashing)
+        if(!dashing && !LevelSceneManager._isPlayingTutorial)
         {
             playerRB.MovePosition(playerRB.position + movement.normalized * _moveSpeed * Time.fixedDeltaTime);
+        }
+        if (LevelSceneManager._isPlayingTutorial)
+        {
+            MoveOnPath();
+            if(path != null)
+            {
+                playerAnimator.SetFloat("Horizontal", path.vectorPath[currentWaypoint].x - path.vectorPath[currentWaypoint-1].x);
+                playerAnimator.SetFloat("Vertical", path.vectorPath[currentWaypoint].y - path.vectorPath[currentWaypoint - 1].y);
+            }
         }
     }
 
@@ -365,5 +384,65 @@ public class Player : MonoBehaviour
         playerAnimator.SetBool("Disappear", false); //play the dissappear animation
         _ghostGlow.SetActive(true); //disable the glowy effect and our shadow
         _shadow.SetActive(true);
+    }
+
+    //PATHFINDING; used for quests and the tutorial
+
+    private void MoveOnPath()
+    {
+        if (!reachedEndOfPath) //if we reached the end, just stop
+        {
+            if (path == null) //stop the method if we dont even have a path
+            {
+                return;
+            }
+
+            Vector3 vectorToMove = (path.vectorPath[currentWaypoint] - transform.position).normalized * _moveSpeed * Time.deltaTime;
+
+            float distance = Vector2.Distance(transform.position, path.vectorPath[currentWaypoint]);
+
+            //TODO: Problem: unit can overshoot target
+
+            transform.position += vectorToMove;
+
+            if ((distance < nextWayPointDistance) && !(currentWaypoint == path.vectorPath.Count - 1))
+            {
+                currentWaypoint++;
+            }
+            else
+            {
+                if (distance < 0.1f)
+                {
+                    transform.position = path.vectorPath[currentWaypoint];
+                    reachedEndOfPath = true;
+                }
+            }
+        }
+    }
+    private void OnPathComplete(Path p)
+    {
+        if (!p.error)
+        {
+            path = p;
+            currentWaypoint = 0;
+        }
+    }
+    private void UpdatePath(Transform newPos) //resets everything related to the path, then creates a new one
+    {
+        currentWaypoint = 0;
+        reachedEndOfPath = false;
+        if (seeker.IsDone())
+        {
+            seeker.StartPath(transform.position, newPos.transform.position, OnPathComplete);
+        }
+    }
+
+    public void MoveToNextPos()
+    {
+        if (positionIndex < positionsToSeekOut.Count)
+        {
+            UpdatePath(positionsToSeekOut[positionIndex]);
+            positionIndex++;
+        }
     }
 }

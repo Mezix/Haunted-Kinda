@@ -18,6 +18,8 @@ public class DayNightLighting : MonoBehaviour
     public int DayLength;
     public int NightLength;
 
+    public static bool freezeDayNight = false;
+
     void Start()
     {
         DayLength = 3;
@@ -55,6 +57,7 @@ public class DayNightLighting : MonoBehaviour
 
         for(int i = 0; i < halfNight; i ++)
         {
+            yield return new WaitWhile(() => freezeDayNight);
             yield return new WaitForSeconds(0.01f);
             DayToNightRatio += 0.5f / (halfNight);
         }
@@ -64,6 +67,7 @@ public class DayNightLighting : MonoBehaviour
 
         for (int i = 0; i < halfNight; i++)
         {
+            yield return new WaitWhile(() => freezeDayNight);
             yield return new WaitForSeconds(0.01f);
             DayToNightRatio += -0.5f / (halfNight);
         }
@@ -83,6 +87,7 @@ public class DayNightLighting : MonoBehaviour
 
         for (int i = 0; i < halfNight; i++)
         {
+            yield return new WaitWhile(() => freezeDayNight);
             yield return new WaitForSeconds(0.01f);
             DayToNightRatio -= 0.5f / (halfNight);
         }
@@ -92,6 +97,7 @@ public class DayNightLighting : MonoBehaviour
 
         for (int i = 0; i < halfNight; i++)
         {
+            yield return new WaitWhile(() => freezeDayNight);
             yield return new WaitForSeconds(0.01f);
             DayToNightRatio += 0.5f / (halfNight);
         }
