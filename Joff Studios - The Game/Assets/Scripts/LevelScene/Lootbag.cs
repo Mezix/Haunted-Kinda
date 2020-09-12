@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Lootbag : MonoBehaviour
 {
+    [SerializeField]
     private GameObject Player;
     private bool opened;
     private Animator animator;
@@ -17,7 +18,7 @@ public class Lootbag : MonoBehaviour
     }
     void Update()
     {
-        if (Vector3.Distance(Player.transform.position, transform.position) < 0.75f && !opened)
+        if (Vector2.Distance(Player.transform.position, transform.position) < 0.75f && !opened)
         {
             OpenLootbag();
         }
@@ -26,7 +27,7 @@ public class Lootbag : MonoBehaviour
     void OpenLootbag()
     {
         opened = true;
-        //print("open 'er up");
+        print("open 'er up");
         animator.SetBool("Opened", true);
         StartCoroutine(SpawnLoot());
     }

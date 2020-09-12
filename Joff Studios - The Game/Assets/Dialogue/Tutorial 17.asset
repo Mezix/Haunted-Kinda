@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7199d1d7f5b2d024eb17d0a6cc04510f, type: 3}
+  m_Name: Tutorial 17
+  m_EditorClassIdentifier: 
+  speakerLeft: {fileID: 0}
+  speakerRight: {fileID: 0}
+  lines:
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: Bring that bun back to the cool guy
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: In the biz', we call this "Paying Respects"...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: '*cough*'
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: It's a technical term.

@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     public float _possessionRange; //the range at which we can start to possess objects
 
     //INVENTORY
-    private List<Offering> collectedOfferings = new List<Offering>(); //all of the offerings we have collected and can place down
+    public List<Offering> collectedOfferings = new List<Offering>(); //all of the offerings we have collected and can place down
 
     //AREA COLLIDERS
 

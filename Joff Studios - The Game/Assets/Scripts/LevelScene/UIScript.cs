@@ -257,4 +257,12 @@ public class UIScript : MonoBehaviour
     {
         print("you should dash bro");
     }
+    public void PromptPickUp()
+    {
+        print("you should pickup bro");
+    }
+    public void PromptPlaceDown()
+    {
+        print("you should place down bro");
+    }
 }

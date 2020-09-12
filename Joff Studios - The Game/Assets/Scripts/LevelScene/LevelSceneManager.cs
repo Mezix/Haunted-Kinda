@@ -51,6 +51,7 @@ public class LevelSceneManager : MonoBehaviour
     public int tutorialIndex = 0;
     public List<Transform> playerTutorialPositions;
     public List<Transform> tutorialRobberPositions;
+    public Transform tutorialOffering;
 
     public GraveGhost _grandma;
     public GraveGhost _grandpa;
@@ -115,7 +116,10 @@ public class LevelSceneManager : MonoBehaviour
 
     private void RemoveGraveRobber(GameObject graveRobber)
     {
-        _graveRobbers.Remove(graveRobber);
+        if (_graveRobbers.Contains(graveRobber))
+        {
+            _graveRobbers.Remove(graveRobber);
+        }
         Destroy(graveRobber);
     }
     private void BlockGrave(Gravestone grave)
@@ -220,6 +224,7 @@ public class LevelSceneManager : MonoBehaviour
     }
     public void Unpause()
     {
+        //print("resume");
         _UIScript.UIUnpause();
         Time.timeScale = 1;
         paused = false;
@@ -562,32 +567,116 @@ public class LevelSceneManager : MonoBehaviour
         Robber.lockMovement = false;
         References.playerScript._dashLocked = true;
 
-        //Scene #12: Cool Ghost compliments you, you move to the offering and pick it up
+        //Scene #12: Move to cool ghost, Cool Ghost compliments you, tutorial ghost tells you to pick up offering
 
         yield return new WaitWhile(() => References.playerScript.TimeSinceLastDash < 1f);
         _tutorialGhost.MoveToNextPos();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
         References.playerScript.MoveToNextPos();
         yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
         yield return new WaitWhile(() => !_tutorialGhost.reachedEndOfPath);
         yield return new WaitForSeconds(0.25f);
-
-
-
-        //TODO INTERACT PROMPT AND PLACE DOWN
-
-
 
         TriggerDialogue(TutorialConversations[tutorialIndex]);
         tutorialIndex++;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
         yield return new WaitForSeconds(0.25f);
 
+
+        //Scene #13: Move to bag, press interact and get offering
+
+        _tutorialGhost.MoveToNextPos();
+        yield return new WaitForSeconds(0.1f);
         References.playerScript.MoveToNextPos();
+        yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
+        yield return new WaitWhile(() => !_tutorialGhost.reachedEndOfPath);
+        yield return new WaitForSeconds(0.25f);
+        _UIScript.PromptPickUp();
+        References.playerScript._interactionLocked = false;
+        yield return new WaitWhile(() => References.playerScript.collectedOfferings.Count == 0);
 
-        //Scene #13
+        TriggerDialogue(TutorialConversations[tutorialIndex]);
+        tutorialIndex++;
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
 
+        //Scene #14: Place Down Offering
 
+        References.playerScript.MoveToNextPos();
+        yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
+
+        TriggerDialogue(TutorialConversations[tutorialIndex]);
+        tutorialIndex++;
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
+        yield return new WaitForSeconds(0.2f);
+
+        _UIScript.PromptPlaceDown();
+        yield return new WaitWhile(() => References.playerScript.collectedOfferings.Count != 0);
+        yield return new WaitForSeconds(0.2f);
+
+        //Scene #15: Cool ghost thanks you, move to the next location to talk more about possession
+
+        TriggerDialogue(TutorialConversations[tutorialIndex]);
+        tutorialIndex++;
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
+
+        Instantiate(_allOfferingTypes[3], tutorialOffering.position, tutorialOffering.rotation);
+        _tutorialGhost.MoveToNextPos();
+        yield return new WaitForSeconds(0.1f);
+        References.playerScript.MoveToNextPos();
+        yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
+        yield return new WaitWhile(() => !_tutorialGhost.reachedEndOfPath);
+        yield return new WaitForSeconds(0.25f);
+
+        //Scene #16: Talk about possession and offerings, pick up offering
+
+        TriggerDialogue(TutorialConversations[tutorialIndex]);
+        tutorialIndex++;
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
+
+        References.playerScript.MoveToNextPos();
+        yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
+
+        yield return new WaitWhile(() => References.playerScript.collectedOfferings.Count == 0);
+        _UIScript.InventoryHidden = false;
+        _UIScript.ShowPlayerUI();
+
+        //Scene #17: Bring offering to cool ghost
+
+        TriggerDialogue(TutorialConversations[tutorialIndex]);
+        tutorialIndex++;
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
+
+        _tutorialGhost.MoveToNextPos();
+        yield return new WaitForSeconds(0.1f);
+        References.playerScript.MoveToNextPos();
+        yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
+        yield return new WaitWhile(() => !_tutorialGhost.reachedEndOfPath);
+        yield return new WaitForSeconds(0.25f);
+
+        //Scene #18: Cool ghost thanks you for the meal
+
+        yield return new WaitWhile(() => References.playerScript.collectedOfferings.Count != 0);
+        TriggerDialogue(TutorialConversations[tutorialIndex]);
+        tutorialIndex++;
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
+        yield return new WaitForSeconds(0.25f);
+
+        //Scene #19: Move to Final Location, tutorial is effectively done, tutorial ghost moves up a bit to get emotional
+
+        _tutorialGhost.MoveToNextPos();
+        yield return new WaitForSeconds(0.1f);
+        References.playerScript.MoveToNextPos();
+        yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
+        yield return new WaitWhile(() => !_tutorialGhost.reachedEndOfPath);
+        yield return new WaitForSeconds(0.25f);
+
+        TriggerDialogue(TutorialConversations[tutorialIndex]);
+        tutorialIndex++;
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
+        yield return new WaitForSeconds(0.25f);
+
+        _tutorialGhost.MoveToNextPos();
+        yield return new WaitWhile(() => !_tutorialGhost.reachedEndOfPath);
 
         //  FINAL SCENE! Play final dialogue, relinquish the lock on the player and then finally start the game!
 

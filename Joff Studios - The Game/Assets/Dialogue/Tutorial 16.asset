@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7199d1d7f5b2d024eb17d0a6cc04510f, type: 3}
+  m_Name: Tutorial 16
+  m_EditorClassIdentifier: 
+  speakerLeft: {fileID: 0}
+  speakerRight: {fileID: 0}
+  lines:
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: Look at you, being a big help already!
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: 'You can move a bunch more stuff around, including that incense bottle
+      you saw earlier. '
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: Just keep an eye out for them.
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: The last thing you need to know about is offerings!
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: You see humans come here every now and then to bring food for their dead
+      relatives.
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: I mean...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: None of us can eat it of course, but it's a nice gesture I guess?
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: Unfortunately, humans are notoriously lazy...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: So they tend to leave the stuff on the outskirts, so someone has to actually
+      bring it the rest of the way.
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: Or maybe they're just too spooked...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: ( that's probably on me )
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: In any case, that's where you come in!
