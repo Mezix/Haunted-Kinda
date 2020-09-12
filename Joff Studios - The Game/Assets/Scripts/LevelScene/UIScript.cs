@@ -12,11 +12,17 @@ public class UIScript : MonoBehaviour
     //enabled at the start of the scene
 
     public GameObject portrait;
+    public bool portraitHidden;
     public GameObject DashMeter;
+    public bool DashMeterHidden;
     public GameObject ScreamMeter;
+    public bool ScreamMeterHidden;
     public GameObject SunDialObject;
+    public bool SunDialObjectHidden;
     public GameObject SunDial;
+    public bool SundialHidden;
     public GameObject Inventory;
+    public bool InventoryHidden;
     public GameObject DarkOverlay;
 
     //disabled at the start of the scene
@@ -140,12 +146,30 @@ public class UIScript : MonoBehaviour
 
     public void ShowPlayerUI()
     {
-        portrait.SetActive(true);
-        DashMeter.SetActive(true);
-        ScreamMeter.SetActive(true);
-        SunDialObject.SetActive(true);
-        SunDial.SetActive(true);
-        Inventory.SetActive(true);
+        if (!portraitHidden)
+        {
+            portrait.SetActive(true);
+        }
+        if (!DashMeterHidden)
+        {
+            DashMeter.SetActive(true);
+        }
+        if (!ScreamMeterHidden)
+        {
+            ScreamMeter.SetActive(true);
+        }
+        if (!SundialHidden)
+        {
+            SunDial.SetActive(true);
+        }
+        if (!SunDialObjectHidden)
+        {
+            SunDialObject.SetActive(true);
+        }
+        if (!InventoryHidden)
+        {
+            Inventory.SetActive(true);
+        }
     }
     public void HidePlayerUI()
     {
@@ -215,5 +239,14 @@ public class UIScript : MonoBehaviour
     {
         UIDialogObj.SetActive(false);
         ShowPlayerUI();
+    }
+
+    public void PromptScream()
+    {
+        print("you should scream bro");
+    }
+    public void PromptPossess()
+    {
+        print("you should possess bro");
     }
 }

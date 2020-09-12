@@ -49,8 +49,13 @@ public class LevelSceneManager : MonoBehaviour
     public static bool _isPlayingTutorial = false;
     public List<ConversationScriptObj> TutorialConversations;
     public int tutorialIndex = 0;
-
     public List<Transform> playerTutorialPositions;
+    public List<Transform> tutorialRobberPositions;
+
+    public GraveGhost _grandma;
+    public GraveGhost _grandpa;
+    public GraveGhost _kitty;
+    public Gravestone _kittyGrave;
 
     private void Awake()
     {
@@ -306,39 +311,80 @@ public class LevelSceneManager : MonoBehaviour
         Loader.Load(Loader.Scene.MainMenuScene);
     }
 
-    //      TUTORIAL
+    //      TUTORIAL STUFF
+
+    private void DisableGraveghostFadein()
+    {
+        foreach(Gravestone grave in allGraves)
+        {
+            grave.GetComponentInChildren<GraveGhost>().DistanceFromPlayerToActivate = 0f;
+        }
+    }
+    private void EnableGraveghostFadein()
+    {
+        foreach (Gravestone grave in allGraves)
+        {
+            grave.GetComponentInChildren<GraveGhost>().DistanceFromPlayerToActivate = 3f;
+        }
+    }
+    private GraveRobber SpawnTutorialRobber(Transform transform)
+    {
+        GameObject go = Instantiate(_graveRobberPrefab, transform.position, transform.rotation);
+        return go.GetComponent<GraveRobber>();
+    }
 
     private IEnumerator StartTutorial()
     {
         print("starting tutorial");
+
         _isPlayingTutorial = true;
+
+
         //  Setup of Scene for the tutorial
+
+        //  UI
         _UIScript.HidePlayerUI();
         _UIScript.proximityButtonsEnabled = false;
+        _UIScript.portraitHidden = true;
+        _UIScript.DashMeterHidden = true;
+        _UIScript.ScreamMeterHidden = true;
+        _UIScript.SundialHidden = true;
+        _UIScript.SunDialObjectHidden = true;
+        _UIScript.InventoryHidden = true;
+
         SpawnPlayer();
         SetPlayerReferencesInScene();
         References.playerScript.HidePlayer();
         References.playerScript.LockMovement();
+        //lock all our abilities
+        References.playerScript._screamLocked = References.playerScript._dashLocked = References.playerScript._possessionLocked
+        = References.playerScript._interactionLocked = true;
         DayNightLighting.freezeDayNight = true;
         SetupDayAndNight();
 
-        //  First Scene; Zooms In and caretaker talks to you
+        DisableGraveghostFadein();
+        _kittyGrave.InitMaxHealth(100000); //make kitty grave unkillable for tutorial purposes
+        _kittyGrave.TakeDamage(50000); //set at half health
 
-        StartCoroutine(_UIScript.FadeFromBlack());
+         //  First Scene; Zooms In and caretaker talks to you
+
+         StartCoroutine(_UIScript.FadeFromBlack());
         yield return new WaitForSeconds(2f);
         _cameraScript.Zoom(30, 0.75f);
         yield return new WaitForSeconds(1f);
         StartCoroutine(_tutorialGhost.FadeIn());
         yield return new WaitForSeconds(1f);
 
+        //Scene #1: The Wakeup
+
         TriggerDialogue(TutorialConversations[tutorialIndex]);
+        tutorialIndex++;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
         _UIScript.HidePlayerUI();
-        tutorialIndex++;
 
         References.playerScript.ShowPlayer();
 
-        //  Scene #1; 
+        //  Scene #2; Player looks around and then talks to the ghost 
 
         yield return new WaitForSeconds(1.5f);
 
@@ -360,7 +406,7 @@ public class LevelSceneManager : MonoBehaviour
         tutorialIndex++;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
 
-        //Move our ghosts to the next dialogue location
+        //Scene #3: Move our ghosts to the new location, then give the backstory of our ghost
 
         _tutorialGhost.MoveToNextPos();
         yield return new WaitForSeconds(1.5f);
@@ -370,30 +416,112 @@ public class LevelSceneManager : MonoBehaviour
         References.playerScript.lastMovementDir = References.playerScript.movement = new Vector2(-1, 0); //player looks at tutorial ghost
         yield return new WaitForSeconds(0.5f);
 
-        // Scene #3
-
         TriggerDialogue(TutorialConversations[tutorialIndex]);
         tutorialIndex++;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
         yield return new WaitForSeconds(1f);
 
-        // Scene #4
+        // Scene #4: Tutorial ghost moves to our right to investigate, asks us to follow after
 
+        _tutorialGhost.MoveToNextPos();
+        while (!_tutorialGhost.reachedEndOfPath)
+        {
+            References.playerScript.lastMovementDir = References.playerScript.movement = (_tutorialGhost.transform.position - References.playerScript.transform.position);
+            yield return new WaitForFixedUpdate();
+        }
+        TriggerDialogue(TutorialConversations[tutorialIndex]);
+        tutorialIndex++;
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
+        _tutorialGhost.MoveToNextPos();
+        yield return new WaitForSeconds(1f);
+        References.playerScript.MoveToNextPos();
+        yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
+        yield return new WaitWhile(() => !_tutorialGhost.reachedEndOfPath);
+        //player look at ghost
+        References.playerScript.lastMovementDir = References.playerScript.movement = new Vector2(1, 1);
+        yield return new WaitForSeconds(0.2f);
 
+        //  Scene #5: Talk with Grandma and Grandpa about Incense, and the graverobbers
+        _grandma.DistanceFromPlayerToActivate = 100;
+        _grandpa.DistanceFromPlayerToActivate = 100;
+        TriggerDialogue(TutorialConversations[tutorialIndex]);
+        tutorialIndex++;
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
+        _grandma.DistanceFromPlayerToActivate = 0;
+        _grandpa.DistanceFromPlayerToActivate = 0;
+
+        //  Scene #6: Move Player and tutorial to the kitty, and fight the robber!
+
+        _kitty.DistanceFromPlayerToActivate = 100;
+
+        GraveRobber Robber = SpawnTutorialRobber(tutorialRobberPositions[0]);
+        Robber.InitRobber(allGraves, _graveRobberEscapePos);
+        _tutorialGhost.MoveToNextPos();
+        yield return new WaitForSeconds(1f);
+        References.playerScript.MoveToNextPos();
+        yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
+        yield return new WaitWhile(() => !_tutorialGhost.reachedEndOfPath);
+
+        TriggerDialogue(TutorialConversations[tutorialIndex]);
+        tutorialIndex++;
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
+        _UIScript.PromptScream();
+        Robber.fearLevel.InitMaxFear(40);
+        References.playerScript._screamLocked = false;
+        _UIScript.ScreamMeterHidden = false;
+        _UIScript.ShowPlayerUI();
+
+        yield return new WaitWhile(() => !Robber.isTerrified);
+
+        float timer = 0f;
+        while(timer < 1.5f)
+        {
+            timer += Time.deltaTime;
+            References.playerScript.lastMovementDir = References.playerScript.movement = (Robber.transform.position - References.playerScript.transform.position);
+            yield return new WaitForFixedUpdate();
+        }
+        Destroy(Robber.gameObject);
+        References.playerScript.lastMovementDir = References.playerScript.movement = new Vector2(0, 1);
+        yield return new WaitForSeconds(0.5f);
+
+        //  Scene #7: Player defeated Robber, now fixes Cats Grave
+
+        TriggerDialogue(TutorialConversations[tutorialIndex]);
+        tutorialIndex++;
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
+        
 
         //  Final Scene! Play final dialogue, relinquish the lock on the player and then finally start the game!
 
         TriggerDialogue(TutorialConversations[tutorialIndex]);
+        tutorialIndex++;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
 
         StartCoroutine(_tutorialGhost.FadeOut());
         yield return new WaitForSeconds(1f);
 
-        _cameraScript.Zoom(15, 0.2f);
         _isPlayingTutorial = false;
+
+        _cameraScript.Zoom(15, 0.2f);
         References.playerScript.UnlockMovement();
-        References.playerScript.path = null;
+
+        //unlock all our abilities
+        References.playerScript._screamLocked = References.playerScript._dashLocked = References.playerScript._possessionLocked
+            = References.playerScript._interactionLocked = false;
         DayNightLighting.freezeDayNight = false;
+
+        //  Reset UI
         _UIScript.proximityButtonsEnabled = true;
+        _UIScript.portraitHidden = false;
+        _UIScript.DashMeterHidden = false;
+        _UIScript.ScreamMeterHidden = false;
+        _UIScript.SundialHidden = false;
+        _UIScript.SunDialObjectHidden = false;
+        _UIScript.InventoryHidden = false;
+        _UIScript.ShowPlayerUI();
+
+        //  Reset graves to default values again
+        EnableGraveghostFadein();
+        _kittyGrave.InitMaxHealth(100f);
     }
 }

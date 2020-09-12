@@ -12,6 +12,8 @@ public class GraveGhost : MonoBehaviour
     private float ghostSpriteMaxOpacity; //the max opacity our ghost should achieve
     private float fadeAmount; //the amount to change our opacity every frame
 
+    public float DistanceFromPlayerToActivate = 3f;
+
     //CONVERSATIONS
 
     public ConversationScriptObj[] _conversations;
@@ -30,12 +32,13 @@ public class GraveGhost : MonoBehaviour
         GhostGlow.intensity = 0;
         fadeAmount = 0.05f;
         _conversationIndex = 0;
+
     }
     private void FixedUpdate()
     {
         if(player is object)
         {
-            if (Vector2.Distance(player.transform.position, transform.position) <= 3f) //as long as we close to the player, show the ghost
+            if (Vector2.Distance(player.transform.position, transform.position) <= DistanceFromPlayerToActivate) //as long as we close to the player, show the ghost
             {
                 if (ghostSpriteOpacity < ghostSpriteMaxOpacity) //as long as we havent reached our max opacity, make less opaque
                 {
@@ -61,7 +64,6 @@ public class GraveGhost : MonoBehaviour
             if (_conversations[_conversationIndex])
             {
                 LevelSceneManager.level.TriggerDialogue(_conversations[_conversationIndex]);
-                //print("ghost dialogue;");
             }
         }
     }

@@ -73,6 +73,13 @@ public class Player : MonoBehaviour
     public List<Transform> positionsToSeekOut; //the gameobject we are currently looking to get to (e.g. escapePos, nearestGrave)
     private int positionIndex = 0;
 
+    //TUTORIAL STUFF
+
+    public bool _possessionLocked;
+    public bool _dashLocked;
+    public bool _screamLocked;
+    public bool _interactionLocked;
+
     private void Awake()
     {
         playerRB = GetComponent<Rigidbody2D>(); //get all the references to the private gameobjects we need
@@ -117,7 +124,7 @@ public class Player : MonoBehaviour
 
             if(!IsPossessing && !startingPossession) // if we are possesing, dont let us use our abilites (which wouldnt do aynthing, but set them on cooldown)
             {
-                if (Input.GetKeyDown(KeyCode.LeftShift)) //Dash
+                if (Input.GetKeyDown(KeyCode.LeftShift) && !_dashLocked) //Dash
                 {
                     // as long as we arent already dashing, and weve waited enough since the last time, we can dash
                     if (!dashing && TimeSinceLastDash >= _dashCooldown) 
@@ -126,7 +133,7 @@ public class Player : MonoBehaviour
                         StartCoroutine(Dash());
                     }
                 }
-                if (Input.GetKeyDown(KeyCode.Space)) //Scream
+                if (Input.GetKeyDown(KeyCode.Space) && !_screamLocked) //Scream
                 {
                     // if weve waited enough since the last time, we can scream
                     if (TimeSinceLastScream >= _screamCooldown)
@@ -135,19 +142,22 @@ public class Player : MonoBehaviour
                         StartCoroutine(Scream());
                     }
                 }
-                if (Input.GetKeyDown(KeyCode.E)) //pressing E picks up an offering
+                if(!_interactionLocked)
                 {
-                    Interact();
-                }
-                if (Input.GetKeyDown(KeyCode.F)) //press F to pay respects
-                {
-                    if (collectedOfferings.Count > 0)
+                    if (Input.GetKeyDown(KeyCode.E)) //pressing E picks up an offering
                     {
-                        PlaceDownOffering();
+                        Interact();
+                    }
+                    if (Input.GetKeyDown(KeyCode.F)) //press F to pay respects
+                    {
+                        if (collectedOfferings.Count > 0)
+                        {
+                            PlaceDownOffering();
+                        }
                     }
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q) && !_possessionLocked)
             {
                 if(!startingPossession)
                 {
@@ -223,6 +233,11 @@ public class Player : MonoBehaviour
     }
     private IEnumerator Scream()
     {
+        if(LevelSceneManager._isPlayingTutorial) //we can only scream once during the tutorial, so instantly lock it once we do it
+        {
+            _screamLocked = true;
+        }
+
         _screamObj.SetActive(true); //turn on the object which houses the scream animation
         screamAnim.SetBool("Scream", true); //play the scream AOE animation
 
@@ -415,6 +430,7 @@ public class Player : MonoBehaviour
                 {
                     transform.position = path.vectorPath[currentWaypoint];
                     reachedEndOfPath = true;
+                    path = null;
                 }
             }
         }

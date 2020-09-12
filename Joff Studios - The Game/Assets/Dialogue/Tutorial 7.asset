@@ -10,39 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7199d1d7f5b2d024eb17d0a6cc04510f, type: 3}
-  m_Name: Tutorial End
+  m_Name: Tutorial 7
   m_EditorClassIdentifier: 
   speakerLeft: {fileID: 0}
-  speakerRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+  speakerRight: {fileID: 0}
   lines:
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
-    text: ...
+    text: Great Job!
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
-    text: '*sighs*'
+    text: ... damn we were too late to stop him from damaging the grave though.
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 6d25e88cf096cf049be5a6c1b92aea2a, type: 2}
+    text: MROWWWWWWWWW! Meow meow...
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
-    text: "It\u2019s been a good run for me."
+    text: Yeah yeah, don't worry Mr. Meow. We'll sort this out for you.
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
-    text: There was a lot I was able to accomplish, and all in a short time as well.
+    text: Just be happy we stopped him from stealing your precious Tuna can as well.
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
-    text: "I never thought I\u2019d have a last chance to get my wishes fulfilled
-      here."
+    text: Don't feel bad about the damage kid, you can fix that up easy enough.
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
-    text: ...
+    text: You can just possess the gravestone and put the pieces back together again!
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
-    text: I guess this is goodbye then...
-  - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
-    text: ...you'll do great kid. I know it.
-  - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
-    text: 'Just one last thing:'
-  - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
-    text: "Take care of this hat for me, will\u2019ya? "
+    text: Ghost powers are just awesome like that, don't think too hard about it...

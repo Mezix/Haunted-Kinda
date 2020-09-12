@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7199d1d7f5b2d024eb17d0a6cc04510f, type: 3}
+  m_Name: Tutorial 5
+  m_EditorClassIdentifier: 
+  speakerLeft: {fileID: 0}
+  speakerRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+  lines:
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: Good evening you two!
+  - characterLeft: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
+    characterRight: {fileID: 11400000, guid: 7ba39380327da4841bbed11620204fce, type: 2}
+    text: Why hello there caretaker! What brings you to our humble abode!
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: Grave robbers! Unusually early, even for them.
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 7ba39380327da4841bbed11620204fce, type: 2}
+    text: Yes, quite unfortunate.
+  - characterLeft: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
+    characterRight: {fileID: 0}
+    text: I guess we should count ourselves lucky someone left this bottle of incense
+      for us.
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 7ba39380327da4841bbed11620204fce, type: 2}
+    text: Indeed. The smell must shake those poor buggers up somethin' fierce, that's
+      why they never come round these parts...
+  - characterLeft: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
+    characterRight: {fileID: 0}
+    text: Don't be silly dear... I'm sure it's because they don't want to be exposed
+      by the light...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 7ba39380327da4841bbed11620204fce, type: 2}
+    text: Hmm hmm whatever you say darling...
+  - characterLeft: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
+    characterRight: {fileID: 0}
+    text: Don't give me that tone! You're embarassing yourself in front of the newcomer!
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 7ba39380327da4841bbed11620204fce, type: 2}
+    text: '* angry grumbling noises *'
+  - characterLeft: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    characterRight: {fileID: 0}
+    text: '*sighs*'
+  - characterLeft: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    characterRight: {fileID: 0}
+    text: Come on, if we wait for these two lovebirds to finish bickering, the robbers
+      will already have escaped!

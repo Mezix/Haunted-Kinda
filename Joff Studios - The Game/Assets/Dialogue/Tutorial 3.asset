@@ -17,9 +17,71 @@ MonoBehaviour:
   lines:
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
-    text: I know this might seem sudden, but it looks like you had a lot of unresolved
-      yearning when you were alive.
+    text: 'This is all a bit sudden, I know. '
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
-    text: "It doesn\u2019t last too long though, so we\u2019ve got to make the most
-      of it while you\u2019re here. \r"
+    text: But you're special around these parts.
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: You had a lot of unresolved yearning when you were alive, so you can do
+      a lot of things the rest of us can't.
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: ...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: You're wondering how I know all this?
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: Well...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: I've read your file kid.
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: ...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: Hahahahah!
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: Nah I'm just messing with you.
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: ...we don't have anything like that here.
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: 'Let''s just say... it takes one to know one. '
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: Anyways...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: "Graveyards take a lot of upkeep, didn\u2019t you know?"
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: You gotta sweep the graves...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: ...polish them...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: ...water the plants...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: ...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: ...sweep the graves again...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: ...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: ( I'm really not selling this am I? )
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: Wait-
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
+    text: Are you seeing this?

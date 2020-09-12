@@ -17,9 +17,9 @@ public class GraveRobber : MonoBehaviour
 
     //FEAR
 
-    private FearLevel fearLevel; //the fear script on our player
+    public FearLevel fearLevel { get; private set; } //the fear script on our player
     private bool canBeFeared; //wether or not the robber can be feared by the player
-    private bool isTerrified; //if our robber hits max fear, this should be true
+    public bool isTerrified { get; private set;} //if our robber hits max fear, this should be true
 
     //MISC
 
