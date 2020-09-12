@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Gravestone : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject InhabitedGhost;
     public bool _destroyed;
     public bool IsBeingTargeted { get; set; }
 
@@ -48,6 +46,7 @@ public class Gravestone : MonoBehaviour
         if (currentHealth <= 0)
         {
             _destroyed = true;
+            currentHealth = 0;
         }
         CheckDestructionState();
     }

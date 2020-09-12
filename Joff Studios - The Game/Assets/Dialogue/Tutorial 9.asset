@@ -10,32 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7199d1d7f5b2d024eb17d0a6cc04510f, type: 3}
-  m_Name: Tutorial 7
+  m_Name: Tutorial 9
   m_EditorClassIdentifier: 
   speakerLeft: {fileID: 0}
   speakerRight: {fileID: 0}
   lines:
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
-    text: Great Job!
+    text: Great! The next thing to do is...
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
-    text: ... damn we were too late to stop him from damaging the grave though.
-  - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 6d25e88cf096cf049be5a6c1b92aea2a, type: 2}
-    text: "MROWWWWWWWWW! Meow meow... (\u2245\u11BD\u2245)"
+    text: ....uh....
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
-    text: Yeah yeah, don't worry Mr. Meow. We'll sort this out for you.
+    text: ....chase...
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
-    text: Just be happy we stopped him from stealing your precious Tuna can as well.
+    text: ...away...
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
-    text: Don't feel bad about the damage kid, you can fix that up easy enough.
+    text: ...
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
-    text: You can just possess the gravestone and put the pieces back together again!
+    text: ...really?
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
-    text: Ghost powers are just awesome like that, don't think too hard about it...
+    text: Whatever... just follow me...

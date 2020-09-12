@@ -249,4 +249,12 @@ public class UIScript : MonoBehaviour
     {
         print("you should possess bro");
     }
+    public void PromptDepossess()
+    {
+        print("you should stop bro");
+    }
+    public void PromptDash()
+    {
+        print("you should dash bro");
+    }
 }

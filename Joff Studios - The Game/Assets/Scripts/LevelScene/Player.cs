@@ -76,6 +76,7 @@ public class Player : MonoBehaviour
     //TUTORIAL STUFF
 
     public bool _possessionLocked;
+    public bool _depossessionLocked;
     public bool _dashLocked;
     public bool _screamLocked;
     public bool _interactionLocked;
@@ -167,7 +168,10 @@ public class Player : MonoBehaviour
                     }
                     else
                     {
-                        StartCoroutine(DepossessObject()); //if we are possessing, depossess
+                        if(!_depossessionLocked)
+                        {
+                            StartCoroutine(DepossessObject()); //if we are possessing, depossess
+                        }
                     }
                 }
             }
@@ -302,8 +306,8 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.75f); //unlock movement around 3/4 through the animation
         _ghostGlow.SetActive(true); //turn back on our glow and shadow
         _shadow.SetActive(true);
-        lockMovement = false; //unlock movement
         IsPossessing = false; //and the ability to possess again
+        lockMovement = false; //unlock movement
         startingPossession = false;
     }
 

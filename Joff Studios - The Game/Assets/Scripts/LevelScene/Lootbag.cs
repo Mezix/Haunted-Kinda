@@ -17,7 +17,7 @@ public class Lootbag : MonoBehaviour
     }
     void Update()
     {
-        if (Vector3.Distance(Player.transform.position, transform.position) < 0.5f && !opened)
+        if (Vector3.Distance(Player.transform.position, transform.position) < 0.75f && !opened)
         {
             OpenLootbag();
         }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e7fae8fa5a3bff498f98805c551ac84, type: 3}
-  m_Name: CoolGhostTest
+  m_Name: CoolGhost
   m_EditorClassIdentifier: 
   fullName: Cool Dude
   portrait: {fileID: 21300000, guid: d9c13c4c838d54c44949f7093457d732, type: 3}

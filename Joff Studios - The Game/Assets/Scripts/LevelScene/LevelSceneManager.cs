@@ -56,6 +56,8 @@ public class LevelSceneManager : MonoBehaviour
     public GraveGhost _grandpa;
     public GraveGhost _kitty;
     public Gravestone _kittyGrave;
+    public GraveGhost _coolGhost;
+    public Gravestone _coolGrave;
 
     private void Awake()
     {
@@ -141,6 +143,7 @@ public class LevelSceneManager : MonoBehaviour
     private void StartGame()
     {
         Unpause();
+        StartCoroutine(_UIScript.FadeFromBlack());
         _UIScript.StartGame();
         SetupDayAndNight();
 
@@ -358,17 +361,15 @@ public class LevelSceneManager : MonoBehaviour
         References.playerScript.LockMovement();
         //lock all our abilities
         References.playerScript._screamLocked = References.playerScript._dashLocked = References.playerScript._possessionLocked
-        = References.playerScript._interactionLocked = true;
+        = References.playerScript._depossessionLocked = References.playerScript._interactionLocked = true;
         DayNightLighting.freezeDayNight = true;
         SetupDayAndNight();
 
         DisableGraveghostFadein();
-        _kittyGrave.InitMaxHealth(100000); //make kitty grave unkillable for tutorial purposes
-        _kittyGrave.TakeDamage(50000); //set at half health
 
-         //  First Scene; Zooms In and caretaker talks to you
+        //  First Scene; Zooms In and caretaker talks to you
 
-         StartCoroutine(_UIScript.FadeFromBlack());
+        StartCoroutine(_UIScript.FadeFromBlack());
         yield return new WaitForSeconds(2f);
         _cameraScript.Zoom(30, 0.75f);
         yield return new WaitForSeconds(1f);
@@ -453,6 +454,8 @@ public class LevelSceneManager : MonoBehaviour
         //  Scene #6: Move Player and tutorial to the kitty, and fight the robber!
 
         _kitty.DistanceFromPlayerToActivate = 100;
+        _kittyGrave.InitMaxHealth(100000); //make kitty grave unkillable for tutorial purposes
+        _kittyGrave.TakeDamage(40000); //set at half health
 
         GraveRobber Robber = SpawnTutorialRobber(tutorialRobberPositions[0]);
         Robber.InitRobber(allGraves, _graveRobberEscapePos);
@@ -469,6 +472,7 @@ public class LevelSceneManager : MonoBehaviour
         Robber.fearLevel.InitMaxFear(40);
         References.playerScript._screamLocked = false;
         _UIScript.ScreamMeterHidden = false;
+        _UIScript.portraitHidden = false;
         _UIScript.ShowPlayerUI();
 
         yield return new WaitWhile(() => !Robber.isTerrified);
@@ -484,14 +488,108 @@ public class LevelSceneManager : MonoBehaviour
         References.playerScript.lastMovementDir = References.playerScript.movement = new Vector2(0, 1);
         yield return new WaitForSeconds(0.5f);
 
-        //  Scene #7: Player defeated Robber, now fixes Cats Grave
+        //  Scene #7: Player defeated Robber, unlock possession, fix Cats Grave
 
         TriggerDialogue(TutorialConversations[tutorialIndex]);
         tutorialIndex++;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
-        
 
-        //  Final Scene! Play final dialogue, relinquish the lock on the player and then finally start the game!
+        References.playerScript.MoveToNextPos();
+        yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
+
+        _UIScript.PromptPossess();
+        References.playerScript._possessionLocked = false;
+        _UIScript.ShowPlayerUI();
+        yield return new WaitWhile(() => !References.playerScript.IsPossessing);
+        yield return new WaitForSeconds(2.5f);
+        _kittyGrave.InitMaxHealth(100f);
+        _kittyGrave.Restore(1f); //plays the healing sound
+        yield return new WaitForSeconds(0.5f);
+
+        //  Scene #8: Player is prompted to leave grave
+
+        TriggerDialogue(TutorialConversations[tutorialIndex]);
+        tutorialIndex++;
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
+        References.playerScript._depossessionLocked = false;
+        yield return new WaitWhile(() => References.playerScript.IsPossessing);
+        References.playerScript.LockMovement();
+        References.playerScript._depossessionLocked = true;
+        References.playerScript._possessionLocked = true;
+        yield return new WaitForSeconds(1f);
+
+        //Scene #9: Player has depossessed, but theres a new robber on our left
+
+        TriggerDialogue(TutorialConversations[tutorialIndex]);
+        tutorialIndex++;
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
+
+        // Scene #10: Robber is stealing loot, cool ghost talks
+
+        _coolGhost.DistanceFromPlayerToActivate = 100f;
+        _coolGrave.InitMaxHealth(100000);
+        _coolGrave.TakeDamage(50000); //get to last stage of damage
+        Robber = SpawnTutorialRobber(tutorialRobberPositions[1]);
+        Robber.InitRobber(allGraves, _graveRobberEscapePos);
+
+        _tutorialGhost.MoveToNextPos();
+        yield return new WaitForSeconds(1f);
+        References.playerScript.MoveToNextPos();
+        yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
+        yield return new WaitWhile(() => !_tutorialGhost.reachedEndOfPath);
+        yield return new WaitForSeconds(0.25f);
+        TriggerDialogue(TutorialConversations[tutorialIndex]);
+        tutorialIndex++;
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
+        yield return new WaitForSeconds(1f);
+        _coolGrave.TakeDamage(100000);
+        yield return new WaitForSeconds(0.85f);
+        Robber.lockMovement = true;
+
+        //Scene #11: Ghost tells you to dash
+
+        TriggerDialogue(TutorialConversations[tutorialIndex]);
+        tutorialIndex++;
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
+        Robber.fearLevel.InitMaxFear(20);
+        _UIScript.PromptDash();
+        References.playerScript.lastMovementDir = References.playerScript.movement = new Vector2(-1, 0);
+        References.playerScript._dashLocked = false;
+        _UIScript.DashMeterHidden = false;
+        _UIScript.ShowPlayerUI();
+
+        yield return new WaitWhile(() => !Robber.isTerrified);
+        Robber.lockMovement = false;
+        References.playerScript._dashLocked = true;
+
+        //Scene #12: Cool Ghost compliments you, you move to the offering and pick it up
+
+        yield return new WaitWhile(() => References.playerScript.TimeSinceLastDash < 1f);
+        _tutorialGhost.MoveToNextPos();
+        yield return new WaitForSeconds(1f);
+        References.playerScript.MoveToNextPos();
+        yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
+        yield return new WaitWhile(() => !_tutorialGhost.reachedEndOfPath);
+        yield return new WaitForSeconds(0.25f);
+
+
+
+        //TODO INTERACT PROMPT AND PLACE DOWN
+
+
+
+        TriggerDialogue(TutorialConversations[tutorialIndex]);
+        tutorialIndex++;
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
+        yield return new WaitForSeconds(0.25f);
+
+        References.playerScript.MoveToNextPos();
+
+        //Scene #13
+
+
+
+        //  FINAL SCENE! Play final dialogue, relinquish the lock on the player and then finally start the game!
 
         TriggerDialogue(TutorialConversations[tutorialIndex]);
         tutorialIndex++;
@@ -507,7 +605,7 @@ public class LevelSceneManager : MonoBehaviour
 
         //unlock all our abilities
         References.playerScript._screamLocked = References.playerScript._dashLocked = References.playerScript._possessionLocked
-            = References.playerScript._interactionLocked = false;
+            = References.playerScript._depossessionLocked = References.playerScript._interactionLocked = false;
         DayNightLighting.freezeDayNight = false;
 
         //  Reset UI

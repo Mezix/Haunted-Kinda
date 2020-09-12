@@ -31,6 +31,7 @@ public class GraveRobber : MonoBehaviour
     private GameObject escapePosition; //the position we will flee to if terrified
     private bool hasLoot;
     private bool isDigging; //determines wether we are currently digging
+    public bool lockMovement;
 
     //PATHFINDING
 
@@ -84,7 +85,10 @@ public class GraveRobber : MonoBehaviour
         {
             CancelInvoke("Idle"); //stop us idling/finding a new gravestone
         }
-        GraveRobberBehaviour();
+        if (!lockMovement)
+        {
+            GraveRobberBehaviour();
+        }
         if (isTerrified) //if we have been terrified, set our bools appropriately for the animator
         {
             animator.SetBool("IsEscaping", false);
