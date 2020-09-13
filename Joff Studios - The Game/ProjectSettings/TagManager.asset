@@ -10,6 +10,7 @@ TagManager:
   - Corn
   - Fanta
   - Gold
+  - CoolGhostQuestItem
   layers:
   - Default
   - TransparentFX

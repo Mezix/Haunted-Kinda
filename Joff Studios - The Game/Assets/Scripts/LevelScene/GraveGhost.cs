@@ -13,8 +13,10 @@ public class GraveGhost : MonoBehaviour
     private float fadeAmount; //the amount to change our opacity every frame
 
     public GameObject _graveItem;
+    public bool lootStolen;
+
+    public GameObject _questItem;
     public bool QuestComplete;
-    public GameObject _questItem { get; private set; }
 
 
     public float DistanceFromPlayerToActivate = 3f;
@@ -97,9 +99,9 @@ public class GraveGhost : MonoBehaviour
         GhostGlow.intensity = Mathf.Max(0, ghostSpriteOpacity / ghostSpriteMaxOpacity);
     }
 
-    public void CompleteQuest(GameObject questItem)
+    public void TryCompleteQuest(GameObject newItem)
     {
-        if(_questItem.Equals(questItem))
+        if(_questItem.tag == newItem.tag)
         {
             QuestComplete = true;
         }

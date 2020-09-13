@@ -305,8 +305,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shadow: {fileID: 435146996}
   ghostRenderer: {fileID: 1553712485123010246}
-  _conversations: []
-  _conversationIndex: 0
+  animator: {fileID: 1391704689633895762}
+  reachedEndOfPath: 0
   positionsToSeekOut: []
 --- !u!50 &2766420452868347883
 Rigidbody2D:

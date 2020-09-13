@@ -1,7 +1,76 @@
 fileFormatVersion: 2
 guid: e8e879bd19bc270459f93da1e23782e1
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -3419414000670847529
+    second: baseghost_posessionreverse_nohat_0
+  - first:
+      213: 8518095913162205299
+    second: baseghost_posessionreverse_nohat_1
+  - first:
+      213: -7830893605457499769
+    second: baseghost_posessionreverse_nohat_2
+  - first:
+      213: 5912414803530854565
+    second: baseghost_posessionreverse_nohat_3
+  - first:
+      213: -6017844567419237193
+    second: baseghost_posessionreverse_nohat_4
+  - first:
+      213: -6617739299649373817
+    second: baseghost_posessionreverse_nohat_5
+  - first:
+      213: -7944016394842127777
+    second: baseghost_posessionreverse_nohat_6
+  - first:
+      213: 6126453268954411822
+    second: baseghost_posessionreverse_nohat_7
+  - first:
+      213: -7577598595354383039
+    second: baseghost_posessionreverse_nohat_8
+  - first:
+      213: -4412603702529036702
+    second: baseghost_posessionreverse_nohat_9
+  - first:
+      213: 567413400897754524
+    second: baseghost_posessionreverse_nohat_10
+  - first:
+      213: 130709601558273035
+    second: baseghost_posessionreverse_nohat_11
+  - first:
+      213: -8466021978330484750
+    second: baseghost_posessionreverse_nohat_12
+  - first:
+      213: -2681482973842412617
+    second: baseghost_posessionreverse_nohat_13
+  - first:
+      213: -656573939024447563
+    second: baseghost_posessionreverse_nohat_14
+  - first:
+      213: -3407769155686098366
+    second: baseghost_posessionreverse_nohat_15
+  - first:
+      213: 8955627197660787198
+    second: baseghost_posessionreverse_nohat_16
+  - first:
+      213: 3468175957540920198
+    second: baseghost_posessionreverse_nohat_17
+  - first:
+      213: -5655987641602336427
+    second: baseghost_posessionreverse_nohat_18
+  - first:
+      213: -6840229705029831058
+    second: baseghost_posessionreverse_nohat_19
+  - first:
+      213: -8147302361348985825
+    second: baseghost_posessionreverse_nohat_20
+  - first:
+      213: 5168307124402598869
+    second: baseghost_posessionreverse_nohat_21
+  - first:
+      213: -2647870487582961855
+    second: baseghost_posessionreverse_nohat_22
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -31,7 +100,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -40,12 +109,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 42
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -71,9 +140,516 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: baseghost_posessionreverse_nohat_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dd440e451dcb80d0800000000000000
+      internalID: -3419414000670847529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baseghost_posessionreverse_nohat_1
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3786dba2a1b563670800000000000000
+      internalID: 8518095913162205299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baseghost_posessionreverse_nohat_2
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 789e3d471c3135390800000000000000
+      internalID: -7830893605457499769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baseghost_posessionreverse_nohat_3
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a0b73140fd1d0250800000000000000
+      internalID: 5912414803530854565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baseghost_posessionreverse_nohat_4
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bc4675ff325c7ca0800000000000000
+      internalID: -6017844567419237193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baseghost_posessionreverse_nohat_5
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 789b1445b211924a0800000000000000
+      internalID: -6617739299649373817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baseghost_posessionreverse_nohat_6
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f524e879d2f21c190800000000000000
+      internalID: -7944016394842127777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baseghost_posessionreverse_nohat_7
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e23fe0de9c8850550800000000000000
+      internalID: 6126453268954411822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baseghost_posessionreverse_nohat_8
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14d2761b936f6d690800000000000000
+      internalID: -7577598595354383039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baseghost_posessionreverse_nohat_9
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26eee20cf4843c2c0800000000000000
+      internalID: -4412603702529036702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baseghost_posessionreverse_nohat_10
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c959e495b7bdfd700800000000000000
+      internalID: 567413400897754524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baseghost_posessionreverse_nohat_11
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0c1d99a0bf50d100800000000000000
+      internalID: 130709601558273035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baseghost_posessionreverse_nohat_12
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ff26f89dd5a28a80800000000000000
+      internalID: -8466021978330484750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baseghost_posessionreverse_nohat_13
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bb6dd0417579cad0800000000000000
+      internalID: -2681482973842412617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baseghost_posessionreverse_nohat_14
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b73bab2b7163e6f0800000000000000
+      internalID: -656573939024447563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baseghost_posessionreverse_nohat_15
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24a1cce020c25b0d0800000000000000
+      internalID: -3407769155686098366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baseghost_posessionreverse_nohat_16
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef1f561cc77c84c70800000000000000
+      internalID: 8955627197660787198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baseghost_posessionreverse_nohat_17
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68bd6cf78af612030800000000000000
+      internalID: 3468175957540920198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baseghost_posessionreverse_nohat_18
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5591b48e435e181b0800000000000000
+      internalID: -5655987641602336427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baseghost_posessionreverse_nohat_19
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e663f99035f9211a0800000000000000
+      internalID: -6840229705029831058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baseghost_posessionreverse_nohat_20
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1ca71a2ba7feee80800000000000000
+      internalID: -8147302361348985825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baseghost_posessionreverse_nohat_21
+      rect:
+        serializedVersion: 2
+        x: 882
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d3332062f389b740800000000000000
+      internalID: 5168307124402598869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baseghost_posessionreverse_nohat_22
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14f806012dfd04bd0800000000000000
+      internalID: -2647870487582961855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

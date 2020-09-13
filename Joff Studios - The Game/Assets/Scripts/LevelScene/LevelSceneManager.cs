@@ -52,7 +52,6 @@ public class LevelSceneManager : MonoBehaviour
     public List<Transform> playerTutorialPositions;
     public List<Transform> tutorialRobberPositions;
     public Transform tutorialOffering;
-    public GameObject _tutorialRobber;
 
     public GraveGhost _grandma;
     public GraveGhost _grandpa;
@@ -117,10 +116,10 @@ public class LevelSceneManager : MonoBehaviour
 
     private void RemoveGraveRobber(GameObject graveRobber)
     {
-        if (_graveRobbers.Contains(graveRobber))
-        {
-            _graveRobbers.Remove(graveRobber);
-        }
+        //if (_graveRobbers.Contains(graveRobber))
+        //{
+        //    _graveRobbers.Remove(graveRobber);
+        //}
         Destroy(graveRobber);
     }
     private void BlockGrave(Gravestone grave)
@@ -153,6 +152,7 @@ public class LevelSceneManager : MonoBehaviour
         SetupDayAndNight();
 
         SpawnPlayer();
+        References.playerScript.playerAnimator.SetBool("HatOn", true);
         SetPlayerReferencesInScene();
         SpawnOfferings();
         _graveRobbers = new List<GameObject>();
@@ -338,7 +338,7 @@ public class LevelSceneManager : MonoBehaviour
     }
     private GraveRobber SpawnTutorialRobber(Transform transform)
     {
-        GameObject go = Instantiate(_tutorialRobber, transform.position, transform.rotation);
+        GameObject go = Instantiate(_graveRobberPrefab, transform.position, transform.rotation);
         return go.GetComponent<GraveRobber>();
     }
 
@@ -365,6 +365,7 @@ public class LevelSceneManager : MonoBehaviour
         SetPlayerReferencesInScene();
         References.playerScript.HidePlayer();
         References.playerScript.LockMovement();
+        References.playerScript.playerAnimator.SetBool("HatOn", false);
         //lock all our abilities
         References.playerScript._screamLocked = References.playerScript._dashLocked = References.playerScript._possessionLocked
         = References.playerScript._depossessionLocked = References.playerScript._interactionLocked = true;
@@ -608,11 +609,17 @@ public class LevelSceneManager : MonoBehaviour
         StartCoroutine(_UIScript.FadeOutPrompts());
 
         References.playerScript.possessedObject.lockMovement = true;
+
+        GameObject sunglasses = References.playerScript.possessedObject.gameObject;
+        print(sunglasses);
+
         TriggerDialogue(TutorialConversations[tutorialIndex]);
         tutorialIndex++;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
         References.playerScript.possessedObject.lockMovement = false;
+
         //Scene #14: Move and place down Sunglasses
+
         StartCoroutine(_UIScript.FadeInPrompts());
         _UIScript.PromptMoveWithArrowKeys();
         yield return new WaitWhile(() => Vector2.Distance(References.playerScript.possessedObject.transform.position, _coolGrave.transform.position ) > 0.5f);
@@ -638,6 +645,9 @@ public class LevelSceneManager : MonoBehaviour
         TriggerDialogue(TutorialConversations[tutorialIndex]);
         tutorialIndex++;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
+
+        _coolGhost.TryCompleteQuest(sunglasses);
+        _coolGhost.lootStolen = false;
 
         Instantiate(_allOfferingTypes[3], tutorialOffering.position, tutorialOffering.rotation);
         _tutorialGhost.MoveToNextPos();
@@ -711,6 +721,8 @@ public class LevelSceneManager : MonoBehaviour
         TriggerDialogue(TutorialConversations[tutorialIndex]);
         tutorialIndex++;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
+        _tutorialGhost.animator.SetBool("HatOn", true);
+        References.playerScript.playerAnimator.SetBool("HatOn", true);
 
         StartCoroutine(_tutorialGhost.FadeOut());
         yield return new WaitForSeconds(1f);
@@ -738,5 +750,7 @@ public class LevelSceneManager : MonoBehaviour
         //  Reset graves to default values again
         EnableGraveghostFadein();
         _kittyGrave.InitMaxHealth(100f);
+        _coolGrave.InitMaxHealth(100f);
+        _coolGrave.TakeDamage(60f);
     }
 }

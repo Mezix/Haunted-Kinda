@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public GameObject _screamObj; //the object containing our scream animation
     private Animator screamAnim; //the animator component of our scream
     private Rigidbody2D playerRB; //the rigidbody component for our player
-    private Animator playerAnimator; //the animator component for our player
+    public Animator playerAnimator { get; private set; } //the animator component for our player
     public GameObject _ghostGlow; //the Glowy Background of our Ghost
     public GameObject _shadow; //the shadow below our ghost
 
@@ -363,26 +363,6 @@ public class Player : MonoBehaviour
     
     private void PlaceDownOffering()
     {
-        //RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, 1 << 8); //the layer gravestones are on
-
-        //if (hit.collider)
-        //{
-        //    if (hit.collider.TryGetComponent(out Gravestone grave))
-        //    {
-        //        if (grave.currentOffering != null) //if the grave already has a offering currently, return out of the function
-        //        {
-        //            return;
-        //        }
-        //        Offering offering = collectedOfferings[0]; //take the first offering off our list
-        //        offering.gameObject.SetActive(true); //reenable this offering
-        //        offering.transform.position = grave.OfferingPos.transform.position; //and move it our graves offering position
-        //        grave.Restore(offering.HealAmount); //heal our grave
-        //        offering.FadeAway(grave); //slowly fade it away
-        //        collectedOfferings.RemoveAt(0); //remove the offering from our list
-        //        Events.current.PlaceDownOffering(offering);
-        //    }
-        //}
-
         if (_gravesCollider.GravesInCollider.Count > 0) //pickup!
         {
             List<Gravestone> nearGraves = _gravesCollider.GravesInCollider;

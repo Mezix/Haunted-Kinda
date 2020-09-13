@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using System;
 
 public class GraveRobber : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class GraveRobber : MonoBehaviour
     private Rigidbody2D robberRB;
     private Animator animator;
     private SpriteRenderer graverobberRenderer; //the sprite renderer of our robber
+    [SerializeField]
+    private GameObject UIRobber;
 
     //FEAR
 
@@ -30,6 +33,7 @@ public class GraveRobber : MonoBehaviour
     public GameObject _lootBagPrefab; //the prefab of our lootbag that we spawn when we are terrifed
     private GameObject escapePosition; //the position we will flee to if terrified
     private bool hasLoot;
+    private GameObject currentLoot = null;
     private bool isDigging; //determines wether we are currently digging
     public bool lockMovement;
 
@@ -50,6 +54,7 @@ public class GraveRobber : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         graverobberRenderer = GetComponentInChildren<SpriteRenderer>();
         seeker = GetComponent<Seeker>();
+        UIRobber.SetActive(false);
     }
 
     void Start()
@@ -78,7 +83,21 @@ public class GraveRobber : MonoBehaviour
             animator.SetFloat("Vertical", path.vectorPath[currentWaypoint].y - transform.position.y);
             animator.SetFloat("Speed", (transform.position - path.vectorPath[currentWaypoint]).sqrMagnitude);
         }
+
+        Vector3 screenPoint = Camera.main.WorldToViewportPoint(gameObject.transform.position);
+        bool onScreen = screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
+
+        if(!onScreen)
+        {
+            UIRobber.SetActive(true);
+            SetUIRobberLocation();
+        }
+        else
+        {
+            UIRobber.SetActive(false);
+        }
     }
+
     private void FixedUpdate()
     {
         if (nearestGrave)
@@ -240,7 +259,7 @@ public class GraveRobber : MonoBehaviour
         isDigging = true; //stop us digging multiple times
         animator.SetBool("Digging", true); //set the animator bool so we start digging
         nearestGrave.AttackGrave();
-        //Vector2 currentPos = robberRB.position;
+
         while(!nearestGrave._destroyed) //as long as the grave we are targetting isnt destroyed, keep digging
         {
             //robberRB.position = currentPos; //stay in place, dont get bumped by other robbers
@@ -258,6 +277,7 @@ public class GraveRobber : MonoBehaviour
         {
             animator.SetBool("Digging", false);
             hasLoot = true;
+            nearestGrave.GetComponentInChildren<GraveGhost>().lootStolen = true;
             StartCoroutine(RunAwayWithLoot());
         }
 
@@ -282,7 +302,11 @@ public class GraveRobber : MonoBehaviour
     }
     void DropLoot() //spawn a lootbag
     {
-        Instantiate(_lootBagPrefab, transform.position, transform.rotation);
+        GameObject go = Instantiate(_lootBagPrefab, transform.position, transform.rotation);
+        if (nearestGrave.inhabitedGhost._graveItem)
+        {
+            go.GetComponent<Lootbag>().lootPrefab = nearestGrave.inhabitedGhost._graveItem;
+        }
     }
     private IEnumerator Flee()
     {
@@ -313,9 +337,9 @@ public class GraveRobber : MonoBehaviour
     private IEnumerator FleeAnimation()
     {
         GetComponent<Collider2D>().isTrigger = true; //stop all collisions
-        for (int i = 500; i > 0; i--) //lower our opacity continously
+        for (int i = 200; i > 0; i--) //lower our opacity continously
         {
-            graverobberRenderer.color = new Color(1, 1, 1, i / 500f);
+            graverobberRenderer.color = new Color(1, 1, 1, i / 200f);
             yield return new WaitForSeconds(0.001f);
         }
         Events.current.DespawnGraveRobber(gameObject); //and disappear
@@ -360,5 +384,15 @@ public class GraveRobber : MonoBehaviour
         {
             blockedGraves.Remove(grave);
         }
+    }
+
+    private void SetUIRobberLocation()
+    {
+        //float maxScreenWidth = 1920 / 2f;
+        //float maxScreenHeight = 1080 / 2f;
+
+        Vector3 robberLocation = Camera.main.WorldToViewportPoint(gameObject.transform.position);
+        print(robberLocation);
+        //if(robberLocation)
     }
 }

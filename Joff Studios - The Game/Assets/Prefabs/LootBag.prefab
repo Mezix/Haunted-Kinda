@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2bd2e5afdbbffb44af1888b711395d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
   lootPrefab: {fileID: 5787650698131815977, guid: d3095f944e6705f4d801cb3b441a5979,
     type: 3}
   lootPos: {fileID: 3325123820296280132}

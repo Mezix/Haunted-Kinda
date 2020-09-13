@@ -7,7 +7,7 @@ public class PossessableObject : MonoBehaviour
 {
     [SerializeField]
     private bool isPossessed;
-    public bool _isGrave;
+    public Gravestone grave;
     public bool _canMove;
     public GameObject _moveablePart;
     public float _moveSpeed;
@@ -47,7 +47,7 @@ public class PossessableObject : MonoBehaviour
     {
         if(isPossessed)
         {
-            if(_isGrave)
+            if(grave && !grave.GetComponentInChildren<GraveGhost>().lootStolen) //if our loot has been stolen, we cant fix the grave yet!
             {
                 StartCoroutine(RestoreGrave());
             }

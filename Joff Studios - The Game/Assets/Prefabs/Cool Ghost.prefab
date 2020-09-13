@@ -48,6 +48,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  _graveItem: {fileID: 8043414066938722636, guid: 80e1649fbc135d7489d6f8e5630a8ca3,
+    type: 3}
+  QuestComplete: 0
+  _questItem: {fileID: 8043414066938722636, guid: 80e1649fbc135d7489d6f8e5630a8ca3,
+    type: 3}
+  DistanceFromPlayerToActivate: 3
   _conversations:
   - {fileID: 11400000, guid: 9b50c33add1b12c4489dd6030996be76, type: 2}
   _conversationIndex: 0

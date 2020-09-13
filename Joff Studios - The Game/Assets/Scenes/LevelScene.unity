@@ -1340,7 +1340,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 97918471}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.94, y: -4.34, z: 0}
+  m_LocalPosition: {x: -6.01, y: -4.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 379151986}
@@ -53187,8 +53187,6 @@ MonoBehaviour:
   - {fileID: 2111942889}
   - {fileID: 1399747818}
   tutorialOffering: {fileID: 1649008332}
-  _tutorialRobber: {fileID: 6633286194476850704, guid: 4c43610461b976844bcc9383e5f4ae73,
-    type: 3}
   _grandma: {fileID: 380683822}
   _grandpa: {fileID: 37775464}
   _kitty: {fileID: 1920492786}
@@ -55003,7 +55001,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1649008331}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.32, y: -10.05, z: 0}
+  m_LocalPosition: {x: -13.74, y: -10.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 379151986}

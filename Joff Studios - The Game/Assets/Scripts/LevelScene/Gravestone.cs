@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Gravestone : MonoBehaviour
 {
-    private GraveGhost inhabitedGhost;
+    public GraveGhost inhabitedGhost { get; private set; }
     public bool _destroyed;
     public bool IsBeingTargeted { get; set; }
 

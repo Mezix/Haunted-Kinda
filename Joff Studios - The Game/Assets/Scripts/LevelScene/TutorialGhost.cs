@@ -13,11 +13,7 @@ public class TutorialGhost : MonoBehaviour
     private float ghostSpriteMaxOpacity; //the max opacity our ghost should achieve
     private float fadeAmount; //the amount to change our opacity every frame
     private float _moveSpeed = 1f;
-
-    //CONVERSATIONS
-
-    public ConversationScriptObj[] _conversations;
-    public int _conversationIndex;
+    public Animator animator;
 
     //PATHFINDING
     private Seeker seeker; //the seeker component which creates paths
@@ -40,13 +36,22 @@ public class TutorialGhost : MonoBehaviour
         _shadow.color = ghostRenderer.color = new Color(1, 1, 1, ghostSpriteOpacity); //apply the ghostopacity value
         GhostGlow.intensity = 0;
         fadeAmount = 0.05f;
-        _conversationIndex = 0;
         _moveSpeed = 5f;
     }
 
     private void FixedUpdate()
     {
         MoveOnPath();
+        if (path != null)
+        {
+            animator.SetFloat("Horizontal", path.vectorPath[currentWaypoint].x - path.vectorPath[currentWaypoint - 1].x);
+            animator.SetFloat("Vertical", path.vectorPath[currentWaypoint].y - path.vectorPath[currentWaypoint - 1].y);
+            animator.SetFloat("Speed", 1f);
+        }
+        else
+        {
+            animator.SetFloat("Speed", 0f);
+        }
     }
 
     public IEnumerator FadeIn()
@@ -100,6 +105,7 @@ public class TutorialGhost : MonoBehaviour
                 {
                     transform.position = path.vectorPath[currentWaypoint];
                     reachedEndOfPath = true;
+                    path = null;
                 }
             }
         }
