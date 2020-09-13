@@ -54,7 +54,7 @@ public class UIScript : MonoBehaviour
         _inventory = Inventory.GetComponent<InventoryUI>();
         proximityButtonsEnabled = true;
         promptOpacity = 0;
-        promptFadeAmount = 0.03f;
+        promptFadeAmount = 0.05f;
         TutorialPromptsBackground.color = PromptText.color = new Color(1, 1, 1, promptOpacity);
     }
 
@@ -272,7 +272,7 @@ public class UIScript : MonoBehaviour
         promptOpacity = 1;
         while (promptOpacity >= 0)
         {
-            promptOpacity -= promptFadeAmount;
+            promptOpacity -= promptFadeAmount * 2;
             yield return new WaitForFixedUpdate();
             TutorialPromptsBackground.color = PromptText.color = new Color(1, 1, 1, promptOpacity);
         }

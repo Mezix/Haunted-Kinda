@@ -53148,7 +53148,7 @@ MonoBehaviour:
   _offeringPosParent: {fileID: 657316218}
   EndingMusic: {fileID: 2118313490}
   _tutorialGhost: {fileID: 1116907522}
-  _playTutorial: 1
+  _playTutorial: 0
   TutorialConversations:
   - {fileID: 11400000, guid: 680cdfa29d139724591d5dd9f71a9a16, type: 2}
   - {fileID: 11400000, guid: 680cdfa29d139724591d5dd9f71a9a16, type: 2}
