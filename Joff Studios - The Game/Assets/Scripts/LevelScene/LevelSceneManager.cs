@@ -52,6 +52,7 @@ public class LevelSceneManager : MonoBehaviour
     public List<Transform> playerTutorialPositions;
     public List<Transform> tutorialRobberPositions;
     public Transform tutorialOffering;
+    public GameObject _tutorialRobber;
 
     public GraveGhost _grandma;
     public GraveGhost _grandpa;
@@ -337,7 +338,7 @@ public class LevelSceneManager : MonoBehaviour
     }
     private GraveRobber SpawnTutorialRobber(Transform transform)
     {
-        GameObject go = Instantiate(_graveRobberPrefab, transform.position, transform.rotation);
+        GameObject go = Instantiate(_tutorialRobber, transform.position, transform.rotation);
         return go.GetComponent<GraveRobber>();
     }
 
@@ -516,6 +517,7 @@ public class LevelSceneManager : MonoBehaviour
         TriggerDialogue(TutorialConversations[tutorialIndex]);
         tutorialIndex++;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
+        _UIScript.PromptDepossess();
         References.playerScript._depossessionLocked = false;
         yield return new WaitWhile(() => References.playerScript.IsPossessing);
         References.playerScript.LockMovement();
@@ -528,6 +530,7 @@ public class LevelSceneManager : MonoBehaviour
         TriggerDialogue(TutorialConversations[tutorialIndex]);
         tutorialIndex++;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
+        _kitty.DistanceFromPlayerToActivate = 0f;
 
         // Scene #10: Robber is stealing loot, cool ghost talks
 
@@ -567,7 +570,7 @@ public class LevelSceneManager : MonoBehaviour
         Robber.lockMovement = false;
         References.playerScript._dashLocked = true;
 
-        //Scene #12: Move to cool ghost, Cool Ghost compliments you, tutorial ghost tells you to pick up offering
+        //Scene #12: Move to cool ghost, Cool Ghost compliments you asks you to pick up his shades
 
         yield return new WaitWhile(() => References.playerScript.TimeSinceLastDash < 1f);
         _tutorialGhost.MoveToNextPos();
@@ -583,7 +586,7 @@ public class LevelSceneManager : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
 
 
-        //Scene #13: Move to bag, press interact and get offering
+        //Scene #13: Move to bag, press interact and carry shades over
 
         _tutorialGhost.MoveToNextPos();
         yield return new WaitForSeconds(0.1f);
@@ -591,27 +594,32 @@ public class LevelSceneManager : MonoBehaviour
         yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
         yield return new WaitWhile(() => !_tutorialGhost.reachedEndOfPath);
         yield return new WaitForSeconds(0.25f);
-        _UIScript.PromptPickUp();
-        References.playerScript._interactionLocked = false;
-        yield return new WaitWhile(() => References.playerScript.collectedOfferings.Count == 0);
+        _UIScript.PromptPossessShades();
+        References.playerScript._possessionLocked = false;
+        yield return new WaitWhile(() => !References.playerScript.IsPossessing);
 
+        References.playerScript.possessedObject.lockMovement = true;
         TriggerDialogue(TutorialConversations[tutorialIndex]);
         tutorialIndex++;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
+        References.playerScript.possessedObject.lockMovement = false;
+        //Scene #14: Move and place down Sunglasses
 
-        //Scene #14: Place Down Offering
-
-        References.playerScript.MoveToNextPos();
-        yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
-
+        _UIScript.PromptMoveWithArrowKeys();
+        yield return new WaitWhile(() => Vector2.Distance(References.playerScript.possessedObject.transform.position, _coolGrave.transform.position ) > 0.5f);
+        References.playerScript.possessedObject.lockMovement = true;
         TriggerDialogue(TutorialConversations[tutorialIndex]);
         tutorialIndex++;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
         yield return new WaitForSeconds(0.2f);
 
-        _UIScript.PromptPlaceDown();
-        yield return new WaitWhile(() => References.playerScript.collectedOfferings.Count != 0);
+        _UIScript.PromptDepossess();
+        References.playerScript._depossessionLocked = false;
+        yield return new WaitWhile(() => References.playerScript.IsPossessing);
+        References.playerScript.LockMovement();
         yield return new WaitForSeconds(0.2f);
+        References.playerScript._depossessionLocked = true;
+        References.playerScript._possessionLocked = true;
 
         //Scene #15: Cool ghost thanks you, move to the next location to talk more about possession
 
@@ -635,6 +643,8 @@ public class LevelSceneManager : MonoBehaviour
 
         References.playerScript.MoveToNextPos();
         yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
+        References.playerScript._interactionLocked = false;
+        _UIScript.PromptPickUp();
 
         yield return new WaitWhile(() => References.playerScript.collectedOfferings.Count == 0);
         _UIScript.InventoryHidden = false;
@@ -652,6 +662,8 @@ public class LevelSceneManager : MonoBehaviour
         yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
         yield return new WaitWhile(() => !_tutorialGhost.reachedEndOfPath);
         yield return new WaitForSeconds(0.25f);
+
+        _UIScript.PromptPlaceDown();
 
         //Scene #18: Cool ghost thanks you for the meal
 

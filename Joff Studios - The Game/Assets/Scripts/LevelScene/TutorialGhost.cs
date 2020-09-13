@@ -65,7 +65,7 @@ public class TutorialGhost : MonoBehaviour
         while(ghostSpriteOpacity > 0)
         {
             yield return new WaitForFixedUpdate();
-            ghostSpriteOpacity -= fadeAmount;
+            ghostSpriteOpacity -= fadeAmount * 0.5f;
             _shadow.color = ghostRenderer.color = new Color(1, 1, 1, ghostSpriteOpacity);
             GhostGlow.intensity = Mathf.Max(0, ghostSpriteOpacity / ghostSpriteMaxOpacity);
         }

@@ -12,6 +12,11 @@ public class GraveGhost : MonoBehaviour
     private float ghostSpriteMaxOpacity; //the max opacity our ghost should achieve
     private float fadeAmount; //the amount to change our opacity every frame
 
+    public GameObject _graveItem;
+    public bool QuestComplete;
+    public GameObject _questItem { get; private set; }
+
+
     public float DistanceFromPlayerToActivate = 3f;
 
     //CONVERSATIONS
@@ -90,5 +95,13 @@ public class GraveGhost : MonoBehaviour
         ghostSpriteOpacity -= fadeAmount;
         ghostRenderer.color = new Color(1, 1, 1, ghostSpriteOpacity);
         GhostGlow.intensity = Mathf.Max(0, ghostSpriteOpacity / ghostSpriteMaxOpacity);
+    }
+
+    public void CompleteQuest(GameObject questItem)
+    {
+        if(_questItem.Equals(questItem))
+        {
+            QuestComplete = true;
+        }
     }
 }

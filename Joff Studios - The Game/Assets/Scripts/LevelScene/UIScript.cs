@@ -42,6 +42,11 @@ public class UIScript : MonoBehaviour
     private InventoryUI _inventory;
     public bool proximityButtonsEnabled;
 
+    //TUTORIAL PROMPTS
+
+    public Image TutorialPromptsBackground;
+    public Text PromptText;
+
     private void Awake()
     {
         _inventory = Inventory.GetComponent<InventoryUI>();
@@ -241,28 +246,47 @@ public class UIScript : MonoBehaviour
         ShowPlayerUI();
     }
 
+    //TUTORIAL PROMPTS
+
+    public IEnumerator FadeInPrompts()
+    {
+        yield return new WaitForFixedUpdate();
+    }
+    public IEnumerator FadeOutPrompts()
+    {
+        yield return new WaitForFixedUpdate();
+    }
+
     public void PromptScream()
     {
-        print("you should scream bro");
+        PromptText.text = "Press 'Spacebar' to Scream!";
     }
     public void PromptPossess()
     {
-        print("you should possess bro");
+        PromptText.text = "Press 'Q' to Fix up the Grave!";
     }
     public void PromptDepossess()
     {
-        print("you should stop bro");
+        PromptText.text = "Press 'Q' again to leave the possessable Object!";
     }
     public void PromptDash()
     {
-        print("you should dash bro");
+        PromptText.text = "Press 'Shift' to Dash!";
+    }
+    public void PromptPossessShades()
+    {
+        PromptText.text = "Press 'Q' to Possess the pair of sunglasses!";
+    }
+    public void PromptMoveWithArrowKeys()
+    {
+        PromptText.text = "Use the arrow keys or WASD to move around!";
     }
     public void PromptPickUp()
     {
-        print("you should pickup bro");
+        PromptText.text = "Press 'E' to pick up offerings near you!";
     }
     public void PromptPlaceDown()
     {
-        print("you should place down bro");
+        PromptText.text = "Press 'F' to give the offerings to the ghosts!";
     }
 }
