@@ -15,8 +15,8 @@ public class GraveRobber : MonoBehaviour
     private Rigidbody2D robberRB;
     private Animator animator;
     private SpriteRenderer graverobberRenderer; //the sprite renderer of our robber
-    [SerializeField]
-    private GameObject UIRobber;
+    public GameObject UIRobberPrefab;
+    private GameObject UIRobberInstance;
 
     //FEAR
 
@@ -35,6 +35,7 @@ public class GraveRobber : MonoBehaviour
     private bool hasLoot;
     private GameObject currentLoot = null;
     private bool isDigging; //determines wether we are currently digging
+    private bool isEscaping;
     public bool lockMovement;
 
     //PATHFINDING
@@ -54,7 +55,10 @@ public class GraveRobber : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         graverobberRenderer = GetComponentInChildren<SpriteRenderer>();
         seeker = GetComponent<Seeker>();
-        UIRobber.SetActive(false);
+
+        UIRobberInstance = Instantiate(UIRobberPrefab, Vector3.zero, Quaternion.identity);
+        UIRobberInstance.transform.parent = gameObject.transform;
+        UIRobberInstance.SetActive(false);
     }
 
     void Start()
@@ -87,14 +91,14 @@ public class GraveRobber : MonoBehaviour
         Vector3 screenPoint = Camera.main.WorldToViewportPoint(gameObject.transform.position);
         bool onScreen = screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
 
-        if(!onScreen)
+        if(!onScreen && !isEscaping)
         {
-            UIRobber.SetActive(true);
+            UIRobberInstance.SetActive(true);
             SetUIRobberLocation();
         }
         else
         {
-            UIRobber.SetActive(false);
+            UIRobberInstance.SetActive(false);
         }
     }
 
@@ -336,6 +340,7 @@ public class GraveRobber : MonoBehaviour
     }
     private IEnumerator FleeAnimation()
     {
+        isEscaping = true;
         GetComponent<Collider2D>().isTrigger = true; //stop all collisions
         for (int i = 200; i > 0; i--) //lower our opacity continously
         {
@@ -346,6 +351,7 @@ public class GraveRobber : MonoBehaviour
     }
     private IEnumerator EscapeWithLootAnimation()
     {
+        isEscaping = true;
         canBeFeared = false; //stop us from being feared while we are already free
         fearLevel.ReduceFear(100f); //reset our fear, which at the same time hides the healthbar
         animator.SetBool("HasEscaped", true); //set our animation to the escape!
@@ -388,11 +394,28 @@ public class GraveRobber : MonoBehaviour
 
     private void SetUIRobberLocation()
     {
-        //float maxScreenWidth = 1920 / 2f;
-        //float maxScreenHeight = 1080 / 2f;
+        float maxScreenWidth = 1920 / 2f;
+        float maxScreenHeight = 1080 / 2f;
+        float featherAmount = 50f;
 
-        Vector3 robberLocation = Camera.main.WorldToViewportPoint(gameObject.transform.position);
-        print(robberLocation);
-        //if(robberLocation)
+        Vector2 robberLocation = Camera.main.WorldToScreenPoint(gameObject.transform.position) - new Vector3(maxScreenWidth, maxScreenHeight, 0);
+
+        if(robberLocation.x >= maxScreenWidth)
+        {
+            robberLocation.x = maxScreenWidth - featherAmount;
+        }
+        else if(robberLocation.x <= -maxScreenWidth)
+        {
+            robberLocation.x = -maxScreenWidth + featherAmount;
+        }
+        if (robberLocation.y >= maxScreenHeight)
+        {
+            robberLocation.y = maxScreenHeight - featherAmount;
+        }
+        if (robberLocation.y <= -maxScreenHeight)
+        {
+            robberLocation.y = -maxScreenHeight + featherAmount;
+        }
+        UIRobberInstance.GetComponent<UIRobber>().rect.anchoredPosition = robberLocation;
     }
 }

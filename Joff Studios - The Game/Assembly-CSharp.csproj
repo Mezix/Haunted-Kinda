@@ -89,6 +89,7 @@
     <Compile Include="Assets\Scripts\LevelScene\TriggerReturnCollissions.cs" />
     <Compile Include="Assets\Scripts\LevelScene\TutorialGhost.cs" />
     <Compile Include="Assets\Scripts\LevelScene\UIOffering.cs" />
+    <Compile Include="Assets\Scripts\LevelScene\UIRobber.cs" />
     <Compile Include="Assets\Scripts\LevelScene\UIScript.cs" />
     <Compile Include="Assets\Scripts\Loader.cs" />
     <Compile Include="Assets\Scripts\MenuScene\MenuSceneManager.cs" />
