@@ -474,6 +474,7 @@ public class LevelSceneManager : MonoBehaviour
         TriggerDialogue(TutorialConversations[tutorialIndex]);
         tutorialIndex++;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
+        StartCoroutine(_UIScript.FadeInPrompts());
         _UIScript.PromptScream();
         Robber.fearLevel.InitMaxFear(40);
         References.playerScript._screamLocked = false;
@@ -482,6 +483,7 @@ public class LevelSceneManager : MonoBehaviour
         _UIScript.ShowPlayerUI();
 
         yield return new WaitWhile(() => !Robber.isTerrified);
+        StartCoroutine(_UIScript.FadeOutPrompts());
 
         float timer = 0f;
         while(timer < 1.5f)
@@ -502,11 +504,12 @@ public class LevelSceneManager : MonoBehaviour
 
         References.playerScript.MoveToNextPos();
         yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
-
         _UIScript.PromptPossess();
+        StartCoroutine(_UIScript.FadeInPrompts());
         References.playerScript._possessionLocked = false;
         _UIScript.ShowPlayerUI();
         yield return new WaitWhile(() => !References.playerScript.IsPossessing);
+        StartCoroutine(_UIScript.FadeOutPrompts());
         yield return new WaitForSeconds(2.5f);
         _kittyGrave.InitMaxHealth(100f);
         _kittyGrave.Restore(1f); //plays the healing sound
@@ -517,9 +520,11 @@ public class LevelSceneManager : MonoBehaviour
         TriggerDialogue(TutorialConversations[tutorialIndex]);
         tutorialIndex++;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
+        StartCoroutine(_UIScript.FadeInPrompts());
         _UIScript.PromptDepossess();
         References.playerScript._depossessionLocked = false;
         yield return new WaitWhile(() => References.playerScript.IsPossessing);
+        StartCoroutine(_UIScript.FadeOutPrompts());
         References.playerScript.LockMovement();
         References.playerScript._depossessionLocked = true;
         References.playerScript._possessionLocked = true;
@@ -560,6 +565,7 @@ public class LevelSceneManager : MonoBehaviour
         tutorialIndex++;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
         Robber.fearLevel.InitMaxFear(20);
+        StartCoroutine(_UIScript.FadeInPrompts());
         _UIScript.PromptDash();
         References.playerScript.lastMovementDir = References.playerScript.movement = new Vector2(-1, 0);
         References.playerScript._dashLocked = false;
@@ -567,6 +573,7 @@ public class LevelSceneManager : MonoBehaviour
         _UIScript.ShowPlayerUI();
 
         yield return new WaitWhile(() => !Robber.isTerrified);
+        StartCoroutine(_UIScript.FadeOutPrompts());
         Robber.lockMovement = false;
         References.playerScript._dashLocked = true;
 
@@ -594,9 +601,11 @@ public class LevelSceneManager : MonoBehaviour
         yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
         yield return new WaitWhile(() => !_tutorialGhost.reachedEndOfPath);
         yield return new WaitForSeconds(0.25f);
+        StartCoroutine(_UIScript.FadeInPrompts());
         _UIScript.PromptPossessShades();
         References.playerScript._possessionLocked = false;
         yield return new WaitWhile(() => !References.playerScript.IsPossessing);
+        StartCoroutine(_UIScript.FadeOutPrompts());
 
         References.playerScript.possessedObject.lockMovement = true;
         TriggerDialogue(TutorialConversations[tutorialIndex]);
@@ -604,18 +613,21 @@ public class LevelSceneManager : MonoBehaviour
         yield return new WaitWhile(() => DialogueManager.playingConversation);
         References.playerScript.possessedObject.lockMovement = false;
         //Scene #14: Move and place down Sunglasses
-
+        StartCoroutine(_UIScript.FadeInPrompts());
         _UIScript.PromptMoveWithArrowKeys();
         yield return new WaitWhile(() => Vector2.Distance(References.playerScript.possessedObject.transform.position, _coolGrave.transform.position ) > 0.5f);
+        StartCoroutine(_UIScript.FadeOutPrompts());
         References.playerScript.possessedObject.lockMovement = true;
         TriggerDialogue(TutorialConversations[tutorialIndex]);
         tutorialIndex++;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
         yield return new WaitForSeconds(0.2f);
 
-        _UIScript.PromptDepossess();
+        StartCoroutine(_UIScript.FadeInPrompts());
+        _UIScript.PromptDepossessShades();
         References.playerScript._depossessionLocked = false;
         yield return new WaitWhile(() => References.playerScript.IsPossessing);
+        StartCoroutine(_UIScript.FadeOutPrompts());
         References.playerScript.LockMovement();
         yield return new WaitForSeconds(0.2f);
         References.playerScript._depossessionLocked = true;
@@ -644,9 +656,11 @@ public class LevelSceneManager : MonoBehaviour
         References.playerScript.MoveToNextPos();
         yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
         References.playerScript._interactionLocked = false;
+        StartCoroutine(_UIScript.FadeInPrompts());
         _UIScript.PromptPickUp();
 
         yield return new WaitWhile(() => References.playerScript.collectedOfferings.Count == 0);
+        StartCoroutine(_UIScript.FadeOutPrompts());
         _UIScript.InventoryHidden = false;
         _UIScript.ShowPlayerUI();
 
@@ -663,11 +677,13 @@ public class LevelSceneManager : MonoBehaviour
         yield return new WaitWhile(() => !_tutorialGhost.reachedEndOfPath);
         yield return new WaitForSeconds(0.25f);
 
+        StartCoroutine(_UIScript.FadeInPrompts());
         _UIScript.PromptPlaceDown();
 
         //Scene #18: Cool ghost thanks you for the meal
 
         yield return new WaitWhile(() => References.playerScript.collectedOfferings.Count != 0);
+        StartCoroutine(_UIScript.FadeOutPrompts());
         TriggerDialogue(TutorialConversations[tutorialIndex]);
         tutorialIndex++;
         yield return new WaitWhile(() => DialogueManager.playingConversation);

@@ -46,11 +46,16 @@ public class UIScript : MonoBehaviour
 
     public Image TutorialPromptsBackground;
     public Text PromptText;
+    private float promptFadeAmount;
+    private float promptOpacity = 0;
 
     private void Awake()
     {
         _inventory = Inventory.GetComponent<InventoryUI>();
         proximityButtonsEnabled = true;
+        promptOpacity = 0;
+        promptFadeAmount = 0.03f;
+        TutorialPromptsBackground.color = PromptText.color = new Color(1, 1, 1, promptOpacity);
     }
 
     private void Update()
@@ -250,11 +255,29 @@ public class UIScript : MonoBehaviour
 
     public IEnumerator FadeInPrompts()
     {
-        yield return new WaitForFixedUpdate();
+        StopCoroutine(FadeOutPrompts());
+        promptOpacity = 0;
+        while (promptOpacity <= 1)
+        {
+            promptOpacity += promptFadeAmount;
+            yield return new WaitForFixedUpdate();
+            TutorialPromptsBackground.color = PromptText.color = new Color(1, 1, 1, promptOpacity);
+        }
+        promptOpacity = 1;
+        TutorialPromptsBackground.color = PromptText.color = new Color(1, 1, 1, 1);
     }
     public IEnumerator FadeOutPrompts()
     {
-        yield return new WaitForFixedUpdate();
+        StopCoroutine(FadeInPrompts());
+        promptOpacity = 1;
+        while (promptOpacity >= 0)
+        {
+            promptOpacity -= promptFadeAmount;
+            yield return new WaitForFixedUpdate();
+            TutorialPromptsBackground.color = PromptText.color = new Color(1, 1, 1, promptOpacity);
+        }
+        promptOpacity = 0;
+        TutorialPromptsBackground.color = PromptText.color = new Color(1, 1, 1, 0);
     }
 
     public void PromptScream()
@@ -263,11 +286,11 @@ public class UIScript : MonoBehaviour
     }
     public void PromptPossess()
     {
-        PromptText.text = "Press 'Q' to Fix up the Grave!";
+        PromptText.text = "Press 'Q' to Fix up the grave!";
     }
     public void PromptDepossess()
     {
-        PromptText.text = "Press 'Q' again to leave the possessable Object!";
+        PromptText.text = "Press 'Q' again to leave the grave!";
     }
     public void PromptDash()
     {
@@ -275,7 +298,11 @@ public class UIScript : MonoBehaviour
     }
     public void PromptPossessShades()
     {
-        PromptText.text = "Press 'Q' to Possess the pair of sunglasses!";
+        PromptText.text = "Press 'Q' to Possess the sunglasses!";
+    }
+    public void PromptDepossessShades()
+    {
+        PromptText.text = "Press 'Q' to place down the sunglasses!";
     }
     public void PromptMoveWithArrowKeys()
     {
