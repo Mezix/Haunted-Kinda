@@ -19,7 +19,7 @@ public class CameraScript : MonoBehaviour
     }
     private void Start()
     {
-        defaultZoom = 10;
+        defaultZoom = 15;
         pixelPerfect.assetsPPU = defaultZoom;
     }
     void Update()

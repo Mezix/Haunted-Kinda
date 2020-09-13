@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
 
     public bool IsPossessing { get; private set; } //checks if we are possesing any object
     private bool startingPossession; //intermediating bool between the start and end of possession
-    private PossessableObject possessedObject; //the script of the object were possessing
+    public PossessableObject possessedObject; //the script of the object were possessing
     public float _possessionRange; //the range at which we can start to possess objects
 
     //INVENTORY

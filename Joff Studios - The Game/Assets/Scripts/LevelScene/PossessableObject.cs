@@ -16,6 +16,7 @@ public class PossessableObject : MonoBehaviour
     private Rigidbody2D possessableRB;
 
     public GameObject exclamation;
+    public bool lockMovement;
 
     private void Awake()
     {
@@ -50,7 +51,7 @@ public class PossessableObject : MonoBehaviour
             {
                 StartCoroutine(RestoreGrave());
             }
-            else if (_canMove)
+            else if (_canMove && !lockMovement)
             {
                 MovePossessableObject();
             }
@@ -99,6 +100,7 @@ public class PossessableObject : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
         _moveablePart.transform.localPosition = new Vector2(0, 0f);
+        lockMovement = false;
     }
     private IEnumerator ExclamationMark()
     {

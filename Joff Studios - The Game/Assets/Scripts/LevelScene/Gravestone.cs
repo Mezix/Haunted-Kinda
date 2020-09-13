@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Gravestone : MonoBehaviour
 {
+    private GraveGhost inhabitedGhost;
     public bool _destroyed;
     public bool IsBeingTargeted { get; set; }
 
@@ -28,6 +29,7 @@ public class Gravestone : MonoBehaviour
         GravestoneRenderer = GetComponent<SpriteRenderer>();
         initialSprite = GravestoneRenderer.sprite;
         Healing = GetComponent<AudioSource>();
+        inhabitedGhost = GetComponentInChildren<GraveGhost>();
     }
     void Start()
     {
@@ -39,7 +41,6 @@ public class Gravestone : MonoBehaviour
         currentHealth = maxHealth;
         CheckDestructionState();
     }
-
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
@@ -61,13 +62,11 @@ public class Gravestone : MonoBehaviour
         }
         CheckDestructionState();
     }
-
     private void CheckDestructionState()
     {
         int index = Mathf.RoundToInt((1f - (currentHealth / maxHealth)) * (DestructionStates.Length - 1));
         GravestoneRenderer.sprite = DestructionStates[index];
     }
-
     public void AttackGrave()
     {
         IsBeingTargeted = true;
