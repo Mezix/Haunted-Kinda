@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MenuSceneManager : MonoBehaviour
 {
+    public UIGrave uigrave;
+    public MenuSceneSettings settings;
+
     public void StartGame()
     {
         Loader.Load(Loader.Scene.LevelScene);
@@ -11,7 +14,14 @@ public class MenuSceneManager : MonoBehaviour
 
     public void LaunchSettings()
     {
-        print("settings");
+        if(!settings.settingsRaised)
+        {
+            settings.Raise();
+        }
+        else
+        {
+            settings.Lower();
+        }
     }
 
     public void QuitGame()

@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\LevelScene\InventoryUI.cs" />
     <Compile Include="Assets\Scripts\LevelScene\LevelSceneManager.cs" />
     <Compile Include="Assets\Scripts\LevelScene\Lootbag.cs" />
+    <Compile Include="Assets\Scripts\LevelScene\MenuSceneSettings.cs" />
     <Compile Include="Assets\Scripts\LevelScene\Offering.cs" />
     <Compile Include="Assets\Scripts\LevelScene\Player.cs" />
     <Compile Include="Assets\Scripts\LevelScene\PlayerAfterImage.cs" />
@@ -96,7 +97,7 @@
     <Compile Include="Assets\Scripts\MenuScene\MenuSceneManager.cs" />
     <Compile Include="Assets\Scripts\MenuScene\PlayerLookAt.cs" />
     <Compile Include="Assets\Scripts\MenuScene\UIGrave.cs" />
-    <None Include="Assets\Sounds &amp; Music\Put this in Credits for Copyright.txt" />
+    <None Include="Assets\Audio\Put this in Credits for Copyright.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

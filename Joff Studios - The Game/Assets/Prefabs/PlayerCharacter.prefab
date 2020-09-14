@@ -388,7 +388,9 @@ MonoBehaviour:
   lastAfterImagePos: {x: 0, y: 0, z: 0}
   _screamCooldown: 0
   _screamDamage: 50
+  possessedObject: {fileID: 0}
   _possessionRange: 0
+  collectedOfferings: []
   _dashCollider: {fileID: 236815685441882335}
   _screamCollider: {fileID: 3292341581732449292}
   _graveGhostsCollider: {fileID: 7203757889154317408}
@@ -401,6 +403,11 @@ MonoBehaviour:
   _screamSound: {fileID: 4560099793726918585}
   reachedEndOfPath: 0
   positionsToSeekOut: []
+  _possessionLocked: 0
+  _depossessionLocked: 0
+  _dashLocked: 0
+  _screamLocked: 0
+  _interactionLocked: 0
 --- !u!212 &2766420452868347877
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -586,7 +593,8 @@ AudioSource:
   m_GameObject: {fileID: 3519390477328031930}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: d719615b5eb69e14fa69bae61fd70faf,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 9936ac04ef96f8944bcffb5cae99a4f6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.3
@@ -1010,7 +1018,8 @@ AudioSource:
   m_GameObject: {fileID: 8289779493239651179}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: d719615b5eb69e14fa69bae61fd70faf,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: e470a70de5430ba47bf4435b655d5607, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.1

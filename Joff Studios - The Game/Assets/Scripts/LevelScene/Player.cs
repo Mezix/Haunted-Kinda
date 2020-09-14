@@ -201,6 +201,7 @@ public class Player : MonoBehaviour
         playerAnimator.SetBool("Dashing", true);
         playerAnimator.SetFloat("Horizontal", direction.x);  //  Set our horizontal and vertical move values, so our dash animation... 
         playerAnimator.SetFloat("Vertical", direction.y);
+        _dashSound.Play();
 
         List<GraveRobber> AlreadyDamagedRobbers = new List<GraveRobber>(); //since our collider moves, we might damage robbers twice, which we dont want
 

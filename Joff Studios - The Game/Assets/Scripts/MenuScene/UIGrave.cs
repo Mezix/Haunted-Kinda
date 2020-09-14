@@ -10,7 +10,7 @@ public class UIGrave : MonoBehaviour
     public GameObject QuitButtonObj;
 
     private void Start()
-    {
+    { 
         StartCoroutine(RaiseGrave());
     }
     public IEnumerator RaiseGrave()
