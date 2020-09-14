@@ -58,6 +58,7 @@ public class Gravestone : MonoBehaviour
         if (currentHealth <= 0)
         {
             _destroyed = true;
+            inhabitedGhost.timesGraveWasDestroyed++;
             currentHealth = 0;
         }
         CheckDestructionState();

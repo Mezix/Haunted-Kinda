@@ -49,6 +49,11 @@ public class UIScript : MonoBehaviour
     private float promptFadeAmount;
     private float promptOpacity = 0;
 
+    //GRADE
+
+    public Text ActualGrade;
+    public Text GradeMessage;
+
     private void Awake()
     {
         _inventory = Inventory.GetComponent<InventoryUI>();
@@ -112,7 +117,6 @@ public class UIScript : MonoBehaviour
         Quaternion q = SunDial.transform.rotation;
         q.eulerAngles = new Vector3(0, 0, lighting.DayToNightRatio * 180);
         SunDial.transform.rotation = q;
-
     }
     public void StartGame()
     {
@@ -134,11 +138,6 @@ public class UIScript : MonoBehaviour
     public void UIScream()
     {
         StartCoroutine(Scream());
-    }
-
-    public void ShowEndScreen()
-    {
-        EndScreen.SetActive(true);
     }
 
     IEnumerator Dash()
@@ -315,5 +314,38 @@ public class UIScript : MonoBehaviour
     public void PromptPlaceDown()
     {
         PromptText.text = "Press 'F' to give the offerings to the ghosts!";
+    }
+    public void ShowEndScreen()
+    {
+        EndScreen.SetActive(true);
+        ScoringSystem.instance.CalculateScore();
+        string grade = ScoringSystem.instance.CalculateGrade();
+        ActualGrade.text = grade;
+        string message = " Dunno";
+        if(grade == "D")
+        {
+            message = "Well, at least you tried your best :)";
+        }
+        else if(grade == "C")
+        {
+            message = "Not bad friend!";
+        }
+        else if (grade == "B")
+        {
+            message = "Hey well done!";
+        }
+        else if (grade == "A")
+        {
+            message = "Wow fantastic!";
+        }
+        else if (grade == "S")
+        {
+            message = "Incredible Job!";
+        }
+        else if (grade == "S+")
+        {
+            message = "You are a true friend of ghosts!";
+        }
+        GradeMessage.text = message;
     }
 }
