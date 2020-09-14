@@ -12,6 +12,8 @@ public class GraveGhost : MonoBehaviour
     private float ghostSpriteMaxOpacity; //the max opacity our ghost should achieve
     private float fadeAmount; //the amount to change our opacity every frame
 
+    public HealthBarScript happiness;
+
     public GameObject _graveItem;
     public bool lootStolen;
 
@@ -30,6 +32,7 @@ public class GraveGhost : MonoBehaviour
     {
         GhostGlow = GetComponentInChildren<UnityEngine.Experimental.Rendering.Universal.Light2D>();
         ghostRenderer = GetComponentInChildren<SpriteRenderer>();
+        happiness = GetComponentInChildren<HealthBarScript>();
     }
     private void Start()
     {
@@ -39,6 +42,8 @@ public class GraveGhost : MonoBehaviour
         GhostGlow.intensity = 0;
         fadeAmount = 0.05f;
         _conversationIndex = 0;
+
+        happiness.healthbarbackground.color = happiness.healthbar.color = ghostRenderer.color = new Color(1, 1, 1, ghostSpriteOpacity);
 
     }
     private void FixedUpdate()
@@ -84,6 +89,7 @@ public class GraveGhost : MonoBehaviour
         }
         ghostSpriteOpacity += fadeAmount;
         ghostRenderer.color = new Color(1, 1, 1, ghostSpriteOpacity);
+        happiness.healthbarbackground.color = happiness.healthbar.color = ghostRenderer.color = new Color(1, 1, 1, ghostSpriteOpacity);
         GhostGlow.intensity = ghostSpriteOpacity / ghostSpriteMaxOpacity; //swing between 0 and 1, depending on our fade
     }
     public void FadeOut()
@@ -96,6 +102,7 @@ public class GraveGhost : MonoBehaviour
         }
         ghostSpriteOpacity -= fadeAmount;
         ghostRenderer.color = new Color(1, 1, 1, ghostSpriteOpacity);
+        happiness.healthbarbackground.color = happiness.healthbar.color = ghostRenderer.color = new Color(1, 1, 1, ghostSpriteOpacity);
         GhostGlow.intensity = Mathf.Max(0, ghostSpriteOpacity / ghostSpriteMaxOpacity);
     }
 
@@ -104,6 +111,7 @@ public class GraveGhost : MonoBehaviour
         if(_questItem.tag == newItem.tag)
         {
             QuestComplete = true;
+            newItem.GetComponent<PossessableObject>().ReturnPossessable();
         }
     }
 }

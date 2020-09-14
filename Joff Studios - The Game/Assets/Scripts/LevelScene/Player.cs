@@ -385,7 +385,7 @@ public class Player : MonoBehaviour
                 Offering offering = collectedOfferings[0]; //take the first offering off our list
                 offering.gameObject.SetActive(true); //reenable this offering
                 offering.transform.position = closestGrave.OfferingPos.transform.position; //and move it our graves offering position
-                closestGrave.Restore(offering.HealAmount); //heal our grave
+                closestGrave.RaiseHappiness(offering.HealAmount); //heal our grave
                 offering.FadeAway(closestGrave); //slowly fade it away
                 collectedOfferings.RemoveAt(0); //remove the offering from our list
                 Events.current.PlaceDownOffering(offering);

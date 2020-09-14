@@ -86,6 +86,7 @@
     <Compile Include="Assets\Scripts\LevelScene\PlayerAfterImage.cs" />
     <Compile Include="Assets\Scripts\LevelScene\PossessableObject.cs" />
     <Compile Include="Assets\Scripts\LevelScene\References.cs" />
+    <Compile Include="Assets\Scripts\LevelScene\ScoringSystem.cs" />
     <Compile Include="Assets\Scripts\LevelScene\TriggerReturnCollissions.cs" />
     <Compile Include="Assets\Scripts\LevelScene\TutorialGhost.cs" />
     <Compile Include="Assets\Scripts\LevelScene\UIOffering.cs" />

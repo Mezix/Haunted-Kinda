@@ -1340,7 +1340,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 97918471}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.01, y: -4.68, z: 0}
+  m_LocalPosition: {x: -7.15, y: -3.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 379151986}
@@ -50307,6 +50307,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatGrave
       objectReference: {fileID: 0}
+    - target: {fileID: 2249275473699789173, guid: 6c0f6694e3a651a4aae39305c1573e46,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c0f6694e3a651a4aae39305c1573e46, type: 3}
 --- !u!1 &1095844556
@@ -53146,6 +53151,7 @@ MonoBehaviour:
   - {fileID: 5787650698131815977, guid: e337078895bd8c740a7c554836d19dc4, type: 3}
   _offeringsParent: {fileID: 511610596}
   _offeringPosParent: {fileID: 657316218}
+  score: {fileID: 1560358033}
   EndingMusic: {fileID: 2118313490}
   _tutorialGhost: {fileID: 1116907522}
   _playTutorial: 0
@@ -54373,6 +54379,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1560358032
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1560358034}
+  - component: {fileID: 1560358033}
+  m_Layer: 0
+  m_Name: ScoringSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1560358033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560358032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 009fd2aea6f24894eae003be497123c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AllGraveGhosts: []
+--- !u!4 &1560358034
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560358032}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1579910119
 GameObject:
   m_ObjectHideFlags: 0

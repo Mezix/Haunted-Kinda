@@ -7,8 +7,9 @@ public class PossessableObject : MonoBehaviour
 {
     [SerializeField]
     private bool isPossessed;
-    public Gravestone grave;
+    public Gravestone grave { get; private set; }
     public bool _canMove;
+    private bool isRestoring;
     public GameObject _moveablePart;
     public float _moveSpeed;
     public GameObject CastShadow;
@@ -21,6 +22,7 @@ public class PossessableObject : MonoBehaviour
     private void Awake()
     {
         possessableRB = GetComponent<Rigidbody2D>();
+        grave = GetComponent<Gravestone>();
     }
 
     public void Possess()
@@ -47,7 +49,7 @@ public class PossessableObject : MonoBehaviour
     {
         if(isPossessed)
         {
-            if(grave && !grave.GetComponentInChildren<GraveGhost>().lootStolen) //if our loot has been stolen, we cant fix the grave yet!
+            if(grave && !grave.GetComponentInChildren<GraveGhost>().lootStolen && !isRestoring) //if our loot has been stolen, we cant fix the grave yet!
             {
                 StartCoroutine(RestoreGrave());
             }
@@ -69,16 +71,18 @@ public class PossessableObject : MonoBehaviour
 
     IEnumerator RestoreGrave()
     {
-        Gravestone grave = GetComponent<Gravestone>();
+        isRestoring = true;
+        print("restore");
         while(grave.currentHealth < grave.maxHealth)
         {
             if(!isPossessed)
             {
                 break;
             }
-            grave.Restore(0.5f);
+            grave.RestoreGrave(0.1f);
             yield return new WaitForSeconds(0.01f);
         }
+        isRestoring = false;
     }
 
     private IEnumerator FloatPossessable()
@@ -113,5 +117,10 @@ public class PossessableObject : MonoBehaviour
             yield return new WaitForSeconds(1f);
             exclamation.SetActive(false);
         }
+    }
+
+    public void ReturnPossessable()
+    {
+        Destroy(gameObject);
     }
 }

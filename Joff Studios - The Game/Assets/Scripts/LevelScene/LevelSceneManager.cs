@@ -39,6 +39,7 @@ public class LevelSceneManager : MonoBehaviour
     private List<GameObject> offeringSpawnPositions = new List<GameObject>();
 
     public static bool paused;
+    public ScoringSystem score;
 
     public AudioSource EndingMusic;
 
@@ -76,7 +77,8 @@ public class LevelSceneManager : MonoBehaviour
 
     private void Start()
     {
-        if(_playTutorial)
+        score.InitAllGraves(allGraves);
+        if (_playTutorial)
         {
             StartCoroutine(StartTutorial());
         }
@@ -327,6 +329,7 @@ public class LevelSceneManager : MonoBehaviour
         foreach(Gravestone grave in allGraves)
         {
             grave.GetComponentInChildren<GraveGhost>().DistanceFromPlayerToActivate = 0f;
+            grave.GetComponentInChildren<GraveGhost>().happiness.gameObject.SetActive(false);
         }
     }
     private void EnableGraveghostFadein()
@@ -334,6 +337,7 @@ public class LevelSceneManager : MonoBehaviour
         foreach (Gravestone grave in allGraves)
         {
             grave.GetComponentInChildren<GraveGhost>().DistanceFromPlayerToActivate = 3f;
+            grave.GetComponentInChildren<GraveGhost>().happiness.gameObject.SetActive(true);
         }
     }
     private GraveRobber SpawnTutorialRobber(Transform transform)
@@ -497,7 +501,9 @@ public class LevelSceneManager : MonoBehaviour
         References.playerScript.lastMovementDir = References.playerScript.movement = new Vector2(0, 1);
         yield return new WaitForSeconds(0.5f);
 
+
         //  Scene #7: Player defeated Robber, unlock possession, fix Cats Grave
+
 
         TriggerDialogue(TutorialConversations[tutorialIndex]);
         tutorialIndex++;
@@ -513,10 +519,12 @@ public class LevelSceneManager : MonoBehaviour
         StartCoroutine(_UIScript.FadeOutPrompts());
         yield return new WaitForSeconds(2.5f);
         _kittyGrave.InitMaxHealth(100f);
-        _kittyGrave.Restore(1f); //plays the healing sound
+        _kittyGrave.RestoreGrave(1f); //plays the healing sound
         yield return new WaitForSeconds(0.5f);
 
+
         //  Scene #8: Player is prompted to leave grave
+
 
         TriggerDialogue(TutorialConversations[tutorialIndex]);
         tutorialIndex++;
@@ -531,12 +539,15 @@ public class LevelSceneManager : MonoBehaviour
         References.playerScript._possessionLocked = true;
         yield return new WaitForSeconds(1f);
 
+
         //Scene #9: Player has depossessed, but theres a new robber on our left
+
 
         TriggerDialogue(TutorialConversations[tutorialIndex]);
         tutorialIndex++;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
         _kitty.DistanceFromPlayerToActivate = 0f;
+
 
         // Scene #10: Robber is stealing loot, cool ghost talks
 
@@ -636,6 +647,7 @@ public class LevelSceneManager : MonoBehaviour
         yield return new WaitWhile(() => References.playerScript.IsPossessing);
         StartCoroutine(_UIScript.FadeOutPrompts());
         References.playerScript.LockMovement();
+
         yield return new WaitForSeconds(0.2f);
         References.playerScript._depossessionLocked = true;
         References.playerScript._possessionLocked = true;
@@ -673,6 +685,10 @@ public class LevelSceneManager : MonoBehaviour
         StartCoroutine(_UIScript.FadeOutPrompts());
         _UIScript.InventoryHidden = false;
         _UIScript.ShowPlayerUI();
+
+        _coolGrave.InitHappiness(250f);
+        _coolGrave.RaiseHappiness(35f);
+        _coolGhost.happiness.gameObject.SetActive(true);
 
         //Scene #17: Bring offering to cool ghost
 
@@ -750,7 +766,9 @@ public class LevelSceneManager : MonoBehaviour
         //  Reset graves to default values again
         EnableGraveghostFadein();
         _kittyGrave.InitMaxHealth(100f);
+        _kittyGrave.TakeDamage(50f);
         _coolGrave.InitMaxHealth(100f);
         _coolGrave.TakeDamage(60f);
+        _kittyGrave.InitHappiness(250f);
     }
 }

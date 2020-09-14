@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HealthBarScript : MonoBehaviour
 {
     [SerializeField]
-    private Image healthbar;
+    public Image healthbar;
     public Image healthbarbackground;
     private void Awake()
     {

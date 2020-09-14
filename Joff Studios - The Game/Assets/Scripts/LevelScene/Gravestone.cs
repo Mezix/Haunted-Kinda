@@ -19,10 +19,15 @@ public class Gravestone : MonoBehaviour
     public float maxHealth;
     public float currentHealth;
 
+    public float maxGhostHappiness;
+    public float currentHappiness;
+
     public GameObject OfferingPos;
     public Offering currentOffering;
 
     private AudioSource Healing;
+    [SerializeField]
+    private float timeSinceLastHealSound = 1f;
 
     private void Awake()
     {
@@ -30,10 +35,16 @@ public class Gravestone : MonoBehaviour
         initialSprite = GravestoneRenderer.sprite;
         Healing = GetComponent<AudioSource>();
         inhabitedGhost = GetComponentInChildren<GraveGhost>();
+
+    }
+    private void Update()
+    {
+        timeSinceLastHealSound += Time.deltaTime;
     }
     void Start()
     {
         InitMaxHealth(100);
+        InitHappiness(250f);
     }
     public void InitMaxHealth(float max)
     {
@@ -51,14 +62,19 @@ public class Gravestone : MonoBehaviour
         }
         CheckDestructionState();
     }
-    public void Restore(float heal)
+    public void RestoreGrave(float heal)
     {
-        Healing.Play();
+        if(timeSinceLastHealSound >= 2f)
+        {
+            Healing.Play();
+            timeSinceLastHealSound = 0f;
+        }
         currentHealth += heal;
         if (currentHealth >= maxHealth)
         {
             currentHealth = maxHealth;
             _destroyed = false;
+            RaiseHappiness(30f);
         }
         CheckDestructionState();
     }
@@ -67,6 +83,34 @@ public class Gravestone : MonoBehaviour
         int index = Mathf.RoundToInt((1f - (currentHealth / maxHealth)) * (DestructionStates.Length - 1));
         GravestoneRenderer.sprite = DestructionStates[index];
     }
+    public void RaiseHappiness(float value)
+    {
+        currentHappiness += value;
+        if(currentHappiness > maxGhostHappiness)
+        {
+            currentHappiness = maxGhostHappiness;
+        }
+        inhabitedGhost.happiness.HandleHealthChange(currentHappiness / maxGhostHappiness);
+    }
+    public void LowerHappiness(float value)
+    {
+        currentHappiness -= value;
+        if(currentHappiness <= 0)
+        {
+            currentHappiness = 0;
+        }
+        inhabitedGhost.happiness.HandleHealthChange(currentHappiness / maxGhostHappiness);
+    }
+    public void InitHappiness(float maxValue)
+    {
+        if(inhabitedGhost.happiness)
+        {
+            maxGhostHappiness = maxValue;
+            currentHappiness = maxGhostHappiness / 2;
+            inhabitedGhost.happiness.HandleHealthChange(currentHappiness / maxGhostHappiness);
+        }
+    }
+    
     public void AttackGrave()
     {
         IsBeingTargeted = true;
