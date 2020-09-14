@@ -19,6 +19,7 @@ public class GraveGhost : MonoBehaviour
 
     public GameObject _questItem;
     public bool QuestComplete;
+    public int timesGraveWasDestroyed;
 
 
     public float DistanceFromPlayerToActivate = 3f;

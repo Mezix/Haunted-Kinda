@@ -78,6 +78,8 @@ public class LevelSceneManager : MonoBehaviour
     private void Start()
     {
         score.InitAllGraves(allGraves);
+        score.CalculateMaxScore();
+
         if (_playTutorial)
         {
             StartCoroutine(StartTutorial());
