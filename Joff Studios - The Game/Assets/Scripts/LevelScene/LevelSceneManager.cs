@@ -174,6 +174,7 @@ public class LevelSceneManager : MonoBehaviour
     {
         _UIScript.TurnOnDialogue();
         DialogueManager.instance.StartDialogue(convo);
+        References.playerScript.LockMovement();
     }
 
 
@@ -358,14 +359,8 @@ public class LevelSceneManager : MonoBehaviour
         //  Setup of Scene for the tutorial
 
         //  UI
-        _UIScript.HidePlayerUI();
-        _UIScript.proximityButtonsEnabled = false;
-        _UIScript.portraitHidden = true;
-        _UIScript.DashMeterHidden = true;
-        _UIScript.ScreamMeterHidden = true;
-        _UIScript.SundialHidden = true;
-        _UIScript.SunDialObjectHidden = true;
-        _UIScript.InventoryHidden = true;
+
+        _UIScript.StartTutorial();
 
         SpawnPlayer();
         SetPlayerReferencesInScene();
@@ -772,5 +767,7 @@ public class LevelSceneManager : MonoBehaviour
         _coolGrave.InitMaxHealth(100f);
         _coolGrave.TakeDamage(60f);
         _kittyGrave.InitHappiness(250f);
+        _coolGhost.timesGraveWasDestroyed = 0;
+        _kitty.timesGraveWasDestroyed = 0;
     }
 }

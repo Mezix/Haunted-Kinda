@@ -30,3 +30,5 @@ MonoBehaviour:
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 7c8336ac0420e4a4ca7c5e34c00e43df, type: 2}
     text: Sup'
+  GhostToLookAt: {fileID: 2017824719322374035, guid: b7b7a6a028bd36747ae6b964c34cc9eb,
+    type: 3}

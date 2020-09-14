@@ -179,7 +179,7 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(!dashing && !LevelSceneManager._isPlayingTutorial)
+        if(!dashing && !LevelSceneManager._isPlayingTutorial && !lockMovement)
         {
             playerRB.MovePosition(playerRB.position + movement.normalized * _moveSpeed * Time.fixedDeltaTime);
         }

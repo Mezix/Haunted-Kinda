@@ -36,6 +36,7 @@ public class DialogueManager : MonoBehaviour
     }
     public void StartDialogue(ConversationScriptObj convo)
     {
+        ui.DialogueShown = true;
         if(!playingConversation)
         {
             playingConversation = true;
@@ -100,5 +101,7 @@ public class DialogueManager : MonoBehaviour
     {
         playingConversation = false;
         ui.TurnOffDialogue();
+        ui.DialogueShown = false;
+        References.playerScript.UnlockMovement();
     }
 }

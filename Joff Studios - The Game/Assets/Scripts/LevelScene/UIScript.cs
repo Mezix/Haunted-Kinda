@@ -27,7 +27,6 @@ public class UIScript : MonoBehaviour
 
     //disabled at the start of the scene
 
-    public GameObject EndScreen;
     public GameObject PauseScreen;
     public GameObject Buttons;
     public GameObject Instructions;
@@ -39,6 +38,8 @@ public class UIScript : MonoBehaviour
     //DIALOGUE
 
     public GameObject UIDialogObj;
+    public bool DialogueShown;
+
     private InventoryUI _inventory;
     public bool proximityButtonsEnabled;
 
@@ -49,10 +50,12 @@ public class UIScript : MonoBehaviour
     private float promptFadeAmount;
     private float promptOpacity = 0;
 
-    //GRADE
+    //CREDITS & ENDSCREEN
 
+    public GameObject EndScreen;
     public Text ActualGrade;
     public Text GradeMessage;
+    public GameObject CreditScreen;
 
     private void Awake()
     {
@@ -124,11 +127,31 @@ public class UIScript : MonoBehaviour
         ShowPlayerUI();
 
         //disabled
+        HideCredits();
         EndScreen.SetActive(false);
         PauseScreen.SetActive(false);
         Instructions.SetActive(false);
         Buttons.SetActive(false);
         UIDialogObj.SetActive(false);
+    }
+
+    public void StartTutorial()
+    {
+        HidePlayerUI();
+        HideCredits();
+        EndScreen.SetActive(false);
+        PauseScreen.SetActive(false);
+        Instructions.SetActive(false);
+        Buttons.SetActive(false);
+        UIDialogObj.SetActive(false);
+
+        proximityButtonsEnabled = false;
+        portraitHidden = true;
+        DashMeterHidden = true;
+        ScreamMeterHidden = true;
+        SundialHidden = true;
+        SunDialObjectHidden = true;
+        InventoryHidden = true;
     }
 
     public void UIDash()
@@ -200,8 +223,10 @@ public class UIScript : MonoBehaviour
         PauseScreen.SetActive(false);
         Instructions.SetActive(false);
 
-        // TODO: if dialogue should be displayed only!!!
-        TurnOnDialogue();
+        if(DialogueShown)
+        {
+            TurnOnDialogue();
+        }
     }
 
     public IEnumerator FadeFromBlack()
@@ -347,5 +372,13 @@ public class UIScript : MonoBehaviour
             message = "You are a true friend of ghosts!";
         }
         GradeMessage.text = message;
+    }
+    public void ShowCredits()
+    {
+        CreditScreen.SetActive(true);
+    }
+    public void HideCredits()
+    {
+        CreditScreen.SetActive(false);
     }
 }

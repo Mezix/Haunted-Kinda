@@ -315,6 +315,7 @@ public class GraveRobber : MonoBehaviour
     }
     private IEnumerator Flee()
     {
+        isEscaping = true;
         _moveSpeed = 6f; //triple our movespeed
         isTerrified = true; //set the terrified bool to true
         if(nearestGrave)
@@ -341,7 +342,6 @@ public class GraveRobber : MonoBehaviour
     }
     private IEnumerator FleeAnimation()
     {
-        isEscaping = true;
         GetComponent<Collider2D>().isTrigger = true; //stop all collisions
         for (int i = 200; i > 0; i--) //lower our opacity continously
         {

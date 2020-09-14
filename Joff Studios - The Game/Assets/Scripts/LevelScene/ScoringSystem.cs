@@ -88,7 +88,6 @@ public class ScoringSystem : MonoBehaviour
         {
             grade = "S+";
         }
-        print(grade);
         return grade;
     }
 }
