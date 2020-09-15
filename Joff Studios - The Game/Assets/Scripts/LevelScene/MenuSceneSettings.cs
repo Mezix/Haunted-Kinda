@@ -12,7 +12,6 @@ public class MenuSceneSettings : MonoBehaviour
    {
         audioMixer.SetFloat("MasterVolume", Volume);
    }
-   
     public void Raise()
     {
         StartCoroutine(RaiseGrave());
@@ -26,14 +25,13 @@ public class MenuSceneSettings : MonoBehaviour
         StopCoroutine(LowerGrave());
 
         settingsRaised = false;
-        while (transform.position.y <= 0.33f)
+        while (transform.position.y <= 0.43f)
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 0.35f, transform.position.z), 0.05f);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 0.45f, transform.position.z), 0.05f);
             yield return new WaitForFixedUpdate();
         }
-        print("done");
         settingsRaised = true;
-        transform.position = new Vector3(transform.position.x, 0.35f, transform.position.z);
+        transform.position = new Vector3(transform.position.x, 0.45f, transform.position.z);
     }
     private IEnumerator LowerGrave()
     {

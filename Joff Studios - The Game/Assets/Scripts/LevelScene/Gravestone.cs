@@ -35,16 +35,16 @@ public class Gravestone : MonoBehaviour
         initialSprite = GravestoneRenderer.sprite;
         Healing = GetComponent<AudioSource>();
         inhabitedGhost = GetComponentInChildren<GraveGhost>();
-
-    }
-    private void Update()
-    {
-        timeSinceLastHealSound += Time.deltaTime;
     }
     void Start()
     {
         InitMaxHealth(100);
         InitHappiness(250f);
+        inhabitedGhost.grave = this;
+    }
+    private void Update()
+    {
+        timeSinceLastHealSound += Time.deltaTime;
     }
     public void InitMaxHealth(float max)
     {

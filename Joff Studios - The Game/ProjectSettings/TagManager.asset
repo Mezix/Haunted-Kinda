@@ -11,6 +11,8 @@ TagManager:
   - Fanta
   - Gold
   - CoolGhostQuestItem
+  - GrandmaGhostQuestItem
+  - FishermanGhostQuestItem
   layers:
   - Default
   - TransparentFX

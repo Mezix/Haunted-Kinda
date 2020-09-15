@@ -63,6 +63,10 @@ public class LevelSceneManager : MonoBehaviour
 
     private void Awake()
     {
+        _playTutorial = MenuSceneManager.playTutorial;
+        MenuSceneManager.playTutorial = false;
+
+
         Events.current.GraveRobberDespawned += RemoveGraveRobber;
         Events.current.DayIsOver += FinishDay;
         Events.current.GravestoneBlocked += BlockGrave;
@@ -79,6 +83,7 @@ public class LevelSceneManager : MonoBehaviour
     {
         score.InitAllGraves(allGraves);
         score.CalculateMaxScore();
+        SetUIDay();
 
         if (_playTutorial)
         {
@@ -111,11 +116,6 @@ public class LevelSceneManager : MonoBehaviour
             }
         }
     }
-
-
-
-    //EVENT STUFF
-
 
 
     private void RemoveGraveRobber(GameObject graveRobber)
@@ -235,6 +235,13 @@ public class LevelSceneManager : MonoBehaviour
         Time.timeScale = 1;
         paused = false;
     }
+
+
+    private void SetUIDay()
+    {
+        _UIScript.SetDays(DaysPassed, AmountOfDays);
+    }
+    //  TIME/DAYS
     void SetupDayAndNight()
     {
         _lighting.DayLength = DayLength;
@@ -247,6 +254,7 @@ public class LevelSceneManager : MonoBehaviour
         DaysPassed++;
         if(DaysPassed >= AmountOfDays) //week over => game over
         {
+            SetUIDay();
             EndOfGame();
         }
         else //start a new day
@@ -255,6 +263,7 @@ public class LevelSceneManager : MonoBehaviour
             StartCoroutine(SpawnGraveRobbers(Random.Range(3, 6)));
             print("new day");
             SpawnOfferings();
+            SetUIDay();
         }
     }
 
@@ -348,6 +357,8 @@ public class LevelSceneManager : MonoBehaviour
         GameObject go = Instantiate(_graveRobberPrefab, transform.position, transform.rotation);
         return go.GetComponent<GraveRobber>();
     }
+
+    //EVENT STUFF
 
     private IEnumerator StartTutorial()
     {
@@ -543,7 +554,6 @@ public class LevelSceneManager : MonoBehaviour
         TriggerDialogue(TutorialConversations[tutorialIndex]);
         tutorialIndex++;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
-        _kitty.DistanceFromPlayerToActivate = 0f;
 
 
         // Scene #10: Robber is stealing loot, cool ghost talks
@@ -560,6 +570,7 @@ public class LevelSceneManager : MonoBehaviour
         yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
         yield return new WaitWhile(() => !_tutorialGhost.reachedEndOfPath);
         yield return new WaitForSeconds(0.25f);
+        _kitty.DistanceFromPlayerToActivate = 0f;
         TriggerDialogue(TutorialConversations[tutorialIndex]);
         tutorialIndex++;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
@@ -720,6 +731,7 @@ public class LevelSceneManager : MonoBehaviour
         yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
         yield return new WaitWhile(() => !_tutorialGhost.reachedEndOfPath);
         yield return new WaitForSeconds(0.25f);
+        _coolGhost.DistanceFromPlayerToActivate = 0f;
 
         TriggerDialogue(TutorialConversations[tutorialIndex]);
         tutorialIndex++;
@@ -756,7 +768,7 @@ public class LevelSceneManager : MonoBehaviour
         _UIScript.DashMeterHidden = false;
         _UIScript.ScreamMeterHidden = false;
         _UIScript.SundialHidden = false;
-        _UIScript.SunDialObjectHidden = false;
+        _UIScript.TimeDisplayHidden = false;
         _UIScript.InventoryHidden = false;
         _UIScript.ShowPlayerUI();
 

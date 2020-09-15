@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1392460273}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.016, z: 0}
-  m_LocalScale: {x: 0.7, y: 1.5625, z: 1}
+  m_LocalPosition: {x: 0, y: 0.14, z: 0}
+  m_LocalScale: {x: 0.7, y: 0.55705905, z: 1}
   m_Children: []
   m_Father: {fileID: 8043414066938722632}
   m_RootOrder: 1
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 12
   m_Sprite: {fileID: 21300000, guid: 63fbc624138e93945b1ac738d031d4f1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7176471}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -253,7 +253,7 @@ SpriteRenderer:
   m_SortingLayerID: 698258075
   m_SortingLayer: 3
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 91d366effe040fb4aad5424e9a6d64ca, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 95dbdcae2550efa4cb1deae6265aaafe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -277,8 +277,8 @@ GameObject:
   - component: {fileID: 8043414066938722635}
   - component: {fileID: 6725792044129579595}
   m_Layer: 8
-  m_Name: Vase
-  m_TagString: Untagged
+  m_Name: Sunglasses
+  m_TagString: CoolGhostQuestItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -312,12 +312,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPossessed: 0
-  _isGrave: 0
   _canMove: 1
   _moveablePart: {fileID: 4462661785080200683}
   _moveSpeed: 1
   CastShadow: {fileID: 1392460273}
   exclamation: {fileID: 174177648119091815}
+  lockMovement: 0
 --- !u!50 &8043414066938722635
 Rigidbody2D:
   serializedVersion: 4

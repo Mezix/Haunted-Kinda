@@ -40,7 +40,6 @@ public class Player : MonoBehaviour
     public bool IsPossessing { get; private set; } //checks if we are possesing any object
     private bool startingPossession; //intermediating bool between the start and end of possession
     public PossessableObject possessedObject; //the script of the object were possessing
-    public float _possessionRange; //the range at which we can start to possess objects
 
     //INVENTORY
     public List<Offering> collectedOfferings = new List<Offering>(); //all of the offerings we have collected and can place down
@@ -94,7 +93,6 @@ public class Player : MonoBehaviour
         _dashSpeed = 25;
         _dashTime = 0.3f;
         _screamCooldown = 5;
-        _possessionRange = 20;
 
         TimeSinceLastScream = _screamCooldown; //make sure we can scream and dash right away
         TimeSinceLastDash = _dashCooldown;

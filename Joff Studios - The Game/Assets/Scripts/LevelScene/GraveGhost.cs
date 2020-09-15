@@ -1,26 +1,29 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GraveGhost : MonoBehaviour
 {
     private UnityEngine.Experimental.Rendering.Universal.Light2D GhostGlow; //the glow of our ghost
-    [SerializeField]
     private GameObject player; //reference to the player in the scene
     private SpriteRenderer ghostRenderer; //the sprite rendered of our ghost
     private float ghostSpriteOpacity; //the current opacity of our ghost
     private float ghostSpriteMaxOpacity; //the max opacity our ghost should achieve
     private float fadeAmount; //the amount to change our opacity every frame
+    public Gravestone grave;
 
     public HealthBarScript happiness;
 
     public GameObject _graveItem;
     public bool lootStolen;
 
-    public GameObject _questItem;
+    public GameObject _questItemPrefab;
+    private GameObject questItem;
+    public Transform questItemLocation;
+    public Transform itemDropOffPos;
     public bool QuestComplete;
     public int timesGraveWasDestroyed;
-
 
     public float DistanceFromPlayerToActivate = 3f;
 
@@ -29,12 +32,25 @@ public class GraveGhost : MonoBehaviour
     public ConversationScriptObj[] _conversations;
     public int _conversationIndex;
 
+    public ConversationScriptObj _questItemReturnedConvo;
+
     private void Awake()
     {
         GhostGlow = GetComponentInChildren<UnityEngine.Experimental.Rendering.Universal.Light2D>();
         ghostRenderer = GetComponentInChildren<SpriteRenderer>();
         happiness = GetComponentInChildren<HealthBarScript>();
+
+        SpawnQuestItem();
     }
+
+    private void SpawnQuestItem()
+    {
+        if (_questItemPrefab && questItemLocation)
+        {
+            questItem = Instantiate(_questItemPrefab, questItemLocation.transform);
+        }
+    }
+
     private void Start()
     {
         ghostSpriteOpacity = 0; //set our ghost to be hidden by default
@@ -51,20 +67,28 @@ public class GraveGhost : MonoBehaviour
     {
         if(player is object)
         {
-            if (Vector2.Distance(player.transform.position, transform.position) <= DistanceFromPlayerToActivate) //as long as we close to the player, show the ghost
+            if (Vector2.Distance(player.transform.position, transform.position) <= DistanceFromPlayerToActivate && !References.playerScript.IsPossessing) //as long as we close to the player, show the ghost
             {
                 if (ghostSpriteOpacity < ghostSpriteMaxOpacity) //as long as we havent reached our max opacity, make less opaque
                 {
                     FadeIn();
                 }
             }
-            else if (ghostSpriteOpacity > 0) //otherwise slowly fadeout
+            else if (ghostSpriteOpacity > 0 || References.playerScript.IsPossessing) //otherwise slowly fadeout
             {
                 FadeOut();
             }
         }
+        if(questItem && itemDropOffPos)
+        {
+            if (Vector2.Distance(questItem.transform.position, itemDropOffPos.position) < 0.5 && !QuestComplete && !References.playerScript.IsPossessing)
+            {
+                StartCoroutine(TriggerQuestComplete());
+            }
+        }
     }
 
+   
     public void SetPlayerReference()
     {
         player = References.Player;
@@ -79,6 +103,20 @@ public class GraveGhost : MonoBehaviour
                 LevelSceneManager.level.TriggerDialogue(_conversations[_conversationIndex]);
             }
         }
+    }
+    private IEnumerator TriggerQuestComplete()
+    {
+        print("completing quest");
+
+        QuestComplete = true;
+        PossessableObject questPossessable = questItem.GetComponent<PossessableObject>();
+        References.playerScript.LockMovement();
+        LevelSceneManager.level.TriggerDialogue(_questItemReturnedConvo);
+        QuestComplete = true;
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
+        References.playerScript.UnlockMovement();
+        questPossessable.ReturnPossessable();
+        grave.RaiseHappiness(100);
     }
 
     public void FadeIn()
@@ -109,7 +147,7 @@ public class GraveGhost : MonoBehaviour
 
     public void TryCompleteQuest(GameObject newItem)
     {
-        if(_questItem.tag == newItem.tag)
+        if(_questItemPrefab.tag == newItem.tag)
         {
             QuestComplete = true;
             newItem.GetComponent<PossessableObject>().ReturnPossessable();

@@ -9,7 +9,7 @@ public class UIScript : MonoBehaviour
     public DayNightLighting lighting;
     private Player player;
 
-    //enabled at the start of the scene
+    //enabled at the start of the game
 
     public GameObject portrait;
     public bool portraitHidden;
@@ -17,8 +17,9 @@ public class UIScript : MonoBehaviour
     public bool DashMeterHidden;
     public GameObject ScreamMeter;
     public bool ScreamMeterHidden;
-    public GameObject SunDialObject;
-    public bool SunDialObjectHidden;
+    public GameObject TimeDisplay;
+    public bool TimeDisplayHidden;
+    public Text daysText;
     public GameObject SunDial;
     public bool SundialHidden;
     public GameObject Inventory;
@@ -121,6 +122,11 @@ public class UIScript : MonoBehaviour
         q.eulerAngles = new Vector3(0, 0, lighting.DayToNightRatio * 180);
         SunDial.transform.rotation = q;
     }
+
+    public void SetDays(int Day, int maxDays)
+    {
+        daysText.text = Day + "/" + maxDays;
+    }
     public void StartGame()
     {
         //enabled
@@ -150,7 +156,7 @@ public class UIScript : MonoBehaviour
         DashMeterHidden = true;
         ScreamMeterHidden = true;
         SundialHidden = true;
-        SunDialObjectHidden = true;
+        TimeDisplayHidden = true;
         InventoryHidden = true;
     }
 
@@ -194,9 +200,9 @@ public class UIScript : MonoBehaviour
         {
             SunDial.SetActive(true);
         }
-        if (!SunDialObjectHidden)
+        if (!TimeDisplayHidden)
         {
-            SunDialObject.SetActive(true);
+            TimeDisplay.SetActive(true);
         }
         if (!InventoryHidden)
         {
@@ -208,7 +214,7 @@ public class UIScript : MonoBehaviour
         portrait.SetActive(false);
         DashMeter.SetActive(false);
         ScreamMeter.SetActive(false);
-        SunDialObject.SetActive(false);
+        TimeDisplay.SetActive(false);
         SunDial.SetActive(false);
         Inventory.SetActive(false);
     }

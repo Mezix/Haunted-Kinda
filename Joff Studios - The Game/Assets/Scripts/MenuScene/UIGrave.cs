@@ -18,7 +18,6 @@ public class UIGrave : MonoBehaviour
         yield return new WaitForSeconds(6f);
 
         Destroy(Camera.main.GetComponent<SimpleCameraController>()); //regain control of our camera again
-
         float timer = 0f;
         while(transform.position.y <= 0.45f)
         {
