@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class UIScript : MonoBehaviour
 {
+    public AudioMixer audioMixer;
+
     public DayNightLighting lighting;
     private Player player;
 
@@ -29,6 +32,9 @@ public class UIScript : MonoBehaviour
     //disabled at the start of the scene
 
     public GameObject PauseScreen;
+    public GameObject PauseOverlay;
+    public GameObject SettingsScreen;
+    public Slider VolumeSlider;
     public GameObject Buttons;
     public GameObject Instructions;
 
@@ -65,6 +71,8 @@ public class UIScript : MonoBehaviour
         promptOpacity = 0;
         promptFadeAmount = 0.05f;
         TutorialPromptsBackground.color = PromptText.color = new Color(1, 1, 1, promptOpacity);
+
+        VolumeSlider.value = MenuSceneSettings.volume;
     }
 
     private void Update()
@@ -136,6 +144,7 @@ public class UIScript : MonoBehaviour
         HideCredits();
         EndScreen.SetActive(false);
         PauseScreen.SetActive(false);
+        PauseOverlay.SetActive(false);
         Instructions.SetActive(false);
         Buttons.SetActive(false);
         UIDialogObj.SetActive(false);
@@ -221,12 +230,16 @@ public class UIScript : MonoBehaviour
 
     public void UIPause()
     {
+        PauseOverlay.SetActive(true);
         PauseScreen.SetActive(true);
+        SettingsScreen.SetActive(false);
         TurnOffDialogue();
     }
     public void UIUnpause()
     {
+        PauseOverlay.SetActive(false);
         PauseScreen.SetActive(false);
+        SettingsScreen.SetActive(false);
         Instructions.SetActive(false);
 
         if(DialogueShown)
@@ -386,5 +399,20 @@ public class UIScript : MonoBehaviour
     public void HideCredits()
     {
         CreditScreen.SetActive(false);
+    }
+    public void ShowSettings()
+    {
+        PauseScreen.SetActive(false);
+        SettingsScreen.SetActive(true);
+    }
+    public void HideSettings()
+    {
+        PauseScreen.SetActive(true);
+        SettingsScreen.SetActive(false);
+    }
+    public void SetVolume(float Volume)
+    {
+        audioMixer.SetFloat("MasterVolume", Volume);
+        MenuSceneSettings.volume = Volume;
     }
 }

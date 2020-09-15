@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 9ee5c7e256d98d5468d9abff49f8adb1,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -32777,6 +32777,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: d719615b5eb69e14fa69bae61fd70faf, type: 2}
   settingsRaised: 0
+  volumeSlider: {fileID: 1366178483}
 --- !u!4 &1052928756
 Transform:
   m_ObjectHideFlags: 0
@@ -46109,7 +46110,7 @@ GameObject:
   - component: {fileID: 1366178482}
   - component: {fileID: 1366178483}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: VolumeSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60419,8 +60420,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uigrave: {fileID: 1520414070}
   settings: {fileID: 1052928755}
-  director: {fileID: 282840817}
-  gameLaunched: 0
 --- !u!4 &1842239120
 Transform:
   m_ObjectHideFlags: 0

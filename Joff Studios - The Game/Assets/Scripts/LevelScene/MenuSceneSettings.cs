@@ -2,16 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class MenuSceneSettings : MonoBehaviour
 {
     public AudioMixer audioMixer;
     public bool settingsRaised;
+    public static float volume;
+    public Slider volumeSlider;
 
-   public void SetVolume(float Volume)
-   {
+    public void SetVolume(float Volume)
+    {
         audioMixer.SetFloat("MasterVolume", Volume);
-   }
+        volume = Volume;
+        volumeSlider.value = Volume;
+    }
+    private void Awake()
+    {
+        SetVolume(volume);
+    }
     public void Raise()
     {
         StartCoroutine(RaiseGrave());
