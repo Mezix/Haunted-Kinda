@@ -28,7 +28,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1940406192481580736}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1940406192481580738
 GameObject:
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 1940406192481580751}
   - component: {fileID: 4629498315216909263}
   m_Layer: 8
-  m_Name: KidGirlGrave4
+  m_Name: KidGirlGrave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,8 +62,8 @@ Transform:
   m_LocalPosition: {x: 3.45, y: 0.893, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8717494820996573969}
   - {fileID: 971093709402611682}
+  - {fileID: 8717494820996573969}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -79,9 +79,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: affb6bb1a17414740a4ad783a2ada62b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InhabitedGhost: {fileID: 8383831212386851774}
   _destroyed: 0
-  _isBeingAttacked: 0
+  _dirtParticlesPrefab: {fileID: 0}
+  _dirtPos: {fileID: 0}
   GravestoneRenderer: {fileID: 0}
   initialSprite: {fileID: 0}
   DestructionStates:
@@ -90,8 +90,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 55e9201c639a18e45bc6757ed4a86b91, type: 3}
   maxHealth: 0
   currentHealth: 0
+  maxGhostHappiness: 0
+  currentHappiness: 0
   OfferingPos: {fileID: 421448455123369196}
   currentOffering: {fileID: 0}
+  timeSinceLastHealSound: 1
 --- !u!212 &1940406192481580737
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -155,9 +158,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPossessed: 0
-  canWalk: 0
-  isGrave: 1
+  _canMove: 0
+  _moveablePart: {fileID: 0}
+  _moveSpeed: 0
+  CastShadow: {fileID: 0}
   exclamation: {fileID: 0}
+  lockMovement: 0
 --- !u!58 &1940406192481580751
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -299,7 +305,7 @@ Transform:
   m_Children:
   - {fileID: 8383831212386851772}
   m_Father: {fileID: 1940406192481580736}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7519211431423689773
 PrefabInstance:
@@ -370,12 +376,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 026af1f5d43125a4e880a98564759f74, type: 3}
---- !u!1 &8383831212386851774 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2017824719322374035, guid: 026af1f5d43125a4e880a98564759f74,
-    type: 3}
-  m_PrefabInstance: {fileID: 7519211431423689773}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8383831212386851772 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2017824719322374033, guid: 026af1f5d43125a4e880a98564759f74,

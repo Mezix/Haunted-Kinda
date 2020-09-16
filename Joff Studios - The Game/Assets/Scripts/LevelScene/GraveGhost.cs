@@ -29,10 +29,14 @@ public class GraveGhost : MonoBehaviour
 
     //CONVERSATIONS
 
-    public ConversationScriptObj[] _conversations;
     public int _conversationIndex;
+    public ConversationScriptObj[] _conversations;
+    public ConversationScriptObj QuestHasBeenGiven;
     public ConversationScriptObj _questItemReturnedConvo;
-    public ConversationScriptObj[] _PostQuestItemReturnedConversations;
+
+    public int _postQuestConversationIndex;
+    public ConversationScriptObj[] _PostQuestConversations;
+    public ConversationScriptObj[] _RandomConversations;
 
     private void Awake()
     {
@@ -100,24 +104,37 @@ public class GraveGhost : MonoBehaviour
         {
             if (_conversations.Length > 0)
             {
-                if (_conversations[_conversationIndex])
+                if (_conversationIndex < _conversations.Length)
                 {
-                    LevelSceneManager.level.TriggerDialogue(_conversations[_conversationIndex]);
-                    if(_conversationIndex < _conversations.Length-1)
+                    if (_conversations[_conversationIndex])
                     {
+                        LevelSceneManager.level.TriggerDialogue(_conversations[_conversationIndex]);
                         _conversationIndex++;
+                    }
+                }
+                else
+                {
+                    if (QuestHasBeenGiven)
+                    {
+                        LevelSceneManager.level.TriggerDialogue(QuestHasBeenGiven);
                     }
                 }
             }
         }
         else
         {
-            if(_PostQuestItemReturnedConversations.Length > 0)
+            if(_PostQuestConversations.Length > 0 && _postQuestConversationIndex < _PostQuestConversations.Length)
             {
-                if(_PostQuestItemReturnedConversations[0])
+                if(_PostQuestConversations[_postQuestConversationIndex])
                 {
-                    LevelSceneManager.level.TriggerDialogue(_PostQuestItemReturnedConversations[UnityEngine.Random.Range(0, _PostQuestItemReturnedConversations.Length)]);
+                    LevelSceneManager.level.TriggerDialogue(_PostQuestConversations[UnityEngine.Random.Range(0, _PostQuestConversations.Length)]);
+                    _postQuestConversationIndex++;
                 }
+            }
+            else
+            {
+                if(_RandomConversations.Length > 0)
+                LevelSceneManager.level.TriggerDialogue(_RandomConversations[UnityEngine.Random.Range(0, _RandomConversations.Length)]);
             }
         }
     }

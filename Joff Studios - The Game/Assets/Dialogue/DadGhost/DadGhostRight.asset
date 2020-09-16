@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e7fae8fa5a3bff498f98805c551ac84, type: 3}
   m_Name: DadGhostRight
   m_EditorClassIdentifier: 
-  fullName: Pops the Fisherman
+  fullName: Pops
   portrait: {fileID: 21300000, guid: bc33381250104d946a85252d3c6b7a8e, type: 3}
   width: 29
   height: 35

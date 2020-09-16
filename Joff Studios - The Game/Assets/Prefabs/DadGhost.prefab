@@ -90,13 +90,18 @@ MonoBehaviour:
   QuestComplete: 0
   timesGraveWasDestroyed: 0
   DistanceFromPlayerToActivate: 3
-  _conversations:
-  - {fileID: 11400000, guid: 07fcdd208d7990c40821fb121aed9c61, type: 2}
-  - {fileID: 11400000, guid: f426ddc41855fcd45bbd6180ce44e786, type: 2}
   _conversationIndex: 0
+  _conversations:
+  - {fileID: 11400000, guid: f426ddc41855fcd45bbd6180ce44e786, type: 2}
+  - {fileID: 11400000, guid: 9e0e6a56639042e4986aa30bc1bfba30, type: 2}
+  - {fileID: 11400000, guid: a843b4b5f442e5143b0b1c105b2c7cae, type: 2}
+  QuestHasBeenGiven: {fileID: 11400000, guid: ad09402baea62104fbaf9fe054b9f46c, type: 2}
   _questItemReturnedConvo: {fileID: 11400000, guid: 703601b4567468f44b23489c1c2f8249,
     type: 2}
-  _PostQuestItemReturnedConversations:
+  _postQuestConversationIndex: 0
+  _PostQuestConversations:
+  - {fileID: 11400000, guid: 3fdd5a010f2b0f0479714c34b76814d1, type: 2}
+  _RandomConversations:
   - {fileID: 11400000, guid: 280752e7bfcf4fc4aa2acc910b03eed9, type: 2}
   - {fileID: 11400000, guid: 92c30313ed4b3634da3ed50e014afb15, type: 2}
 --- !u!95 &2648045057101818730

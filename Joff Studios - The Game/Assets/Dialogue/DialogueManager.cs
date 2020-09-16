@@ -10,10 +10,20 @@ public class DialogueManager : MonoBehaviour
     public UIScript ui;
 
     public Text _dialogueText;
+
     public GameObject _speakerLeft;
     public Image _speakerLeftImage;
-    public GameObject _speakerRight;
+    public GameObject _speakerLeftImageBackground;
+    public Text _speakerLeftName;
+    public RectTransform _speakerLeftNameBG;
+    public GameObject _speakerLeftNameObject;
+
     public Image _speakerRightImage;
+    public GameObject _speakerRightImageBackground;
+    public GameObject _speakerRight;
+    public Text _speakerRightName;
+    public RectTransform _speakerRightNameBG;
+    public GameObject _speakerRightNameObject;
     public static bool playingConversation;
 
     public static int dialogueSpeed;
@@ -54,6 +64,8 @@ public class DialogueManager : MonoBehaviour
     {
         _speakerLeft.SetActive(false);
         _speakerRight.SetActive(false);
+        _speakerLeftNameObject.SetActive(false);
+        _speakerRightNameObject.SetActive(false);
 
         if (sentences.Count == 0)
         {
@@ -72,6 +84,13 @@ public class DialogueManager : MonoBehaviour
             {
                 _speakerLeftImage.rectTransform.sizeDelta = new Vector2(((float) line.characterLeft.width/line.characterLeft.height) * speakerHeight, speakerHeight);
             }
+            if(line.characterLeft.fullName != null)
+            {
+                _speakerLeftNameObject.SetActive(true);
+                _speakerLeftName.text = line.characterLeft.fullName;
+                _speakerLeftNameBG.sizeDelta = new Vector2(Mathf.Max(_speakerLeftImageBackground.GetComponent<RectTransform>().sizeDelta.x,
+                                                                      30 + line.characterLeft.fullName.Length * 28), _speakerLeftNameBG.rect.height);
+            }
         }
         if (line.characterRight)
         {
@@ -80,6 +99,13 @@ public class DialogueManager : MonoBehaviour
             if (line.characterRight.width > 0 && line.characterRight.height > 0)
             {
                 _speakerRightImage.rectTransform.sizeDelta = new Vector2(((float) line.characterRight.width / line.characterRight.height) * speakerHeight, speakerHeight);
+            }
+            if (line.characterRight.fullName != null)
+            {
+                _speakerRightNameObject.SetActive(true);
+                _speakerRightName.text = line.characterRight.fullName;
+                _speakerRightNameBG.sizeDelta = new Vector2(Mathf.Max( _speakerRightImageBackground.GetComponent<RectTransform>().sizeDelta.x, 
+                                                                       30 + line.characterRight.fullName.Length * 28), _speakerRightNameBG.rect.height);
             }
         }
     }

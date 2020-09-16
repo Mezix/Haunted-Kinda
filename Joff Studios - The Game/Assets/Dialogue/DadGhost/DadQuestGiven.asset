@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7199d1d7f5b2d024eb17d0a6cc04510f, type: 3}
+  m_Name: DadQuestGiven
+  m_EditorClassIdentifier: 
+  lines:
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 283dcb90c3f53ae4c9e07c6c9674524a, type: 2}
+    text: 'zzZzz... '
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 283dcb90c3f53ae4c9e07c6c9674524a, type: 2}
+    text: '..oh? '
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 283dcb90c3f53ae4c9e07c6c9674524a, type: 2}
+    text: Oh??!?!
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 283dcb90c3f53ae4c9e07c6c9674524a, type: 2}
+    text: ....oh.
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 283dcb90c3f53ae4c9e07c6c9674524a, type: 2}
+    text: "Ye haven\u2019t found it yet, have ye?\n"
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 283dcb90c3f53ae4c9e07c6c9674524a, type: 2}
+    text: ...and here I was, gettin me hopes up...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 283dcb90c3f53ae4c9e07c6c9674524a, type: 2}
+    text: 'It might have rolled itself into the lake when I was getting some shuteye.
+
+'
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 283dcb90c3f53ae4c9e07c6c9674524a, type: 2}
+    text: ...theres a tip for ye.
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 283dcb90c3f53ae4c9e07c6c9674524a, type: 2}
+    text: now back to nappin'.... zZZzz
