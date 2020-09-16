@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7199d1d7f5b2d024eb17d0a6cc04510f, type: 3}
-  m_Name: DadTestConvo
+  m_Name: DadItemReturned 2
   m_EditorClassIdentifier: 
   speakerLeft: {fileID: 0}
-  speakerRight: {fileID: 0}
+  speakerRight: {fileID: 11400000, guid: 283dcb90c3f53ae4c9e07c6c9674524a, type: 2}
   lines:
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 0}
-    text: test
+    characterRight: {fileID: 11400000, guid: 283dcb90c3f53ae4c9e07c6c9674524a, type: 2}
+    text: ....zzzWHAT IM AWAKE

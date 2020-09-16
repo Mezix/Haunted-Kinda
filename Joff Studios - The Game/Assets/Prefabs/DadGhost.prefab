@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 074e6c5bd91e3274182df060c294c3fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grave: {fileID: 0}
   happiness: {fileID: 0}
   _graveItem: {fileID: 0}
   lootStolen: 0
@@ -91,9 +92,13 @@ MonoBehaviour:
   DistanceFromPlayerToActivate: 3
   _conversations:
   - {fileID: 11400000, guid: 07fcdd208d7990c40821fb121aed9c61, type: 2}
+  - {fileID: 11400000, guid: f426ddc41855fcd45bbd6180ce44e786, type: 2}
   _conversationIndex: 0
   _questItemReturnedConvo: {fileID: 11400000, guid: 703601b4567468f44b23489c1c2f8249,
     type: 2}
+  _PostQuestItemReturnedConversations:
+  - {fileID: 11400000, guid: 280752e7bfcf4fc4aa2acc910b03eed9, type: 2}
+  - {fileID: 11400000, guid: 92c30313ed4b3634da3ed50e014afb15, type: 2}
 --- !u!95 &2648045057101818730
 Animator:
   serializedVersion: 3

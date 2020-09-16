@@ -31,8 +31,8 @@ public class GraveGhost : MonoBehaviour
 
     public ConversationScriptObj[] _conversations;
     public int _conversationIndex;
-
     public ConversationScriptObj _questItemReturnedConvo;
+    public ConversationScriptObj[] _PostQuestItemReturnedConversations;
 
     private void Awake()
     {
@@ -96,11 +96,28 @@ public class GraveGhost : MonoBehaviour
 
     public void PlayConversation()
     {
-        if(_conversations.Length > 0)
+        if(!QuestComplete)
         {
-            if (_conversations[_conversationIndex])
+            if (_conversations.Length > 0)
             {
-                LevelSceneManager.level.TriggerDialogue(_conversations[_conversationIndex]);
+                if (_conversations[_conversationIndex])
+                {
+                    LevelSceneManager.level.TriggerDialogue(_conversations[_conversationIndex]);
+                    if(_conversationIndex < _conversations.Length-1)
+                    {
+                        _conversationIndex++;
+                    }
+                }
+            }
+        }
+        else
+        {
+            if(_PostQuestItemReturnedConversations.Length > 0)
+            {
+                if(_PostQuestItemReturnedConversations[0])
+                {
+                    LevelSceneManager.level.TriggerDialogue(_PostQuestItemReturnedConversations[UnityEngine.Random.Range(0, _PostQuestItemReturnedConversations.Length)]);
+                }
             }
         }
     }
