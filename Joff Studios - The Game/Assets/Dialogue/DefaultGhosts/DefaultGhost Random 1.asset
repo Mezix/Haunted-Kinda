@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7199d1d7f5b2d024eb17d0a6cc04510f, type: 3}
+  m_Name: DefaultGhost Random 1
+  m_EditorClassIdentifier: 
+  lines:
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: e9d00aba07ae4c94faa8a2e4888c446c, type: 2}
+    text: "Hey, what\u2019s hangin?"
+  - characterLeft: {fileID: 11400000, guid: abb52c7d9923acd40842de209414b797, type: 2}
+    characterRight: {fileID: 0}
+    text: Nothing much, just chillaxin' I guess...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: e9d00aba07ae4c94faa8a2e4888c446c, type: 2}
+    text: Yep.... same.
+  - characterLeft: {fileID: 11400000, guid: abb52c7d9923acd40842de209414b797, type: 2}
+    characterRight: {fileID: 0}
+    text: Hey...
+  - characterLeft: {fileID: 11400000, guid: abb52c7d9923acd40842de209414b797, type: 2}
+    characterRight: {fileID: 0}
+    text: Do you ever wonder why we're here?
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: e9d00aba07ae4c94faa8a2e4888c446c, type: 2}
+    text: ....No?
+  - characterLeft: {fileID: 11400000, guid: abb52c7d9923acd40842de209414b797, type: 2}
+    characterRight: {fileID: 0}
+    text: ... is it just to suffer?
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: e9d00aba07ae4c94faa8a2e4888c446c, type: 2}
+    text: "Woah woah woah, that\u2019s too much personality, dial it back!"
+  - characterLeft: {fileID: 11400000, guid: abb52c7d9923acd40842de209414b797, type: 2}
+    characterRight: {fileID: 0}
+    text: "Ooops, you\u2019re right, we\u2019re supposed to be boring. Ummm, Booooo?"
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: e9d00aba07ae4c94faa8a2e4888c446c, type: 2}
+    text: 'Y-yeah, BoooOOooo! '
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: e9d00aba07ae4c94faa8a2e4888c446c, type: 2}
+    text: M-move along... we're just extras!

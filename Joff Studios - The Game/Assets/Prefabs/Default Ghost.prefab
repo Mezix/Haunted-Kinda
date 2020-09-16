@@ -47,15 +47,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 074e6c5bd91e3274182df060c294c3fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  grave: {fileID: 0}
   happiness: {fileID: 0}
   _graveItem: {fileID: 0}
   lootStolen: 0
-  _questItem: {fileID: 0}
-  QuestComplete: 0
+  hasQuest: 0
+  _questItemPrefab: {fileID: 0}
+  questItemLocation: {fileID: 0}
+  itemDropOffPos: {fileID: 0}
+  QuestComplete: 1
+  timesGraveWasDestroyed: 0
   DistanceFromPlayerToActivate: 3
-  _conversations: []
   _conversationIndex: 0
+  _conversations:
+  - {fileID: 11400000, guid: 5dc6373edd65fa44e811c19d6c26f3f5, type: 2}
+  QuestHasBeenGiven: {fileID: 0}
+  _questItemReturnedConvo: {fileID: 0}
+  _postQuestConversationIndex: 0
+  _PostQuestConversations: []
+  _RandomConversations:
+  - {fileID: 11400000, guid: 5dc6373edd65fa44e811c19d6c26f3f5, type: 2}
 --- !u!95 &2648045057101818730
 Animator:
   serializedVersion: 3

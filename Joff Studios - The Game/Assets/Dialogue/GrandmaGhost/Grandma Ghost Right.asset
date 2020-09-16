@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e7fae8fa5a3bff498f98805c551ac84, type: 3}
-  m_Name: GrandpaGhost
+  m_Name: Grandma Ghost Right
   m_EditorClassIdentifier: 
-  fullName: Grandpa
-  portrait: {fileID: 21300000, guid: d21e841e3c54fd64aa90f2d27273dcb5, type: 3}
+  fullName: Gran Gran
+  portrait: {fileID: 21300000, guid: c78dee1554257e045babc473b6a13a07, type: 3}
   width: 37
   height: 40

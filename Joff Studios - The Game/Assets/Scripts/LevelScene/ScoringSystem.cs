@@ -66,7 +66,7 @@ public class ScoringSystem : MonoBehaviour
         float score = 0f;
         foreach(GraveGhost ghost in AllGraveGhosts)
         {
-            if(ghost.QuestComplete)
+            if(ghost.QuestComplete && ghost.hasQuest)
             {
                 score += ScorePerCompletedQuest;
             }
