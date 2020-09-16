@@ -28,6 +28,10 @@ public class ScoringSystem : MonoBehaviour
         instance = this;
         maxScorePerGhost = ScorePerCompletedQuest + maxScoreForHappiness;
     }
+    private void Start()
+    {
+        CalculateMaxScore();
+    }
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Z))
@@ -45,7 +49,16 @@ public class ScoringSystem : MonoBehaviour
 
     public void CalculateMaxScore()
     {
-        maxScore = maxScorePerGhost * AllGraveGhosts.Count;
+        float score = 0f;
+        foreach (GraveGhost ghost in AllGraveGhosts)
+        {
+            score += maxScorePerGhost;
+            if(ghost.hasQuest)
+            {
+                score -= ScorePerCompletedQuest;
+            }
+        }
+        maxScore = score;
     }
 
     public void CalculateScore()

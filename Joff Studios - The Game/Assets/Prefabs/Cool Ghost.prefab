@@ -32,6 +32,8 @@ Transform:
   m_Children:
   - {fileID: 3484561518478459275}
   - {fileID: 2017824719375364842}
+  - {fileID: 8030899280037307624}
+  - {fileID: 7723379429640765553}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -49,21 +51,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grave: {fileID: 0}
   happiness: {fileID: 0}
-  _graveItem: {fileID: 8043414066938722636, guid: 80e1649fbc135d7489d6f8e5630a8ca3,
-    type: 3}
+  _graveItem: {fileID: 0}
   lootStolen: 0
   _questItemPrefab: {fileID: 8043414066938722636, guid: 80e1649fbc135d7489d6f8e5630a8ca3,
     type: 3}
-  questItemLocation: {fileID: 0}
-  itemDropOffPos: {fileID: 0}
+  questItemLocation: {fileID: 7723379429640765553}
+  itemDropOffPos: {fileID: 8030899280037307624}
   QuestComplete: 0
   timesGraveWasDestroyed: 0
   DistanceFromPlayerToActivate: 3
+  _conversationIndex: 0
   _conversations:
   - {fileID: 11400000, guid: 9b50c33add1b12c4489dd6030996be76, type: 2}
-  _conversationIndex: 0
+  - {fileID: 11400000, guid: 7bdeda3d0403c434e9de248058a2d5e5, type: 2}
+  QuestHasBeenGiven: {fileID: 11400000, guid: 2662be9551eaad1438ccbe5f54a2f949, type: 2}
   _questItemReturnedConvo: {fileID: 11400000, guid: bdd0912b61039a64ea2069b671b606ae,
     type: 2}
+  _postQuestConversationIndex: 0
+  _PostQuestConversations:
+  - {fileID: 11400000, guid: 5ad088eb8ce56f54e828c0bbf2d243e9, type: 2}
+  _RandomConversations:
+  - {fileID: 11400000, guid: ed2d8163cc8953048a81fe37dd20b27b, type: 2}
+  - {fileID: 11400000, guid: 7f90e252df4c6704286dac26f926b49f, type: 2}
 --- !u!95 &2648045057101818730
 Animator:
   serializedVersion: 3
@@ -171,6 +180,36 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &4610256840311578658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8030899280037307624}
+  m_Layer: 0
+  m_Name: DropOffPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8030899280037307624
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4610256840311578658}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.05, y: -1.52, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2017824719322374033}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4695032875595339042
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,6 +292,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &6227398751220546265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7723379429640765553}
+  m_Layer: 0
+  m_Name: QuestItemSpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7723379429640765553
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6227398751220546265}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3, y: -2.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2017824719322374033}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1488454772757523234
 PrefabInstance:
   m_ObjectHideFlags: 0

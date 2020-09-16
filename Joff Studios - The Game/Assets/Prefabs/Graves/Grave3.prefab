@@ -41,7 +41,6 @@ GameObject:
   - component: {fileID: 1940406192481580736}
   - component: {fileID: 1940406192481580750}
   - component: {fileID: 1940406192481580737}
-  - component: {fileID: 342370084011184707}
   - component: {fileID: 1940406192481580751}
   - component: {fileID: 6220594401920972719}
   m_Layer: 8
@@ -79,9 +78,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: affb6bb1a17414740a4ad783a2ada62b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InhabitedGhost: {fileID: 0}
   _destroyed: 0
-  _isBeingAttacked: 0
+  _dirtParticlesPrefab: {fileID: 0}
+  _dirtPos: {fileID: 0}
   GravestoneRenderer: {fileID: 0}
   initialSprite: {fileID: 0}
   DestructionStates:
@@ -90,8 +89,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: aaa1dd10e834d2e4b881fd788a389f52, type: 3}
   maxHealth: 0
   currentHealth: 0
+  maxGhostHappiness: 0
+  currentHappiness: 0
   OfferingPos: {fileID: 421448455123369196}
   currentOffering: {fileID: 0}
+  timeSinceLastHealSound: 1
 --- !u!212 &1940406192481580737
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -142,22 +144,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &342370084011184707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1940406192481580738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82ac2a4e2a2cc8e4d866d95e0c4df6ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPossessed: 0
-  canWalk: 0
-  isGrave: 1
-  exclamation: {fileID: 0}
 --- !u!58 &1940406192481580751
 CircleCollider2D:
   m_ObjectHideFlags: 0

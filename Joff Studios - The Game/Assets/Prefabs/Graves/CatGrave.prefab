@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 1940406192481580751}
   - component: {fileID: 2249275473699789173}
   m_Layer: 8
-  m_Name: CatGrave2
+  m_Name: CatGrave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: affb6bb1a17414740a4ad783a2ada62b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InhabitedGhost: {fileID: 2092793125855051367}
   _destroyed: 0
   _dirtParticlesPrefab: {fileID: 802894040012684917, guid: a69bac5c976b3294f95e80c77e28c584,
     type: 3}
@@ -93,8 +92,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5ee54de603c256043bc3a9ff747b008a, type: 3}
   maxHealth: 0
   currentHealth: 0
+  maxGhostHappiness: 0
+  currentHappiness: 0
   OfferingPos: {fileID: 421448455123369196}
   currentOffering: {fileID: 0}
+  timeSinceLastHealSound: 1
 --- !u!212 &1940406192481580737
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -158,12 +160,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPossessed: 0
-  _isGrave: 0
   _canMove: 0
   _moveablePart: {fileID: 0}
   _moveSpeed: 0
   CastShadow: {fileID: 0}
   exclamation: {fileID: 0}
+  lockMovement: 0
 --- !u!58 &1940406192481580751
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -406,12 +408,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 702c0b0ca8c83094fa61cc726abd1568, type: 3}
---- !u!1 &2092793125855051367 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2017824719322374035, guid: 702c0b0ca8c83094fa61cc726abd1568,
-    type: 3}
-  m_PrefabInstance: {fileID: 75392029090013684}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2092793125855051365 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2017824719322374033, guid: 702c0b0ca8c83094fa61cc726abd1568,

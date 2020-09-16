@@ -10,31 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7199d1d7f5b2d024eb17d0a6cc04510f, type: 3}
-  m_Name: CoolGhostQuestItemReturned
+  m_Name: CoolGhostConvo 1
   m_EditorClassIdentifier: 
-  speakerLeft: {fileID: 0}
-  speakerRight: {fileID: 0}
   lines:
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 7c8336ac0420e4a4ca7c5e34c00e43df, type: 2}
-    text: Hell yeah dude, you're the best... Wait wait, lemme tell you a crazy story
-      about these bad boys, you earned it.
+    text: ...
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 7c8336ac0420e4a4ca7c5e34c00e43df, type: 2}
-    text: Right, right, so check this. I was at my local Target one day, and I see
-      these original Raybans for like.... 5 Dollars...
+    text: ..........
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 7c8336ac0420e4a4ca7c5e34c00e43df, type: 2}
-    text: 'I know, I know, crazy bargain right? Hahahahah! '
+    text: ........................
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 7c8336ac0420e4a4ca7c5e34c00e43df, type: 2}
-    text: When I was alive, I never once took them off...
+    text: ....................................................................
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 7c8336ac0420e4a4ca7c5e34c00e43df, type: 2}
-    text: They're my most prized possession...
+    text: Whats up maaaaaaaaaaan?
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 7c8336ac0420e4a4ca7c5e34c00e43df, type: 2}
-    text: I don't think the afterlife vibe would be right without these by my side...
+    text: Hey, do you know what's better than one pair of awesome Sunglasses?
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 7c8336ac0420e4a4ca7c5e34c00e43df, type: 2}
-    text: Anyways, thanks for your help dude. IOU.
+    text: I'll let you guess...

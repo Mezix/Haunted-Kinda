@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7199d1d7f5b2d024eb17d0a6cc04510f, type: 3}
+  m_Name: Knight Random Line 2
+  m_EditorClassIdentifier: 
+  lines:
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 80c71c3b823caf4409fe7320afcdddbe, type: 2}
+    text: ...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 80c71c3b823caf4409fe7320afcdddbe, type: 2}
+    text: SQUIRE!
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 80c71c3b823caf4409fe7320afcdddbe, type: 2}
+    text: Fetch me a windmill to fight will you?

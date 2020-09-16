@@ -18,6 +18,7 @@ public class GraveGhost : MonoBehaviour
     public GameObject _graveItem;
     public bool lootStolen;
 
+    public bool hasQuest = false;
     public GameObject _questItemPrefab;
     private GameObject questItem;
     public Transform questItemLocation;
@@ -45,6 +46,10 @@ public class GraveGhost : MonoBehaviour
         happiness = GetComponentInChildren<HealthBarScript>();
 
         SpawnQuestItem();
+        if(_questItemPrefab)
+        {
+            hasQuest = true;
+        }
     }
 
     private void SpawnQuestItem()

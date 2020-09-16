@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e7fae8fa5a3bff498f98805c551ac84, type: 3}
-  m_Name: CatGhost
+  m_Name: Cool Ghost Double Shades Right
   m_EditorClassIdentifier: 
-  fullName: Mr. Meow
-  portrait: {fileID: 21300000, guid: a6f53e05b45d9844b854707882cecf4b, type: 3}
-  width: 32
-  height: 31
+  fullName: Dude McCoolest
+  portrait: {fileID: 21300000, guid: d9c13c4c838d54c44949f7093457d732, type: 3}
+  width: 23
+  height: 44

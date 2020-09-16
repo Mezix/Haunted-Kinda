@@ -82,7 +82,6 @@ public class LevelSceneManager : MonoBehaviour
     private void Start()
     {
         score.InitAllGraves(allGraves);
-        score.CalculateMaxScore();
         SetUIDay();
 
         if (_playTutorial)
@@ -383,6 +382,7 @@ public class LevelSceneManager : MonoBehaviour
         = References.playerScript._depossessionLocked = References.playerScript._interactionLocked = true;
         DayNightLighting.freezeDayNight = true;
         SetupDayAndNight();
+        
 
         DisableGraveghostFadein();
 
@@ -561,6 +561,10 @@ public class LevelSceneManager : MonoBehaviour
         _coolGhost.DistanceFromPlayerToActivate = 100f;
         _coolGrave.InitMaxHealth(100000);
         _coolGrave.TakeDamage(50000); //get to last stage of damage
+
+        GameObject coolGhostGraveItem = _coolGhost._graveItem;
+        _coolGhost._graveItem = _coolGhost._questItemPrefab;
+
         Robber = SpawnTutorialRobber(tutorialRobberPositions[1]);
         Robber.InitRobber(allGraves, _graveRobberEscapePos);
 
@@ -781,5 +785,7 @@ public class LevelSceneManager : MonoBehaviour
         _kittyGrave.InitHappiness(250f);
         _coolGhost.timesGraveWasDestroyed = 0;
         _kitty.timesGraveWasDestroyed = 0;
+
+        _coolGhost._graveItem = coolGhostGraveItem;
     }
 }

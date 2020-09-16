@@ -10,25 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7199d1d7f5b2d024eb17d0a6cc04510f, type: 3}
-  m_Name: CoolGhostTestConvo
+  m_Name: Tutorial Ghost Returned
   m_EditorClassIdentifier: 
-  speakerLeft: {fileID: 0}
-  speakerRight: {fileID: 11400000, guid: 7c8336ac0420e4a4ca7c5e34c00e43df, type: 2}
   lines:
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 7c8336ac0420e4a4ca7c5e34c00e43df, type: 2}
-    text: ...
+    text: Hell yeah dude, you're the best... Wait wait, lemme tell you a crazy story
+      about these bad boys, you earned it.
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 7c8336ac0420e4a4ca7c5e34c00e43df, type: 2}
-    text: ..........
+    text: Right, right, so check this. I was at my local Target one day, and I see
+      these original Raybans for like.... 5 Dollars...
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 7c8336ac0420e4a4ca7c5e34c00e43df, type: 2}
-    text: ........................
+    text: 'I know, I know, crazy bargain right? Hahahahah! '
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 7c8336ac0420e4a4ca7c5e34c00e43df, type: 2}
-    text: ....................................................................
+    text: When I was alive, I never once took them off...
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 7c8336ac0420e4a4ca7c5e34c00e43df, type: 2}
-    text: Sup'
-  GhostToLookAt: {fileID: 2017824719322374035, guid: b7b7a6a028bd36747ae6b964c34cc9eb,
-    type: 3}
+    text: They're my most prized possession...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 7c8336ac0420e4a4ca7c5e34c00e43df, type: 2}
+    text: I don't think the afterlife vibe would be right without these by my side...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 7c8336ac0420e4a4ca7c5e34c00e43df, type: 2}
+    text: Anyways, thanks for your help dude. IOU.
