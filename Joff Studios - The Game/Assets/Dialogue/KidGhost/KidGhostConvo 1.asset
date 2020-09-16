@@ -17,14 +17,14 @@ MonoBehaviour:
     characterRight: {fileID: 11400000, guid: 63fec42ebeb77ba4789a3c902804d799, type: 2}
     text: ... dont you remember what the teacher said Bear?
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 63fec42ebeb77ba4789a3c902804d799, type: 2}
+    characterRight: {fileID: 11400000, guid: 98403dcc3a0a43445a1fb2473d5221f5, type: 2}
     text: ...
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 63fec42ebeb77ba4789a3c902804d799, type: 2}
     text: "Ugh, you're so forgetful... she said the other kids don\u2019t like it
       when you use big words! "
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 63fec42ebeb77ba4789a3c902804d799, type: 2}
+    characterRight: {fileID: 11400000, guid: 98403dcc3a0a43445a1fb2473d5221f5, type: 2}
     text: ...
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 63fec42ebeb77ba4789a3c902804d799, type: 2}
@@ -48,7 +48,7 @@ MonoBehaviour:
     characterRight: {fileID: 11400000, guid: 63fec42ebeb77ba4789a3c902804d799, type: 2}
     text: Hmm, what do we call them Bear?
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 63fec42ebeb77ba4789a3c902804d799, type: 2}
+    characterRight: {fileID: 11400000, guid: 98403dcc3a0a43445a1fb2473d5221f5, type: 2}
     text: ....
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 63fec42ebeb77ba4789a3c902804d799, type: 2}
@@ -69,7 +69,7 @@ MonoBehaviour:
     characterRight: {fileID: 11400000, guid: 63fec42ebeb77ba4789a3c902804d799, type: 2}
     text: I lost my favorite ribbon by the garden during the full moon
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 63fec42ebeb77ba4789a3c902804d799, type: 2}
+    characterRight: {fileID: 11400000, guid: 98403dcc3a0a43445a1fb2473d5221f5, type: 2}
     text: ...
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 63fec42ebeb77ba4789a3c902804d799, type: 2}
@@ -79,7 +79,7 @@ MonoBehaviour:
     text: "Yes, that\u2019s right. It wasn\u2019t good at all. It was the worstest
       day since our death day, right Bear?"
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 63fec42ebeb77ba4789a3c902804d799, type: 2}
+    characterRight: {fileID: 11400000, guid: 98403dcc3a0a43445a1fb2473d5221f5, type: 2}
     text: ...
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 63fec42ebeb77ba4789a3c902804d799, type: 2}
