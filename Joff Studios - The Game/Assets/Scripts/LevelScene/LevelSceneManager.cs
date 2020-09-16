@@ -108,7 +108,7 @@ public class LevelSceneManager : MonoBehaviour
         }
         if(!paused)
         {
-            if (Input.GetKeyDown(KeyCode.T))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 _UIScript.HidePlayerUI();
                 DialogueManager.instance.DisplayNextSentence();
