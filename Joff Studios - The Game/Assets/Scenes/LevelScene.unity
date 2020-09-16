@@ -3917,12 +3917,12 @@ GameObject:
   m_Component:
   - component: {fileID: 295942643}
   m_Layer: 5
-  m_Name: PauseOverlay
+  m_Name: PauseParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &295942643
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12355,8 +12355,8 @@ RectTransform:
   m_Father: {fileID: 1692431612}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -16877,7 +16877,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -55130,17 +55130,17 @@ MonoBehaviour:
   _tutorialGhost: {fileID: 1116907522}
   _playTutorial: 1
   TutorialConversations:
-  - {fileID: 11400000, guid: 680cdfa29d139724591d5dd9f71a9a16, type: 2}
-  - {fileID: 11400000, guid: 680cdfa29d139724591d5dd9f71a9a16, type: 2}
-  - {fileID: 11400000, guid: 680cdfa29d139724591d5dd9f71a9a16, type: 2}
-  - {fileID: 11400000, guid: 680cdfa29d139724591d5dd9f71a9a16, type: 2}
-  - {fileID: 11400000, guid: 680cdfa29d139724591d5dd9f71a9a16, type: 2}
-  - {fileID: 11400000, guid: 680cdfa29d139724591d5dd9f71a9a16, type: 2}
-  - {fileID: 11400000, guid: 680cdfa29d139724591d5dd9f71a9a16, type: 2}
-  - {fileID: 11400000, guid: 680cdfa29d139724591d5dd9f71a9a16, type: 2}
-  - {fileID: 11400000, guid: 680cdfa29d139724591d5dd9f71a9a16, type: 2}
-  - {fileID: 11400000, guid: 680cdfa29d139724591d5dd9f71a9a16, type: 2}
-  - {fileID: 11400000, guid: 680cdfa29d139724591d5dd9f71a9a16, type: 2}
+  - {fileID: 11400000, guid: 00f7e34b6d3678044b19e27197cf4064, type: 2}
+  - {fileID: 11400000, guid: 49af79d2be3759d4bad642a30190592a, type: 2}
+  - {fileID: 11400000, guid: f4eaf7e1d5995cf489680446e3fd6aa2, type: 2}
+  - {fileID: 11400000, guid: 94e6a33dc219c674fbadaa05b98abae9, type: 2}
+  - {fileID: 11400000, guid: 41f098f5e5d624f41aef99edbff3122e, type: 2}
+  - {fileID: 11400000, guid: c594f5e985caa144bb79bdd6fb1fcc9e, type: 2}
+  - {fileID: 11400000, guid: 1972c38c5a57a1d4297c4c0e25bce072, type: 2}
+  - {fileID: 11400000, guid: 9369068d638d2d64c8971627b21b9486, type: 2}
+  - {fileID: 11400000, guid: ca389ab4440ba3347bfcd364f3934901, type: 2}
+  - {fileID: 11400000, guid: 2631e4ab335362143a72d0313f80fad9, type: 2}
+  - {fileID: 11400000, guid: eebf6307667a47646b871c4ea902dcae, type: 2}
   - {fileID: 11400000, guid: 7810c1a3cd92795498e8dbb6da0e2ef4, type: 2}
   - {fileID: 11400000, guid: 86b3f8fbab2bb984681e6bd1b7ff185d, type: 2}
   - {fileID: 11400000, guid: 135c4c99db588d64f933119349dfb1b3, type: 2}

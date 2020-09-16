@@ -12,14 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7199d1d7f5b2d024eb17d0a6cc04510f, type: 3}
   m_Name: Tutorial 19
   m_EditorClassIdentifier: 
-  speakerLeft: {fileID: 0}
-  speakerRight: {fileID: 0}
   lines:
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 7c8336ac0420e4a4ca7c5e34c00e43df, type: 2}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
     text: "And that\u2019s it. We\u2019re tasked to protect and keep the gravestones
       here at tip-top shape. \r\nThey\u2019re all these ghosts have left. \r"
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 7c8336ac0420e4a4ca7c5e34c00e43df, type: 2}
+    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
     text: 'Oh before I forget, the ghosts get pretty lonely. . . Remember to talk
       to them once in a while, okay? '
