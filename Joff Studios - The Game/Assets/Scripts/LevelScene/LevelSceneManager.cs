@@ -10,9 +10,9 @@ public class LevelSceneManager : MonoBehaviour
 
     public GameObject playerSpawn;
 
-    public int NightLength = 3;
-    public int DayLength = 3;
-    public int AmountOfDays = 7;
+    public int HalfNightLength;
+    public int HalfDayLength;
+    public int AmountOfDays;
     private int DaysPassed = 0;
 
     public DayNightLighting _lighting;
@@ -41,7 +41,22 @@ public class LevelSceneManager : MonoBehaviour
     public static bool paused;
     public ScoringSystem score;
 
+    public float timeSinceLastDialogueStarted = 0f;
+    public float timeUntilNextDialogueCanBeStarted = 0.25f;
+
     public AudioSource EndingMusic;
+
+    //DIFFICULTY
+
+    [Range(0, 3)]
+    public int DifficultySlider;
+    private float maxTimeBetweenRobberSpawns = 60;
+    [SerializeField]
+    private float timeBetweenRobberSpawns = 0f;
+    [SerializeField]
+    private float timeSinceLastRobberSpawn = 0f;
+
+    private int RobbersPerSpawn = 3;
 
     //TUTORIAL
 
@@ -64,8 +79,10 @@ public class LevelSceneManager : MonoBehaviour
     private void Awake()
     {
         _playTutorial = MenuSceneManager.playTutorial;
-        MenuSceneManager.playTutorial = false;
+        SetDifficulty();
 
+        MenuSceneManager.playTutorial = false;
+        DialogueManager.instance.level = this;
 
         Events.current.GraveRobberDespawned += RemoveGraveRobber;
         Events.current.DayIsOver += FinishDay;
@@ -108,14 +125,36 @@ public class LevelSceneManager : MonoBehaviour
         }
         if(!paused)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && DialogueManager.playingConversation)
             {
                 _UIScript.HidePlayerUI();
                 DialogueManager.instance.DisplayNextSentence();
             }
         }
+        timeSinceLastDialogueStarted += Time.deltaTime;
+
+        if(_lighting.DayToNightRatio >= 0.5f)
+        {
+            if(timeSinceLastRobberSpawn >= timeBetweenRobberSpawns)
+            {
+                StartCoroutine(SpawnGraveRobbers(3));
+            }
+        }
+        timeSinceLastRobberSpawn += Time.deltaTime;
     }
 
+    private void SetDifficulty()
+    {
+        if(DifficultySlider == 0)
+        {
+            timeBetweenRobberSpawns = Mathf.Infinity;
+        }
+        else
+        {
+            timeBetweenRobberSpawns = (1f/DifficultySlider) * maxTimeBetweenRobberSpawns;
+            timeSinceLastRobberSpawn = timeBetweenRobberSpawns;
+        }
+    }
 
     private void RemoveGraveRobber(GameObject graveRobber)
     {
@@ -159,10 +198,8 @@ public class LevelSceneManager : MonoBehaviour
         SetPlayerReferencesInScene();
         SpawnOfferings();
         _graveRobbers = new List<GameObject>();
-        StartCoroutine(SpawnGraveRobbers(10));
+        //StartCoroutine(SpawnGraveRobbers(10));
     }
-
-
 
 
     //DIALOGUE
@@ -171,9 +208,13 @@ public class LevelSceneManager : MonoBehaviour
 
     public void TriggerDialogue(ConversationScriptObj convo)
     {
-        _UIScript.TurnOnDialogue();
-        DialogueManager.instance.StartDialogue(convo);
-        References.playerScript.LockMovement();
+        if(timeSinceLastDialogueStarted >= timeUntilNextDialogueCanBeStarted)
+        {
+            _UIScript.TurnOnDialogue();
+            DialogueManager.instance.StartDialogue(convo);
+            References.playerScript.LockMovement();
+            References.playerScript.LockAbilities();
+        }
     }
 
 
@@ -240,11 +281,15 @@ public class LevelSceneManager : MonoBehaviour
     {
         _UIScript.SetDays(DaysPassed, AmountOfDays);
     }
+
+
     //  TIME/DAYS
+
+
     void SetupDayAndNight()
     {
-        _lighting.DayLength = DayLength;
-        _lighting.NightLength = NightLength;
+        _lighting.DayLength = HalfDayLength;
+        _lighting.NightLength = HalfNightLength;
 
         StartCoroutine(_lighting.Night(_lighting.NightLength));
     }
@@ -259,7 +304,7 @@ public class LevelSceneManager : MonoBehaviour
         else //start a new day
         {
             SetupDayAndNight();
-            StartCoroutine(SpawnGraveRobbers(Random.Range(3, 6)));
+            //StartCoroutine(SpawnGraveRobbers(Random.Range(3, 6)));
             print("new day");
             SpawnOfferings();
             SetUIDay();
@@ -294,12 +339,13 @@ public class LevelSceneManager : MonoBehaviour
     }
     private IEnumerator SpawnGraveRobbers(int amount)
     {
-        yield return new WaitForSeconds(3);
+        timeSinceLastRobberSpawn = 0f;
 
         for (int i = 0; i < amount; i++)
         {
             SpawnGraveRobber();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.25f);
+            //yield return new WaitForFixedUpdate();
 
         }
         for (int i = 0; i < _graveRobbers.Count; i++) //remove all robber collisions
@@ -309,6 +355,7 @@ public class LevelSceneManager : MonoBehaviour
                 Physics2D.IgnoreCollision(_graveRobbers[i].GetComponent<Collider2D>(), _graveRobbers[j].GetComponent<Collider2D>());
             }
         }
+
     }
 
     private void SpawnGraveRobber()

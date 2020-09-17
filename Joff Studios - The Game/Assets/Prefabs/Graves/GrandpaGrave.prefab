@@ -79,10 +79,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: affb6bb1a17414740a4ad783a2ada62b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InhabitedGhost: {fileID: 0}
   _destroyed: 0
-  _dirtParticlesPrefab: {fileID: 0}
-  _dirtPos: {fileID: 0}
+  _dirtParticlesPrefab: {fileID: 802894040012684917, guid: a69bac5c976b3294f95e80c77e28c584,
+    type: 3}
+  _dirtPos: {fileID: 550000552207145079}
   GravestoneRenderer: {fileID: 0}
   initialSprite: {fileID: 0}
   DestructionStates:
@@ -91,8 +91,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ce7d50a7ce30a6649b0dca648eabb716, type: 3}
   maxHealth: 0
   currentHealth: 0
+  maxGhostHappiness: 0
+  currentHappiness: 0
   OfferingPos: {fileID: 550000552207145079}
   currentOffering: {fileID: 0}
+  timeSinceLastHealSound: 1
 --- !u!212 &1771324859771884122
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -156,12 +159,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPossessed: 0
-  _isGrave: 0
   _canMove: 0
   _moveablePart: {fileID: 0}
   _moveSpeed: 0
   CastShadow: {fileID: 0}
   exclamation: {fileID: 0}
+  lockMovement: 0
 --- !u!58 &1771324859771884116
 CircleCollider2D:
   m_ObjectHideFlags: 0

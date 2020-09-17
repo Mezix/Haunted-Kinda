@@ -400,6 +400,22 @@ public class Player : MonoBehaviour
     {
         lockMovement = false;
     }
+    public void LockAbilities()
+    {
+        _possessionLocked = true;
+        _depossessionLocked = true;
+        _dashLocked = true;
+        _screamLocked = true;
+        _interactionLocked = true;
+    }
+    public void UnlockAbilities()
+    {
+        _possessionLocked = false;
+        _depossessionLocked = false;
+        _dashLocked = false;
+        _screamLocked = false;
+        _interactionLocked = false;
+    }
     public void HidePlayer()
     {
         playerAnimator.SetBool("Disappear", true); //play the dissappear animation

@@ -22,9 +22,6 @@ public class DayNightLighting : MonoBehaviour
 
     void Start()
     {
-        DayLength = 3;
-        NightLength = 1;
-
         RedGlobalLight.intensity = 0;
         BlueGlobalLight.intensity = 0;
         WhiteGlobalLight.intensity = 1;

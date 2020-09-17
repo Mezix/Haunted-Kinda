@@ -7,6 +7,7 @@ public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager instance;
 
+    public LevelSceneManager level;
     public UIScript ui;
 
     public Text _dialogueText;
@@ -47,7 +48,7 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(ConversationScriptObj convo)
     {
         ui.DialogueShown = true;
-        if(!playingConversation)
+        if (!playingConversation)
         {
             playingConversation = true;
             sentences.Clear();
@@ -129,5 +130,7 @@ public class DialogueManager : MonoBehaviour
         ui.TurnOffDialogue();
         ui.DialogueShown = false;
         References.playerScript.UnlockMovement();
+        References.playerScript.UnlockAbilities();
+        level.timeSinceLastDialogueStarted = 0f;
     }
 }
