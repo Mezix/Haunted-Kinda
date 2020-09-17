@@ -55149,7 +55149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpawn: {fileID: 1752088183}
   HalfNightLength: 15
-  HalfDayLength: 15
+  HalfDayLength: 30
   AmountOfDays: 4
   _lighting: {fileID: 2080966426}
   _UIScript: {fileID: 1908170319}
