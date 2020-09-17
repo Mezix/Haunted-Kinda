@@ -119,10 +119,10 @@ public class LevelSceneManager : MonoBehaviour
 
     private void RemoveGraveRobber(GameObject graveRobber)
     {
-        //if (_graveRobbers.Contains(graveRobber))
-        //{
-        //    _graveRobbers.Remove(graveRobber);
-        //}
+        if (_graveRobbers.Contains(graveRobber))
+        {
+            _graveRobbers.Remove(graveRobber);
+        }
         Destroy(graveRobber);
     }
     private void BlockGrave(Gravestone grave)
@@ -159,7 +159,7 @@ public class LevelSceneManager : MonoBehaviour
         SetPlayerReferencesInScene();
         SpawnOfferings();
         _graveRobbers = new List<GameObject>();
-        StartCoroutine(SpawnGraveRobbers(6));
+        StartCoroutine(SpawnGraveRobbers(10));
     }
 
 
@@ -314,7 +314,7 @@ public class LevelSceneManager : MonoBehaviour
     private void SpawnGraveRobber()
     {
         GameObject go = Instantiate(_graveRobberPrefab);
-        go.transform.position = graveRobberSpawnPositions[1].transform.position; //Random.Range(0, graveRobberSpawnPositions.Count
+        go.transform.position = graveRobberSpawnPositions[Random.Range(0, graveRobberSpawnPositions.Count)].transform.position;
         go.GetComponent<GraveRobber>().InitRobber(allGraves, _graveRobberEscapePos);
         go.transform.parent = GraveRobberParent.transform;
         _graveRobbers.Add(go);
