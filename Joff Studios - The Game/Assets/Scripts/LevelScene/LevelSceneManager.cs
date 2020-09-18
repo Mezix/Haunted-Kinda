@@ -76,6 +76,12 @@ public class LevelSceneManager : MonoBehaviour
     public GraveGhost _coolGhost;
     public Gravestone _coolGrave;
 
+    //ENDING
+
+    public TutorialGhost _endingGhost;
+    public List<ConversationScriptObj> EndingConversations;
+    public int EndingConversationIndex = 0;
+
     private void Awake()
     {
         _playTutorial = MenuSceneManager.playTutorial;
@@ -133,11 +139,11 @@ public class LevelSceneManager : MonoBehaviour
         }
         timeSinceLastDialogueStarted += Time.deltaTime;
 
-        if(_lighting.DayToNightRatio >= 0.5f)
+        if(_lighting.DayToNightRatio >= 0.5f && !_isPlayingTutorial)
         {
             if(timeSinceLastRobberSpawn >= timeBetweenRobberSpawns)
             {
-                StartCoroutine(SpawnGraveRobbers(3));
+                StartCoroutine(SpawnGraveRobbers(RobbersPerSpawn));
             }
         }
         timeSinceLastRobberSpawn += Time.deltaTime;
@@ -212,8 +218,11 @@ public class LevelSceneManager : MonoBehaviour
         {
             _UIScript.TurnOnDialogue();
             DialogueManager.instance.StartDialogue(convo);
-            References.playerScript.LockMovement();
-            References.playerScript.LockAbilities();
+            if(!_isPlayingTutorial)
+            {
+                References.playerScript.LockMovement();
+                References.playerScript.LockAbilities();
+            }
         }
     }
 
@@ -299,7 +308,7 @@ public class LevelSceneManager : MonoBehaviour
         if(DaysPassed >= AmountOfDays) //week over => game over
         {
             SetUIDay();
-            EndOfGame();
+            StartCoroutine(PlayEnding());
         }
         else //start a new day
         {
@@ -355,7 +364,6 @@ public class LevelSceneManager : MonoBehaviour
                 Physics2D.IgnoreCollision(_graveRobbers[i].GetComponent<Collider2D>(), _graveRobbers[j].GetComponent<Collider2D>());
             }
         }
-
     }
 
     private void SpawnGraveRobber()
@@ -367,13 +375,7 @@ public class LevelSceneManager : MonoBehaviour
         _graveRobbers.Add(go);
         go.GetComponent<GraveRobber>().blockedGraves = blockedGraves;
     }
-
-    private void EndOfGame()
-    {
-        print("VICTORY");
-        EndingMusic.Play();
-        _UIScript.ShowEndScreen();
-    }
+    
 
     public void GoToMainMenu()
     {
@@ -834,5 +836,107 @@ public class LevelSceneManager : MonoBehaviour
         _kitty.timesGraveWasDestroyed = 0;
 
         _coolGhost._graveItem = coolGhostGraveItem;
+    }
+
+    private IEnumerator PlayEnding()
+    {
+        //Setup the end
+
+        print("end");
+        DialogueManager.instance.EndDialogue(); //end any possible dialogue we are in
+
+        _isPlayingTutorial = true;
+        References.playerScript.LockMovement();
+        References.playerScript._screamLocked = References.playerScript._dashLocked = References.playerScript._possessionLocked
+        = References.playerScript._depossessionLocked = References.playerScript._interactionLocked = true;
+        References.playerScript.lastMovementDir = new Vector2(0, -1);
+
+        _UIScript.HidePlayerUI();
+        _UIScript.DashMeterHidden = true;
+        _UIScript.ScreamMeterHidden = true;
+        _UIScript.proximityButtonsEnabled = false;
+        _UIScript.InventoryHidden = true;
+        _UIScript.portraitHidden = true;
+        _UIScript.TimeDisplayHidden = true;
+
+        if (References.playerScript.IsPossessing)
+        {
+            StartCoroutine(References.playerScript.DepossessObject());
+        }
+
+        DisableGraveghostFadein();
+        timeBetweenRobberSpawns = Mathf.Infinity;
+        foreach (GameObject robberObj in _graveRobbers)
+        {
+            GraveRobber robber = robberObj.GetComponent<GraveRobber>();
+            StartCoroutine(robber.Flee());
+        }
+
+
+        //zoom in for dialogue
+
+
+        yield return new WaitForSeconds(1f);
+        _cameraScript.Zoom(30, 0.5f);
+
+        //Scene 1: We can talk! Move to next pos
+
+        TriggerDialogue(EndingConversations[EndingConversationIndex]);
+        EndingConversationIndex++;
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
+        yield return new WaitForSeconds(1f);
+        References.playerScript.positionIndex = 11;
+        References.playerScript.MoveToNextPos();
+        yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
+        yield return new WaitForSeconds(0.5f);
+
+        //Scene 2: reminisce, and look around
+
+        TriggerDialogue(EndingConversations[EndingConversationIndex]);
+        EndingConversationIndex++;
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
+        yield return new WaitForSeconds(0.5f);
+        References.playerScript.lastMovementDir = new Vector2(-1, -1);
+        yield return new WaitForSeconds(0.5f);
+        References.playerScript.lastMovementDir = new Vector2(0, -1);
+        yield return new WaitForSeconds(0.5f);
+        References.playerScript.lastMovementDir = new Vector2(1, -1);
+        yield return new WaitForSeconds(0.5f);
+        References.playerScript.lastMovementDir = new Vector2(0, -1);
+        yield return new WaitForSeconds(0.2f);
+
+        //Scene 3: Talk about new caretaker appearing, move there
+
+        TriggerDialogue(EndingConversations[EndingConversationIndex]);
+        EndingConversationIndex++;
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
+        References.playerScript.MoveToNextPos();
+        yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
+        yield return new WaitForSeconds(0.5f);
+
+        //Scene 4: Talk to next ghost
+
+        References.playerScript.lastMovementDir = new Vector2(1, 0);
+        TriggerDialogue(EndingConversations[EndingConversationIndex]);
+        EndingConversationIndex++;
+        yield return new WaitWhile(() => DialogueManager.playingConversation);
+
+        StartCoroutine(_endingGhost.FadeIn());
+        _endingGhost.GetComponentInChildren<Animator>().SetBool("Appear", true);
+        //fade to black so we can show the endscreen
+
+        StartCoroutine(_UIScript.FadeToBlack());
+        for(int i = 0; i < 256; i++)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+        EndOfGame();
+    }
+    private void EndOfGame()
+    {
+        StartCoroutine(_UIScript.FadeFromBlack());
+        print("VICTORY");
+        EndingMusic.Play();
+        _UIScript.ShowEndScreen();
     }
 }

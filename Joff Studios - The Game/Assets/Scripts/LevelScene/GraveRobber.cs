@@ -22,7 +22,7 @@ public class GraveRobber : MonoBehaviour
 
     public FearLevel fearLevel { get; private set; } //the fear script on our player
     private bool canBeFeared; //wether or not the robber can be feared by the player
-    public bool isTerrified { get; private set;} //if our robber hits max fear, this should be true
+    public bool isTerrified { get; set;} //if our robber hits max fear, this should be true
 
     //MISC
 
@@ -138,6 +138,7 @@ public class GraveRobber : MonoBehaviour
         {
             StartCoroutine(DigGrave());
         }
+
         if (EscapePossible() && !isTerrified) //if we are at the escapePosition, and have loot, were home free!
         {
             StartCoroutine(EscapeWithLootAnimation());
@@ -313,10 +314,10 @@ public class GraveRobber : MonoBehaviour
             go.GetComponent<Lootbag>().lootPrefab = nearestGrave.inhabitedGhost._graveItem;
         }
     }
-    private IEnumerator Flee()
+    public IEnumerator Flee()
     {
         isEscaping = true;
-        _moveSpeed = 6f; //triple our movespeed
+        _moveSpeed = 4f; //triple our movespeed
         isTerrified = true; //set the terrified bool to true
         if(nearestGrave)
         {

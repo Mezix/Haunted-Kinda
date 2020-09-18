@@ -129,8 +129,11 @@ public class DialogueManager : MonoBehaviour
         playingConversation = false;
         ui.TurnOffDialogue();
         ui.DialogueShown = false;
-        References.playerScript.UnlockMovement();
-        References.playerScript.UnlockAbilities();
+        if(!LevelSceneManager._isPlayingTutorial)
+        {
+            References.playerScript.UnlockMovement();
+            References.playerScript.UnlockAbilities();
+        }
         level.timeSinceLastDialogueStarted = 0f;
     }
 }

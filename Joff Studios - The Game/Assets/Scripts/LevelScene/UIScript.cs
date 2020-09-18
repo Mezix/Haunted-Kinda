@@ -139,6 +139,8 @@ public class UIScript : MonoBehaviour
     {
         //enabled
         ShowPlayerUI();
+        DarkOverlay.SetActive(true);
+        
 
         //disabled
         HideCredits();
@@ -148,17 +150,22 @@ public class UIScript : MonoBehaviour
         Instructions.SetActive(false);
         Buttons.SetActive(false);
         UIDialogObj.SetActive(false);
+        SettingsScreen.SetActive(false);
+        HideCredits();
     }
 
     public void StartTutorial()
     {
         HidePlayerUI();
+        DarkOverlay.SetActive(true);
         HideCredits();
         EndScreen.SetActive(false);
         PauseScreen.SetActive(false);
+        PauseOverlay.SetActive(false);
         Instructions.SetActive(false);
         Buttons.SetActive(false);
         UIDialogObj.SetActive(false);
+        SettingsScreen.SetActive(false);
 
         proximityButtonsEnabled = false;
         portraitHidden = true;

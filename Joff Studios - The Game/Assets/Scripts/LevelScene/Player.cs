@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
     private float nextWayPointDistance = 0.5f; //the distance before we seek out our next waypoint => the higher, the smoother the movement
     public bool reachedEndOfPath = false; //wether or not we have gotten to our last checkpoint
     public List<Transform> positionsToSeekOut; //the gameobject we are currently looking to get to (e.g. escapePos, nearestGrave)
-    private int positionIndex = 0;
+    public int positionIndex = 0;
 
     //TUTORIAL STUFF
 
@@ -293,7 +293,7 @@ public class Player : MonoBehaviour
             startingPossession = false;
         }
     }
-    private IEnumerator DepossessObject()
+    public IEnumerator DepossessObject()
     {
         startingPossession = true;
         transform.position = possessedObject.transform.position; //move our player to the possessed object so we can reemerge
