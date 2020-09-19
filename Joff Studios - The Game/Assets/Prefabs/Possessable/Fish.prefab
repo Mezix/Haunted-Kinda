@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 6725792044129579595}
   m_Layer: 8
   m_Name: Fish
-  m_TagString: FishermanGhostQuestItem
+  m_TagString: CatGhostQuestItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

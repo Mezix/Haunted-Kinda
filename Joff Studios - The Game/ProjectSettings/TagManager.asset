@@ -13,6 +13,9 @@ TagManager:
   - CoolGhostQuestItem
   - GrandmaGhostQuestItem
   - FishermanGhostQuestItem
+  - CatGhostQuestItem
+  - KidGirlGhostQuestItem
+  - KnightGhostQuestItem
   layers:
   - Default
   - TransparentFX

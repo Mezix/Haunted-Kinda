@@ -45,14 +45,13 @@ public class GraveGhost : MonoBehaviour
         ghostRenderer = GetComponentInChildren<SpriteRenderer>();
         happiness = GetComponentInChildren<HealthBarScript>();
 
-        SpawnQuestItem();
         if(_questItemPrefab)
         {
             hasQuest = true;
         }
     }
 
-    private void SpawnQuestItem()
+    public void SpawnQuestItem()
     {
         if (_questItemPrefab && questItemLocation)
         {
@@ -156,6 +155,12 @@ public class GraveGhost : MonoBehaviour
         References.playerScript.UnlockMovement();
         questPossessable.ReturnPossessable();
         grave.RaiseHappiness(100);
+
+        if(_questItemPrefab.tag == "FishermanGhostQuestItem")
+        {
+            LevelSceneManager.catGhostQuestItem.SetActive(true);
+            print("spawning fish");
+        }
     }
 
     public void FadeIn()

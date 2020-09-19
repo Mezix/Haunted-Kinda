@@ -82,9 +82,14 @@ public class LevelSceneManager : MonoBehaviour
     public List<ConversationScriptObj> EndingConversations;
     public int EndingConversationIndex = 0;
 
+    //DAD AND CAT QUEST MISC
+
+    public static GameObject catGhostQuestItem;
+
     private void Awake()
     {
         _playTutorial = MenuSceneManager.playTutorial;
+        DifficultySlider = MenuSceneSettings._difficulty;
         SetDifficulty();
 
         MenuSceneManager.playTutorial = false;
@@ -204,7 +209,7 @@ public class LevelSceneManager : MonoBehaviour
         SetPlayerReferencesInScene();
         SpawnOfferings();
         _graveRobbers = new List<GameObject>();
-        //StartCoroutine(SpawnGraveRobbers(10));
+        SpawnQuestItems();
     }
 
 
@@ -343,7 +348,6 @@ public class LevelSceneManager : MonoBehaviour
             GameObject go = Instantiate(_allOfferingTypes[Random.Range(0, _allOfferingTypes.Count)]);
             go.transform.position = offeringSpawnPositions[i].transform.position;
             go.transform.parent = _offeringsParent.transform;
-            //print("offer");
         }
     }
     private IEnumerator SpawnGraveRobbers(int amount)
@@ -368,14 +372,37 @@ public class LevelSceneManager : MonoBehaviour
 
     private void SpawnGraveRobber()
     {
-        GameObject go = Instantiate(_graveRobberPrefab);
-        go.transform.position = graveRobberSpawnPositions[Random.Range(0, graveRobberSpawnPositions.Count)].transform.position;
-        go.GetComponent<GraveRobber>().InitRobber(allGraves, _graveRobberEscapePos);
-        go.transform.parent = GraveRobberParent.transform;
-        _graveRobbers.Add(go);
-        go.GetComponent<GraveRobber>().blockedGraves = blockedGraves;
+        bool SpawnRobber = false;
+        foreach(Gravestone grave in allGraves)
+        {
+            if(!grave.IsBeingTargeted && !blockedGraves.Contains(grave) && !grave._destroyed)
+            {
+                SpawnRobber = true;
+            }
+        }
+        if(SpawnRobber)
+        {
+            GameObject go = Instantiate(_graveRobberPrefab);
+            go.transform.position = graveRobberSpawnPositions[Random.Range(0, graveRobberSpawnPositions.Count)].transform.position;
+            go.GetComponent<GraveRobber>().InitRobber(allGraves, _graveRobberEscapePos);
+            go.transform.parent = GraveRobberParent.transform;
+            _graveRobbers.Add(go);
+            go.GetComponent<GraveRobber>().blockedGraves = blockedGraves;
+        }
     }
-    
+
+    private void SpawnQuestItems()
+    {
+        foreach(Gravestone grave in allGraves)
+        {
+            grave.GetComponentInChildren<GraveGhost>().SpawnQuestItem();
+        }
+
+        catGhostQuestItem = GameObject.FindGameObjectWithTag("CatGhostQuestItem");
+        catGhostQuestItem.SetActive(false);
+        print("Found fish");
+    }
+
 
     public void GoToMainMenu()
     {
@@ -835,7 +862,8 @@ public class LevelSceneManager : MonoBehaviour
         _coolGhost.timesGraveWasDestroyed = 0;
         _kitty.timesGraveWasDestroyed = 0;
 
-        _coolGhost._graveItem = coolGhostGraveItem;
+        _coolGhost._graveItem = null;
+        SpawnQuestItems();
     }
 
     private IEnumerator PlayEnding()
@@ -844,6 +872,11 @@ public class LevelSceneManager : MonoBehaviour
 
         print("end");
         DialogueManager.instance.EndDialogue(); //end any possible dialogue we are in
+
+        if (References.playerScript.IsPossessing)
+        {
+            StartCoroutine(References.playerScript.DepossessObject());
+        }
 
         _isPlayingTutorial = true;
         References.playerScript.LockMovement();
@@ -858,11 +891,6 @@ public class LevelSceneManager : MonoBehaviour
         _UIScript.InventoryHidden = true;
         _UIScript.portraitHidden = true;
         _UIScript.TimeDisplayHidden = true;
-
-        if (References.playerScript.IsPossessing)
-        {
-            StartCoroutine(References.playerScript.DepossessObject());
-        }
 
         DisableGraveghostFadein();
         timeBetweenRobberSpawns = Mathf.Infinity;
@@ -921,8 +949,8 @@ public class LevelSceneManager : MonoBehaviour
         EndingConversationIndex++;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
 
-        StartCoroutine(_endingGhost.FadeIn());
         _endingGhost.GetComponentInChildren<Animator>().SetBool("Appear", true);
+        StartCoroutine(_endingGhost.FadeIn());
         //fade to black so we can show the endscreen
 
         StartCoroutine(_UIScript.FadeToBlack());

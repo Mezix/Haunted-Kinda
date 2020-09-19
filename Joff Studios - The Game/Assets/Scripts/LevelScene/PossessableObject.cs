@@ -11,6 +11,8 @@ public class PossessableObject : MonoBehaviour
     public bool _canMove;
     private bool isRestoring;
     public GameObject _moveablePart;
+    [SerializeField]
+    private bool rotateRight;
     public float _moveSpeed;
     public GameObject CastShadow;
 
@@ -49,23 +51,67 @@ public class PossessableObject : MonoBehaviour
     {
         if(isPossessed)
         {
-            if(grave && !grave.GetComponentInChildren<GraveGhost>().lootStolen && !isRestoring) //if our loot has been stolen, we cant fix the grave yet!
+            if(grave && !isRestoring)// && !grave.GetComponentInChildren<GraveGhost>().lootStolen) //if our loot has been stolen, we cant fix the grave yet!
             {
                 StartCoroutine(RestoreGrave());
             }
             else if (_canMove && !lockMovement)
             {
+                WigglePossessable();
                 MovePossessableObject();
             }
         }
     }
 
+    private void WigglePossessable()
+    {
+        if(rotateRight)
+        {
+            if (_moveablePart.transform.rotation.z * Mathf.Rad2Deg < 8)
+            {
+                _moveablePart.transform.Rotate(Vector3.forward, 1.5f);
+            }
+            else
+            {
+                rotateRight = false;
+            }
+        }
+        else
+        {
+            if (_moveablePart.transform.rotation.z * Mathf.Rad2Deg > -8)
+            {
+                _moveablePart.transform.Rotate(Vector3.forward, -1.5f);
+            }
+            else
+            {
+                rotateRight = true;
+            }
+        }
+    }
+
+    private IEnumerator RotateBackToNormal()
+    {
+        while (Mathf.Abs(_moveablePart.transform.rotation.z * Mathf.Rad2Deg) > 1)
+        {
+            if (_moveablePart.transform.rotation.z > 0)
+            {
+                _moveablePart.transform.Rotate(Vector3.forward, -1);
+            }
+            else
+            {
+                _moveablePart.transform.Rotate(Vector3.forward, 1);
+            }
+            yield return new WaitForFixedUpdate();
+        }
+        Quaternion q = _moveablePart.transform.rotation;
+        q.eulerAngles = new Vector3(0,0,0);
+        _moveablePart.transform.rotation = q;
+    }
     private void MovePossessableObject()
     {
         Vector2 movement;
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-        //print(movement);
         possessableRB.MovePosition(possessableRB.position + movement.normalized * _moveSpeed * Time.fixedDeltaTime);
     }
 
@@ -79,7 +125,7 @@ public class PossessableObject : MonoBehaviour
             {
                 break;
             }
-            grave.RestoreGrave(0.1f);
+            grave.RestoreGrave(0.25f);
             yield return new WaitForSeconds(0.01f);
         }
         isRestoring = false;
@@ -97,6 +143,7 @@ public class PossessableObject : MonoBehaviour
     }
     private IEnumerator DropPossessable()
     {
+        StartCoroutine(RotateBackToNormal());
         _moveablePart.transform.localPosition = new Vector2(0, 0.5f);
         while (Vector2.Distance(_moveablePart.transform.localPosition, new Vector2(0, 0)) > 0.05f)
         {

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dad Convo 1
   m_EditorClassIdentifier: 
   lines:
-  - characterLeft: {fileID: 11400000, guid: 96e28092e8cb90a4d99932bbc35fdbac, type: 2}
+  - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 283dcb90c3f53ae4c9e07c6c9674524a, type: 2}
     text: 'Hm hm hmhm... zzzzZzz.
 

@@ -10,13 +10,37 @@ public class MenuSceneSettings : MonoBehaviour
     public bool settingsRaised;
     public static float volume;
     public Slider volumeSlider;
+    public Text DifficultyText;
+    public static int _difficulty = 2;
 
     public void SetVolume(float Volume)
     {
         audioMixer.SetFloat("MasterVolume", Volume);
         volume = Volume;
         volumeSlider.value = Volume;
+        DifficultyText.text = "= Medium";
     }
+    public void SetDifficulty(float Difficulty)
+    {
+        _difficulty = Mathf.RoundToInt(Difficulty);
+        if(_difficulty == 0)
+        {
+            DifficultyText.text = "= Peaceful";
+        }
+        else if (_difficulty == 1)
+        {
+            DifficultyText.text = "= Easy";
+        }
+        else if (_difficulty == 2)
+        {
+            DifficultyText.text = "= Medium";
+        }
+        else if (_difficulty == 3)
+        {
+            DifficultyText.text = "= Hard";
+        }
+    }
+
     private void Awake()
     {
         SetVolume(volume);
