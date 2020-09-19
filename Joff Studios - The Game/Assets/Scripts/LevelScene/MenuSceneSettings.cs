@@ -12,7 +12,9 @@ public class MenuSceneSettings : MonoBehaviour
     public Slider volumeSlider;
     public Text DifficultyText;
     public static int _difficulty = 2;
+    public Toggle tutorial;
 
+    
     public void SetVolume(float Volume)
     {
         audioMixer.SetFloat("MasterVolume", Volume);
@@ -44,6 +46,7 @@ public class MenuSceneSettings : MonoBehaviour
     private void Awake()
     {
         SetVolume(volume);
+        MenuSceneManager.playTutorial = tutorial.isOn;
     }
     public void Raise()
     {

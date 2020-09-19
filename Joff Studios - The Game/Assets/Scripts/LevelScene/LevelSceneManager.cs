@@ -103,6 +103,7 @@ public class LevelSceneManager : MonoBehaviour
         level = this;
 
         GetAllGravesInScene();
+        _graveRobbers = new List<GameObject>();
         GetAllRobberSpawnPositions();
         GetAllOfferingPositions();
     }
@@ -208,7 +209,6 @@ public class LevelSceneManager : MonoBehaviour
         References.playerScript.playerAnimator.SetBool("HatOn", true);
         SetPlayerReferencesInScene();
         SpawnOfferings();
-        _graveRobbers = new List<GameObject>();
         SpawnQuestItems();
     }
 
@@ -864,6 +864,7 @@ public class LevelSceneManager : MonoBehaviour
 
         _coolGhost._graveItem = null;
         SpawnQuestItems();
+        SpawnOfferings();
     }
 
     private IEnumerator PlayEnding()
@@ -877,12 +878,11 @@ public class LevelSceneManager : MonoBehaviour
         {
             StartCoroutine(References.playerScript.DepossessObject());
         }
-
         _isPlayingTutorial = true;
         References.playerScript.LockMovement();
         References.playerScript._screamLocked = References.playerScript._dashLocked = References.playerScript._possessionLocked
         = References.playerScript._depossessionLocked = References.playerScript._interactionLocked = true;
-        References.playerScript.lastMovementDir = new Vector2(0, -1);
+        References.playerScript.lastMovementDir = References.playerScript.movement = new Vector2(0, -1);
 
         _UIScript.HidePlayerUI();
         _UIScript.DashMeterHidden = true;

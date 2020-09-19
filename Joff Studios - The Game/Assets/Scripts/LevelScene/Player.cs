@@ -306,7 +306,10 @@ public class Player : MonoBehaviour
         _ghostGlow.SetActive(true); //turn back on our glow and shadow
         _shadow.SetActive(true);
         IsPossessing = false; //and the ability to possess again
-        lockMovement = false; //unlock movement
+        if(!LevelSceneManager._isPlayingTutorial)
+        {
+            lockMovement = false; //unlock movement
+        }
         startingPossession = false;
     }
 
