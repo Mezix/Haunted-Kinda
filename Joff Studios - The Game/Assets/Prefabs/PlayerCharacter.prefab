@@ -243,7 +243,7 @@ Transform:
   m_GameObject: {fileID: 2089916928533411849}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 6, y: 6, z: 3}
   m_Children:
   - {fileID: 909552323874492}
   m_Father: {fileID: 2766420452868347882}
@@ -389,7 +389,6 @@ MonoBehaviour:
   _screamCooldown: 0
   _screamDamage: 50
   possessedObject: {fileID: 0}
-  _possessionRange: 0
   collectedOfferings: []
   _dashCollider: {fileID: 236815685441882335}
   _screamCollider: {fileID: 3292341581732449292}
@@ -403,6 +402,7 @@ MonoBehaviour:
   _screamSound: {fileID: 4560099793726918585}
   reachedEndOfPath: 0
   positionsToSeekOut: []
+  positionIndex: 0
   _possessionLocked: 0
   _depossessionLocked: 0
   _dashLocked: 0
@@ -793,7 +793,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 3.5
 --- !u!114 &3292341581732449292
 MonoBehaviour:
   m_ObjectHideFlags: 0

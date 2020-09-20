@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lines:
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: c0dddfd46154a034197aa909b049d79c, type: 2}
+    characterRight: {fileID: 11400000, guid: f8b623032c9499243897d2ba787c752f, type: 2}
     text: '*sniffles*'
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: c0dddfd46154a034197aa909b049d79c, type: 2}
+    characterRight: {fileID: 11400000, guid: f8b623032c9499243897d2ba787c752f, type: 2}
     text: I miss my ribbon...
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 98403dcc3a0a43445a1fb2473d5221f5, type: 2}
     text: ...
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: c0dddfd46154a034197aa909b049d79c, type: 2}
+    characterRight: {fileID: 11400000, guid: f8b623032c9499243897d2ba787c752f, type: 2}
     text: You're right, I did look pretty in it bear...
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 98403dcc3a0a43445a1fb2473d5221f5, type: 2}

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e7fae8fa5a3bff498f98805c551ac84, type: 3}
-  m_Name: KidGhostRight
+  m_Name: KidGhostRight NoRibbon Sad
   m_EditorClassIdentifier: 
   fullName: Precocious Child
-  portrait: {fileID: 21300000, guid: 2e80c22d71b122f4b93dbfbbb8eb4bed, type: 3}
+  portrait: {fileID: 21300000, guid: 23091f9774450e9478e8a32dbab0c785, type: 3}
   width: 36
-  height: 27
+  height: 24

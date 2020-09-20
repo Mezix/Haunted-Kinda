@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: KidGhostRight NoRibbon
   m_EditorClassIdentifier: 
   fullName: Precocious Child
-  portrait: {fileID: 21300000, guid: 43d8e3ffb704e9744b2af7d59c7a1219, type: 3}
+  portrait: {fileID: 21300000, guid: 54f5c675f66daaa4dbe05fe98f0a3830, type: 3}
   width: 36
-  height: 30
+  height: 24

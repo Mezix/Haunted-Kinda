@@ -252,7 +252,7 @@ public class Player : MonoBehaviour
         {
             robber.TakeFearDamage(_screamDamage);
         }
-        yield return new WaitForSeconds(1f); //wait for the animation to end and then stop it
+        yield return new WaitForSeconds(0.28f); //wait for the animation to end and then stop it
         playerAnimator.SetBool("Screaming", false);
 
         screamAnim.SetBool("Scream", false);

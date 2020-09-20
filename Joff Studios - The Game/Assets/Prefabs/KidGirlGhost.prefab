@@ -113,6 +113,7 @@ MonoBehaviour:
   happiness: {fileID: 0}
   _graveItem: {fileID: 0}
   lootStolen: 0
+  hasQuest: 0
   _questItemPrefab: {fileID: 8043414066938722636, guid: 1ec56c1af17a59e429a2e72762a755da,
     type: 3}
   questItemLocation: {fileID: 5117021086914512697}

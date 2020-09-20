@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fullName: Bear
   portrait: {fileID: 21300000, guid: 1a39252dd67cfcc47984405f141cca16, type: 3}
-  width: 17
+  width: 14
   height: 16
