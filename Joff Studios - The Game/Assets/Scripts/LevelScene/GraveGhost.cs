@@ -134,8 +134,7 @@ public class GraveGhost : MonoBehaviour
                 {
                     if (_PostQuestConversations[_postQuestConversationIndex])
                     {
-                        print(_postQuestConversationIndex);
-                        LevelSceneManager.level.TriggerDialogue(_PostQuestConversations[UnityEngine.Random.Range(0, _PostQuestConversations.Length)]);
+                        LevelSceneManager.level.TriggerDialogue(_PostQuestConversations[_postQuestConversationIndex]);
                         _postQuestConversationIndex++;
                     }
                 }
