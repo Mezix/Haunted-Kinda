@@ -67,6 +67,7 @@ public class GraveGhost : MonoBehaviour
         GhostGlow.intensity = 0;
         fadeAmount = 0.05f;
         _conversationIndex = 0;
+        _postQuestConversationIndex = 0;
 
         happiness.healthbarbackground.color = happiness.healthbar.color = ghostRenderer.color = new Color(1, 1, 1, ghostSpriteOpacity);
 
@@ -104,41 +105,45 @@ public class GraveGhost : MonoBehaviour
 
     public void PlayConversation()
     {
-        if(!QuestComplete)
+        if(LevelSceneManager.level.timeSinceLastDialogueStarted >= LevelSceneManager.level.timeUntilNextDialogueCanBeStarted)
         {
-            if (_conversations.Length > 0)
+            if (!QuestComplete)
             {
-                if (_conversationIndex < _conversations.Length)
+                if (_conversations.Length > 0)
                 {
-                    if (_conversations[_conversationIndex])
+                    if (_conversationIndex < _conversations.Length)
                     {
-                        LevelSceneManager.level.TriggerDialogue(_conversations[_conversationIndex]);
-                        _conversationIndex++;
+                        if (_conversations[_conversationIndex])
+                        {
+                            LevelSceneManager.level.TriggerDialogue(_conversations[_conversationIndex]);
+                            _conversationIndex++;
+                        }
                     }
-                }
-                else
-                {
-                    if (QuestHasBeenGiven)
+                    else
                     {
-                        LevelSceneManager.level.TriggerDialogue(QuestHasBeenGiven);
+                        if (QuestHasBeenGiven)
+                        {
+                            LevelSceneManager.level.TriggerDialogue(QuestHasBeenGiven);
+                        }
                     }
-                }
-            }
-        }
-        else
-        {
-            if(_PostQuestConversations.Length > 0 && _postQuestConversationIndex < _PostQuestConversations.Length)
-            {
-                if(_PostQuestConversations[_postQuestConversationIndex])
-                {
-                    LevelSceneManager.level.TriggerDialogue(_PostQuestConversations[UnityEngine.Random.Range(0, _PostQuestConversations.Length)]);
-                    _postQuestConversationIndex++;
                 }
             }
             else
             {
-                if(_RandomConversations.Length > 0)
-                LevelSceneManager.level.TriggerDialogue(_RandomConversations[UnityEngine.Random.Range(0, _RandomConversations.Length)]);
+                if (_PostQuestConversations.Length > 0 && _postQuestConversationIndex < _PostQuestConversations.Length)
+                {
+                    if (_PostQuestConversations[_postQuestConversationIndex])
+                    {
+                        print(_postQuestConversationIndex);
+                        LevelSceneManager.level.TriggerDialogue(_PostQuestConversations[UnityEngine.Random.Range(0, _PostQuestConversations.Length)]);
+                        _postQuestConversationIndex++;
+                    }
+                }
+                else
+                {
+                    if (_RandomConversations.Length > 0)
+                        LevelSceneManager.level.TriggerDialogue(_RandomConversations[UnityEngine.Random.Range(0, _RandomConversations.Length)]);
+                }
             }
         }
     }

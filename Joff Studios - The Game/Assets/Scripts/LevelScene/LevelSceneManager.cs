@@ -88,8 +88,8 @@ public class LevelSceneManager : MonoBehaviour
 
     private void Awake()
     {
-        _playTutorial = MenuSceneManager.playTutorial;
-        DifficultySlider = MenuSceneSettings._difficulty;
+        //_playTutorial = MenuSceneManager.playTutorial;
+        //DifficultySlider = MenuSceneSettings._difficulty;
         SetDifficulty();
 
         MenuSceneManager.playTutorial = false;
