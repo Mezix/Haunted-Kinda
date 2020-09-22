@@ -299,7 +299,7 @@ public class Player : MonoBehaviour
         transform.position = possessedObject.transform.position; //move our player to the possessed object so we can reemerge
 
         playerAnimator.SetBool("Disappear", false); //play disappear animation
-        possessedObject.Deposses(); //leave the possessed object so we may inhabit it again later
+        possessedObject.Depossess(); //leave the possessed object so we may inhabit it again later
         possessedObject = null; //remove the ref to any possessed object
         Events.current.PossessObject(gameObject); //send out a possession event, to say we are back in our own body (important for grave robbers and Cameras)
         yield return new WaitForSeconds(0.75f); //unlock movement around 3/4 through the animation

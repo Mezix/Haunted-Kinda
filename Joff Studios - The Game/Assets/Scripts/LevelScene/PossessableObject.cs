@@ -38,7 +38,7 @@ public class PossessableObject : MonoBehaviour
         StartCoroutine(ExclamationMark());
     }
 
-    public void Deposses()
+    public void Depossess()
     {
         if (_canMove)
         {
@@ -128,7 +128,12 @@ public class PossessableObject : MonoBehaviour
             grave.RestoreGrave(0.25f);
             yield return new WaitForSeconds(0.01f);
         }
-        isRestoring = false;
+        if(!LevelSceneManager._isPlayingTutorial)
+        {
+            yield return new WaitWhile(() => !References.playerScript.IsPossessing);
+            StartCoroutine(References.playerScript.DepossessObject());
+            isRestoring = false;
+        }
     }
 
     private IEnumerator FloatPossessable()
