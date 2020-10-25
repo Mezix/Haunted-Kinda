@@ -207,6 +207,9 @@ public class LevelSceneManager : MonoBehaviour
         SetupDayAndNight();
 
         SpawnPlayer();
+        References.playerScript.UnlockMovement();
+        References.playerScript.UnlockAbilities();
+        References.playerScript._interactionLocked = false;
         References.playerScript.playerAnimator.SetBool("HatOn", true);
         SetPlayerReferencesInScene();
         SpawnOfferings();

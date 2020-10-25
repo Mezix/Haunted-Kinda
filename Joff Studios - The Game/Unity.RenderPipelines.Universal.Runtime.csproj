@@ -33,7 +33,7 @@
     <IntermediateOutputPath>Temp\UnityVS_obj\Debug\</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DefineConstants>DEBUG;TRACE;UNITY_2019_4_8;UNITY_2019_4;UNITY_2019;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;PLATFORM_STANDALONE;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_VSTU;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;ENABLE_VR_MODULE;ENABLE_XR_MODULE;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_2019_4_8;UNITY_2019_4;UNITY_2019;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;PLATFORM_STANDALONE;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_VSTU;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;UNITY_POST_PROCESSING_STACK_V2;POST_PROCESSING_STACK_2_0_0_OR_NEWER;ENABLE_VR_MODULE;ENABLE_XR_MODULE;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -43,7 +43,7 @@
     <IntermediateOutputPath>Temp\UnityVS_obj\Release\</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DefineConstants>TRACE;UNITY_2019_4_8;UNITY_2019_4;UNITY_2019;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;PLATFORM_STANDALONE;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_VSTU;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;ENABLE_VR_MODULE;ENABLE_XR_MODULE;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>TRACE;UNITY_2019_4_8;UNITY_2019_4;UNITY_2019;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;PLATFORM_STANDALONE;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_VSTU;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;UNITY_POST_PROCESSING_STACK_V2;POST_PROCESSING_STACK_2_0_0_OR_NEWER;ENABLE_VR_MODULE;ENABLE_XR_MODULE;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
@@ -248,11 +248,29 @@
     <Reference Include="UnityEditor.WebGL.Extensions">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.8f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.OSXStandalone.Extensions">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.8f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
+    <Reference Include="Pathfinding.Ionic.Zip.Reduced">
+      <HintPath>Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Unsafe">
+      <HintPath>E:/Important/Unity Game Projects/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/PackageCache/com.unity.burst@1.3.0-preview.12/Unity.Burst.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>E:/Important/Unity Game Projects/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/PackageCache/com.unity.collections@0.8.0-preview.5/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>E:/Important/Unity Game Projects/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0-preview/Runtime/Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Bee.Toolchain.MacOS">
+      <HintPath>E:/Important/Unity Game Projects/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/PackageCache/com.unity.platforms.macos@0.4.0-preview.5/Editor/Unity.Platforms.macOS.Build/Bee.Toolchain.MacOS.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.NRefactory">
-      <HintPath>E:/Important/Unity Game Projects/FixRepo/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/PackageCache/com.unity.render-pipelines.core@7.3.1/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
+      <HintPath>E:/Important/Unity Game Projects/Joff-Studios-Game-Jam/Joff Studios - The Game/Library/PackageCache/com.unity.render-pipelines.core@7.3.1/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2019.4.8f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
@@ -601,6 +619,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Unity.Postprocessing.Runtime.csproj">
+      <Project>{49FCAFB7-7D0A-B3F6-2171-B4248A94EC21}</Project>
+      <Name>Unity.Postprocessing.Runtime</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.RenderPipelines.Core.Runtime.csproj">
       <Project>{DF88BCE8-B64F-969D-3C39-F0C65EF04F6B}</Project>
       <Name>Unity.RenderPipelines.Core.Runtime</Name>
@@ -699,8 +721,21 @@
     <Compile Include="Packages\com.unity.render-pipelines.universal\Runtime\UniversalRenderPipelineCore.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Materials + Shaders\Shaders\PixelEffectShader.shader" />
-    <None Include="Assets\Sounds &amp; Music\Put this in Credits for Copyright.txt" />
+    <None Include="Assets\AstarPathfindingProject\AstarPathfindingProject.asmdef" />
+    <None Include="Assets\AstarPathfindingProject\Editor\AstarPathfindingProjectEditor.asmdef" />
+    <None Include="Assets\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh.cginc" />
+    <None Include="Assets\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh.shader" />
+    <None Include="Assets\AstarPathfindingProject\Editor\EditorAssets\Materials\NavmeshOutline.shader" />
+    <None Include="Assets\AstarPathfindingProject\ExampleScenes\Materials\DiffuseAlwaysVisible.shader" />
+    <None Include="Assets\AstarPathfindingProject\ExampleScenes\Materials\Projector Light.shader" />
+    <None Include="Assets\AstarPathfindingProject\ExampleScenes\_Example Scenes.txt" />
+    <None Include="Assets\AstarPathfindingProject\PackageTools\Editor\PackageToolsEditor.asmdef" />
+    <None Include="Assets\AstarPathfindingProject\Plugins\DotNetZip\DotNetZipLicense.txt" />
+    <None Include="Assets\AstarPathfindingProject\Plugins\dependencies.txt" />
+    <None Include="Assets\AstarPathfindingProject\Readme.txt" />
+    <None Include="Assets\AstarPathfindingProject\Readme_upgrading.txt" />
+    <None Include="Assets\AstarPathfindingProject\link.xml" />
+    <None Include="Assets\Audio\Put this in Credits for Copyright.txt" />
     <None Include="Packages\com.unity.2d.common\Editor\InternalBridge\InternalBridgeDef.asmdef" />
     <None Include="Packages\com.unity.2d.common\Editor\Unity.2D.Common.Editor.asmdef" />
     <None Include="Packages\com.unity.2d.common\Runtime\InternalBridge\InternalBridgeDef.asmdef" />
@@ -708,6 +743,10 @@
     <None Include="Packages\com.unity.2d.common\Tests\Editor\Unity.2D.Common.EditorTests.asmdef" />
     <None Include="Packages\com.unity.2d.path\Editor\Unity.2D.Path.Editor.asmdef" />
     <None Include="Packages\com.unity.2d.path\Tests\Unity.2D.Path.Tests.asmdef" />
+    <None Include="Packages\com.unity.2d.pixel-perfect\Editor\Unity.2D.PixelPerfect.Editor.asmdef" />
+    <None Include="Packages\com.unity.2d.pixel-perfect\Runtime\Unity.2D.PixelPerfect.asmdef" />
+    <None Include="Packages\com.unity.2d.pixel-perfect\Tests\Editor\Unity.2D.PixelPerfect.Editor.Tests.asmdef" />
+    <None Include="Packages\com.unity.2d.pixel-perfect\Tests\Runtime\Unity.2D.PixelPerfect.Tests.asmdef" />
     <None Include="Packages\com.unity.2d.sprite\Editor\UI\SpriteEditor\PolygonChangeShapeWindow.uxml" />
     <None Include="Packages\com.unity.2d.sprite\Editor\UI\SpriteEditor\SpriteEditor.uss" />
     <None Include="Packages\com.unity.2d.sprite\Editor\UI\SpriteEditor\SpriteFrameModuleInspector.uxml" />
@@ -725,18 +764,164 @@
     <None Include="Packages\com.unity.2d.tilemap.extras\Tests\Editor\Unity.2D.Tilemap.Extras.EditorTests.asmdef" />
     <None Include="Packages\com.unity.2d.tilemap\Editor\Unity.2D.Tilemap.Editor.asmdef" />
     <None Include="Packages\com.unity.2d.tilemap\Tests\Editor\Unity.2D.Tilemap.EditorTests.asmdef" />
+    <None Include="Packages\com.unity.burst\Editor\Unity.Burst.Editor.asmdef" />
+    <None Include="Packages\com.unity.burst\Runtime\Unity.Burst.asmdef" />
+    <None Include="Packages\com.unity.burst\Tests\Editor\SeparateAssembly\SeparateAssembly.asmdef" />
+    <None Include="Packages\com.unity.burst\Tests\Editor\Unity.Burst.Editor.Tests.asmdef" />
+    <None Include="Packages\com.unity.burst\Tests\Runtime\Unity.Burst.Tests.asmdef" />
+    <None Include="Packages\com.unity.burst\Unity.Burst.Unsafe.xml" />
     <None Include="Packages\com.unity.collab-proxy\Editor\Resources\Styles\CollabHistoryCommon.uss" />
     <None Include="Packages\com.unity.collab-proxy\Editor\Resources\Styles\CollabHistoryDark.uss" />
     <None Include="Packages\com.unity.collab-proxy\Editor\Resources\Styles\CollabHistoryLight.uss" />
     <None Include="Packages\com.unity.collab-proxy\Editor\Unity.CollabProxy.Editor.asmdef" />
     <None Include="Packages\com.unity.collab-proxy\Tests\Editor\Unity.CollabProxy.EditorTests.asmdef" />
+    <None Include="Packages\com.unity.collections\Unity.Collections.Tests\Unity.Collections.Tests.asmdef" />
+    <None Include="Packages\com.unity.collections\Unity.Collections\Unity.Collections.asmdef" />
     <None Include="Packages\com.unity.ext.nunit\net35\unity-custom\This is a custom build DONT include.txt" />
     <None Include="Packages\com.unity.ext.nunit\net35\unity-custom\nunit.framework.xml" />
     <None Include="Packages\com.unity.ide.rider\Rider\Editor\com.unity.ide.rider.asmdef" />
     <None Include="Packages\com.unity.ide.vscode\Editor\Unity.com.unity.vscode.Editor.asmdef" />
+    <None Include="Packages\com.unity.jobs\Editor\Unity.Jobs.Editor.asmdef" />
+    <None Include="Packages\com.unity.jobs\Unity.Jobs.Tests\Unity.Jobs.Tests.asmdef" />
+    <None Include="Packages\com.unity.jobs\Unity.Jobs\Unity.Jobs.asmdef" />
     <None Include="Packages\com.unity.mathematics\Tests\Unity.Mathematics.Tests.asmdef" />
     <None Include="Packages\com.unity.mathematics\Unity.Mathematics.Editor\Unity.Mathematics.Editor.asmdef" />
     <None Include="Packages\com.unity.mathematics\Unity.Mathematics\Unity.Mathematics.asmdef" />
+    <None Include="Packages\com.unity.nuget.newtonsoft-json\Tests\Editor\Unity.Nuget.NewtonsoftJson.EditorTests.asmdef" />
+    <None Include="Packages\com.unity.nuget.newtonsoft-json\link.xml" />
+    <None Include="Packages\com.unity.platforms.desktop\Runtime\Unity.Platforms.RunLoop.Desktop\Unity.Platforms.RunLoop.Desktop.asmref" />
+    <None Include="Packages\com.unity.platforms.desktop\Tests\Editor\Unity.Platforms.Desktop.EditorTests.asmdef" />
+    <None Include="Packages\com.unity.platforms.macos\Editor\Unity.Platforms.macOS.Build\Unity.Platforms.macOS.Build.asmdef" />
+    <None Include="Packages\com.unity.platforms.macos\Editor\Unity.Platforms.macOS\Unity.Platforms.macOS.asmdef" />
+    <None Include="Packages\com.unity.platforms.macos\Runtime\Unity.Tiny.macOS\Unity.Tiny.macOS.asmref" />
+    <None Include="Packages\com.unity.platforms.macos\Tests\Editor\Unity.Platforms.MacOS.EditorTests.asmdef" />
+    <None Include="Packages\com.unity.platforms\Editor\Unity.Build.Classic.Private\Unity.Build.Classic.Private.asmdef" />
+    <None Include="Packages\com.unity.platforms\Editor\Unity.Build.Classic\Unity.Build.Classic.asmdef" />
+    <None Include="Packages\com.unity.platforms\Editor\Unity.Build.Common\Unity.Build.Common.asmdef" />
+    <None Include="Packages\com.unity.platforms\Editor\Unity.Build.DotsRuntime\Unity.Build.DotsRuntime.asmdef" />
+    <None Include="Packages\com.unity.platforms\Editor\Unity.Build.Editor\Unity.Build.Editor.asmdef" />
+    <None Include="Packages\com.unity.platforms\Editor\Unity.Build.Editor\uss\BuildConfiguration.uss" />
+    <None Include="Packages\com.unity.platforms\Editor\Unity.Build.Editor\uss\BuildConfiguration_dark.uss" />
+    <None Include="Packages\com.unity.platforms\Editor\Unity.Build.Editor\uss\BuildConfiguration_light.uss" />
+    <None Include="Packages\com.unity.platforms\Editor\Unity.Build.Editor\uss\HierarchicalComponentContainer.uss" />
+    <None Include="Packages\com.unity.platforms\Editor\Unity.Build.Editor\uss\HierarchicalComponentContainer_dark.uss" />
+    <None Include="Packages\com.unity.platforms\Editor\Unity.Build.Editor\uss\HierarchicalComponentContainer_light.uss" />
+    <None Include="Packages\com.unity.platforms\Editor\Unity.Build.Editor\uss\TypeInspector.uss" />
+    <None Include="Packages\com.unity.platforms\Editor\Unity.Build.Editor\uss\TypeInspector_dark.uss" />
+    <None Include="Packages\com.unity.platforms\Editor\Unity.Build.Editor\uss\TypeInspector_light.uss" />
+    <None Include="Packages\com.unity.platforms\Editor\Unity.Build.Editor\uxml\TypeInspector.uxml" />
+    <None Include="Packages\com.unity.platforms\Editor\Unity.Build.Internals\Unity.Build.Internals.asmdef" />
+    <None Include="Packages\com.unity.platforms\Editor\Unity.Build\Unity.Build.asmdef" />
+    <None Include="Packages\com.unity.platforms\Editor\Unity.InternalAPIEditorBridge.012\Unity.InternalAPIEditorBridge.012.asmdef" />
+    <None Include="Packages\com.unity.platforms\Editor\Unity.Platforms\Unity.Platforms.asmdef" />
+    <None Include="Packages\com.unity.platforms\Runtime\Unity.Build.SlimPlayerRuntime\Unity.Build.SlimPlayerRuntime.asmdef" />
+    <None Include="Packages\com.unity.platforms\Runtime\Unity.Platforms.Common\Unity.Platforms.Common.asmdef" />
+    <None Include="Packages\com.unity.platforms\Runtime\Unity.Platforms.RunLoop\Unity.Platforms.RunLoop.asmdef" />
+    <None Include="Packages\com.unity.platforms\Tests\Editor\Unity.Build.Tests\Unity.Build.Tests.asmdef" />
+    <None Include="Packages\com.unity.platforms\Tests\Editor\Unity.Platforms.Tests\Unity.Platforms.Tests.asmdef" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Editor\Unity.Postprocessing.Editor.asmdef" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Runtime\Unity.Postprocessing.Runtime.asmdef" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\ACES.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\API\D3D11.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\API\D3D12.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\API\D3D9.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\API\Metal.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\API\OpenGL.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\API\PSP2.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\API\PSSL.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\API\Switch.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\API\Vulkan.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\API\XboxOne.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\AutoExposure.compute" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\Bloom.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\Copy.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\CopyStd.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\CopyStdFromDoubleWide.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\CopyStdFromTexArray.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\DeferredFog.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\DepthOfField.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\DepthOfField.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\DiscardAlpha.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\DiskKernels.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\Distortion.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\Dithering.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\ExposureHistogram.compute" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\ExposureHistogram.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\FastApproximateAntialiasing.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\FinalPass.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\Fog.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\GaussianDownsample.compute" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\GrainBaker.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\Lut2DBaker.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\Lut3DBaker.compute" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\MotionBlur.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\MultiScaleVO.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\MultiScaleVODownsample1.compute" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\MultiScaleVODownsample2.compute" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\MultiScaleVORender.compute" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\MultiScaleVOUpsample.compute" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\ScalableAO.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\ScalableAO.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\ScreenSpaceReflections.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\ScreenSpaceReflections.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\SubpixelMorphologicalAntialiasing.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\SubpixelMorphologicalAntialiasing.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\SubpixelMorphologicalAntialiasingBridge.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\TemporalAntialiasing.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\Texture2DLerp.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\Texture3DLerp.compute" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\Uber.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Colors.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Debug\Histogram.compute" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Debug\Histogram.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Debug\LightMeter.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Debug\Overlays.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Debug\Vectorscope.compute" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Debug\Vectorscope.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Debug\Waveform.compute" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Debug\Waveform.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Editor\ConvertToLog.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Editor\CurveGrid.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Editor\Trackball.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Sampling.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\StdLib.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\xRLib.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\Tests\Editor\Unity.Postprocessing.Editor.Tests.asmdef" />
+    <None Include="Packages\com.unity.postprocessing\Tests\Runtime\Unity.Postprocessing.Runtime.Tests.asmdef" />
+    <None Include="Packages\com.unity.properties.ui\Editor Default Resources\uss\add-collection-item.uss" />
+    <None Include="Packages\com.unity.properties.ui\Editor Default Resources\uss\circular-reference.uss" />
+    <None Include="Packages\com.unity.properties.ui\Editor Default Resources\uss\common.uss" />
+    <None Include="Packages\com.unity.properties.ui\Editor Default Resources\uss\common_dark.uss" />
+    <None Include="Packages\com.unity.properties.ui\Editor Default Resources\uss\common_light.uss" />
+    <None Include="Packages\com.unity.properties.ui\Editor Default Resources\uss\key-value-pair.uss" />
+    <None Include="Packages\com.unity.properties.ui\Editor Default Resources\uss\lazy-load-reference.uss" />
+    <None Include="Packages\com.unity.properties.ui\Editor Default Resources\uss\list-element-default.uss" />
+    <None Include="Packages\com.unity.properties.ui\Editor Default Resources\uss\list-element.uss" />
+    <None Include="Packages\com.unity.properties.ui\Editor Default Resources\uss\null-string-field.uss" />
+    <None Include="Packages\com.unity.properties.ui\Editor Default Resources\uss\nullable-foldout.uss" />
+    <None Include="Packages\com.unity.properties.ui\Editor Default Resources\uss\pagination-element.uss" />
+    <None Include="Packages\com.unity.properties.ui\Editor Default Resources\uss\set-element-default.uss" />
+    <None Include="Packages\com.unity.properties.ui\Editor Default Resources\uss\set-element.uss" />
+    <None Include="Packages\com.unity.properties.ui\Editor Default Resources\uxml\add-collection-item.uxml" />
+    <None Include="Packages\com.unity.properties.ui\Editor Default Resources\uxml\circular-reference.uxml" />
+    <None Include="Packages\com.unity.properties.ui\Editor Default Resources\uxml\complicated-type-test.uxml" />
+    <None Include="Packages\com.unity.properties.ui\Editor Default Resources\uxml\key-value-pair.uxml" />
+    <None Include="Packages\com.unity.properties.ui\Editor Default Resources\uxml\lazy-load-reference.uxml" />
+    <None Include="Packages\com.unity.properties.ui\Editor Default Resources\uxml\null-string-field.uxml" />
+    <None Include="Packages\com.unity.properties.ui\Editor Default Resources\uxml\pagination-element.uxml" />
+    <None Include="Packages\com.unity.properties.ui\Editor\Unity.Properties.UI.Editor.asmdef" />
+    <None Include="Packages\com.unity.properties.ui\Runtime\Unity.Properties.UI.asmdef" />
+    <None Include="Packages\com.unity.properties.ui\Tests\Unity.Properties.UI.Tests.asmdef" />
+    <None Include="Packages\com.unity.properties\Editor\Unity.Properties.CodeGen\Unity.Properties.CodeGen.asmdef" />
+    <None Include="Packages\com.unity.properties\Editor\Unity.Properties.Editor\Unity.Properties.Editor.asmdef" />
+    <None Include="Packages\com.unity.properties\Runtime\Unity.Properties.Reflection\Unity.Properties.Reflection.asmdef" />
+    <None Include="Packages\com.unity.properties\Runtime\Unity.Properties\Unity.Properties.asmdef" />
+    <None Include="Packages\com.unity.properties\Tests\Unity.Properties.CodeGen.PerformanceTests\Unity.Properties.CodeGen.PerformanceTests.asmdef" />
+    <None Include="Packages\com.unity.properties\Tests\Unity.Properties.CodeGen.Tests\Unity.Properties.CodeGen.Tests.Types\Unity.Properties.CodeGen.Tests.Types.asmdef" />
+    <None Include="Packages\com.unity.properties\Tests\Unity.Properties.CodeGen.Tests\Unity.Properties.CodeGen.Tests.asmdef" />
+    <None Include="Packages\com.unity.properties\Tests\Unity.Properties.Editor.Tests\Unity.Properties.Editor.Tests.asmdef" />
+    <None Include="Packages\com.unity.properties\Tests\Unity.Properties.Reflection.Tests\Unity.Properties.Reflection.Tests.asmdef" />
+    <None Include="Packages\com.unity.properties\Tests\Unity.Properties.Tests\Unity.Properties.Tests.asmdef" />
     <None Include="Packages\com.unity.render-pipelines.core\Editor\Gizmo\UnlitGizmo.shader" />
     <None Include="Packages\com.unity.render-pipelines.core\Editor\LookDev\Compositor.shader" />
     <None Include="Packages\com.unity.render-pipelines.core\Editor\LookDev\CubeToLatlong.shader" />
@@ -908,6 +1093,19 @@
     <None Include="Packages\com.unity.render-pipelines.universal\Shaders\Utils\Universal2D.hlsl" />
     <None Include="Packages\com.unity.render-pipelines.universal\Tests\Editor\Unity.RenderPipelines.Universal.Editor.Tests.asmdef" />
     <None Include="Packages\com.unity.render-pipelines.universal\Tests\Runtime\Unity.RenderPipelines.Universal.Runtime.Tests.asmdef" />
+    <None Include="Packages\com.unity.scriptablebuildpipeline\Editor\CacheServer\UnityEditor.CacheServer.asmdef" />
+    <None Include="Packages\com.unity.scriptablebuildpipeline\Editor\Unity.ScriptableBuildPipeline.Editor.asmdef" />
+    <None Include="Packages\com.unity.scriptablebuildpipeline\Runtime\Unity.ScriptableBuildPipeline.asmdef" />
+    <None Include="Packages\com.unity.scriptablebuildpipeline\Tests\Editor\CacheServer\UnityEditor.CacheServerTests.asmdef" />
+    <None Include="Packages\com.unity.scriptablebuildpipeline\Tests\Editor\Unity.ScriptableBuildPipeline.Editor.Tests.asmdef" />
+    <None Include="Packages\com.unity.searcher\Editor\Resources\Searcher.uss" />
+    <None Include="Packages\com.unity.searcher\Editor\Resources\SearcherItem.uxml" />
+    <None Include="Packages\com.unity.searcher\Editor\Resources\SearcherWindow.uxml" />
+    <None Include="Packages\com.unity.searcher\Editor\Unity.Searcher.Editor.asmdef" />
+    <None Include="Packages\com.unity.searcher\Tests\Editor\Unity.Searcher.EditorTests.asmdef" />
+    <None Include="Packages\com.unity.serialization\Editor\Unity.Serialization.Editor\Unity.Serialization.Editor.asmdef" />
+    <None Include="Packages\com.unity.serialization\Runtime\Unity.Serialization\Unity.Serialization.asmdef" />
+    <None Include="Packages\com.unity.serialization\Tests\Unity.Serialization.Editor.Tests\Unity.Serialization.Editor.Tests.asmdef" />
     <None Include="Packages\com.unity.shadergraph\Editor\Resources\Resizable.uss" />
     <None Include="Packages\com.unity.shadergraph\Editor\Resources\Selectable.uss" />
     <None Include="Packages\com.unity.shadergraph\Editor\Resources\Shaders\BlitNoAlpha.shader" />
@@ -976,6 +1174,9 @@
     <None Include="Packages\com.unity.shadergraph\ShaderGraphLibrary\ShaderVariablesMatrixDefsLegacyUnity.hlsl" />
     <None Include="Packages\com.unity.shadergraph\ShaderGraphLibrary\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.asmdef" />
     <None Include="Packages\com.unity.shadergraph\Tests\Editor\Unity.ShaderGraph.Editor.Tests.asmdef" />
+    <None Include="Packages\com.unity.test-framework.performance\Editor\TestReportGraph\TestReportShader.shader" />
+    <None Include="Packages\com.unity.test-framework.performance\Editor\Unity.PerformanceTesting.Editor.asmdef" />
+    <None Include="Packages\com.unity.test-framework.performance\Runtime\Unity.PerformanceTesting.asmdef" />
     <None Include="Packages\com.unity.test-framework\UnityEditor.TestRunner\UnityEditor.TestRunner.asmdef" />
     <None Include="Packages\com.unity.test-framework\UnityEngine.TestRunner\UnityEngine.TestRunner.asmdef" />
     <None Include="Packages\com.unity.textmeshpro\Editor Resources\Shaders\TMP_Properties.cginc" />
