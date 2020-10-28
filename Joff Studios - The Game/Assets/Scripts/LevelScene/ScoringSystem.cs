@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoringSystem : MonoBehaviour
 {
@@ -22,6 +23,16 @@ public class ScoringSystem : MonoBehaviour
     private float currentScore;
 
     private string grade = "F";
+
+    //END SCREEN CALCULATION ON THE UI
+    [SerializeField]
+    private Text YourFinalScore;
+    [SerializeField]
+    private Text ScoreThroughGhostHappiness;
+    [SerializeField]
+    private Text ScoreThroughQuestsCompleted;
+    [SerializeField]
+    private Text NumberOfQuestsCompleted;
 
     private void Awake()
     {
@@ -102,5 +113,26 @@ public class ScoringSystem : MonoBehaviour
             grade = "S+";
         }
         return grade;
+    }
+
+    /// <summary>
+    /// Shows the calculation of our score at the end screen
+    /// </summary>
+    public void UIEndScreenCalculation()
+    {
+        int QuestsCompleted = 0;
+        float happinessScore = 0;
+        foreach (GraveGhost ghost in AllGraveGhosts)
+        {
+            if (ghost.QuestComplete && ghost.hasQuest)
+            {
+                QuestsCompleted++;
+            }
+            happinessScore += ghost.happiness.healthbar.fillAmount * maxScoreForHappiness;
+        }
+        NumberOfQuestsCompleted.text = QuestsCompleted.ToString();
+        YourFinalScore.text = Mathf.RoundToInt(currentScore).ToString();
+        ScoreThroughGhostHappiness.text = Mathf.RoundToInt(happinessScore).ToString();
+        ScoreThroughQuestsCompleted.text = Mathf.RoundToInt((QuestsCompleted * ScorePerCompletedQuest)).ToString();
     }
 }

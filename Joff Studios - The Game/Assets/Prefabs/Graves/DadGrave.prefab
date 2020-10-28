@@ -162,6 +162,7 @@ MonoBehaviour:
   isPossessed: 0
   _canMove: 0
   _moveablePart: {fileID: 0}
+  rotateRight: 0
   _moveSpeed: 0
   CastShadow: {fileID: 0}
   exclamation: {fileID: 0}
@@ -191,7 +192,8 @@ AudioSource:
   m_GameObject: {fileID: 1771324859771884121}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7687753496038679886, guid: d719615b5eb69e14fa69bae61fd70faf,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: b4b4d4e657ee50d4d8b25455832a82d1, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.3

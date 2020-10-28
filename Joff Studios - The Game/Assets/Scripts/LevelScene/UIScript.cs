@@ -34,7 +34,9 @@ public class UIScript : MonoBehaviour
     public GameObject PauseScreen;
     public GameObject PauseOverlay;
     public GameObject SettingsScreen;
-    public Slider VolumeSlider;
+    public Slider MasterVolume;
+    public Slider MusicVolumeSlider;
+    public Slider SFXVolumeSlider;
     public GameObject Buttons;
     public GameObject Instructions;
 
@@ -72,7 +74,6 @@ public class UIScript : MonoBehaviour
         promptFadeAmount = 0.05f;
         TutorialPromptsBackground.color = PromptText.color = new Color(1, 1, 1, promptOpacity);
 
-        VolumeSlider.value = MenuSceneSettings.volume;
     }
 
     private void Update()
@@ -152,6 +153,10 @@ public class UIScript : MonoBehaviour
         UIDialogObj.SetActive(false);
         SettingsScreen.SetActive(false);
         HideCredits();
+
+        MasterVolume.value = MenuSceneSettings.masterVolume;
+        MusicVolumeSlider.value = MenuSceneSettings.musicVolume;
+        SFXVolumeSlider.value = MenuSceneSettings.SFXVolume;
     }
 
     public void StartTutorial()
@@ -174,6 +179,10 @@ public class UIScript : MonoBehaviour
         SundialHidden = true;
         TimeDisplayHidden = true;
         InventoryHidden = true;
+
+        MasterVolume.value = MenuSceneSettings.masterVolume;
+        MusicVolumeSlider.value = MenuSceneSettings.musicVolume;
+        SFXVolumeSlider.value = MenuSceneSettings.SFXVolume;
     }
 
     public void UIDash()
@@ -370,6 +379,7 @@ public class UIScript : MonoBehaviour
     {
         EndScreen.SetActive(true);
         ScoringSystem.instance.CalculateScore();
+        ScoringSystem.instance.UIEndScreenCalculation();
         string grade = ScoringSystem.instance.CalculateGrade();
         ActualGrade.text = grade;
         string message = " Dunno";
@@ -417,9 +427,19 @@ public class UIScript : MonoBehaviour
         PauseScreen.SetActive(true);
         SettingsScreen.SetActive(false);
     }
-    public void SetVolume(float Volume)
+    public void SetMasterVolume(float Volume)
     {
-        audioMixer.SetFloat("MasterVolume", Volume);
-        MenuSceneSettings.volume = Volume;
+        audioMixer.SetFloat("MasterVolume", Mathf.Log10(Volume) * 20);
+        MenuSceneSettings.masterVolume = Volume;
+    }
+    public void SetMusicVolume(float Volume)
+    {
+        audioMixer.SetFloat("MusicVolume", Mathf.Log10(Volume) * 20);
+        MenuSceneSettings.masterVolume = Volume;
+    }
+    public void SetSFXVolume(float Volume)
+    {
+        audioMixer.SetFloat("SFXVolume", Mathf.Log10(Volume) * 20);
+        MenuSceneSettings.masterVolume = Volume;
     }
 }

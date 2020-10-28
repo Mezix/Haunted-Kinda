@@ -11,6 +11,7 @@ public class DialogueManager : MonoBehaviour
     public UIScript ui;
 
     public Text _dialogueText;
+    public Image _dialoguePrompt;
 
     public GameObject _speakerLeft;
     public Image _speakerLeftImage;
@@ -63,6 +64,8 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
+        HideDialoguePrompt();
+
         _speakerLeft.SetActive(false);
         _speakerRight.SetActive(false);
         _speakerLeftNameObject.SetActive(false);
@@ -75,6 +78,7 @@ public class DialogueManager : MonoBehaviour
         }
         Line line = sentences.Dequeue();
         StopAllCoroutines();
+        StartCoroutine(ShowDialoguePrompt());
         StartCoroutine(TypeSentence(line.text));
 
         if (line.characterLeft)
@@ -135,5 +139,20 @@ public class DialogueManager : MonoBehaviour
             References.playerScript.UnlockAbilities();
         }
         level.timeSinceLastDialogueStarted = 0f;
+    }
+
+    public IEnumerator ShowDialoguePrompt()
+    {
+        yield return new WaitForSeconds(5f);
+        for(int i = 0; i < 50; i++)
+        {
+            _dialoguePrompt.color = new Color(1, 1, 1, (i / 50f));
+            yield return new WaitForFixedUpdate();
+        }
+    }
+    public void HideDialoguePrompt()
+    {
+        StopCoroutine(ShowDialoguePrompt());
+        _dialoguePrompt.color = new Color(1, 1, 1, 0);
     }
 }

@@ -45,18 +45,23 @@ public class PlayerLookAt : MonoBehaviour
             //print(hitObj);
             if (hitObj.CompareTag("3D UI"))
             {
-                //print("foudn somethin");
                 objectToLookAt = hitObj;
             }
             else
             {
-                objectToLookAt = DefaultLookAtObj;
+                if (!MenuSceneSettings.holdingSlider)
+                {
+                    objectToLookAt = DefaultLookAtObj;
+                }
             }
         }
         else
         {
             //print("nothing");
-            objectToLookAt = DefaultLookAtObj;
+            if (!MenuSceneSettings.holdingSlider)
+            {
+                objectToLookAt = DefaultLookAtObj;
+            }
         }
     }
 }

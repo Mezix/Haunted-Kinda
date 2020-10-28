@@ -8,19 +8,41 @@ public class MenuSceneSettings : MonoBehaviour
 {
     public AudioMixer audioMixer;
     public bool settingsRaised;
-    public static float volume;
-    public Slider volumeSlider;
+    public static float masterVolume = 1;
+    public static float musicVolume = 1;
+    public static float SFXVolume = 1;
+    public Slider masterVolumeSlider;
+    public Slider musicVolumeSlider;
+    public Slider SFXVolumeSlider;
     public Text DifficultyText;
     public static int _difficulty = 2;
     public Toggle tutorial;
 
-    
-    public void SetVolume(float Volume)
+    public static bool holdingSlider;
+    private void Update()
     {
-        audioMixer.SetFloat("MasterVolume", Volume);
-        volume = Volume;
-        volumeSlider.value = Volume;
-        DifficultyText.text = "= Medium";
+        if(Input.GetMouseButtonUp(0))
+        {
+            holdingSlider = false;
+        }
+    }
+
+    public void SetMasterVolume(float Volume)
+    {
+        audioMixer.SetFloat("MasterVolume", Mathf.Log10(Volume) * 20);
+        masterVolume = Volume;
+        masterVolumeSlider.value = Volume;
+        holdingSlider = true;
+    }
+    public void SetMusicVolume(float Volume)
+    {
+        audioMixer.SetFloat("MusicVolume", Mathf.Log10(Volume) * 20);
+        musicVolume = Volume;
+    }
+    public void SetSFXVolume(float Volume)
+    {
+        audioMixer.SetFloat("SFXVolume", Mathf.Log10(Volume) * 20);
+        SFXVolume = Volume;
     }
     public void SetDifficulty(float Difficulty)
     {
@@ -41,12 +63,17 @@ public class MenuSceneSettings : MonoBehaviour
         {
             DifficultyText.text = "= Hard";
         }
+        holdingSlider = true;
     }
 
     private void Awake()
     {
-        SetVolume(volume);
+        masterVolume = 1;
+        musicVolume = 1;
+        SFXVolume = 1;
+        SetMasterVolume(masterVolume);
         MenuSceneManager.playTutorial = tutorial.isOn;
+        holdingSlider = false;
     }
     public void Raise()
     {
