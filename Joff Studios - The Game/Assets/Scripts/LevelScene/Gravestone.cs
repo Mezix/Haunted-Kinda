@@ -8,9 +8,9 @@ public class Gravestone : MonoBehaviour
     public bool _destroyed;
     public bool IsBeingTargeted { get; set; }
 
-    public GameObject _dirtParticlesPrefab;
-    private GameObject currentDirtParticles;
-    public GameObject _dirtPos;
+    public GameObject _dirtParticles;
+
+    public GameObject _graveRestoreParticles;
 
     public SpriteRenderer GravestoneRenderer;
     public Sprite initialSprite;
@@ -35,6 +35,15 @@ public class Gravestone : MonoBehaviour
         initialSprite = GravestoneRenderer.sprite;
         Healing = GetComponent<AudioSource>();
         inhabitedGhost = GetComponentInChildren<GraveGhost>();
+
+        if(_graveRestoreParticles)
+        {
+            _graveRestoreParticles.SetActive(false);
+        }
+        if(_dirtParticles)
+        {
+            _dirtParticles.SetActive(false);
+        }
     }
     void Start()
     {
@@ -65,7 +74,8 @@ public class Gravestone : MonoBehaviour
     }
     public void RestoreGrave(float heal)
     {
-        if(timeSinceLastHealSound >= 2f)
+        _graveRestoreParticles.SetActive(true);
+        if (timeSinceLastHealSound >= 2f)
         {
             Healing.Play();
             timeSinceLastHealSound = 0f;
@@ -76,6 +86,7 @@ public class Gravestone : MonoBehaviour
             currentHealth = maxHealth;
             _destroyed = false;
             RaiseHappiness(30f);
+            _graveRestoreParticles.SetActive(false);
         }
         CheckDestructionState();
     }
@@ -116,17 +127,17 @@ public class Gravestone : MonoBehaviour
     {
         IsBeingTargeted = true;
 
-        if(_dirtParticlesPrefab && _dirtPos)
+        if(_dirtParticles)
         {
-            currentDirtParticles = Instantiate(_dirtParticlesPrefab, _dirtPos.transform.position, _dirtPos.transform.rotation);
+            _dirtParticles.SetActive(true);
         }
     }
     public void StopAttackingGrave()
     {
         IsBeingTargeted = false;
-        if(currentDirtParticles)
+        if(_dirtParticles)
         {
-            Destroy(currentDirtParticles);
+            _dirtParticles.SetActive(false);
         }
     }
 }

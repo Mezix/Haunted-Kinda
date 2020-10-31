@@ -23,6 +23,7 @@ public class GraveRobber : MonoBehaviour
     public FearLevel fearLevel { get; private set; } //the fear script on our player
     private bool canBeFeared; //wether or not the robber can be feared by the player
     public bool isTerrified { get; set;} //if our robber hits max fear, this should be true
+    public GameObject _fearParticles;
 
     //MISC
 
@@ -59,6 +60,10 @@ public class GraveRobber : MonoBehaviour
         UIRobberInstance = Instantiate(UIRobberPrefab, Vector3.zero, Quaternion.identity);
         UIRobberInstance.transform.parent = gameObject.transform;
         UIRobberInstance.SetActive(false);
+        if(_fearParticles)
+        {
+            _fearParticles.SetActive(false);
+        }
     }
 
     void Start()
@@ -323,6 +328,8 @@ public class GraveRobber : MonoBehaviour
         {
             nearestGrave.StopAttackingGrave(); //stop attacking the nearest grave
         }
+        graverobberRenderer.color = new Color(156,0,255,255); //Change color of robber to indicate fear
+        _fearParticles.SetActive(true); //show fear particles
         positionToSeekOut = escapePosition; //set the position and update the path
         UpdatePath(positionToSeekOut);
         animator.SetBool("Digging", false); //stop digging if we were
