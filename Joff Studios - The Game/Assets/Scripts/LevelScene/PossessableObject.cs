@@ -8,18 +8,32 @@ public class PossessableObject : MonoBehaviour
     [SerializeField]
     private bool isPossessed;
     public Gravestone grave { get; private set; }
-    public bool _canMove;
     private bool isRestoring;
-    public GameObject _moveablePart;
-    [SerializeField]
     private bool rotateRight;
-    public float _moveSpeed;
     public GameObject CastShadow;
-
-    private Rigidbody2D possessableRB;
-
     public GameObject exclamation;
+
+    //MOVEMENT
+
+    public bool _canMove;
+    public GameObject _moveablePart;
+    private Rigidbody2D possessableRB;
+    public float _moveSpeed;
+    Vector2 movement;
     public bool lockMovement;
+
+    //DASH
+
+    public float _dashSpeed; //the Velocity multiplier of our dash
+    public float _dashTime; //how long does our dash last
+    public float _dashCooldown; //the cooldown of our dash in seconds
+    public float TimeSinceLastDash { get; private set; } //time elapsed since we last dashed, to determine when we can dash next
+    private bool dashing; //check if we are dashing, so we can't dash again immediately
+
+    //AFTERIMAGE
+
+    public GameObject AfterImagePrefab;
+    public Vector3 lastAfterImagePos;
 
     private void Awake()
     {
@@ -27,6 +41,13 @@ public class PossessableObject : MonoBehaviour
         grave = GetComponent<Gravestone>();
     }
 
+    private void Start()
+    {
+        _dashCooldown = 1; //set our starting values
+        _dashSpeed = 25;
+        _dashTime = 0.3f;
+        TimeSinceLastDash = _dashCooldown;
+    }
     public void Possess()
     {
         isPossessed = true;
@@ -49,16 +70,25 @@ public class PossessableObject : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(isPossessed)
+        TimeSinceLastDash += Time.deltaTime;
+        if (isPossessed)
         {
-            if(grave && !isRestoring)// && !grave.GetComponentInChildren<GraveGhost>().lootStolen) //if our loot has been stolen, we cant fix the grave yet!
+            WigglePossessable();
+            if (grave && !isRestoring)//if our loot has been stolen, we cant fix the grave yet!
             {
                 StartCoroutine(RestoreGrave());
             }
             else if (_canMove && !lockMovement)
             {
-                WigglePossessable();
                 MovePossessableObject();
+                if (Input.GetKeyDown(KeyCode.LeftShift))
+                {
+                    if (!dashing && TimeSinceLastDash >= _dashCooldown)
+                    {
+                        TimeSinceLastDash = 0;
+                        StartCoroutine(Dash());
+                    }
+                }
             }
         }
     }
@@ -109,7 +139,6 @@ public class PossessableObject : MonoBehaviour
     }
     private void MovePossessableObject()
     {
-        Vector2 movement;
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         possessableRB.MovePosition(possessableRB.position + movement.normalized * _moveSpeed * Time.fixedDeltaTime);
@@ -174,5 +203,39 @@ public class PossessableObject : MonoBehaviour
     public void ReturnPossessable()
     {
         Destroy(gameObject);
+    }
+
+    private IEnumerator Dash()
+    {
+        print("dash");
+        dashing = true;
+        lockMovement = true;
+        Vector2 direction = movement.normalized;
+        References.playerScript._dashSound.Play();
+
+        float timer = 0;
+
+        GameObject afterimage = Instantiate(AfterImagePrefab, transform.position, transform.rotation);
+        afterimage.transform.position = _moveablePart.transform.position;
+        afterimage.GetComponent<AfterImage>().SetAndFadeAfterimage(GetComponentInChildren<SpriteRenderer>());
+        lastAfterImagePos = transform.position;
+        while (timer <= _dashTime)
+        {
+            if (Vector3.Distance(transform.position, lastAfterImagePos) >= 0.5f)
+            {
+                afterimage = Instantiate(AfterImagePrefab, transform.position, transform.rotation);
+                afterimage.transform.position = _moveablePart.transform.position;
+                afterimage.GetComponent<AfterImage>().SetAndFadeAfterimage(GetComponentInChildren<SpriteRenderer>());
+                lastAfterImagePos = transform.position;
+            }
+
+            timer += Time.deltaTime;
+            possessableRB.velocity = direction * _dashSpeed - (timer * direction * 20); //decrease our speed over time
+
+            yield return new WaitForFixedUpdate();
+        }
+        possessableRB.velocity = Vector2.zero;
+        dashing = false;
+        lockMovement = false;
     }
 }

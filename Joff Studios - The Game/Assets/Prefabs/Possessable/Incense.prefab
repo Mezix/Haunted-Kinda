@@ -205,7 +205,7 @@ Transform:
   - {fileID: 5846587419469777004}
   - {fileID: 5728213679093281533}
   m_Father: {fileID: 8043414066938722632}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1690931299642321991
 SpriteRenderer:
@@ -286,7 +286,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8043414066938722632}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1613806217212187029
 SpriteRenderer:
@@ -368,8 +368,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8581514477646658681}
   - {fileID: 5257341709212074093}
+  - {fileID: 8581514477646658681}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -386,12 +386,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPossessed: 0
-  _isGrave: 0
+  CastShadow: {fileID: 6589552778334653151}
+  exclamation: {fileID: 174177648119091815}
   _canMove: 1
   _moveablePart: {fileID: 6191067255897327017}
   _moveSpeed: 1
-  CastShadow: {fileID: 6589552778334653151}
-  exclamation: {fileID: 174177648119091815}
+  lockMovement: 0
+  _dashSpeed: 0
+  _dashTime: 0
+  _dashCooldown: 0
+  AfterImagePrefab: {fileID: 5421470715018780270, guid: c4736a1504e05ae45abc6630ead27a7e,
+    type: 3}
+  lastAfterImagePos: {x: 0, y: 0, z: 0}
 --- !u!61 &8043414066938722639
 BoxCollider2D:
   m_ObjectHideFlags: 0

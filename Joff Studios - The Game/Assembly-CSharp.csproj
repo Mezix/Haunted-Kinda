@@ -68,6 +68,7 @@
     <Compile Include="Assets\Jarrod Scene\Scripts\PixelViewer.cs" />
     <Compile Include="Assets\Jarrod Scene\Scripts\PixelateImageEffect.cs" />
     <Compile Include="Assets\Jarrod Scene\Scripts\SimpleCameraController.cs" />
+    <Compile Include="Assets\Scripts\LevelScene\AfterImage.cs" />
     <Compile Include="Assets\Scripts\LevelScene\BlockGravestones.cs" />
     <Compile Include="Assets\Scripts\LevelScene\CameraScript.cs" />
     <Compile Include="Assets\Scripts\LevelScene\Cursor.cs" />
