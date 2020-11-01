@@ -404,7 +404,6 @@ public class LevelSceneManager : MonoBehaviour
 
         catGhostQuestItem = GameObject.FindGameObjectWithTag("CatGhostQuestItem");
         catGhostQuestItem.SetActive(false);
-        print("Found fish");
     }
 
 

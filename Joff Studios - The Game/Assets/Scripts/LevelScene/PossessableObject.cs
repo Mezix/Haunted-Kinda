@@ -73,20 +73,26 @@ public class PossessableObject : MonoBehaviour
         TimeSinceLastDash += Time.deltaTime;
         if (isPossessed)
         {
-            WigglePossessable();
-            if (grave && !isRestoring)//if our loot has been stolen, we cant fix the grave yet!
+            if (grave)//if our loot has been stolen, we cant fix the grave yet!
             {
-                StartCoroutine(RestoreGrave());
-            }
-            else if (_canMove && !lockMovement)
-            {
-                MovePossessableObject();
-                if (Input.GetKeyDown(KeyCode.LeftShift))
+                if (!isRestoring)
                 {
-                    if (!dashing && TimeSinceLastDash >= _dashCooldown)
+                    StartCoroutine(RestoreGrave());
+                }
+            }
+            else
+            {
+                WigglePossessable();
+                if (_canMove && !lockMovement)
+                {
+                    MovePossessableObject();
+                    if (Input.GetKeyDown(KeyCode.LeftShift))
                     {
-                        TimeSinceLastDash = 0;
-                        StartCoroutine(Dash());
+                        if (!dashing && TimeSinceLastDash >= _dashCooldown)
+                        {
+                            TimeSinceLastDash = 0;
+                            StartCoroutine(Dash());
+                        }
                     }
                 }
             }

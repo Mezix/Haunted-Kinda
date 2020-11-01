@@ -74,6 +74,7 @@ public class UIScript : MonoBehaviour
         promptFadeAmount = 0.05f;
         TutorialPromptsBackground.color = PromptText.color = new Color(1, 1, 1, promptOpacity);
 
+        Events.current.ObjectPossessed += UIPossess;
     }
 
     private void Update()
@@ -119,7 +120,16 @@ public class UIScript : MonoBehaviour
 
     void SetDashMeterFill()
     {
-        DashMeter.transform.Find("bar").GetComponent<Image>().fillAmount = Mathf.Min(1, player.TimeSinceLastDash/player._dashCooldown);
+        if(!References.playerScript.IsPossessing)
+        {
+            DashMeter.transform.Find("bar").GetComponent<Image>().fillAmount = Mathf.Min(1, player.TimeSinceLastDash / player._dashCooldown);
+        }
+        else
+        {
+            if(References.playerScript.possessedObject._canMove)
+            {
+                DashMeter.transform.Find("bar").GetComponent<Image>().fillAmount = Mathf.Min(1, References.playerScript.possessedObject.TimeSinceLastDash / References.playerScript.possessedObject._dashCooldown);}
+            }
     }
     private void SetScreamMeterFill()
     {
@@ -205,6 +215,28 @@ public class UIScript : MonoBehaviour
         portrait.GetComponentInChildren<Animator>().SetBool("Scream", true);
         yield return new WaitForSeconds(0.75f);
         portrait.GetComponentInChildren<Animator>().SetBool("Scream", false);
+    }
+    public void UIPossess(GameObject obj)
+    {
+        if (obj != References.Player)
+        {
+            ScreamMeter.SetActive(false);
+            Inventory.SetActive(false);
+            if(!obj.GetComponent<PossessableObject>()._canMove)
+            {
+                DashMeter.SetActive(false);
+            }
+        }
+        else
+        {
+            UIDepossess();
+        }
+    }
+    public void UIDepossess()
+    {
+        ScreamMeter.SetActive(true);
+        Inventory.SetActive(true);
+        DashMeter.SetActive(true);
     }
 
     public void ShowPlayerUI()

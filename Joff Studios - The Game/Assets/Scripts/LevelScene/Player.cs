@@ -284,7 +284,6 @@ public class Player : MonoBehaviour
             playerAnimator.SetBool("Disappear", true); //play the dissappear animation
 
             //TODO: track object when its a moveable one!
-
             _ghostGlow.SetActive(false); //disable the glowy effect and our shadow
             _shadow.SetActive(false);
             Events.current.PossessObject(possessedObject.gameObject); //send out an event that we are possessing something
@@ -300,13 +299,14 @@ public class Player : MonoBehaviour
 
         playerAnimator.SetBool("Disappear", false); //play disappear animation
         possessedObject.Depossess(); //leave the possessed object so we may inhabit it again later
-        possessedObject = null; //remove the ref to any possessed object
+        
         Events.current.PossessObject(gameObject); //send out a possession event, to say we are back in our own body (important for grave robbers and Cameras)
         yield return new WaitForSeconds(0.75f); //unlock movement around 3/4 through the animation
         _ghostGlow.SetActive(true); //turn back on our glow and shadow
         _shadow.SetActive(true);
         IsPossessing = false; //and the ability to possess again
-        if(!LevelSceneManager._isPlayingTutorial)
+        possessedObject = null; //remove the ref to any possessed object
+        if (!LevelSceneManager._isPlayingTutorial)
         {
             lockMovement = false; //unlock movement
         }

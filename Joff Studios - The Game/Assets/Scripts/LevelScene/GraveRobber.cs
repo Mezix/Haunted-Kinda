@@ -280,7 +280,7 @@ public class GraveRobber : MonoBehaviour
                 animator.SetBool("Digging", false);
                 break;
             }
-            nearestGrave.TakeDamage(2f);
+            nearestGrave.TakeDamage(1f);
             nearestGrave.LowerHappiness(1f);
             yield return new WaitForSeconds(0.1f);
         }
