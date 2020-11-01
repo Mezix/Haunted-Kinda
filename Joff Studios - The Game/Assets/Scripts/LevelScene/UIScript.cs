@@ -65,6 +65,7 @@ public class UIScript : MonoBehaviour
     public Text ActualGrade;
     public Text GradeMessage;
     public GameObject CreditScreen;
+    public GameObject MainMenuButton;
 
     private void Awake()
     {
@@ -444,10 +445,12 @@ public class UIScript : MonoBehaviour
     public void ShowCredits()
     {
         CreditScreen.SetActive(true);
+        MainMenuButton.SetActive(true);
     }
     public void HideCredits()
     {
         CreditScreen.SetActive(false);
+        MainMenuButton.SetActive(false);
     }
     public void ShowSettings()
     {

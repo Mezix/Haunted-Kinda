@@ -403,13 +403,14 @@ public class GraveRobber : MonoBehaviour
 
     private void SetUIRobberLocation()
     {
-        float maxScreenWidth = 1920 / 2f;
-        float maxScreenHeight = 1080 / 2f;
+        float maxScreenWidth = Screen.width / 2f;
+        float maxScreenHeight = Screen.height / 2f;
         float featherAmount = 50f;
 
         Vector2 robberLocation = Camera.main.WorldToScreenPoint(gameObject.transform.position) - new Vector3(maxScreenWidth, maxScreenHeight, 0);
 
-        if(robberLocation.x >= maxScreenWidth)
+        print(robberLocation);
+        if (robberLocation.x >= maxScreenWidth)
         {
             robberLocation.x = maxScreenWidth - featherAmount;
         }
