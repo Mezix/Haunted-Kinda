@@ -157,7 +157,7 @@ public class GraveGhost : MonoBehaviour
         QuestComplete = true;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
         References.playerScript.UnlockMovement();
-        questPossessable.ReturnPossessable();
+        questPossessable.ReturnPossessableToGhost();
         grave.RaiseHappiness(100);
 
         if(_questItemPrefab.tag == "FishermanGhostQuestItem")
@@ -198,7 +198,7 @@ public class GraveGhost : MonoBehaviour
         if(_questItemPrefab.tag == newItem.tag)
         {
             QuestComplete = true;
-            newItem.GetComponent<PossessableObject>().ReturnPossessable();
+            newItem.GetComponent<PossessableObject>().ReturnPossessableToGhost();
         }
     }
 }

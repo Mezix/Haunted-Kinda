@@ -16,6 +16,8 @@ TagManager:
   - CatGhostQuestItem
   - KidGirlGhostQuestItem
   - KnightGhostQuestItem
+  - Broom
+  - WateringCan
   layers:
   - Default
   - TransparentFX

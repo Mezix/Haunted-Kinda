@@ -35,6 +35,11 @@ public class PossessableObject : MonoBehaviour
     public GameObject AfterImagePrefab;
     public Vector3 lastAfterImagePos;
 
+    //BROOM AND WATERINGCAN
+
+    private bool sweepingBroom;
+    private bool watering;
+
     private void Awake()
     {
         possessableRB = GetComponent<Rigidbody2D>();
@@ -43,7 +48,7 @@ public class PossessableObject : MonoBehaviour
 
     private void Start()
     {
-        _dashCooldown = 1; //set our starting values
+        _dashCooldown = 1f; //set our starting values
         _dashSpeed = 25;
         _dashTime = 0.3f;
         TimeSinceLastDash = _dashCooldown;
@@ -56,7 +61,7 @@ public class PossessableObject : MonoBehaviour
             StopCoroutine(DropPossessable());
             StartCoroutine(FloatPossessable());
         }
-        StartCoroutine(ExclamationMark());
+        StartCoroutine(ShowExclamationMark());
     }
 
     public void Depossess()
@@ -70,6 +75,17 @@ public class PossessableObject : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (isPossessed)
+        {
+            if (tag != "Broom" && tag != "WateringCan")
+            {
+                WigglePossessable();
+            }
+        }
+    }
+
+    private void Update()
+    {
         TimeSinceLastDash += Time.deltaTime;
         if (isPossessed)
         {
@@ -82,13 +98,13 @@ public class PossessableObject : MonoBehaviour
             }
             else
             {
-                WigglePossessable();
+                
                 if (_canMove && !lockMovement)
                 {
                     MovePossessableObject();
                     if (Input.GetKeyDown(KeyCode.LeftShift))
                     {
-                        if (!dashing && TimeSinceLastDash >= _dashCooldown)
+                        if (!dashing && TimeSinceLastDash >= _dashCooldown && movement.magnitude > 0)
                         {
                             TimeSinceLastDash = 0;
                             StartCoroutine(Dash());
@@ -96,9 +112,26 @@ public class PossessableObject : MonoBehaviour
                     }
                 }
             }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (tag == "Broom")
+                {
+                    if(!sweepingBroom)
+                    {
+                        StartCoroutine(SweepBroom());
+                    }
+                }
+                if (tag == "WateringCan")
+                {
+                    if (!watering)
+                    {
+                        StartCoroutine(StartWatering());
+                    }
+                }
+            }
+            
         }
     }
-
     private void WigglePossessable()
     {
         if(rotateRight)
@@ -143,12 +176,6 @@ public class PossessableObject : MonoBehaviour
         q.eulerAngles = new Vector3(0,0,0);
         _moveablePart.transform.rotation = q;
     }
-    private void MovePossessableObject()
-    {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-        possessableRB.MovePosition(possessableRB.position + movement.normalized * _moveSpeed * Time.fixedDeltaTime);
-    }
 
     IEnumerator RestoreGrave()
     {
@@ -171,6 +198,13 @@ public class PossessableObject : MonoBehaviour
         }
     }
 
+    //MOVEABLE POSSESSABLES
+    private void MovePossessableObject()
+    {
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
+        possessableRB.MovePosition(possessableRB.position + movement.normalized * _moveSpeed * Time.fixedDeltaTime);
+    }
     private IEnumerator FloatPossessable()
     {
         _moveablePart.transform.localPosition = Vector2.zero;
@@ -193,7 +227,7 @@ public class PossessableObject : MonoBehaviour
         _moveablePart.transform.localPosition = new Vector2(0, 0f);
         lockMovement = false;
     }
-    private IEnumerator ExclamationMark()
+    private IEnumerator ShowExclamationMark()
     {
         if(exclamation)
         {
@@ -205,8 +239,7 @@ public class PossessableObject : MonoBehaviour
             exclamation.SetActive(false);
         }
     }
-
-    public void ReturnPossessable()
+    public void ReturnPossessableToGhost()
     {
         Destroy(gameObject);
     }
@@ -243,5 +276,38 @@ public class PossessableObject : MonoBehaviour
         possessableRB.velocity = Vector2.zero;
         dashing = false;
         lockMovement = false;
+    }
+
+    //SPECIAL POSSESSABLES, BROOM AND WATERING CAN
+
+    private IEnumerator SweepBroom()
+    {
+        sweepingBroom = true;
+        StartCoroutine(PlayBroomAnimation());
+        yield return new WaitForSeconds(0.5f);
+        print("Broom");
+        sweepingBroom = false;
+    }
+
+    private IEnumerator PlayBroomAnimation()
+    {
+        yield return new WaitForSeconds(0.1f);
+        print("broom sweepy");
+    }
+    private IEnumerator StartWatering()
+    {
+        print("WateringCan");
+        watering = true;
+        while (Input.GetKey(KeyCode.Space))
+        {
+            yield return new WaitForFixedUpdate();
+            print("yeah.");
+        }
+        StartCoroutine(EndWatering());
+    }
+    private IEnumerator EndWatering()
+    {
+        yield return new WaitForFixedUpdate();
+        watering = false;
     }
 }

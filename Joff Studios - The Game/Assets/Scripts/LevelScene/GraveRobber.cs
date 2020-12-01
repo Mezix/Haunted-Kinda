@@ -409,7 +409,6 @@ public class GraveRobber : MonoBehaviour
 
         Vector2 robberLocation = Camera.main.WorldToScreenPoint(gameObject.transform.position) - new Vector3(maxScreenWidth, maxScreenHeight, 0);
 
-        print(robberLocation);
         if (robberLocation.x >= maxScreenWidth)
         {
             robberLocation.x = maxScreenWidth - featherAmount;
