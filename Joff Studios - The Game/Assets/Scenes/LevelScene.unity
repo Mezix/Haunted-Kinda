@@ -5544,12 +5544,12 @@ PrefabInstance:
     - target: {fileID: 8043414066938722632, guid: 2a28666f4c91ded43aa9c399b1ad1c8e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: -0.32
       objectReference: {fileID: 0}
     - target: {fileID: 8043414066938722632, guid: 2a28666f4c91ded43aa9c399b1ad1c8e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -9.72
       objectReference: {fileID: 0}
     - target: {fileID: 8043414066938722632, guid: 2a28666f4c91ded43aa9c399b1ad1c8e,
         type: 3}
@@ -20112,14 +20112,14 @@ RectTransform:
   m_GameObject: {fileID: 1010364892}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.6, y: 2.6, z: 1}
+  m_LocalScale: {x: 2.6, y: 2.2, z: 1}
   m_Children: []
   m_Father: {fileID: 2070073188}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -50}
+  m_AnchoredPosition: {x: 25.4, y: -50}
   m_SizeDelta: {x: 230.6, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1010364894
@@ -20135,7 +20135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.1764706, g: 0.15686275, b: 0.3019608, a: 1}
+  m_Color: {r: 0.14509805, g: 0.14901961, b: 0.27450982, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -56942,7 +56942,7 @@ MonoBehaviour:
   playerSpawn: {fileID: 1752088183}
   HalfNightLength: 20
   HalfDayLength: 20
-  AmountOfDays: 1
+  AmountOfDays: 5
   _lighting: {fileID: 2080966426}
   _UIScript: {fileID: 1908170319}
   _cameraScript: {fileID: 1922522467}
@@ -89500,7 +89500,9 @@ Tilemap:
     m_Data: {r: 2.3657e-41, g: 2.3657e-41, b: 2.3657e-41, a: 2.3657e-41}
   - m_RefCount: 0
     m_Data: {r: 2.3657e-41, g: 2.3657e-41, b: 2.3657e-41, a: 2.3657e-41}
-  m_TileObjectToInstantiateArray: []
+  m_TileObjectToInstantiateArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -41, y: -26, z: 0}
@@ -95550,12 +95552,12 @@ PrefabInstance:
     - target: {fileID: 3465427576950379034, guid: 7409bbc29980449408130379ffcbf991,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -19.81
+      value: -20.11
       objectReference: {fileID: 0}
     - target: {fileID: 3465427576950379034, guid: 7409bbc29980449408130379ffcbf991,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.86
+      value: -8.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7409bbc29980449408130379ffcbf991, type: 3}

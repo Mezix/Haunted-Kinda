@@ -105,6 +105,10 @@ public class GraveRobber : MonoBehaviour
         {
             UIRobberInstance.SetActive(false);
         }
+        if(UIRobberInstance)
+        {
+            UIRobberInstance.GetComponent<UIRobber>().RobberImage.sprite = graverobberRenderer.sprite;
+        }
     }
 
     private void FixedUpdate()

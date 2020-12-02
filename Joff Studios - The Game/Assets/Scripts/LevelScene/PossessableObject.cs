@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PossessableObject : MonoBehaviour
 {
@@ -39,6 +40,8 @@ public class PossessableObject : MonoBehaviour
 
     private bool sweepingBroom;
     private bool watering;
+    public GameObject waterParticlesSpawn;
+    public GameObject waterParticles;
 
     private void Awake()
     {
@@ -53,26 +56,6 @@ public class PossessableObject : MonoBehaviour
         _dashTime = 0.3f;
         TimeSinceLastDash = _dashCooldown;
     }
-    public void Possess()
-    {
-        isPossessed = true;
-        if(_canMove)
-        {
-            StopCoroutine(DropPossessable());
-            StartCoroutine(FloatPossessable());
-        }
-        StartCoroutine(ShowExclamationMark());
-    }
-
-    public void Depossess()
-    {
-        if (_canMove)
-        {
-            StopCoroutine(FloatPossessable());
-            StartCoroutine(DropPossessable());
-        }
-        isPossessed = false;
-    }
     private void FixedUpdate()
     {
         if (isPossessed)
@@ -84,6 +67,8 @@ public class PossessableObject : MonoBehaviour
         }
     }
 
+    
+    
     private void Update()
     {
         TimeSinceLastDash += Time.deltaTime;
@@ -132,6 +117,27 @@ public class PossessableObject : MonoBehaviour
             
         }
     }
+    public void Possess()
+    {
+        isPossessed = true;
+        if (_canMove)
+        {
+            StopCoroutine(DropPossessable());
+            StartCoroutine(FloatPossessable());
+        }
+        StartCoroutine(ShowExclamationMark());
+    }
+
+    public void Depossess()
+    {
+        if (_canMove)
+        {
+            StopCoroutine(FloatPossessable());
+            StartCoroutine(DropPossessable());
+        }
+        isPossessed = false;
+    }
+
     private void WigglePossessable()
     {
         if(rotateRight)
@@ -246,7 +252,6 @@ public class PossessableObject : MonoBehaviour
 
     private IEnumerator Dash()
     {
-        print("dash");
         dashing = true;
         lockMovement = true;
         Vector2 direction = movement.normalized;
@@ -296,18 +301,41 @@ public class PossessableObject : MonoBehaviour
     }
     private IEnumerator StartWatering()
     {
-        print("WateringCan");
+        StopCoroutine(EndWatering());
         watering = true;
+        float timeSinceLastWaterDrop = 10f;
+        float timeBetweenWaterDrops = 0.03f;
         while (Input.GetKey(KeyCode.Space))
         {
+            timeSinceLastWaterDrop += Time.deltaTime;
+            if(_moveablePart.transform.rotation.eulerAngles.z < 45)
+            {
+                _moveablePart.transform.Rotate(new Vector3(0,0,4));
+                yield return new WaitForFixedUpdate();
+            }
+            if(_moveablePart.transform.rotation.eulerAngles.z >= 44)
+            {
+                if(timeSinceLastWaterDrop >= timeBetweenWaterDrops)
+                {
+                    Instantiate(waterParticles, waterParticlesSpawn.transform.position + new Vector3(Random.Range(-0.01f, 0.01f),0,0), new Quaternion());
+                    timeSinceLastWaterDrop = 0f;
+                }
+            }
             yield return new WaitForFixedUpdate();
-            print("yeah.");
         }
         StartCoroutine(EndWatering());
     }
     private IEnumerator EndWatering()
     {
-        yield return new WaitForFixedUpdate();
+        while (_moveablePart.transform.rotation.eulerAngles.z > 5)
+        {
+            _moveablePart.transform.Rotate(new Vector3(0, 0, -4));
+            yield return new WaitForFixedUpdate();
+        }
+        Quaternion q = _moveablePart.transform.rotation; //rotate back to 0 degrees
+        q.eulerAngles = new Vector3(0,0,0);
+        _moveablePart.transform.rotation = q;
+
         watering = false;
     }
 }

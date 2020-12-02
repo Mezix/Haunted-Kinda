@@ -17,6 +17,7 @@ public class AfterImage : MonoBehaviour
     public void SetAndFadeAfterimage(SpriteRenderer objRenderer)
     {
         afterImageRenderer.sprite = objRenderer.sprite;
+        transform.rotation = objRenderer.transform.rotation;
         StartCoroutine(FadeSprite());
     }
 

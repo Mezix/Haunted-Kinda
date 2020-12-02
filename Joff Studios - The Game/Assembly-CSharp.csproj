@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\LevelScene\DayNightLighting.cs" />
     <Compile Include="Assets\Scripts\LevelScene\Events.cs" />
     <Compile Include="Assets\Scripts\LevelScene\FearLevel.cs" />
+    <Compile Include="Assets\Scripts\LevelScene\Flower.cs" />
     <Compile Include="Assets\Scripts\LevelScene\GraveGhost.cs" />
     <Compile Include="Assets\Scripts\LevelScene\GraveRobber.cs" />
     <Compile Include="Assets\Scripts\LevelScene\Gravestone.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Assets\Scripts\LevelScene\UIOffering.cs" />
     <Compile Include="Assets\Scripts\LevelScene\UIRobber.cs" />
     <Compile Include="Assets\Scripts\LevelScene\UIScript.cs" />
+    <Compile Include="Assets\Scripts\LevelScene\WaterParticle.cs" />
     <Compile Include="Assets\Scripts\Loader.cs" />
     <Compile Include="Assets\Scripts\MenuScene\MenuSceneManager.cs" />
     <Compile Include="Assets\Scripts\MenuScene\PlayerLookAt.cs" />
