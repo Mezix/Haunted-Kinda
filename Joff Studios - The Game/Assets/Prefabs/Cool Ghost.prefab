@@ -53,6 +53,7 @@ MonoBehaviour:
   happiness: {fileID: 0}
   _graveItem: {fileID: 0}
   lootStolen: 0
+  hasQuest: 0
   _questItemPrefab: {fileID: 8043414066938722636, guid: 80e1649fbc135d7489d6f8e5630a8ca3,
     type: 3}
   questItemLocation: {fileID: 7723379429640765553}
@@ -260,7 +261,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cd15ba00b2162bc4a9fc5ac92f6ed681, type: 2}
+  - {fileID: 2100000, guid: 39c152376984f5d4d901de89df93923e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

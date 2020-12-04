@@ -93,6 +93,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   maxGhostHappiness: 0
+  flowerOverheal: 0
   currentHappiness: 0
   OfferingPos: {fileID: 550000552207145079}
   currentOffering: {fileID: 0}
@@ -115,7 +116,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 39c152376984f5d4d901de89df93923e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -135,7 +136,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -349219173
   m_SortingLayer: 1
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d324d8edc93a0d94ca0467cefc6f5eff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -160,13 +161,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPossessed: 0
-  _canMove: 0
-  _moveablePart: {fileID: 0}
-  rotateRight: 0
-  _moveSpeed: 0
   CastShadow: {fileID: 0}
   exclamation: {fileID: 0}
+  _canMove: 0
+  _moveablePart: {fileID: 0}
+  _moveSpeed: 0
   lockMovement: 0
+  _dashSpeed: 0
+  _dashTime: 0
+  _dashCooldown: 0
+  AfterImagePrefab: {fileID: 0}
+  lastAfterImagePos: {x: 0, y: 0, z: 0}
+  nearbyGraves: []
+  BroomSweep: {fileID: 0}
+  waterParticlesSpawn: {fileID: 0}
+  waterParticles: {fileID: 0}
 --- !u!58 &1771324859771884116
 CircleCollider2D:
   m_ObjectHideFlags: 0

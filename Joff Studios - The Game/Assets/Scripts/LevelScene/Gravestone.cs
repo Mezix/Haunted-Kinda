@@ -20,6 +20,7 @@ public class Gravestone : MonoBehaviour
     public float currentHealth;
 
     public float maxGhostHappiness;
+    public float flowerOverheal;
     public float currentHappiness;
 
     public GameObject OfferingPos;
@@ -49,6 +50,7 @@ public class Gravestone : MonoBehaviour
     {
         InitMaxHealth(100);
         InitHappiness(250f);
+        flowerOverheal = 0;
         inhabitedGhost.grave = this;
     }
     private void Update()
@@ -106,7 +108,8 @@ public class Gravestone : MonoBehaviour
     }
     public void LowerHappiness(float value)
     {
-        currentHappiness -= value;
+        float val = flowerOverheal - value;
+        currentHappiness -= flowerOverheal;
         if(currentHappiness <= 0)
         {
             currentHappiness = 0;

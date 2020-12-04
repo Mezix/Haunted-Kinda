@@ -232,7 +232,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 39c152376984f5d4d901de89df93923e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -355,6 +355,8 @@ MonoBehaviour:
   AfterImagePrefab: {fileID: 5421470715018780270, guid: c4736a1504e05ae45abc6630ead27a7e,
     type: 3}
   lastAfterImagePos: {x: 0, y: 0, z: 0}
+  nearbyGraves: []
+  BroomSweep: {fileID: 0}
   waterParticlesSpawn: {fileID: 5834484130826935995}
   waterParticles: {fileID: 674040276141209911, guid: ea2e239f36d5c4d4ea7c0600e8b9ec29,
     type: 3}

@@ -68,6 +68,7 @@
     <Compile Include="Assets\Jarrod Scene\Scripts\PixelViewer.cs" />
     <Compile Include="Assets\Jarrod Scene\Scripts\PixelateImageEffect.cs" />
     <Compile Include="Assets\Jarrod Scene\Scripts\SimpleCameraController.cs" />
+    <Compile Include="Assets\Rendering\BlitRenderPassFeature.cs" />
     <Compile Include="Assets\Scripts\LevelScene\AfterImage.cs" />
     <Compile Include="Assets\Scripts\LevelScene\BlockGravestones.cs" />
     <Compile Include="Assets\Scripts\LevelScene\CameraScript.cs" />
@@ -90,9 +91,11 @@
     <Compile Include="Assets\Scripts\LevelScene\PossessableObject.cs" />
     <Compile Include="Assets\Scripts\LevelScene\References.cs" />
     <Compile Include="Assets\Scripts\LevelScene\ScoringSystem.cs" />
+    <Compile Include="Assets\Scripts\LevelScene\TimeDisplay.cs" />
     <Compile Include="Assets\Scripts\LevelScene\TriggerReturnCollissions.cs" />
     <Compile Include="Assets\Scripts\LevelScene\TutorialGhost.cs" />
     <Compile Include="Assets\Scripts\LevelScene\UIOffering.cs" />
+    <Compile Include="Assets\Scripts\LevelScene\UIQuestManager.cs" />
     <Compile Include="Assets\Scripts\LevelScene\UIRobber.cs" />
     <Compile Include="Assets\Scripts\LevelScene\UIScript.cs" />
     <Compile Include="Assets\Scripts\LevelScene\WaterParticle.cs" />

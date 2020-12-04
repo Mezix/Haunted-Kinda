@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1392460274}
   - component: {fileID: 1392460275}
+  - component: {fileID: 6535861092418168940}
   m_Layer: 0
   m_Name: CastShadow
   m_TagString: Untagged
@@ -81,6 +82,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &6535861092418168940
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392460273}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4ca7c134000db344792884a45ff0ae3a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &174177648119091815
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,6 +212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6583949429745895791}
   - component: {fileID: 1258010976750688287}
+  - component: {fileID: 4998812228824039915}
   m_Layer: 8
   m_Name: MoveablePart
   m_TagString: Untagged
@@ -232,7 +253,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 39c152376984f5d4d901de89df93923e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -264,6 +285,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &4998812228824039915
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4462661785080200683}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4ca7c134000db344792884a45ff0ae3a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8043414066938722636
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,7 +315,7 @@ GameObject:
   - component: {fileID: 8043414066938722632}
   - component: {fileID: 8043414066938722633}
   - component: {fileID: 8043414066938722635}
-  - component: {fileID: 6725792044129579595}
+  - component: {fileID: 9048280698419078436}
   m_Layer: 8
   m_Name: Broom
   m_TagString: Broom
@@ -324,6 +364,10 @@ MonoBehaviour:
   AfterImagePrefab: {fileID: 5421470715018780270, guid: c4736a1504e05ae45abc6630ead27a7e,
     type: 3}
   lastAfterImagePos: {x: 0, y: 0, z: 0}
+  nearbyGraves: []
+  BroomSweep: {fileID: 0}
+  waterParticlesSpawn: {fileID: 0}
+  waterParticles: {fileID: 0}
 --- !u!50 &8043414066938722635
 Rigidbody2D:
   serializedVersion: 4
@@ -345,8 +389,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &6725792044129579595
-CircleCollider2D:
+--- !u!70 &9048280698419078436
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -358,6 +402,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.2}
-  serializedVersion: 2
-  m_Radius: 0.4
+  m_Offset: {x: 0.0018987168, y: -0.41085565}
+  m_Size: {x: 1.2258562, y: 0.44551533}
+  m_Direction: 1

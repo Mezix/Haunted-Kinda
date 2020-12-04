@@ -39,9 +39,17 @@ public class PossessableObject : MonoBehaviour
     //BROOM AND WATERINGCAN
 
     private bool sweepingBroom;
+    public List<Gravestone> nearbyGraves = new List<Gravestone>();
+    public AnimationClip BroomSweep;
+
     private bool watering;
     public GameObject waterParticlesSpawn;
     public GameObject waterParticles;
+
+    //SHADERS FOR POSSESSION
+
+    public Shader Outline;
+    public Shader SpriteUnlit;
 
     private void Awake()
     {
@@ -62,6 +70,7 @@ public class PossessableObject : MonoBehaviour
         {
             if (tag != "Broom" && tag != "WateringCan")
             {
+                if(_moveablePart)
                 WigglePossessable();
             }
         }
@@ -83,13 +92,12 @@ public class PossessableObject : MonoBehaviour
             }
             else
             {
-                
                 if (_canMove && !lockMovement)
                 {
                     MovePossessableObject();
                     if (Input.GetKeyDown(KeyCode.LeftShift))
                     {
-                        if (!dashing && TimeSinceLastDash >= _dashCooldown && movement.magnitude > 0)
+                        if (!dashing && TimeSinceLastDash >= _dashCooldown && movement.magnitude > 0 && !LevelSceneManager._isPlayingTutorial)
                         {
                             TimeSinceLastDash = 0;
                             StartCoroutine(Dash());
@@ -119,8 +127,11 @@ public class PossessableObject : MonoBehaviour
     }
     public void Possess()
     {
+        GetComponentInChildren<SpriteRenderer>().material.shader = LevelSceneManager.level.Outline;
+        GetComponentInChildren<SpriteRenderer>().material.SetFloat("Vector1_53CFC1A5", 0.05f);
+        GetComponentInChildren<SpriteRenderer>().color = new Color(0.7f,0.8f, 1f, 0.75f);
         isPossessed = true;
-        if (_canMove)
+        if (_canMove) //THE BROOM DOES NOT FLOAT
         {
             StopCoroutine(DropPossessable());
             StartCoroutine(FloatPossessable());
@@ -130,6 +141,9 @@ public class PossessableObject : MonoBehaviour
 
     public void Depossess()
     {
+        GetComponentInChildren<SpriteRenderer>().material.shader = Shader.Find("Universal Render Pipeline/2D/Sprite-Lit-Default");
+        GetComponentInChildren<SpriteRenderer>().material.SetFloat("Vector1_53CFC1A5", 0);
+        GetComponentInChildren<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         if (_canMove)
         {
             StopCoroutine(FloatPossessable());
@@ -186,7 +200,6 @@ public class PossessableObject : MonoBehaviour
     IEnumerator RestoreGrave()
     {
         isRestoring = true;
-        print("restore");
         while(grave.currentHealth < grave.maxHealth)
         {
             if(!isPossessed)
@@ -213,18 +226,38 @@ public class PossessableObject : MonoBehaviour
     }
     private IEnumerator FloatPossessable()
     {
-        _moveablePart.transform.localPosition = Vector2.zero;
-        while (Vector2.Distance(_moveablePart.transform.localPosition, new Vector2(0, 0.5f)) > 0.05f)
+        if(tag != "Broom")
         {
-            _moveablePart.transform.localPosition = Vector2.Lerp(_moveablePart.transform.localPosition, new Vector2(0, 0.5f), 0.05f);
-            yield return new WaitForFixedUpdate();
+            _moveablePart.transform.localPosition = Vector2.zero;
+            while (Vector2.Distance(_moveablePart.transform.localPosition, new Vector2(0, 0.5f)) > 0.05f)
+            {
+                _moveablePart.transform.localPosition = Vector2.Lerp(_moveablePart.transform.localPosition, new Vector2(0, 0.5f), 0.05f);
+                yield return new WaitForFixedUpdate();
+            }
+            _moveablePart.transform.localPosition = new Vector2(0, 0.5f);
         }
-        _moveablePart.transform.localPosition = new Vector2(0, 0.5f);
+        else
+        {
+            _moveablePart.transform.localPosition = Vector2.zero;
+            while (Vector2.Distance(_moveablePart.transform.localPosition, new Vector2(0, 0.2f)) > 0.05f)
+            {
+                _moveablePart.transform.localPosition = Vector2.Lerp(_moveablePart.transform.localPosition, new Vector2(0, 0.5f), 0.05f);
+                yield return new WaitForFixedUpdate();
+            }
+            _moveablePart.transform.localPosition = new Vector2(0, 0.2f);
+        }
     }
     private IEnumerator DropPossessable()
     {
         StartCoroutine(RotateBackToNormal());
-        _moveablePart.transform.localPosition = new Vector2(0, 0.5f);
+        if (tag == "Broom")
+        {
+            _moveablePart.transform.localPosition = new Vector2(0, 0.2f);
+        }
+        else
+        {
+            _moveablePart.transform.localPosition = new Vector2(0, 0.5f);
+        }
         while (Vector2.Distance(_moveablePart.transform.localPosition, new Vector2(0, 0)) > 0.05f)
         {
             _moveablePart.transform.localPosition = Vector2.Lerp(_moveablePart.transform.localPosition, new Vector2(0, 0f), 0.05f);
@@ -232,6 +265,7 @@ public class PossessableObject : MonoBehaviour
         }
         _moveablePart.transform.localPosition = new Vector2(0, 0f);
         lockMovement = false;
+
     }
     private IEnumerator ShowExclamationMark()
     {
@@ -291,12 +325,21 @@ public class PossessableObject : MonoBehaviour
         StartCoroutine(PlayBroomAnimation());
         yield return new WaitForSeconds(0.5f);
         print("Broom");
-        sweepingBroom = false;
     }
 
     private IEnumerator PlayBroomAnimation()
     {
-        yield return new WaitForSeconds(0.1f);
+        GetComponentInChildren<Animator>().Play("BroomSweep");
+        yield return new WaitForSeconds(0.25f);
+        foreach (Gravestone grave in nearbyGraves)
+        {
+            grave.RaiseHappiness(15f);
+            if(grave.inhabitedGhost.timesGraveWasDestroyed > 0)
+            {
+                grave.inhabitedGhost.timesGraveWasDestroyed--;
+            }
+        }
+        sweepingBroom = false;
         print("broom sweepy");
     }
     private IEnumerator StartWatering()
@@ -337,5 +380,26 @@ public class PossessableObject : MonoBehaviour
         _moveablePart.transform.rotation = q;
 
         watering = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(tag == "Broom")
+        {
+            if(collision.TryGetComponent(out Gravestone grave))
+            {
+                nearbyGraves.Add(grave);
+            }
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (tag == "Broom")
+        {
+            if (collision.TryGetComponent(out Gravestone grave))
+            {
+                nearbyGraves.Remove(grave);
+            }
+        }
     }
 }

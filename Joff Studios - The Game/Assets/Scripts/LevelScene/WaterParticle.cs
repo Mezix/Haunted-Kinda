@@ -44,7 +44,7 @@ public class WaterParticle : MonoBehaviour
             {
                 foreach(Flower flower in FlowersWaterHasPassedThrough)
                 {
-                    flower.Grow(0.05f);
+                    flower.Grow(0.025f);
                 }
             }
         }
