@@ -28,6 +28,7 @@ public class UIScript : MonoBehaviour
     public GameObject Inventory;
     public bool InventoryHidden;
     public GameObject DarkOverlay;
+    public GameObject PauseParent;
 
     //disabled at the start of the scene
 
@@ -151,6 +152,7 @@ public class UIScript : MonoBehaviour
     {
         //enabled
         ShowPlayerUI();
+        PauseParent.SetActive(true);
         DarkOverlay.SetActive(true);
         
 

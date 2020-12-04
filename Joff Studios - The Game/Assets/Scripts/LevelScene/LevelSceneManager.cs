@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+using UnityEngine.Rendering;
+
 public class LevelSceneManager : MonoBehaviour
 {
-    public static LevelSceneManager level;
+    public static LevelSceneManager instance;
 
     public GameObject playerSpawn;
 
@@ -87,9 +89,16 @@ public class LevelSceneManager : MonoBehaviour
     //MISC
 
     public Shader Outline;
+    public RenderPipelineAsset Pipeline2D;
+    public RenderPipelineAsset Pipeline3D;
+    public GameObject LoadingScreen;
 
     private void Awake()
     {
+        LoadingScreen.SetActive(false);
+        GraphicsSettings.renderPipelineAsset = Pipeline2D;
+        QualitySettings.renderPipeline = Pipeline2D;
+
         fullDayLength = HalfDayLength * 2 + HalfNightLength * 2;
 
         _playTutorial = MenuSceneManager.playTutorial;
@@ -105,7 +114,7 @@ public class LevelSceneManager : MonoBehaviour
         Events.current.GravestoneBlocked += BlockGrave;
         Events.current.GravestoneUnblocked += UnblockGrave;
 
-        level = this;
+        instance = this;
 
         GetAllGravesInScene();
         _graveRobbers = new List<GameObject>();
@@ -403,9 +412,16 @@ public class LevelSceneManager : MonoBehaviour
         catGhostQuestItem.SetActive(false);
     }
 
-
     public void GoToMainMenu()
     {
+        StartCoroutine(ShowLoadingScreen());
+    }
+
+    public IEnumerator ShowLoadingScreen()
+    {
+        LoadingScreen.SetActive(true);
+        Time.timeScale = 1;
+        yield return new WaitForSeconds(0.5f);
         Loader.Load(Loader.Scene.MainMenuScene);
     }
 

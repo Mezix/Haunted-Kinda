@@ -34,7 +34,7 @@ public class WaterParticle : MonoBehaviour
     private void Explode()
     {
         //Spawn Particle for water hitting floor
-        if(!waterCollider.IsTouching(LevelSceneManager.level._nonCollidableTiles))
+        if(!waterCollider.IsTouching(LevelSceneManager.instance._nonCollidableTiles))
         {
             if(FlowersWaterHasPassedThrough.Count == 0)
             {

@@ -105,7 +105,7 @@ public class GraveGhost : MonoBehaviour
 
     public void PlayConversation()
     {
-        if(LevelSceneManager.level.timeSinceLastDialogueStarted >= LevelSceneManager.level.timeUntilNextDialogueCanBeStarted)
+        if(LevelSceneManager.instance.timeSinceLastDialogueStarted >= LevelSceneManager.instance.timeUntilNextDialogueCanBeStarted)
         {
             if (!QuestComplete)
             {
@@ -115,7 +115,7 @@ public class GraveGhost : MonoBehaviour
                     {
                         if (_conversations[_conversationIndex])
                         {
-                            LevelSceneManager.level.TriggerDialogue(_conversations[_conversationIndex]);
+                            LevelSceneManager.instance.TriggerDialogue(_conversations[_conversationIndex]);
                             _conversationIndex++;
                         }
                     }
@@ -123,7 +123,7 @@ public class GraveGhost : MonoBehaviour
                     {
                         if (QuestHasBeenGiven)
                         {
-                            LevelSceneManager.level.TriggerDialogue(QuestHasBeenGiven);
+                            LevelSceneManager.instance.TriggerDialogue(QuestHasBeenGiven);
                         }
                     }
                 }
@@ -134,14 +134,14 @@ public class GraveGhost : MonoBehaviour
                 {
                     if (_PostQuestConversations[_postQuestConversationIndex])
                     {
-                        LevelSceneManager.level.TriggerDialogue(_PostQuestConversations[_postQuestConversationIndex]);
+                        LevelSceneManager.instance.TriggerDialogue(_PostQuestConversations[_postQuestConversationIndex]);
                         _postQuestConversationIndex++;
                     }
                 }
                 else
                 {
                     if (_RandomConversations.Length > 0)
-                        LevelSceneManager.level.TriggerDialogue(_RandomConversations[UnityEngine.Random.Range(0, _RandomConversations.Length)]);
+                        LevelSceneManager.instance.TriggerDialogue(_RandomConversations[UnityEngine.Random.Range(0, _RandomConversations.Length)]);
                 }
             }
         }
@@ -153,7 +153,7 @@ public class GraveGhost : MonoBehaviour
         QuestComplete = true;
         PossessableObject questPossessable = questItem.GetComponent<PossessableObject>();
         References.playerScript.LockMovement();
-        LevelSceneManager.level.TriggerDialogue(_questItemReturnedConvo);
+        LevelSceneManager.instance.TriggerDialogue(_questItemReturnedConvo);
         QuestComplete = true;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
         References.playerScript.UnlockMovement();
