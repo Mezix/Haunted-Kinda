@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityTemplateProjects;
 using UnityEngine.Rendering;
+using System;
 
 public class MenuSceneManager : MonoBehaviour
 {
@@ -16,9 +17,11 @@ public class MenuSceneManager : MonoBehaviour
     public RenderPipelineAsset Pipeline2D;
 
     public GameObject LoadingScreen;
+    public GameObject Vignette;
 
     private void Awake()
     {
+        Vignette.transform.localScale = new Vector3(1,1,1);
         GraphicsSettings.renderPipelineAsset = Pipeline3D;
         QualitySettings.renderPipeline = Pipeline3D;
 
@@ -28,7 +31,21 @@ public class MenuSceneManager : MonoBehaviour
     private void Start()
     {
         LoadingScreen.SetActive(false);
+        StartCoroutine(OpenVignette());
     }
+
+    private IEnumerator OpenVignette()
+    {
+        yield return new WaitForSeconds(2f);
+        float time = 0f;
+        while(time < 6f)
+        {
+            time += Time.deltaTime;
+            Vignette.transform.localScale = new Vector3(1 + time / 6, 1 + time / 6, 1 + time / 6);
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
     public void StartGame()
     {
         StartCoroutine(ShowLoadingScreen());

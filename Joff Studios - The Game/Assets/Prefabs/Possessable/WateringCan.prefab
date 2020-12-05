@@ -252,7 +252,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 698258075
   m_SortingLayer: 3
-  m_SortingOrder: -1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: dbacdce6f9bfc1e499fb1c2986da0b6f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -347,7 +347,7 @@ MonoBehaviour:
   exclamation: {fileID: 174177648119091815}
   _canMove: 1
   _moveablePart: {fileID: 4462661785080200683}
-  _moveSpeed: 1
+  _moveSpeed: 1.5
   lockMovement: 0
   _dashSpeed: 0
   _dashTime: 0
@@ -360,6 +360,8 @@ MonoBehaviour:
   waterParticlesSpawn: {fileID: 5834484130826935995}
   waterParticles: {fileID: 674040276141209911, guid: ea2e239f36d5c4d4ea7c0600e8b9ec29,
     type: 3}
+  Outline: {fileID: 0}
+  SpriteUnlit: {fileID: 0}
 --- !u!50 &8043414066938722635
 Rigidbody2D:
   serializedVersion: 4

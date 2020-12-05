@@ -14,10 +14,15 @@ public class TimeDisplay : MonoBehaviour
         TimeText = GetComponent<Text>();
     }
 
-    public static void SetTime(float timeInSeconds, float SecondsInAFullADay)
+    private void Update()
     {
-        hours = Mathf.FloorToInt(timeInSeconds / SecondsInAFullADay * 24);
-        minutes = Mathf.FloorToInt((timeInSeconds / SecondsInAFullADay * 60 * 24 % 60));
+        SetTime();
+    }
+    public static void SetTime()
+    {
+        hours = Mathf.FloorToInt((LevelSceneManager.instance._lighting.DayTimerForClock * 12) % 24);
+        minutes = Mathf.FloorToInt(LevelSceneManager.instance._lighting.DayTimerForClock * 60 * 12 % 60);
+
         if (hours < 10)
         {
             TimeText.text = "0" + hours.ToString() + ":";

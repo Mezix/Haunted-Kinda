@@ -16,9 +16,6 @@ public class LevelSceneManager : MonoBehaviour
     public int HalfDayLength;
     public int AmountOfDays;
     private int DaysPassed = 0;
-    [SerializeField]
-    private float currentTimeInSeconds;
-    private float fullDayLength;
 
     public DayNightLighting _lighting;
     public UIScript _UIScript;
@@ -99,8 +96,6 @@ public class LevelSceneManager : MonoBehaviour
         GraphicsSettings.renderPipelineAsset = Pipeline2D;
         QualitySettings.renderPipeline = Pipeline2D;
 
-        fullDayLength = HalfDayLength * 2 + HalfNightLength * 2;
-
         _playTutorial = MenuSceneManager.playTutorial;
         DifficultySlider = MenuSceneSettings._difficulty;
 
@@ -164,11 +159,6 @@ public class LevelSceneManager : MonoBehaviour
         }
         timeSinceLastDialogueStarted += Time.deltaTime;
         TimeSinceLastRobbers += Time.deltaTime;
-        if(!_isPlayingTutorial)
-        {
-        currentTimeInSeconds += Time.deltaTime;
-        }
-        TimeDisplay.SetTime(currentTimeInSeconds % fullDayLength, fullDayLength);
     }
 
     private void SetDifficulty()
@@ -212,7 +202,6 @@ public class LevelSceneManager : MonoBehaviour
         StartCoroutine(_UIScript.FadeFromBlack());
         _UIScript.StartGame();
         SetupDayAndNight();
-        currentTimeInSeconds = fullDayLength * _lighting.DayToNightRatio;
 
         SpawnPlayer();
         References.playerScript.UnlockMovement();
@@ -224,10 +213,7 @@ public class LevelSceneManager : MonoBehaviour
         SpawnQuestItems();
     }
 
-
     //DIALOGUE
-
-
 
     public void TriggerDialogue(ConversationScriptObj convo)
     {
@@ -243,11 +229,7 @@ public class LevelSceneManager : MonoBehaviour
         }
     }
 
-
-
     //GET REFERENCES TO STUFF IN THE SCENE
-
-
 
     private void GetAllGravesInScene()
     {
@@ -282,11 +264,7 @@ public class LevelSceneManager : MonoBehaviour
         _cameraScript.SetPlayerRef();
     }
 
-
-
     //GAME PAUSING
-
-
 
     public void Pause()
     {
@@ -296,28 +274,23 @@ public class LevelSceneManager : MonoBehaviour
     }
     public void Unpause()
     {
-        //print("resume");
         _UIScript.UIUnpause();
         Time.timeScale = 1;
         paused = false;
     }
-
-
     private void SetUIDay()
     {
-        _UIScript.SetDays(DaysPassed, AmountOfDays);
+        _UIScript.SetDays(DaysPassed + 1, AmountOfDays);
     }
 
-
     //  TIME/DAYS
-
 
     void SetupDayAndNight()
     {
         _lighting.DayLength = HalfDayLength;
         _lighting.NightLength = HalfNightLength;
 
-        StartCoroutine(_lighting.Night(_lighting.NightLength));
+        StartCoroutine(_lighting.Day(_lighting.DayLength));
     }
     private void FinishDay()
     {

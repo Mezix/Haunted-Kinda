@@ -390,7 +390,7 @@ MonoBehaviour:
   exclamation: {fileID: 174177648119091815}
   _canMove: 1
   _moveablePart: {fileID: 6191067255897327017}
-  _moveSpeed: 1
+  _moveSpeed: 1.5
   lockMovement: 0
   _dashSpeed: 0
   _dashTime: 0
@@ -402,6 +402,8 @@ MonoBehaviour:
   BroomSweep: {fileID: 0}
   waterParticlesSpawn: {fileID: 0}
   waterParticles: {fileID: 0}
+  Outline: {fileID: 0}
+  SpriteUnlit: {fileID: 0}
 --- !u!61 &8043414066938722639
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class DayNightLighting : MonoBehaviour
 
     [Range(0,1)]
     public float DayToNightRatio;
+    public float DayTimerForClock;
     public bool DayToNight; //true -> day to night. False -> night to day
 
     public int DayLength;
@@ -27,6 +28,7 @@ public class DayNightLighting : MonoBehaviour
         WhiteGlobalLight.intensity = 1;
 
         DayToNightRatio = 0.5f;
+        DayTimerForClock = DayToNightRatio;
         DayToNight = true;
     }
 
@@ -37,11 +39,6 @@ public class DayNightLighting : MonoBehaviour
         UpdateWhiteLight();
 
         UpdateAllLamps();
-    }
-
-    private void FixedUpdate()
-    {
-        //DayToNightCycle();
     }
 
     public IEnumerator Night(int length)
@@ -57,6 +54,7 @@ public class DayNightLighting : MonoBehaviour
             yield return new WaitWhile(() => freezeDayNight);
             yield return new WaitForSeconds(0.01f);
             DayToNightRatio += 0.5f / (halfNight);
+            DayTimerForClock += 0.5f / halfNight;
         }
         DayToNightRatio = 1;
 
@@ -67,42 +65,41 @@ public class DayNightLighting : MonoBehaviour
             yield return new WaitWhile(() => freezeDayNight);
             yield return new WaitForSeconds(0.01f);
             DayToNightRatio += -0.5f / (halfNight);
+            DayTimerForClock += 0.5f / halfNight;
         }
         DayToNightRatio = 0.5f;
-        //print("nightOver");
 
-        StartCoroutine(Day(DayLength));
+        Events.current.DayOver();
     }
 
     public IEnumerator Day(int length)
     {
-        int halfNight = (length * 100) / 2;
+        int halfDay = (length * 100) / 2;
 
         DayToNightRatio = 0.5f;
 
         //for half of night go to 1
 
-        for (int i = 0; i < halfNight; i++)
+        for (int i = 0; i < halfDay; i++)
         {
             yield return new WaitWhile(() => freezeDayNight);
             yield return new WaitForSeconds(0.01f);
-            DayToNightRatio -= 0.5f / (halfNight);
+            DayToNightRatio -= 0.5f / (halfDay);
+            DayTimerForClock += 0.5f / halfDay;
         }
         DayToNightRatio = 0;
 
         //For other half go back to 0.75
 
-        for (int i = 0; i < halfNight; i++)
+        for (int i = 0; i < halfDay; i++)
         {
             yield return new WaitWhile(() => freezeDayNight);
             yield return new WaitForSeconds(0.01f);
-            DayToNightRatio += 0.5f / (halfNight);
+            DayToNightRatio += 0.5f / (halfDay);
+            DayTimerForClock += 0.5f / halfDay;
         }
         DayToNightRatio = 0.5f;
-        //print("dayOver");
-
-        //StartCoroutine(Night(NightLength));
-        Events.current.DayOver();
+        StartCoroutine(Night(NightLength));
     }
 
     private void UpdateRedLight()

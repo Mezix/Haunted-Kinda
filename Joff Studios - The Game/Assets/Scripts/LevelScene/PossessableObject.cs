@@ -127,11 +127,14 @@ public class PossessableObject : MonoBehaviour
     }
     public void Possess()
     {
-        GetComponentInChildren<SpriteRenderer>().material.shader = LevelSceneManager.instance.Outline;
-        GetComponentInChildren<SpriteRenderer>().material.SetFloat("Vector1_53CFC1A5", 0.05f);
-        GetComponentInChildren<SpriteRenderer>().color = new Color(0.7f,0.8f, 1f, 0.75f);
+        if (tag != "Broom" && tag != "WateringCan")
+        {
+            GetComponentInChildren<SpriteRenderer>().material.shader = LevelSceneManager.instance.Outline;
+            GetComponentInChildren<SpriteRenderer>().material.SetFloat("Vector1_53CFC1A5", 0.05f);
+            GetComponentInChildren<SpriteRenderer>().color = new Color(0.7f, 0.8f, 1f, 0.75f);
+        }
         isPossessed = true;
-        if (_canMove) //THE BROOM DOES NOT FLOAT
+        if (_canMove)
         {
             StopCoroutine(DropPossessable());
             StartCoroutine(FloatPossessable());

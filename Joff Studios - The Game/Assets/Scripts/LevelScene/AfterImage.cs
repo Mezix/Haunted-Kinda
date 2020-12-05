@@ -18,16 +18,16 @@ public class AfterImage : MonoBehaviour
     {
         afterImageRenderer.sprite = objRenderer.sprite;
         transform.rotation = objRenderer.transform.rotation;
-        StartCoroutine(FadeSprite());
+        StartCoroutine(FadeSprite(objRenderer.color.a));
     }
 
-    private IEnumerator FadeSprite()
+    private IEnumerator FadeSprite(float alpha)
     {
         float timer = 0;
         while(timer <= afterImageTime)
         {
             timer += Time.deltaTime;
-            afterImageRenderer.color = new Color(1,1,1, Mathf.Max(0, 1 - timer/afterImageTime));
+            afterImageRenderer.color = new Color(1,1,1, Mathf.Max(0, alpha - timer/afterImageTime * alpha));
             yield return new WaitForFixedUpdate();
         }
         Destroy(gameObject);

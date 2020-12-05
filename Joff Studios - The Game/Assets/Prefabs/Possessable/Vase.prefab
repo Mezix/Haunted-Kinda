@@ -316,7 +316,7 @@ MonoBehaviour:
   exclamation: {fileID: 174177648119091815}
   _canMove: 1
   _moveablePart: {fileID: 4462661785080200683}
-  _moveSpeed: 1
+  _moveSpeed: 1.5
   lockMovement: 0
   _dashSpeed: 0
   _dashTime: 0
@@ -328,6 +328,8 @@ MonoBehaviour:
   BroomSweep: {fileID: 0}
   waterParticlesSpawn: {fileID: 0}
   waterParticles: {fileID: 0}
+  Outline: {fileID: 0}
+  SpriteUnlit: {fileID: 0}
 --- !u!50 &8043414066938722635
 Rigidbody2D:
   serializedVersion: 4

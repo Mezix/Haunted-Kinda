@@ -271,6 +271,11 @@ public class Player : MonoBehaviour
             PossessableObject closestPossessable = possessables[0];
             foreach (PossessableObject possessable in possessables)
             {
+                if(possessable.tag == "Broom" || possessable.tag == "WateringCan")
+                {
+                    closestPossessable = possessable;
+                    break;
+                }
                 if (Vector2.Distance(playerRB.position, possessable.transform.position) < Distance)
                 {
                     Distance = Vector2.Distance(playerRB.position, possessable.transform.position);

@@ -68,6 +68,8 @@ public class UIScript : MonoBehaviour
     public GameObject CreditScreen;
     public GameObject MainMenuButton;
 
+
+    float ratio = 0.5f;
     private void Awake()
     {
         _inventory = Inventory.GetComponent<InventoryUI>();
@@ -81,10 +83,15 @@ public class UIScript : MonoBehaviour
 
     private void Update()
     {
-        SetSundialRotation();
         SetDashMeterFill();
         SetScreamMeterFill();
         SelectButtonToShow();
+        RotateSundial(Mathf.Abs((LevelSceneManager.instance._lighting.DayTimerForClock - ratio) / 2));
+        ratio = LevelSceneManager.instance._lighting.DayTimerForClock;
+    }
+    private void Start()
+    {
+        SetSundialRotation();
     }
 
     public void SetPlayerRef()
@@ -140,13 +147,32 @@ public class UIScript : MonoBehaviour
     void SetSundialRotation()
     {
         Quaternion q = SunDial.transform.rotation;
-        q.eulerAngles = new Vector3(0, 0, lighting.DayToNightRatio * 180);
+        q.eulerAngles = new Vector3(0, 0, lighting.DayToNightRatio);
         SunDial.transform.rotation = q;
+    }
+    void RotateSundial(float percent)
+    {
+        SunDial.transform.Rotate(0,0,- 1 * percent * 360);
     }
 
     public void SetDays(int Day, int maxDays)
     {
         daysText.text = Day + "/" + maxDays;
+        if(Day == 5)
+        {
+            StartCoroutine(FlashDays());
+        }
+    }
+
+    private IEnumerator FlashDays()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(0.5f);
+            daysText.color = Color.red;
+            yield return new WaitForSeconds(0.5f);
+            daysText.color = Color.white;
+        }
     }
     public void StartGame()
     {
