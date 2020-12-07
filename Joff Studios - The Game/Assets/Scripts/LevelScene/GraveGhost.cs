@@ -19,11 +19,13 @@ public class GraveGhost : MonoBehaviour
     public bool lootStolen;
 
     public bool hasQuest = false;
+    public String QuestName;
     public GameObject _questItemPrefab;
     private GameObject questItem;
     public Transform questItemLocation;
     public Transform itemDropOffPos;
     public bool QuestComplete;
+    private bool uiQuestGiven;
     public int timesGraveWasDestroyed;
 
     public float DistanceFromPlayerToActivate = 3f;
@@ -90,7 +92,7 @@ public class GraveGhost : MonoBehaviour
         }
         if(questItem && itemDropOffPos)
         {
-            if (Vector2.Distance(questItem.transform.position, itemDropOffPos.position) < 0.5 && !QuestComplete && !References.playerScript.IsPossessing)
+            if (Vector2.Distance(questItem.transform.position, itemDropOffPos.position) < 0.5 && !QuestComplete && !References.playerScript.possessedObject.isPossessed)
             {
                 StartCoroutine(TriggerQuestComplete());
             }
@@ -124,6 +126,11 @@ public class GraveGhost : MonoBehaviour
                         if (QuestHasBeenGiven)
                         {
                             LevelSceneManager.instance.TriggerDialogue(QuestHasBeenGiven);
+                            if(!uiQuestGiven)
+                            {
+                                LevelSceneManager.instance._UIScript.QuestChecklist.GetComponent<UIQuestManager>().ShowQuest(this);
+                                uiQuestGiven = true;
+                            }
                         }
                     }
                 }
@@ -154,6 +161,7 @@ public class GraveGhost : MonoBehaviour
         PossessableObject questPossessable = questItem.GetComponent<PossessableObject>();
         References.playerScript.LockMovement();
         LevelSceneManager.instance.TriggerDialogue(_questItemReturnedConvo);
+        LevelSceneManager.instance._UIScript.QuestChecklist.GetComponent<UIQuestManager>().CheckOffQuest(this);
         QuestComplete = true;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
         References.playerScript.UnlockMovement();

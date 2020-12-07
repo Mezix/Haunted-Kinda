@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 public class PossessableObject : MonoBehaviour
 {
     [SerializeField]
-    private bool isPossessed;
+    public bool isPossessed;
     public Gravestone grave { get; private set; }
     private bool isRestoring;
     private bool rotateRight;
@@ -39,12 +39,16 @@ public class PossessableObject : MonoBehaviour
     //BROOM AND WATERINGCAN
 
     private bool sweepingBroom;
+    public float TimeSinceLastBroomSweep;
+    public float TimeBetweenSweeps;
     public List<Gravestone> nearbyGraves = new List<Gravestone>();
     public AnimationClip BroomSweep;
 
-    private bool watering;
+    public bool usingWateringCan;
     public GameObject waterParticlesSpawn;
     public GameObject waterParticles;
+    public GameObject[] Flowers;
+    public int flowerIndex = 0;
 
     //SHADERS FOR POSSESSION
 
@@ -55,6 +59,7 @@ public class PossessableObject : MonoBehaviour
     {
         possessableRB = GetComponent<Rigidbody2D>();
         grave = GetComponent<Gravestone>();
+        TimeBetweenSweeps = 0.75f;
     }
 
     private void Start()
@@ -81,6 +86,10 @@ public class PossessableObject : MonoBehaviour
     private void Update()
     {
         TimeSinceLastDash += Time.deltaTime;
+        if(tag == "Broom")
+        {
+            TimeSinceLastBroomSweep += Time.deltaTime;
+        }
         if (isPossessed)
         {
             if (grave)//if our loot has been stolen, we cant fix the grave yet!
@@ -109,20 +118,23 @@ public class PossessableObject : MonoBehaviour
             {
                 if (tag == "Broom")
                 {
-                    if(!sweepingBroom)
+                    if(!sweepingBroom && TimeSinceLastBroomSweep > TimeBetweenSweeps)
                     {
-                        StartCoroutine(SweepBroom());
+                        SweepBroom();
                     }
                 }
                 if (tag == "WateringCan")
                 {
-                    if (!watering)
+                    if (!usingWateringCan)
                     {
                         StartCoroutine(StartWatering());
                     }
                 }
             }
-            
+            if(Input.GetKeyDown(KeyCode.F) && tag == "WateringCan")
+            {
+                NextFlower();
+            }
         }
     }
     public void Possess()
@@ -322,12 +334,11 @@ public class PossessableObject : MonoBehaviour
 
     //SPECIAL POSSESSABLES, BROOM AND WATERING CAN
 
-    private IEnumerator SweepBroom()
+    private void SweepBroom()
     {
+        TimeSinceLastBroomSweep = 0f;
         sweepingBroom = true;
         StartCoroutine(PlayBroomAnimation());
-        yield return new WaitForSeconds(0.5f);
-        print("Broom");
     }
 
     private IEnumerator PlayBroomAnimation()
@@ -343,12 +354,11 @@ public class PossessableObject : MonoBehaviour
             }
         }
         sweepingBroom = false;
-        print("broom sweepy");
     }
     private IEnumerator StartWatering()
     {
         StopCoroutine(EndWatering());
-        watering = true;
+        usingWateringCan = true;
         float timeSinceLastWaterDrop = 10f;
         float timeBetweenWaterDrops = 0.03f;
         while (Input.GetKey(KeyCode.Space))
@@ -382,7 +392,19 @@ public class PossessableObject : MonoBehaviour
         q.eulerAngles = new Vector3(0,0,0);
         _moveablePart.transform.rotation = q;
 
-        watering = false;
+        usingWateringCan = false;
+    }
+    private void NextFlower()
+    {
+        if(flowerIndex < 3)
+        {
+            flowerIndex++;
+            LevelSceneManager.instance._UIScript.ShowNewFlower(Flowers[flowerIndex].GetComponent<Flower>().spriteRenderer.sprite);
+        }
+        else
+        {
+            flowerIndex = 0;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

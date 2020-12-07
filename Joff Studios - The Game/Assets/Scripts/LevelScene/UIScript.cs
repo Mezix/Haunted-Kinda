@@ -68,6 +68,19 @@ public class UIScript : MonoBehaviour
     public GameObject CreditScreen;
     public GameObject MainMenuButton;
 
+    //WATERING CAN, BROOM, PLAYER ABILITY BAR
+
+    public Image ScreamBarImage;
+    public Sprite ScreamBar;
+    public Sprite WateringCanBar;
+    public Sprite BroomBar;
+    public GameObject FlowerBar;
+    public Image FlowerImage;
+    public bool FlowerBarHidden;
+
+    //QUESTS
+
+    public GameObject QuestChecklist;
 
     float ratio = 0.5f;
     private void Awake()
@@ -142,7 +155,29 @@ public class UIScript : MonoBehaviour
     }
     private void SetScreamMeterFill()
     {
-        ScreamMeter.transform.Find("bar").GetComponent<Image>().fillAmount = Mathf.Min(1, player.TimeSinceLastScream/player._screamCooldown);
+        if(References.playerScript.possessedObject)
+        {
+            if (References.playerScript.possessedObject.tag == "Broom")
+            {
+                ScreamBarImage.fillAmount = Mathf.Min(1, References.playerScript.possessedObject.TimeSinceLastBroomSweep / References.playerScript.possessedObject.TimeBetweenSweeps);
+            }
+            else if (References.playerScript.possessedObject.tag == "WateringCan")
+            {
+                ScreamBarImage.fillAmount = 1;
+                if (References.playerScript.possessedObject.usingWateringCan)
+                {
+                    ScreamBarImage.color = new Color(0.7f, 0.7f, 1f, 1);
+                }
+                else
+                {
+                    ScreamBarImage.color = Color.white;
+                }
+            }
+        }
+        else
+        {
+            ScreamBarImage.fillAmount = Mathf.Min(1, player.TimeSinceLastScream / player._screamCooldown);
+        }
     }
     void SetSundialRotation()
     {
@@ -180,6 +215,7 @@ public class UIScript : MonoBehaviour
         ShowPlayerUI();
         PauseParent.SetActive(true);
         DarkOverlay.SetActive(true);
+        QuestChecklist.SetActive(true);
         
 
         //disabled
@@ -191,6 +227,7 @@ public class UIScript : MonoBehaviour
         Buttons.SetActive(false);
         UIDialogObj.SetActive(false);
         SettingsScreen.SetActive(false);
+        FlowerBar.SetActive(false);
         HideCredits();
 
         MasterVolume.value = MenuSceneSettings.masterVolume;
@@ -201,7 +238,6 @@ public class UIScript : MonoBehaviour
     public void StartTutorial()
     {
         HidePlayerUI();
-        DarkOverlay.SetActive(true);
         HideCredits();
         EndScreen.SetActive(false);
         PauseScreen.SetActive(false);
@@ -210,8 +246,10 @@ public class UIScript : MonoBehaviour
         Buttons.SetActive(false);
         UIDialogObj.SetActive(false);
         SettingsScreen.SetActive(false);
-
+        QuestChecklist.SetActive(false);
         proximityButtonsEnabled = false;
+
+        DarkOverlay.SetActive(true);
         portraitHidden = true;
         DashMeterHidden = true;
         ScreamMeterHidden = true;
@@ -249,11 +287,33 @@ public class UIScript : MonoBehaviour
     {
         if (obj != References.Player)
         {
+            InventoryHidden = true;
+            FlowerBar.SetActive(false);
+            DashMeter.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 98);
+            ScreamMeter.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 98);
             ScreamMeter.SetActive(false);
             Inventory.SetActive(false);
+
             if(!obj.GetComponent<PossessableObject>()._canMove)
             {
                 DashMeter.SetActive(false);
+            }
+            if(obj.tag == "WateringCan")
+            {
+                FlowerBar.SetActive(true);
+                FlowerImage.sprite = obj.GetComponent<PossessableObject>().Flowers[obj.GetComponent<PossessableObject>().flowerIndex].GetComponent<Flower>().spriteRenderer.sprite;
+                ScreamMeter.SetActive(true);
+                ScreamBarImage.sprite = WateringCanBar;
+                DashMeter.GetComponent<RectTransform>().anchoredPosition = new Vector2(-555, 98);
+                ScreamMeter.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 98);
+            }
+            else if(obj.tag == "Broom")
+            {
+                FlowerBar.SetActive(false);
+                ScreamMeter.SetActive(true);
+                ScreamBarImage.sprite = BroomBar;
+                DashMeter.GetComponent<RectTransform>().anchoredPosition = new Vector2(-275, 98);
+                ScreamMeter.GetComponent<RectTransform>().anchoredPosition = new Vector2(275, 98);
             }
         }
         else
@@ -263,9 +323,20 @@ public class UIScript : MonoBehaviour
     }
     public void UIDepossess()
     {
+        InventoryHidden = false;
+        DashMeter.GetComponent<RectTransform>().anchoredPosition = new Vector2(-555, 98);
+        ScreamMeter.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 98);
+        FlowerBar.SetActive(false);
+
+        ScreamBarImage.sprite = ScreamBar;
         ScreamMeter.SetActive(true);
         Inventory.SetActive(true);
         DashMeter.SetActive(true);
+    }
+
+    public void ShowNewFlower(Sprite flower)
+    {
+        FlowerImage.sprite = flower;
     }
 
     public void ShowPlayerUI()
@@ -303,6 +374,7 @@ public class UIScript : MonoBehaviour
         TimeDisplay.SetActive(false);
         SunDial.SetActive(false);
         Inventory.SetActive(false);
+        FlowerBar.SetActive(false);
     }
 
     public void UIPause()
@@ -363,11 +435,13 @@ public class UIScript : MonoBehaviour
     public void TurnOnDialogue()
     {
         UIDialogObj.SetActive(true);
+        QuestChecklist.SetActive(false);
         HidePlayerUI();
     }
     public void TurnOffDialogue()
     {
         UIDialogObj.SetActive(false);
+        QuestChecklist.SetActive(true);
         ShowPlayerUI();
     }
 

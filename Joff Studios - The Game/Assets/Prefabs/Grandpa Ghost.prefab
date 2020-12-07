@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2017824719322374033}
   - component: {fileID: 9037911798607914532}
   - component: {fileID: 2648045057101818730}
-  - component: {fileID: -4483902758122137716}
+  - component: {fileID: 2725814451466963935}
   m_Layer: 0
-  m_Name: GrandmaGhost
+  m_Name: Grandpa Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,6 +52,7 @@ MonoBehaviour:
   _graveItem: {fileID: 0}
   lootStolen: 0
   hasQuest: 0
+  QuestName: 
   _questItemPrefab: {fileID: 0}
   questItemLocation: {fileID: 0}
   itemDropOffPos: {fileID: 0}
@@ -60,13 +61,13 @@ MonoBehaviour:
   DistanceFromPlayerToActivate: 3
   _conversationIndex: 0
   _conversations:
-  - {fileID: 11400000, guid: 8d91c5d4a63d8ba44b02f52d71fc16ab, type: 2}
-  - {fileID: 11400000, guid: 3e5286ee9f8860c438b22fc9a872b3a9, type: 2}
+  - {fileID: 11400000, guid: d8d5d837e628e1b4ca7d4793fd946f97, type: 2}
   QuestHasBeenGiven: {fileID: 0}
   _questItemReturnedConvo: {fileID: 0}
   _postQuestConversationIndex: 0
   _PostQuestConversations: []
-  _RandomConversations: []
+  _RandomConversations:
+  - {fileID: 0}
 --- !u!95 &2648045057101818730
 Animator:
   serializedVersion: 3
@@ -86,7 +87,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!58 &-4483902758122137716
+--- !u!58 &2725814451466963935
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -202,7 +203,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4611471515568574305}
+  - {fileID: 8032594874649676112}
   m_Father: {fileID: 2017824719322374033}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -245,7 +246,7 @@ SpriteRenderer:
   m_SortingLayerID: 698258075
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c78dee1554257e045babc473b6a13a07, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d21e841e3c54fd64aa90f2d27273dcb5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -256,7 +257,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &2049195399166049907
+--- !u!1001 &5545772582952384578
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -375,9 +376,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cb5d52734ca1b349a9216e33923a23b, type: 3}
---- !u!224 &4611471515568574305 stripped
+--- !u!224 &8032594874649676112 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2562276277551902994, guid: 3cb5d52734ca1b349a9216e33923a23b,
     type: 3}
-  m_PrefabInstance: {fileID: 2049195399166049907}
+  m_PrefabInstance: {fileID: 5545772582952384578}
   m_PrefabAsset: {fileID: 0}

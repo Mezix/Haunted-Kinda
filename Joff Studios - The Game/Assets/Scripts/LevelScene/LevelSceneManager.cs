@@ -880,6 +880,7 @@ public class LevelSceneManager : MonoBehaviour
         _UIScript.InventoryHidden = true;
         _UIScript.portraitHidden = true;
         _UIScript.TimeDisplayHidden = true;
+        _UIScript.QuestChecklist.SetActive(false);
 
         DisableGraveghostFadein();
         foreach (GameObject robberObj in _graveRobbers)

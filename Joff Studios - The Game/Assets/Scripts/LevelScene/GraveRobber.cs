@@ -276,15 +276,14 @@ public class GraveRobber : MonoBehaviour
 
         while(!nearestGrave._destroyed) //as long as the grave we are targeting isnt destroyed, keep digging
         {
-            //robberRB.position = currentPos; //stay in place, dont get bumped by other robbers
-            //robberRB.velocity = Vector2.zero;
+            robberRB.velocity = Vector2.zero;
             GetComponent<Collider2D>().isTrigger = true; //stop all collisions
             if (isTerrified) //if weve gotten terrified, break the digging loop
             {
                 animator.SetBool("Digging", false);
                 break;
             }
-            nearestGrave.TakeDamage(1f);
+            nearestGrave.TakeDamage(0.5f);
             nearestGrave.LowerHappiness(1f);
             yield return new WaitForSeconds(0.1f);
         }

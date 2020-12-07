@@ -113,6 +113,8 @@ MonoBehaviour:
   happiness: {fileID: 0}
   _graveItem: {fileID: 0}
   lootStolen: 0
+  hasQuest: 0
+  QuestName: '- Meow mroww fish please MROW MEOWW'
   _questItemPrefab: {fileID: 8043414066938722636, guid: 93e5c57ffb7eae540b991bb2b9cfdbcb,
     type: 3}
   questItemLocation: {fileID: 1194430311}

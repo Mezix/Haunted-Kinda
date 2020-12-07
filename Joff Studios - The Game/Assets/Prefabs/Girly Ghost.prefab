@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 2648045057101818730}
   - component: {fileID: -2742510485413367338}
   m_Layer: 0
-  m_Name: KidGirlGhost
+  m_Name: Girly Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,6 +114,7 @@ MonoBehaviour:
   _graveItem: {fileID: 0}
   lootStolen: 0
   hasQuest: 0
+  QuestName: '- Find the child''s ribbon'
   _questItemPrefab: {fileID: 8043414066938722636, guid: 1ec56c1af17a59e429a2e72762a755da,
     type: 3}
   questItemLocation: {fileID: 5117021086914512697}

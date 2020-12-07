@@ -360,6 +360,12 @@ MonoBehaviour:
   waterParticlesSpawn: {fileID: 5834484130826935995}
   waterParticles: {fileID: 674040276141209911, guid: ea2e239f36d5c4d4ea7c0600e8b9ec29,
     type: 3}
+  Flowers:
+  - {fileID: 6474846093625242259, guid: a4f3601699d3aaf4a9c8dbd4d88ed1b9, type: 3}
+  - {fileID: 6474846093625242259, guid: aa3317b1a40b4bf4aad2eadcd7016b4d, type: 3}
+  - {fileID: 6474846093625242259, guid: 74b4e700108a2f8429a1300fe6aaaa03, type: 3}
+  - {fileID: 6474846093625242259, guid: 4b0b6dbc8867054449a1deed13baf32b, type: 3}
+  flowerIndex: 0
   Outline: {fileID: 0}
   SpriteUnlit: {fileID: 0}
 --- !u!50 &8043414066938722635

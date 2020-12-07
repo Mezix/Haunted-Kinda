@@ -6,7 +6,6 @@ public class WaterParticle : MonoBehaviour
 {
     private Vector3 startingVector;
     public BoxCollider2D waterCollider;
-    public GameObject[] Flowers;
     private List<Flower> FlowersWaterHasPassedThrough = new List<Flower>();
     private void Awake()
     {
@@ -38,7 +37,8 @@ public class WaterParticle : MonoBehaviour
         {
             if(FlowersWaterHasPassedThrough.Count == 0)
             {
-                Instantiate(Flowers[Random.Range(0, Flowers.Length)], transform.position, transform.rotation);
+                Instantiate(GameObject.FindGameObjectWithTag("WateringCan").GetComponent<PossessableObject>().Flowers[
+                GameObject.FindGameObjectWithTag("WateringCan").GetComponent<PossessableObject>().flowerIndex], transform.position, transform.rotation);
             }
             else
             {
@@ -57,7 +57,6 @@ public class WaterParticle : MonoBehaviour
         if(collision.TryGetComponent(out Flower flower))
         {
             FlowersWaterHasPassedThrough.Add(flower);
-            //print("found flower");
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -65,7 +64,6 @@ public class WaterParticle : MonoBehaviour
         if (collision.TryGetComponent(out Flower flower))
         {
             FlowersWaterHasPassedThrough.Remove(flower);
-            //print("bye flower");
         }
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class ScoringSystem : MonoBehaviour
 {
+    public UIQuestManager QuestManager;
+
     public static ScoringSystem instance;
 
     [SerializeField]
@@ -56,6 +58,8 @@ public class ScoringSystem : MonoBehaviour
         {
             AllGraveGhosts.Add(grave.GetComponentInChildren<GraveGhost>());
         }
+        QuestManager.GraveGhosts = AllGraveGhosts;
+        QuestManager.CreateUIQuests();
     }
 
     public void CalculateMaxScore()
