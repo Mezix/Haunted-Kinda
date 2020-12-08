@@ -375,6 +375,7 @@ public class PossessableObject : MonoBehaviour
                 {
                     Instantiate(waterParticles, waterParticlesSpawn.transform.position + new Vector3(Random.Range(-0.01f, 0.01f),0,0), new Quaternion());
                     timeSinceLastWaterDrop = 0f;
+                    LevelSceneManager.instance.timeSinceLastMiscPrompt = 0f;
                 }
             }
             yield return new WaitForFixedUpdate();

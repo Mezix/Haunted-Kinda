@@ -14,6 +14,12 @@ public class UIQuestManager : MonoBehaviour
     public GameObject QuestScrollMiddle;
     public GameObject QuestScrollBottom;
 
+    public int QuestsShown;
+
+    private void Awake()
+    {
+        QuestsShown = 0;
+    }
     public void CreateUIQuests()
     {
         Quests = new List<UIQuest>();
@@ -57,6 +63,7 @@ public class UIQuestManager : MonoBehaviour
                 QuestScrollMiddle.GetComponent<RectTransform>().sizeDelta = new Vector2(QuestScrollMiddle.GetComponent<RectTransform>().sizeDelta.x, (offset + 1) * 30);
                 QuestScrollBottom.GetComponent<RectTransform>().anchoredPosition += new Vector2(0, -30);
                 offset++;
+                QuestsShown++;
                 break;
             }
         }

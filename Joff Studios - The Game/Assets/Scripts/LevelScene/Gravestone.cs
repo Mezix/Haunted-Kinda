@@ -9,7 +9,6 @@ public class Gravestone : MonoBehaviour
     public bool IsBeingTargeted { get; set; }
 
     public GameObject _dirtParticles;
-
     public GameObject _graveRestoreParticles;
 
     public SpriteRenderer GravestoneRenderer;

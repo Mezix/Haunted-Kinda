@@ -90,8 +90,16 @@ public class LevelSceneManager : MonoBehaviour
     public RenderPipelineAsset Pipeline3D;
     public GameObject LoadingScreen;
 
+    //PROMPTS
+
+    public float timeSinceLastPrompt = 0;
+    public float timeSinceLastMiscPrompt = 0;
+    public float timeBetweenPrompts;
+    public bool HasTalkedToGhost;
+
     private void Awake()
     {
+        timeBetweenPrompts = 45f;
         LoadingScreen.SetActive(false);
         GraphicsSettings.renderPipelineAsset = Pipeline2D;
         QualitySettings.renderPipeline = Pipeline2D;
@@ -159,6 +167,52 @@ public class LevelSceneManager : MonoBehaviour
         }
         timeSinceLastDialogueStarted += Time.deltaTime;
         TimeSinceLastRobbers += Time.deltaTime;
+        if (!_isPlayingTutorial)
+        {
+            timeSinceLastPrompt += Time.deltaTime;
+            timeSinceLastMiscPrompt += Time.deltaTime;
+            if(timeSinceLastPrompt > timeBetweenPrompts)
+            {
+                timeSinceLastPrompt = 0f;
+                StartCoroutine(ShowPrompt());
+            }
+        }
+    }
+
+    private IEnumerator ShowPrompt()
+    {
+        yield return new WaitForFixedUpdate();
+        if (!HasTalkedToGhost)
+        {
+            HasTalkedToGhost = true;
+            {
+                StartCoroutine(_UIScript.GamePrompt("Remember to talk to your fellow ghosts! - They get lonely sometimes..."));
+            }
+        }
+        else if (_UIScript.QuestChecklist.GetComponent<UIQuestManager>().QuestsShown == 0)
+        {
+            StartCoroutine(_UIScript.GamePrompt("Keep talking to your ghostly buddies, some of them need your help!"));
+        }
+        else
+        {
+            int gravesDamaged = 0;
+            foreach (Gravestone grave in allGraves)
+            {
+                if (grave._destroyed)
+                {
+                    gravesDamaged++;
+                }
+            }
+            if (gravesDamaged > 3)
+            {
+                StartCoroutine(_UIScript.GamePrompt("Some of your Ghost's graves have been destroyed! Help pick up the pieces again and maybe give them the old sweep with the broom!"));
+            }
+            else if(timeSinceLastMiscPrompt > 120)
+            {
+                timeSinceLastMiscPrompt = 0;
+                StartCoroutine(_UIScript.GamePrompt("Remember to grow some plants around your Ghosts or give them offerings you find scattered around the map!"));
+            }
+        }
     }
 
     private void SetDifficulty()
@@ -211,12 +265,15 @@ public class LevelSceneManager : MonoBehaviour
         SetPlayerReferencesInScene();
         SpawnOfferings();
         SpawnQuestItems();
+
+        HasTalkedToGhost = false;
     }
 
     //DIALOGUE
 
     public void TriggerDialogue(ConversationScriptObj convo)
     {
+        HasTalkedToGhost = true;
         if(timeSinceLastDialogueStarted >= timeUntilNextDialogueCanBeStarted)
         {
             _UIScript.TurnOnDialogue();
@@ -303,7 +360,6 @@ public class LevelSceneManager : MonoBehaviour
         else //start a new day
         {
             SetupDayAndNight();
-            //StartCoroutine(SpawnGraveRobbers(Random.Range(3, 6)));
             print("new day");
             SpawnOfferings();
             SetUIDay();
@@ -331,7 +387,7 @@ public class LevelSceneManager : MonoBehaviour
         for(int i = 0; i < offeringSpawnPositions.Count; i++)
         {
             GameObject go = Instantiate(_allOfferingTypes[Random.Range(0, _allOfferingTypes.Count)]);
-            go.transform.position = offeringSpawnPositions[i].transform.position;
+            go.transform.position = offeringSpawnPositions[i].transform.position + new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), 0);
             go.transform.parent = _offeringsParent.transform;
         }
     }

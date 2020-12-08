@@ -510,6 +510,36 @@ public class UIScript : MonoBehaviour
     {
         PromptText.text = "Press 'F' to give the offerings to the ghosts!";
     }
+    public IEnumerator GamePrompt(string text)
+    {
+        StopCoroutine(FadeInPrompts());
+        StopCoroutine(FadeOutPrompts());
+
+        PromptText.text = text;
+
+        promptOpacity = 0;
+        while (promptOpacity <= 1)
+        {
+            promptOpacity += promptFadeAmount;
+            yield return new WaitForFixedUpdate();
+            TutorialPromptsBackground.color = PromptText.color = new Color(1, 1, 1, promptOpacity);
+        }
+        promptOpacity = 1;
+        TutorialPromptsBackground.color = PromptText.color = new Color(1, 1, 1, 1);
+
+        yield return new WaitForSeconds(7f);
+
+        promptOpacity = 1;
+        while (promptOpacity >= 0)
+        {
+            promptOpacity -= promptFadeAmount;
+            yield return new WaitForFixedUpdate();
+            TutorialPromptsBackground.color = PromptText.color = new Color(1, 1, 1, promptOpacity);
+        }
+        promptOpacity = 0;
+        TutorialPromptsBackground.color = PromptText.color = new Color(1, 1, 1, 0);
+    }
+
     public void ShowEndScreen()
     {
         EndScreen.SetActive(true);

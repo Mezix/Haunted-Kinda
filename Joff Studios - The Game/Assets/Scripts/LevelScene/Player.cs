@@ -378,7 +378,7 @@ public class Player : MonoBehaviour
             Gravestone closestGrave = nearGraves[0];
             foreach (Gravestone grave in nearGraves)
             {
-                if (!grave.currentOffering) // 
+                if (!grave.currentOffering)
                 {
                     if (Vector2.Distance(playerRB.position, grave.transform.position) < Distance)
                     {
@@ -396,6 +396,8 @@ public class Player : MonoBehaviour
                 offering.FadeAway(closestGrave); //slowly fade it away
                 collectedOfferings.RemoveAt(0); //remove the offering from our list
                 Events.current.PlaceDownOffering(offering);
+
+                LevelSceneManager.instance.timeSinceLastMiscPrompt = 0f;
             }
         }
     }

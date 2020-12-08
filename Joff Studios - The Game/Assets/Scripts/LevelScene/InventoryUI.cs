@@ -30,7 +30,7 @@ public class InventoryUI : MonoBehaviour
         if(isNewOffering)
         {
             GameObject InstantiatedOffering = Instantiate(_UIOfferingPrefab);
-            InstantiatedOffering.GetComponent<RectTransform>().anchoredPosition += new Vector2(100 * _UIOfferings.Count,0);
+            InstantiatedOffering.GetComponent<RectTransform>().anchoredPosition += new Vector2(90 * _UIOfferings.Count,0);
             uiOffering = InstantiatedOffering.GetComponent<UIOffering>();
             uiOffering._offeringImage.sprite = newOffering.GetComponent<SpriteRenderer>().sprite;
             uiOffering._text.text = "x1";
