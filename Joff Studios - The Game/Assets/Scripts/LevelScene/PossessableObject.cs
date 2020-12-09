@@ -405,6 +405,7 @@ public class PossessableObject : MonoBehaviour
         else
         {
             flowerIndex = 0;
+            LevelSceneManager.instance._UIScript.ShowNewFlower(Flowers[flowerIndex].GetComponent<Flower>().spriteRenderer.sprite);
         }
     }
 

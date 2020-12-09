@@ -84,7 +84,6 @@
     <Compile Include="Assets\Scripts\LevelScene\InventoryUI.cs" />
     <Compile Include="Assets\Scripts\LevelScene\LevelSceneManager.cs" />
     <Compile Include="Assets\Scripts\LevelScene\Lootbag.cs" />
-    <Compile Include="Assets\Scripts\LevelScene\MenuSceneSettings.cs" />
     <Compile Include="Assets\Scripts\LevelScene\Offering.cs" />
     <Compile Include="Assets\Scripts\LevelScene\Player.cs" />
     <Compile Include="Assets\Scripts\LevelScene\PlayerAfterImage.cs" />
@@ -102,6 +101,7 @@
     <Compile Include="Assets\Scripts\LevelScene\WaterParticle.cs" />
     <Compile Include="Assets\Scripts\Loader.cs" />
     <Compile Include="Assets\Scripts\MenuScene\MenuSceneManager.cs" />
+    <Compile Include="Assets\Scripts\MenuScene\MenuSceneSettings.cs" />
     <Compile Include="Assets\Scripts\MenuScene\PlayerLookAt.cs" />
     <Compile Include="Assets\Scripts\MenuScene\UIGrave.cs" />
     <None Include="Assets\Audio\Put this in Credits for Copyright.txt" />

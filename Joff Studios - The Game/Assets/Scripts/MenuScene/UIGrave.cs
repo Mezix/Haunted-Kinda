@@ -29,7 +29,6 @@ public class UIGrave : MonoBehaviour
                 ButtonsActivatable();
             }
         }
-        print("done");
         transform.position = new Vector3(transform.position.x, 0.45f, transform.position.z);
     }
 

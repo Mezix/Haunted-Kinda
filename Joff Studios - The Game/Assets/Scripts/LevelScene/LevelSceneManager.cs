@@ -937,6 +937,7 @@ public class LevelSceneManager : MonoBehaviour
         _UIScript.portraitHidden = true;
         _UIScript.TimeDisplayHidden = true;
         _UIScript.QuestChecklist.SetActive(false);
+        _UIScript.QuestsHidden = true;
 
         DisableGraveghostFadein();
         foreach (GameObject robberObj in _graveRobbers)
@@ -1011,5 +1012,9 @@ public class LevelSceneManager : MonoBehaviour
         print("VICTORY");
         EndingMusic.Play();
         _UIScript.ShowEndScreen();
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

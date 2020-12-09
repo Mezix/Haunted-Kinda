@@ -158,11 +158,12 @@ public class GraveGhost : MonoBehaviour
         print("completing quest");
 
         QuestComplete = true;
-        PossessableObject questPossessable = questItem.GetComponent<PossessableObject>();
+        yield return new WaitWhile(() => References.playerScript.IsPossessing);
         References.playerScript.LockMovement();
+        References.playerScript.lastMovementDir = transform.position - References.playerScript.transform.position;
+        PossessableObject questPossessable = questItem.GetComponent<PossessableObject>();
         LevelSceneManager.instance.TriggerDialogue(_questItemReturnedConvo);
         LevelSceneManager.instance._UIScript.QuestChecklist.GetComponent<UIQuestManager>().CheckOffQuest(this);
-        QuestComplete = true;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
         References.playerScript.UnlockMovement();
         questPossessable.ReturnPossessableToGhost();

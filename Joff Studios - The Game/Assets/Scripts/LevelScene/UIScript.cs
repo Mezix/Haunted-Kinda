@@ -81,10 +81,23 @@ public class UIScript : MonoBehaviour
     //QUESTS
 
     public GameObject QuestChecklist;
+    public bool QuestsHidden;
 
     float ratio = 0.5f;
+
+    //FULLSCREEN AND RESOLUTION
+
+    public bool fullscreen;
+    Resolution[] resolutions;
+    public Text resolutionText;
+    public int tempSelectedResolution;
+    public int currentlySelectedResolution;
+
     private void Awake()
     {
+        fullscreen = true;
+        GetResolutions();
+
         _inventory = Inventory.GetComponent<InventoryUI>();
         proximityButtonsEnabled = true;
         promptOpacity = 0;
@@ -216,6 +229,7 @@ public class UIScript : MonoBehaviour
         PauseParent.SetActive(true);
         DarkOverlay.SetActive(true);
         QuestChecklist.SetActive(true);
+        QuestsHidden = false;
         
 
         //disabled
@@ -256,6 +270,7 @@ public class UIScript : MonoBehaviour
         SundialHidden = true;
         TimeDisplayHidden = true;
         InventoryHidden = true;
+        QuestsHidden = true;
 
         MasterVolume.value = MenuSceneSettings.masterVolume;
         MusicVolumeSlider.value = MenuSceneSettings.musicVolume;
@@ -441,7 +456,7 @@ public class UIScript : MonoBehaviour
     public void TurnOffDialogue()
     {
         UIDialogObj.SetActive(false);
-        QuestChecklist.SetActive(true);
+        QuestChecklist.SetActive(!QuestsHidden);
         ShowPlayerUI();
     }
 
@@ -608,5 +623,86 @@ public class UIScript : MonoBehaviour
     {
         audioMixer.SetFloat("SFXVolume", Mathf.Log10(Volume) * 20);
         MenuSceneSettings.masterVolume = Volume;
+    }
+
+    //RESOLUTION AND FULLSCREEN
+
+    private void GetResolutions()
+    {
+        resolutions = new Resolution[7];
+
+        resolutions[0].width = 600;
+        resolutions[0].height = 480;
+
+        resolutions[1].width = 1024;
+        resolutions[1].height = 768;
+
+        resolutions[2].width = 1152;
+        resolutions[2].height = 768;
+
+        resolutions[3].width = 1280;
+        resolutions[3].height = 960;
+
+        resolutions[4].width = 1600;
+        resolutions[4].height = 900;
+
+        resolutions[5].width = 1920;
+        resolutions[5].height = 1080;
+
+        resolutions[6].width = 3840;
+        resolutions[6].height = 2160;
+
+        currentlySelectedResolution = 5;
+        tempSelectedResolution = 5;
+
+        for(int i = 0; i < resolutions.Length; i++)
+        {
+            if(resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
+            {
+                currentlySelectedResolution = i;
+                SetResolutionText(currentlySelectedResolution);
+            }
+        }
+    }
+
+    public void NextResolution()
+    {
+        if(tempSelectedResolution < resolutions.Length-1)
+        {
+            tempSelectedResolution++;
+        }
+        else
+        {
+            tempSelectedResolution = 0;
+        }
+        SetResolutionText(tempSelectedResolution);
+    }
+
+    public void PreviousResolution()
+    {
+        if (tempSelectedResolution > 0)
+        {
+            tempSelectedResolution--;
+        }
+        else
+        {
+            tempSelectedResolution = resolutions.Length - 1;
+        }
+        SetResolutionText(tempSelectedResolution);
+    }
+    public void SetResolutionText(int index)
+    {
+        resolutionText.text = resolutions[index].width.ToString() + "x" + resolutions[index].height.ToString();
+    }
+    public void SetFullscreen(bool isFullscreen)
+    {
+        fullscreen = isFullscreen;
+    }
+    public void ApplyGraphics()
+    {
+        Screen.fullScreen = fullscreen;
+
+        currentlySelectedResolution = tempSelectedResolution;
+        Screen.SetResolution(resolutions[currentlySelectedResolution].width, resolutions[currentlySelectedResolution].height, fullscreen);
     }
 }

@@ -13,6 +13,7 @@ public class Flower : MonoBehaviour
         flower.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         spriteRenderer.flipX = System.Convert.ToBoolean(Random.Range(0, 2));
         shrinkProtection = 60;
+        ScoringSystem.instance.flowersPlanted++;
     }
     private void FixedUpdate()
     {
@@ -54,6 +55,7 @@ public class Flower : MonoBehaviour
         {
             flower.transform.localScale = new Vector3(scale.x - shrinkAmount, scale.y - shrinkAmount, scale.z - shrinkAmount);
         }
+        ScoringSystem.instance.flowersPlanted--;
         Destroy(gameObject);
     }
 

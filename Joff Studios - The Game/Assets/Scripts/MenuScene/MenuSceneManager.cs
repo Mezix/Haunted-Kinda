@@ -21,6 +21,7 @@ public class MenuSceneManager : MonoBehaviour
 
     private void Awake()
     {
+        Vignette.SetActive(true);
         Vignette.transform.localScale = new Vector3(1,1,1);
         GraphicsSettings.renderPipelineAsset = Pipeline3D;
         QualitySettings.renderPipeline = Pipeline3D;

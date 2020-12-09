@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 14, y: 15}
+  m_SizeDelta: {x: 17, y: 17}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7413965604188963639
 CanvasRenderer:
@@ -109,7 +109,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 14, y: 15}
+  m_SizeDelta: {x: 15, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7455434300979129602
 CanvasRenderer:
@@ -186,7 +186,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.04699707, y: 0.9}
+  m_AnchoredPosition: {x: -0.04699707, y: 0.9000244}
   m_SizeDelta: {x: 192, y: 33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7600605750422024618
@@ -263,3 +263,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthbar: {fileID: 4886432079551395801}
   healthbarbackground: {fileID: 3048964853663856956}
+  lastHealth: 0

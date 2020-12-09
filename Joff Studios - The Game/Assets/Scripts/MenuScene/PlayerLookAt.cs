@@ -8,13 +8,19 @@ public class PlayerLookAt : MonoBehaviour
     public GameObject DefaultLookAtObj;
     public GameObject rotateGuide;
 
+    public float time;
     private void Start()
     {
+        time = 0;
         objectToLookAt = DefaultLookAtObj;
     }
     private void Update()
     {
-        MouseHover();   
+        time += Time.deltaTime;
+        if(time > 6)
+        {
+            MouseHover();
+        } 
     }
     void FixedUpdate()
     {
@@ -27,25 +33,19 @@ public class PlayerLookAt : MonoBehaviour
 
     public void SlowlyLookAt()
     {
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, rotateGuide.transform.rotation, 6f);
-
-        //Vector3 currentRotation = transform.rotation.eulerAngles;
-        //Vector3 newRotation = rotateGuide.transform.rotation.eulerAngles;
-
-        //newRotation = Vector3.Lerp(currentRotation, newRotation, 0.5f);
-        //Quaternion q = Quaternion.identity;
-        //q.eulerAngles = newRotation;
-        //transform.rotation = q; 
+        Vector3 direction = objectToLookAt.transform.position - transform.position;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, 5 * Time.deltaTime);
     }
     private void MouseHover()
     {
         if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
         {
             GameObject hitObj = hit.collider.gameObject;
-            //print(hitObj);
             if (hitObj.CompareTag("3D UI"))
             {
                 objectToLookAt = hitObj;
+                print(hitObj);
             }
             else
             {

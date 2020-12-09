@@ -35,6 +35,12 @@ public class ScoringSystem : MonoBehaviour
     private Text ScoreThroughQuestsCompleted;
     [SerializeField]
     private Text NumberOfQuestsCompleted;
+    [SerializeField]
+    private Text ScoreGraveDamage;
+    [SerializeField]
+    private Text FlowersPlanted;
+
+    public int flowersPlanted = 0;
 
     private void Awake()
     {
@@ -89,6 +95,8 @@ public class ScoringSystem : MonoBehaviour
             score += ghost.happiness.healthbar.fillAmount * maxScoreForHappiness;
         }
         currentScore = score;
+        currentScore += flowersPlanted;
+        currentScore = Mathf.Min(currentScore, maxScore);
     }
     public string CalculateGrade()
     {
@@ -126,17 +134,39 @@ public class ScoringSystem : MonoBehaviour
     {
         int QuestsCompleted = 0;
         float happinessScore = 0;
+        int gravesDestroyed = 0;
         foreach (GraveGhost ghost in AllGraveGhosts)
         {
+            gravesDestroyed += ghost.timesGraveWasDestroyed;
             if (ghost.QuestComplete && ghost.hasQuest)
             {
                 QuestsCompleted++;
             }
             happinessScore += ghost.happiness.healthbar.fillAmount * maxScoreForHappiness;
         }
+
         NumberOfQuestsCompleted.text = QuestsCompleted.ToString();
-        YourFinalScore.text = Mathf.RoundToInt(currentScore).ToString();
+        YourFinalScore.text = Mathf.RoundToInt(currentScore + flowersPlanted).ToString();
         ScoreThroughGhostHappiness.text = Mathf.RoundToInt(happinessScore).ToString();
         ScoreThroughQuestsCompleted.text = Mathf.RoundToInt((QuestsCompleted * ScorePerCompletedQuest)).ToString();
+        ScoreGraveDamage.text = Mathf.RoundToInt((-10 * gravesDestroyed)).ToString();
+
+        if(Mathf.FloorToInt(happinessScore) == 0)
+        {
+            ScoreThroughGhostHappiness.color = Color.white;
+        }
+        if (QuestsCompleted == 0)
+        {
+            NumberOfQuestsCompleted.color = Color.white;
+        }
+        if (gravesDestroyed == 0)
+        {
+            ScoreGraveDamage.color = Color.white;
+        }
+        if(flowersPlanted == 0)
+        {
+            FlowersPlanted.color = Color.white;
+        }
+        FlowersPlanted.text = flowersPlanted.ToString();
     }
 }
