@@ -133,6 +133,8 @@ MonoBehaviour:
   _PostQuestConversations: []
   _RandomConversations:
   - {fileID: 11400000, guid: 2f6e1275278b1864fb82051f048efc90, type: 2}
+  QuestCompleteSFX: {fileID: 1328814324710486893, guid: a54008edaee6024459c7add943421249,
+    type: 3}
 --- !u!95 &2648045057101818730
 Animator:
   serializedVersion: 3

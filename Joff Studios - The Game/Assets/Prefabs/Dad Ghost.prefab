@@ -107,6 +107,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 280752e7bfcf4fc4aa2acc910b03eed9, type: 2}
   - {fileID: 11400000, guid: 92c30313ed4b3634da3ed50e014afb15, type: 2}
   - {fileID: 11400000, guid: c97902ef7c48a0b4d9d04fba835ef069, type: 2}
+  QuestCompleteSFX: {fileID: 1328814324710486893, guid: a54008edaee6024459c7add943421249,
+    type: 3}
 --- !u!95 &2648045057101818730
 Animator:
   serializedVersion: 3

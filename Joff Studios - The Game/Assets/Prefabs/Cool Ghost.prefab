@@ -75,6 +75,8 @@ MonoBehaviour:
   _RandomConversations:
   - {fileID: 11400000, guid: ed2d8163cc8953048a81fe37dd20b27b, type: 2}
   - {fileID: 11400000, guid: 7f90e252df4c6704286dac26f926b49f, type: 2}
+  QuestCompleteSFX: {fileID: 1328814324710486893, guid: a54008edaee6024459c7add943421249,
+    type: 3}
 --- !u!95 &2648045057101818730
 Animator:
   serializedVersion: 3

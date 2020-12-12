@@ -252,7 +252,7 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.8679245, g: 0.65913135, b: 0.65913135, a: 1}
+      minColor: {r: 0.5, g: 0.23349056, b: 0.23349056, a: 1}
       maxColor: {r: 0.5566038, g: 0.118147045, b: 0.118147045, a: 1}
       maxGradient:
         serializedVersion: 2
@@ -773,7 +773,7 @@ ParticleSystem:
     m_TextureColorAffectsParticles: 1
     m_TextureAlphaAffectsParticles: 1
     m_TextureBilinearFiltering: 0
-    randomDirectionAmount: 0.3
+    randomDirectionAmount: 0
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:

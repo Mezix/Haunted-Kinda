@@ -9,14 +9,18 @@ public class UIGrave : MonoBehaviour
     public GameObject SettingsButtonObj;
     public GameObject QuitButtonObj;
 
+    public GameObject dirt;
+    public Transform dirtpos;
+
     private void Start()
-    { 
+    {
         StartCoroutine(RaiseGrave());
     }
     public IEnumerator RaiseGrave()
     {
-        yield return new WaitForSeconds(6f);
-
+        yield return new WaitForSeconds(4f);
+        Instantiate(dirt, dirtpos);
+        yield return new WaitForSeconds(2f);
         Destroy(Camera.main.GetComponent<SimpleCameraController>()); //regain control of our camera again
         float timer = 0f;
         while(transform.position.y <= 0.45f)
@@ -30,6 +34,8 @@ public class UIGrave : MonoBehaviour
             }
         }
         transform.position = new Vector3(transform.position.x, 0.45f, transform.position.z);
+        yield return new WaitForSeconds(1f);
+        
     }
 
     private void ButtonsActivatable()

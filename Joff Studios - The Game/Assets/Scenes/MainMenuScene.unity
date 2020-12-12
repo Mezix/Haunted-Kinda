@@ -13801,7 +13801,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &440146415
 Transform:
   m_ObjectHideFlags: 0
@@ -13815,7 +13815,7 @@ Transform:
   m_Children:
   - {fileID: 1383946746}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &441169224
 GameObject:
@@ -33287,6 +33287,10 @@ MonoBehaviour:
   DifficultyText: {fileID: 604676085}
   DifficultySlider: {fileID: 1306285275}
   tutorial: {fileID: 682091921}
+  dirtPrefab: {fileID: 802894040012684917, guid: 008d142954f5c5841b981f1d29026867,
+    type: 3}
+  dirt: {fileID: 0}
+  dirtPos: {fileID: 1872330594}
 --- !u!4 &1052928756
 Transform:
   m_ObjectHideFlags: 0
@@ -33381,6 +33385,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060347104}
   m_Mesh: {fileID: -7418594976879605365, guid: 91bae5decdcfd304c964d9453df12a2d, type: 3}
+--- !u!1 &1064603120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1064603121}
+  m_Layer: 0
+  m_Name: UIGraveDirt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1064603121
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064603120}
+  m_LocalRotation: {x: 0, y: 0.16280931, z: 0, w: 0.98665756}
+  m_LocalPosition: {x: -1.02, y: 0, z: -1.45}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 18.74, z: 0}
 --- !u!1 &1069472544
 GameObject:
   m_ObjectHideFlags: 0
@@ -52275,6 +52309,8 @@ MonoBehaviour:
   StartButtonObj: {fileID: 1134451397}
   SettingsButtonObj: {fileID: 1346041836}
   QuitButtonObj: {fileID: 1619101909}
+  dirt: {fileID: 802894040012684917, guid: 9ff151385ba60f14498f74de07214994, type: 3}
+  dirtpos: {fileID: 1064603121}
 --- !u!4 &1520414071
 Transform:
   m_ObjectHideFlags: 0
@@ -62680,6 +62716,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1871364689}
   m_Mesh: {fileID: -6766531802967234379, guid: 91bae5decdcfd304c964d9453df12a2d, type: 3}
+--- !u!1 &1872330593
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1872330594}
+  m_Layer: 0
+  m_Name: SettingsDirt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1872330594
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872330593}
+  m_LocalRotation: {x: 0, y: 0.25603628, z: 0, w: 0.96666723}
+  m_LocalPosition: {x: -2.046, y: 0, z: -0.951}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 29.67, z: 0}
 --- !u!1 &1873054423
 GameObject:
   m_ObjectHideFlags: 0
@@ -73607,7 +73673,7 @@ PrefabInstance:
     - target: {fileID: 8565533766215530110, guid: 2aac2e7f0ee24474cbc6acc862ddfc5c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8565533766215530110, guid: 2aac2e7f0ee24474cbc6acc862ddfc5c,
         type: 3}

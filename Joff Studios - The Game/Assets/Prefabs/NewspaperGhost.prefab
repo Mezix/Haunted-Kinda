@@ -53,6 +53,8 @@ MonoBehaviour:
   happiness: {fileID: 0}
   _graveItem: {fileID: 0}
   lootStolen: 0
+  hasQuest: 0
+  QuestName: 
   _questItemPrefab: {fileID: 0}
   questItemLocation: {fileID: 2705979134825005990}
   itemDropOffPos: {fileID: 2879304922497633420}
@@ -69,6 +71,8 @@ MonoBehaviour:
   _PostQuestConversations: []
   _RandomConversations:
   - {fileID: 11400000, guid: d0de40105243af446a7877c5a50aae14, type: 2}
+  QuestCompleteSFX: {fileID: 1328814324710486893, guid: a54008edaee6024459c7add943421249,
+    type: 3}
 --- !u!95 &2648045057101818730
 Animator:
   serializedVersion: 3

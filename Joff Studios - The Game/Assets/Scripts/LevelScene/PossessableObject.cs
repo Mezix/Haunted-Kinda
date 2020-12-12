@@ -45,6 +45,7 @@ public class PossessableObject : MonoBehaviour
     public AnimationClip BroomSweep;
 
     public bool usingWateringCan;
+    public GameObject WateringSFX;
     public GameObject waterParticlesSpawn;
     public GameObject waterParticles;
     public GameObject[] Flowers;
@@ -80,7 +81,6 @@ public class PossessableObject : MonoBehaviour
             }
         }
     }
-
     
     
     private void Update()
@@ -373,6 +373,7 @@ public class PossessableObject : MonoBehaviour
             {
                 if(timeSinceLastWaterDrop >= timeBetweenWaterDrops)
                 {
+                    WateringSFX.SetActive(true);
                     Instantiate(waterParticles, waterParticlesSpawn.transform.position + new Vector3(Random.Range(-0.01f, 0.01f),0,0), new Quaternion());
                     timeSinceLastWaterDrop = 0f;
                     LevelSceneManager.instance.timeSinceLastMiscPrompt = 0f;
@@ -384,6 +385,7 @@ public class PossessableObject : MonoBehaviour
     }
     private IEnumerator EndWatering()
     {
+        WateringSFX.SetActive(false);
         while (_moveablePart.transform.rotation.eulerAngles.z > 5)
         {
             _moveablePart.transform.Rotate(new Vector3(0, 0, -4));

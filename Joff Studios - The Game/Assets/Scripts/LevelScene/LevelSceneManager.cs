@@ -46,7 +46,13 @@ public class LevelSceneManager : MonoBehaviour
     public float timeSinceLastDialogueStarted = 0f;
     public float timeUntilNextDialogueCanBeStarted = 0.25f;
 
+    //AUDIO
+
+    public AudioSource GameStart;
     public AudioSource EndingMusic;
+    public AudioSource Crickets;
+    public AudioSource BirdsChirping;
+    public AudioSource GraveRobberSpawnSoundEffect;
 
     //DIFFICULTY
 
@@ -106,7 +112,6 @@ public class LevelSceneManager : MonoBehaviour
 
         _playTutorial = MenuSceneManager.playTutorial;
         DifficultySlider = MenuSceneSettings._difficulty;
-
         SetDifficulty();
 
         MenuSceneManager.playTutorial = false;
@@ -141,7 +146,8 @@ public class LevelSceneManager : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        TimeDisplay.SetTime();
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (paused)
             {
@@ -217,7 +223,7 @@ public class LevelSceneManager : MonoBehaviour
 
     private void SetDifficulty()
     {
-        RobbersPerSpawn = DifficultySlider * 2;
+        RobbersPerSpawn = Mathf.FloorToInt(DifficultySlider * 2.5f);
     }
 
     private void RemoveGraveRobber(GameObject graveRobber)
@@ -252,6 +258,7 @@ public class LevelSceneManager : MonoBehaviour
 
     private void StartGame()
     {
+        GameStart.Play();
         Unpause();
         StartCoroutine(_UIScript.FadeFromBlack());
         _UIScript.StartGame();
@@ -396,8 +403,7 @@ public class LevelSceneManager : MonoBehaviour
         for (int i = 0; i < amount; i++)
         {
             SpawnGraveRobber();
-            yield return new WaitForSeconds(0.25f);
-            //yield return new WaitForFixedUpdate();
+            yield return new WaitForSeconds(1.5f);
 
         }
         for (int i = 0; i < _graveRobbers.Count; i++) //remove all robber collisions
@@ -421,6 +427,7 @@ public class LevelSceneManager : MonoBehaviour
         }
         if(SpawnRobber)
         {
+            Instantiate(GraveRobberSpawnSoundEffect);
             GameObject go = Instantiate(_graveRobberPrefab);
             go.transform.position = graveRobberSpawnPositions[Random.Range(0, graveRobberSpawnPositions.Count)].transform.position;
             go.GetComponent<GraveRobber>().InitRobber(allGraves, _graveRobberEscapePos);
@@ -910,6 +917,8 @@ public class LevelSceneManager : MonoBehaviour
         _coolGhost._graveItem = null;
         SpawnQuestItems();
         SpawnOfferings();
+
+        GameStart.Play();
     }
 
     private IEnumerator PlayEnding()

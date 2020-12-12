@@ -45,7 +45,6 @@ public class PlayerLookAt : MonoBehaviour
             if (hitObj.CompareTag("3D UI"))
             {
                 objectToLookAt = hitObj;
-                print(hitObj);
             }
             else
             {
@@ -57,7 +56,6 @@ public class PlayerLookAt : MonoBehaviour
         }
         else
         {
-            //print("nothing");
             if (!MenuSceneSettings.holdingSlider)
             {
                 objectToLookAt = DefaultLookAtObj;

@@ -10,11 +10,9 @@ public class HealthBarScript : MonoBehaviour
     public Image healthbarbackground;
 
     public float lastHealth;
-    private void Awake()
-    {
-        //Events.current.OnHealthPctChanged += HandleHealthChange;
-    }
 
+    public AudioSource fullHealthSound;
+    public AudioSource healSound;
     public void HandleHealthChange(float health)
     {
         healthbar.fillAmount = health;
@@ -22,15 +20,12 @@ public class HealthBarScript : MonoBehaviour
         {
             StartCoroutine(FlashFullHealth());
         }
-        else
-        {
-            //play heal sound effect
-        }
         lastHealth = health;
     }
 
     public IEnumerator FlashFullHealth()
     {
+        fullHealthSound.Play();
         healthbarbackground.color = new Color(237/255f,182/255f,147/255f,1);
         for(int i = 0; i < 10; i++)
         {
@@ -41,7 +36,5 @@ public class HealthBarScript : MonoBehaviour
         }
         healthbarbackground.transform.localScale = Vector3.one;
         healthbarbackground.color = Vector4.one;
-
-        //play full health sound effect
     }
 }

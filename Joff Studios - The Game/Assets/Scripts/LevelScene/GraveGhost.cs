@@ -41,6 +41,8 @@ public class GraveGhost : MonoBehaviour
     public ConversationScriptObj[] _PostQuestConversations;
     public ConversationScriptObj[] _RandomConversations;
 
+    public GameObject QuestCompleteSFX;
+
     private void Awake()
     {
         GhostGlow = GetComponentInChildren<UnityEngine.Experimental.Rendering.Universal.Light2D>();
@@ -168,6 +170,8 @@ public class GraveGhost : MonoBehaviour
         References.playerScript.UnlockMovement();
         questPossessable.ReturnPossessableToGhost();
         grave.RaiseHappiness(100);
+
+        Instantiate(QuestCompleteSFX);
 
         if(_questItemPrefab.tag == "FishermanGhostQuestItem")
         {

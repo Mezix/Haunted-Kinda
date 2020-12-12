@@ -61,6 +61,10 @@ public class Player : MonoBehaviour
 
     public AudioSource _dashSound; //audio sources that the player needs, located within empty gameobjects with the same names 
     public AudioSource _screamSound; //that house only these sounds
+    public AudioSource _placeDownSound; //that house only these sounds
+    public AudioSource _pickUpSound; //that house only these sounds
+    public AudioSource _PossessSound; //that house only these sounds
+    public AudioSource _DepossessSound; //that house only these sounds
 
     //PATHFINDING
 
@@ -260,10 +264,9 @@ public class Player : MonoBehaviour
     }
     private IEnumerator PossessObject()
     {
-        //TODO: currently can possess multiple objects while we havent finished this function
-
         if (_possessableCollider.PossessablesInCollider.Count > 0)
         {
+            _PossessSound.Play();
             startingPossession = true;
             List<PossessableObject> possessables = _possessableCollider.PossessablesInCollider;
 
@@ -299,14 +302,19 @@ public class Player : MonoBehaviour
     }
     public IEnumerator DepossessObject()
     {
+        _DepossessSound.loop = true;
+        _DepossessSound.Play();
         startingPossession = true;
         transform.position = possessedObject.transform.position; //move our player to the possessed object so we can reemerge
 
         playerAnimator.SetBool("Disappear", false); //play disappear animation
         possessedObject.Depossess(); //leave the possessed object so we may inhabit it again later
-        
         Events.current.PossessObject(gameObject); //send out a possession event, to say we are back in our own body (important for grave robbers and Cameras)
-        yield return new WaitForSeconds(0.75f); //unlock movement around 3/4 through the animation
+        yield return new WaitForSeconds(0.1f);
+        _DepossessSound.loop = false;
+        yield return new WaitForSeconds(0.65f); //unlock movement around 3/4 through the animation
+
+
         _ghostGlow.SetActive(true); //turn back on our glow and shadow
         _shadow.SetActive(true);
         IsPossessing = false; //and the ability to possess again
@@ -316,6 +324,7 @@ public class Player : MonoBehaviour
             lockMovement = false; //unlock movement
         }
         startingPossession = false;
+        yield return new WaitForSeconds(0.1f);
     }
 
     private void Interact()
@@ -344,6 +353,7 @@ public class Player : MonoBehaviour
                 collectedOfferings.Add(closestOffering); //add to our internal inventory system
                 closestOffering.gameObject.SetActive(false); //disable the gameobject
                 Events.current.PickUpOffering(closestOffering); //set off an event for the UI to listen to
+                _pickUpSound.Play();
             }
         }
 
@@ -370,7 +380,7 @@ public class Player : MonoBehaviour
     
     private void PlaceDownOffering()
     {
-        if (_gravesCollider.GravesInCollider.Count > 0) //pickup!
+        if (_gravesCollider.GravesInCollider.Count > 0)
         {
             List<Gravestone> nearGraves = _gravesCollider.GravesInCollider;
 
@@ -392,6 +402,7 @@ public class Player : MonoBehaviour
                 Offering offering = collectedOfferings[0]; //take the first offering off our list
                 offering.gameObject.SetActive(true); //reenable this offering
                 offering.transform.position = closestGrave.OfferingPos.transform.position; //and move it our graves offering position
+                _placeDownSound.Play();
                 closestGrave.RaiseHappiness(offering.HealAmount); //heal our grave
                 offering.FadeAway(closestGrave); //slowly fade it away
                 collectedOfferings.RemoveAt(0); //remove the offering from our list

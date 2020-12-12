@@ -35,7 +35,7 @@ MonoBehaviour:
     characterRight: {fileID: 11400000, guid: 507ccc1591ee5a34db8a48e55d45d7d6, type: 2}
     text: 'Fun fact:'
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 7c8336ac0420e4a4ca7c5e34c00e43df, type: 2}
+    characterRight: {fileID: 11400000, guid: 507ccc1591ee5a34db8a48e55d45d7d6, type: 2}
     text: Only lame people call other people lame...
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 507ccc1591ee5a34db8a48e55d45d7d6, type: 2}

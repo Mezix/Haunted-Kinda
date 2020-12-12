@@ -13,11 +13,6 @@ public class TimeDisplay : MonoBehaviour
     {
         TimeText = GetComponent<Text>();
     }
-
-    private void Update()
-    {
-        SetTime();
-    }
     public static void SetTime()
     {
         hours = Mathf.FloorToInt((LevelSceneManager.instance._lighting.DayTimerForClock * 12) % 24);

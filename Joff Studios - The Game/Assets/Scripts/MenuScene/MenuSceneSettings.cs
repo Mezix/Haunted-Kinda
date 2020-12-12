@@ -20,7 +20,10 @@ public class MenuSceneSettings : MonoBehaviour
     public Toggle tutorial;
 
     public static bool holdingSlider;
-   
+
+    public GameObject dirtPrefab;
+    public GameObject dirt;
+    public Transform dirtPos;
     private void Start()
     {
         _difficulty = 2;
@@ -75,7 +78,7 @@ public class MenuSceneSettings : MonoBehaviour
 
     private void Awake()
     {
-        masterVolume = 1;
+        masterVolume = 0.5f;
         musicVolume = 1;
         SFXVolume = 1;
         SetMasterVolume(masterVolume);
@@ -84,35 +87,38 @@ public class MenuSceneSettings : MonoBehaviour
     }
     public void Raise()
     {
+        StopAllCoroutines();
         StartCoroutine(RaiseGrave());
     }
     public void Lower()
     {
+        StopAllCoroutines();
         StartCoroutine(LowerGrave());
     }
     private IEnumerator RaiseGrave()
     {
-        StopCoroutine(LowerGrave());
-
-        settingsRaised = false;
+        Destroy(dirt);
+        dirt = Instantiate(dirtPrefab, dirtPos);
+        settingsRaised = true;
         while (transform.position.y <= 0.43f)
         {
             transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 0.45f, transform.position.z), 0.05f);
             yield return new WaitForFixedUpdate();
         }
-        settingsRaised = true;
         transform.position = new Vector3(transform.position.x, 0.45f, transform.position.z);
+        
     }
     private IEnumerator LowerGrave()
     {
-        StopCoroutine(RaiseGrave());
-        settingsRaised = true;
-        while (transform.position.y >= -0.68f)
+        Destroy(dirt);
+        dirt = Instantiate(dirtPrefab, dirtPos);
+        settingsRaised = false;
+        while (transform.position.y >= -1.1f)
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, -0.7f, transform.position.z), 0.05f);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, -1.15f, transform.position.z), 0.05f);
             yield return new WaitForFixedUpdate();
         }
-        settingsRaised = false;
-        transform.position = new Vector3(transform.position.x, -0.7f, transform.position.z);
+        transform.position = new Vector3(transform.position.x, -1.15f, transform.position.z);
+        
     }
 }
