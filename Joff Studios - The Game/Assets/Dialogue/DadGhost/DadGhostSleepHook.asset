@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7199d1d7f5b2d024eb17d0a6cc04510f, type: 3}
-  m_Name: DadRandom1
+  m_Script: {fileID: 11500000, guid: 1e7fae8fa5a3bff498f98805c551ac84, type: 3}
+  m_Name: DadGhostSleepHook
   m_EditorClassIdentifier: 
-  lines:
-  - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 956f93f3bd2788744a61a73dab1ab4ee, type: 2}
-    text: ZZZZZZZZZZZZZZZ
+  fullName: Pops' the Fisherman
+  portrait: {fileID: 21300000, guid: bae0f0abeef05894686811cd9d0bac71, type: 3}
+  width: 100
+  height: 100

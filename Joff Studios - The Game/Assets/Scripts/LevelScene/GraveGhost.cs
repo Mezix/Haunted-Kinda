@@ -137,7 +137,7 @@ public class GraveGhost : MonoBehaviour
                     }
                 }
             }
-            else
+            if((hasQuest && QuestComplete) || !hasQuest)
             {
                 if (_PostQuestConversations.Length > 0 && _postQuestConversationIndex < _PostQuestConversations.Length)
                 {

@@ -10,37 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7199d1d7f5b2d024eb17d0a6cc04510f, type: 3}
-  m_Name: Grandma Convo 2
+  m_Name: Grandma Convo 3
   m_EditorClassIdentifier: 
   lines:
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
-    text: ...
+    text: There you are again dearest...
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
-    text: You again?
+    text: You wouldn't have happened to see my vase out and about on your strolls
+      would you?
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
-    text: ...
+    text: Things haven't been the same since it disappeared...
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
-    text: I'm sorry dear...
-  - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
-    text: I've just been a bit wound up is all...
-  - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
-    text: ...hard to catch some shut eye with this old coot next to me spouting nonsense
-      all the gosh darn time.
+    text: Maybe it'll take my mind off this gibbering geezer...
   - characterLeft: {fileID: 11400000, guid: 7ba39380327da4841bbed11620204fce, type: 2}
     characterRight: {fileID: 0}
-    text: It's not nonsense, it's WISDOM!
+    text: To be... or not to be. That is ....a statement?
+  - characterLeft: {fileID: 11400000, guid: 7ba39380327da4841bbed11620204fce, type: 2}
+    characterRight: {fileID: 0}
+    text: (hmm that doesn't sound right)
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
-    text: Keep telling yerself that you old fool!
-  - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
-    text: And quit yer yelling, my bones are already killing me.
-  - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
-    text: No need to ruin my ears as well...
+    text: On second thought, maybe I'll smash it over his head to shut him up...

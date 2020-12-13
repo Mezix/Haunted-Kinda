@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lines:
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 283dcb90c3f53ae4c9e07c6c9674524a, type: 2}
+    characterRight: {fileID: 11400000, guid: 717c5002620364f438a981cc3702608b, type: 2}
     text: 'Hm hm hmhm... zzzzZzz.
 
 '

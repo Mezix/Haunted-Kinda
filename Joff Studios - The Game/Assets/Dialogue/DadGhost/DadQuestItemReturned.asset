@@ -12,22 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7199d1d7f5b2d024eb17d0a6cc04510f, type: 3}
   m_Name: DadQuestItemReturned
   m_EditorClassIdentifier: 
-  speakerLeft: {fileID: 0}
-  speakerRight: {fileID: 11400000, guid: 283dcb90c3f53ae4c9e07c6c9674524a, type: 2}
   lines:
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 283dcb90c3f53ae4c9e07c6c9674524a, type: 2}
+    characterRight: {fileID: 11400000, guid: cf7aeeb62ff228643b288dfe7d276f12, type: 2}
     text: "Why, that\u2019s the one!"
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 283dcb90c3f53ae4c9e07c6c9674524a, type: 2}
+    characterRight: {fileID: 11400000, guid: cf7aeeb62ff228643b288dfe7d276f12, type: 2}
     text: "All red and shiny-like. Ye\u2019ve found it fer me!"
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 283dcb90c3f53ae4c9e07c6c9674524a, type: 2}
+    characterRight: {fileID: 11400000, guid: cf7aeeb62ff228643b288dfe7d276f12, type: 2}
     text: "Here, you can have some o\u2019 this salmon I hooked\u2019em meself the
       other day.\r"
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 283dcb90c3f53ae4c9e07c6c9674524a, type: 2}
+    characterRight: {fileID: 11400000, guid: cf7aeeb62ff228643b288dfe7d276f12, type: 2}
     text: "Don\u2019t believe me?"
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 283dcb90c3f53ae4c9e07c6c9674524a, type: 2}
+    characterRight: {fileID: 11400000, guid: cf7aeeb62ff228643b288dfe7d276f12, type: 2}
     text: "It\u2019s fresh, I promise."

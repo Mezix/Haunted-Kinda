@@ -32,4 +32,4 @@ MonoBehaviour:
 '
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 7ba39380327da4841bbed11620204fce, type: 2}
-    text: "\u201CA golden egg of opportunity will fall into your lap soon.\u201D\r\n"
+    text: "\u201CA golden egg of opportunity will fall into your lap soon\u201D\r\n"

@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lines:
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 283dcb90c3f53ae4c9e07c6c9674524a, type: 2}
+    characterRight: {fileID: 11400000, guid: 956f93f3bd2788744a61a73dab1ab4ee, type: 2}
     text: ...zzZZZzZ...
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 283dcb90c3f53ae4c9e07c6c9674524a, type: 2}
+    characterRight: {fileID: 11400000, guid: 956f93f3bd2788744a61a73dab1ab4ee, type: 2}
     text: zzzZZ... are... are you living... zzz.... son...?
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 283dcb90c3f53ae4c9e07c6c9674524a, type: 2}
+    characterRight: {fileID: 11400000, guid: 956f93f3bd2788744a61a73dab1ab4ee, type: 2}
     text: zzZzz... no.. zZzz
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 283dcb90c3f53ae4c9e07c6c9674524a, type: 2}
+    characterRight: {fileID: 11400000, guid: 956f93f3bd2788744a61a73dab1ab4ee, type: 2}
     text: Well... zZZz... that's too bad...
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 283dcb90c3f53ae4c9e07c6c9674524a, type: 2}
+    characterRight: {fileID: 11400000, guid: 956f93f3bd2788744a61a73dab1ab4ee, type: 2}
     text: It's probably... zzZZZzzzzz.... because of those damn... zZzz... Video
       Games... zZzz

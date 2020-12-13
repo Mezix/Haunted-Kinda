@@ -10,37 +10,49 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7199d1d7f5b2d024eb17d0a6cc04510f, type: 3}
-  m_Name: Grandma Convo 2
+  m_Name: Grandma Item Returned
   m_EditorClassIdentifier: 
   lines:
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
-    text: ...
+    text: Oh my goodness!
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
-    text: You again?
+    text: Thank you for finding my vase for me sweetie!
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
-    text: ...
+    text: Finally, a distraction from this babbling buffoon!
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
-    text: I'm sorry dear...
+    text: Ever since he was buried here, I've had not a single moment of rest!
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
-    text: I've just been a bit wound up is all...
-  - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
-    text: ...hard to catch some shut eye with this old coot next to me spouting nonsense
-      all the gosh darn time.
+    text: I don't know what I did to do deserve this!
   - characterLeft: {fileID: 11400000, guid: 7ba39380327da4841bbed11620204fce, type: 2}
     characterRight: {fileID: 0}
-    text: It's not nonsense, it's WISDOM!
+    text: We were buried here together you old hag!
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
-    text: Keep telling yerself that you old fool!
+    text: Whose stupid Idea was that??
+  - characterLeft: {fileID: 11400000, guid: 7ba39380327da4841bbed11620204fce, type: 2}
+    characterRight: {fileID: 0}
+    text: Yours!
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
-    text: And quit yer yelling, my bones are already killing me.
+    text: What??
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
-    text: No need to ruin my ears as well...
+    text: Why would I make a decision like that?
+  - characterLeft: {fileID: 11400000, guid: 7ba39380327da4841bbed11620204fce, type: 2}
+    characterRight: {fileID: 0}
+    text: Well, you heard one of my infamous quotes about wisdom and love, and you
+      decided we should get buried together so we could be together forever!
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
+    text: Oh...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
+    text: Well I'm sure It felt like a good reason at the time...
+  - characterLeft: {fileID: 11400000, guid: 7ba39380327da4841bbed11620204fce, type: 2}
+    characterRight: {fileID: 0}
+    text: ...

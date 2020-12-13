@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7413965604188963639}
   - component: {fileID: 3048964853663856956}
   m_Layer: 0
-  m_Name: Background
+  m_Name: MoveableBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

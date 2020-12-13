@@ -172,10 +172,16 @@ MonoBehaviour:
   _dashCooldown: 0
   AfterImagePrefab: {fileID: 0}
   lastAfterImagePos: {x: 0, y: 0, z: 0}
+  TimeSinceLastBroomSweep: 0
+  TimeBetweenSweeps: 0
   nearbyGraves: []
   BroomSweep: {fileID: 0}
+  usingWateringCan: 0
+  WateringSFX: {fileID: 0}
   waterParticlesSpawn: {fileID: 0}
   waterParticles: {fileID: 0}
+  Flowers: []
+  flowerIndex: 0
   Outline: {fileID: 0}
   SpriteUnlit: {fileID: 0}
 --- !u!58 &5956151856962221983
@@ -389,11 +395,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrandmaGhost
       objectReference: {fileID: 0}
-    - target: {fileID: 2017824719375364841, guid: 7a412f73c19666c4ca847298b5849640,
+    - target: {fileID: 3940521864051671697, guid: 7a412f73c19666c4ca847298b5849640,
         type: 3}
-      propertyPath: m_Enabled
+      propertyPath: m_Name
+      value: QuestItemPos
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037911798607914532, guid: 7a412f73c19666c4ca847298b5849640,
+        type: 3}
+      propertyPath: _RandomConversations.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9037911798607914532, guid: 7a412f73c19666c4ca847298b5849640,
+        type: 3}
+      propertyPath: _RandomConversations.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: c9557af76639ea94791117ec95cebe8b,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a412f73c19666c4ca847298b5849640, type: 3}
 --- !u!4 &3260804161120880059 stripped

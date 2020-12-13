@@ -67,7 +67,9 @@ MonoBehaviour:
   _postQuestConversationIndex: 0
   _PostQuestConversations: []
   _RandomConversations:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 81b7a1fe77189d44aa70423e1cb044c7, type: 2}
+  - {fileID: 11400000, guid: 0bb936d7e707dfc4cb5bf29020b6db36, type: 2}
+  - {fileID: 11400000, guid: b99cc66039fff4c41a8669e832bfb7c9, type: 2}
   QuestCompleteSFX: {fileID: 1328814324710486893, guid: a54008edaee6024459c7add943421249,
     type: 3}
 --- !u!95 &2648045057101818730

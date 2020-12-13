@@ -324,10 +324,16 @@ MonoBehaviour:
   AfterImagePrefab: {fileID: 5421470715018780270, guid: c4736a1504e05ae45abc6630ead27a7e,
     type: 3}
   lastAfterImagePos: {x: 0, y: 0, z: 0}
+  TimeSinceLastBroomSweep: 0
+  TimeBetweenSweeps: 0
   nearbyGraves: []
   BroomSweep: {fileID: 0}
+  usingWateringCan: 0
+  WateringSFX: {fileID: 0}
   waterParticlesSpawn: {fileID: 0}
   waterParticles: {fileID: 0}
+  Flowers: []
+  flowerIndex: 0
   Outline: {fileID: 0}
   SpriteUnlit: {fileID: 0}
 --- !u!50 &8043414066938722635

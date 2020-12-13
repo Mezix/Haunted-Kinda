@@ -10,9 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7199d1d7f5b2d024eb17d0a6cc04510f, type: 3}
-  m_Name: DadRandom1
+  m_Name: Grandpa Random 2
   m_EditorClassIdentifier: 
   lines:
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 956f93f3bd2788744a61a73dab1ab4ee, type: 2}
-    text: ZZZZZZZZZZZZZZZ
+    characterRight: {fileID: 11400000, guid: 7ba39380327da4841bbed11620204fce, type: 2}
+    text: '"Silence is often misinterpreted but never misquoted"'
+  - characterLeft: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
+    characterRight: {fileID: 0}
+    text: I could use some of that silence you know?

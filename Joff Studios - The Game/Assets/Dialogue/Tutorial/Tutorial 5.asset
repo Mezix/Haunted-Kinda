@@ -12,42 +12,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7199d1d7f5b2d024eb17d0a6cc04510f, type: 3}
   m_Name: Tutorial 5
   m_EditorClassIdentifier: 
-  speakerLeft: {fileID: 0}
-  speakerRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
   lines:
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
     text: Good evening you two!
-  - characterLeft: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
-    characterRight: {fileID: 11400000, guid: 7ba39380327da4841bbed11620204fce, type: 2}
+  - characterLeft: {fileID: 11400000, guid: 7ba39380327da4841bbed11620204fce, type: 2}
+    characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
     text: Why hello there caretaker! What brings you to our humble abode!
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
     text: Grave robbers! Unusually early, even for them.
-  - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 7ba39380327da4841bbed11620204fce, type: 2}
-    text: Yes, quite unfortunate.
-  - characterLeft: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
+  - characterLeft: {fileID: 11400000, guid: 7ba39380327da4841bbed11620204fce, type: 2}
     characterRight: {fileID: 0}
-    text: I guess we should count ourselves lucky someone left this bottle of incense
-      for us.
+    text: Yes, quite unfortunate. But as I always say-
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 7ba39380327da4841bbed11620204fce, type: 2}
-    text: Indeed. The smell must shake those poor buggers up somethin' fierce, that's
-      why they never come round these parts...
-  - characterLeft: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
+    characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
+    text: Don't bother the young-uns with your useless proverbs again! It's hardly
+      the right time!
+  - characterLeft: {fileID: 11400000, guid: 7ba39380327da4841bbed11620204fce, type: 2}
     characterRight: {fileID: 0}
-    text: Don't be silly dear... I'm sure it's because they don't want to be exposed
-      by the light...
+    text: '*grumbles*'
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 7ba39380327da4841bbed11620204fce, type: 2}
-    text: Hmm hmm whatever you say darling...
-  - characterLeft: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
+    characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
+    text: We're lucky we have this bottle of incense nearby in any case! They never
+      come near us!
+  - characterLeft: {fileID: 11400000, guid: 7ba39380327da4841bbed11620204fce, type: 2}
     characterRight: {fileID: 0}
-    text: Don't give me that tone! You're embarassing yourself in front of the newcomer!
+    text: '*grumbles louder*'
   - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 7ba39380327da4841bbed11620204fce, type: 2}
-    text: '* angry grumbling noises *'
+    characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
+    text: Oh don't tell me you're still upset about being told off.
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
+    text: When will you grow up?
   - characterLeft: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
     characterRight: {fileID: 0}
     text: '*sighs*'
