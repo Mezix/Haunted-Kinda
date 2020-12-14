@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7199d1d7f5b2d024eb17d0a6cc04510f, type: 3}
+  m_Name: Newsie Convo 3
+  m_EditorClassIdentifier: 
+  lines:
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 8feba09272b322c47b2122c3ff166f2f, type: 2}
+    text: EXTRA~ EXTRA~
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 8feba09272b322c47b2122c3ff166f2f, type: 2}
+    text: Hey chief, got another story for you...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 8feba09272b322c47b2122c3ff166f2f, type: 2}
+    text: Seems that old woman has been looking for an old possession of hers...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 8feba09272b322c47b2122c3ff166f2f, type: 2}
+    text: I tried interviewing her about it, but she keeps getting distracted by
+      that old geezer....
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 8feba09272b322c47b2122c3ff166f2f, type: 2}
+    text: I can still hear them hollering all the way out here...

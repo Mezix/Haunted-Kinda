@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7199d1d7f5b2d024eb17d0a6cc04510f, type: 3}
+  m_Name: Newsie Convo 6
+  m_EditorClassIdentifier: 
+  lines:
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 8feba09272b322c47b2122c3ff166f2f, type: 2}
+    text: What's up chief?
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 8feba09272b322c47b2122c3ff166f2f, type: 2}
+    text: You talked to that little girl lately?
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 8feba09272b322c47b2122c3ff166f2f, type: 2}
+    text: She keeps muttering on about how she used to look so pretty...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 8feba09272b322c47b2122c3ff166f2f, type: 2}
+    text: I tried cheering her up, but she just ignores me and talks to her bear...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 8feba09272b322c47b2122c3ff166f2f, type: 2}
+    text: She's crazy I tell you!

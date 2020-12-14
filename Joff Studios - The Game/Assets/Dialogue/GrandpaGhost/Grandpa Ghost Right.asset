@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e7fae8fa5a3bff498f98805c551ac84, type: 3}
   m_Name: Grandpa Ghost Right
   m_EditorClassIdentifier: 
-  fullName: Grandpa
-  portrait: {fileID: 21300000, guid: d21e841e3c54fd64aa90f2d27273dcb5, type: 3}
-  width: 37
-  height: 40
+  fullName: Gramps
+  portrait: {fileID: 21300000, guid: ae9a3f50d4e4eb84fa41d3b465faca1c, type: 3}
+  width: 100
+  height: 100

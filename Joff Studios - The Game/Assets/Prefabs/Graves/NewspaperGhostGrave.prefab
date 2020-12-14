@@ -172,10 +172,18 @@ MonoBehaviour:
   _dashCooldown: 0
   AfterImagePrefab: {fileID: 0}
   lastAfterImagePos: {x: 0, y: 0, z: 0}
+  TimeSinceLastBroomSweep: 0
+  TimeBetweenSweeps: 0
   nearbyGraves: []
   BroomSweep: {fileID: 0}
+  usingWateringCan: 0
+  WateringSFX: {fileID: 0}
   waterParticlesSpawn: {fileID: 0}
   waterParticles: {fileID: 0}
+  Flowers: []
+  flowerIndex: 0
+  Outline: {fileID: 0}
+  SpriteUnlit: {fileID: 0}
 --- !u!58 &1940406192481580751
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -468,6 +476,70 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewspaperGhost
       objectReference: {fileID: 0}
+    - target: {fileID: 9037911798607914532, guid: f760fef399b81a640a91f7bc1d375aca,
+        type: 3}
+      propertyPath: _conversations.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037911798607914532, guid: f760fef399b81a640a91f7bc1d375aca,
+        type: 3}
+      propertyPath: _RandomConversations.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037911798607914532, guid: f760fef399b81a640a91f7bc1d375aca,
+        type: 3}
+      propertyPath: _conversations.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 60cd4d41ea19e5c4e87b7d2ff25a5576,
+        type: 2}
+    - target: {fileID: 9037911798607914532, guid: f760fef399b81a640a91f7bc1d375aca,
+        type: 3}
+      propertyPath: _conversations.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 67c2c1b3cbbbaf64fb71663f95351f2c,
+        type: 2}
+    - target: {fileID: 9037911798607914532, guid: f760fef399b81a640a91f7bc1d375aca,
+        type: 3}
+      propertyPath: _conversations.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 50b1daaafc2e88947acdae0baafe59d7,
+        type: 2}
+    - target: {fileID: 9037911798607914532, guid: f760fef399b81a640a91f7bc1d375aca,
+        type: 3}
+      propertyPath: _conversations.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: feb41cbbabc66de499a33f2d05a3e273,
+        type: 2}
+    - target: {fileID: 9037911798607914532, guid: f760fef399b81a640a91f7bc1d375aca,
+        type: 3}
+      propertyPath: _RandomConversations.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 60cd4d41ea19e5c4e87b7d2ff25a5576,
+        type: 2}
+    - target: {fileID: 9037911798607914532, guid: f760fef399b81a640a91f7bc1d375aca,
+        type: 3}
+      propertyPath: _RandomConversations.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 67c2c1b3cbbbaf64fb71663f95351f2c,
+        type: 2}
+    - target: {fileID: 9037911798607914532, guid: f760fef399b81a640a91f7bc1d375aca,
+        type: 3}
+      propertyPath: _RandomConversations.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 50b1daaafc2e88947acdae0baafe59d7,
+        type: 2}
+    - target: {fileID: 9037911798607914532, guid: f760fef399b81a640a91f7bc1d375aca,
+        type: 3}
+      propertyPath: _RandomConversations.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: feb41cbbabc66de499a33f2d05a3e273,
+        type: 2}
+    - target: {fileID: 9037911798607914532, guid: f760fef399b81a640a91f7bc1d375aca,
+        type: 3}
+      propertyPath: _RandomConversations.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: d0de40105243af446a7877c5a50aae14,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f760fef399b81a640a91f7bc1d375aca, type: 3}
 --- !u!4 &3674146736795887028 stripped

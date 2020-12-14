@@ -49,10 +49,12 @@ public class LevelSceneManager : MonoBehaviour
     //AUDIO
 
     public AudioSource GameStart;
+    public AudioSource BackgroundMusic;
     public AudioSource EndingMusic;
     public AudioSource Crickets;
     public AudioSource BirdsChirping;
     public AudioSource GraveRobberSpawnSoundEffect;
+    public AudioSource NewDaySound;
 
     //DIFFICULTY
 
@@ -105,13 +107,14 @@ public class LevelSceneManager : MonoBehaviour
 
     private void Awake()
     {
-        timeBetweenPrompts = 45f;
+        timeBetweenPrompts = 75f;
         LoadingScreen.SetActive(false);
         GraphicsSettings.renderPipelineAsset = Pipeline2D;
         QualitySettings.renderPipeline = Pipeline2D;
 
         _playTutorial = MenuSceneManager.playTutorial;
         DifficultySlider = MenuSceneSettings._difficulty;
+
         SetDifficulty();
 
         MenuSceneManager.playTutorial = false;
@@ -213,7 +216,7 @@ public class LevelSceneManager : MonoBehaviour
             {
                 StartCoroutine(_UIScript.GamePrompt("Some of your Ghost's graves have been destroyed! Help pick up the pieces again and maybe give them the old sweep with the broom!"));
             }
-            else if(timeSinceLastMiscPrompt > 120)
+            else if(timeSinceLastMiscPrompt > 150)
             {
                 timeSinceLastMiscPrompt = 0;
                 StartCoroutine(_UIScript.GamePrompt("Remember to grow some plants around your Ghosts or give them offerings you find scattered around the map!"));
@@ -368,6 +371,7 @@ public class LevelSceneManager : MonoBehaviour
         {
             SetupDayAndNight();
             print("new day");
+            Instantiate(NewDaySound);
             SpawnOfferings();
             SetUIDay();
         }
@@ -1019,6 +1023,7 @@ public class LevelSceneManager : MonoBehaviour
     {
         StartCoroutine(_UIScript.FadeFromBlack());
         print("VICTORY");
+        BackgroundMusic.gameObject.SetActive(false);
         EndingMusic.Play();
         _UIScript.ShowEndScreen();
     }

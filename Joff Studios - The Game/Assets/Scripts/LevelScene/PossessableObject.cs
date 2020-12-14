@@ -43,6 +43,7 @@ public class PossessableObject : MonoBehaviour
     public float TimeBetweenSweeps;
     public List<Gravestone> nearbyGraves = new List<Gravestone>();
     public AnimationClip BroomSweep;
+    public AudioSource BroomSweepSound;
 
     public bool usingWateringCan;
     public GameObject WateringSFX;
@@ -343,6 +344,7 @@ public class PossessableObject : MonoBehaviour
 
     private IEnumerator PlayBroomAnimation()
     {
+        BroomSweepSound.Play();
         GetComponentInChildren<Animator>().Play("BroomSweep");
         yield return new WaitForSeconds(0.25f);
         foreach (Gravestone grave in nearbyGraves)

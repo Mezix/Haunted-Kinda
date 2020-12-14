@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Newsie Ghost Right
   m_EditorClassIdentifier: 
   fullName: Newsie
-  portrait: {fileID: 21300000, guid: ac846d072c85f4946909af1cd5ba4f8a, type: 3}
-  width: 32
-  height: 40
+  portrait: {fileID: 21300000, guid: c799e812185c7b14ea5551fc9e9829b7, type: 3}
+  width: 100
+  height: 100

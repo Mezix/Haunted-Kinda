@@ -48,8 +48,13 @@ public class GraveRobber : MonoBehaviour
     private bool reachedEndOfPath = false; //wether or not we have gotten to our last checkpoint
     private GameObject positionToSeekOut; //the gameobject we are currently looking to get to (e.g. escapePos, nearestGrave)
 
+    //SOUND
+
+    public AudioSource ShovelSound;
+
     private void Awake()
     {
+        ShovelSound.gameObject.SetActive(false);
         player = References.Player;
         fearLevel = GetComponent<FearLevel>();
         robberRB = GetComponent<Rigidbody2D>();
@@ -109,6 +114,8 @@ public class GraveRobber : MonoBehaviour
         {
             UIRobberInstance.GetComponent<UIRobber>().RobberImage.sprite = graverobberRenderer.sprite;
         }
+
+        ShovelVolume();
     }
 
     private void FixedUpdate()
@@ -274,7 +281,9 @@ public class GraveRobber : MonoBehaviour
         animator.SetBool("Digging", true); //set the animator bool so we start digging
         nearestGrave.AttackGrave();
 
-        while(!nearestGrave._destroyed) //as long as the grave we are targeting isnt destroyed, keep digging
+        ShovelSound.gameObject.SetActive(true);
+
+        while (!nearestGrave._destroyed) //as long as the grave we are targeting isnt destroyed, keep digging
         {
             robberRB.velocity = Vector2.zero;
             GetComponent<Collider2D>().isTrigger = true; //stop all collisions
@@ -299,7 +308,13 @@ public class GraveRobber : MonoBehaviour
         nearestGrave.StopAttackingGrave(); //stop attacking the grave, freeing up others to potentially attack it
         isDigging = false;
         positionToSeekOut = escapePosition; //set our target as the escape position, and update our path
+        ShovelSound.gameObject.SetActive(false);
         UpdatePath(positionToSeekOut);
+    }
+
+    private void ShovelVolume()
+    {
+        ShovelSound.volume = 1 / Mathf.Max(1, Vector3.Distance(transform.position, References.playerScript.transform.position));
     }
 
     private IEnumerator RunAwayWithLoot()

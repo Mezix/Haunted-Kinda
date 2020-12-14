@@ -50,13 +50,13 @@ public class Flower : MonoBehaviour
         if (flower.transform.localScale.x + shrinkAmount <= 0f)
         {
             flower.transform.localScale = new Vector3(0, 0, 0);
+            ScoringSystem.instance.flowersPlanted--;
+            Destroy(gameObject);
         }
         else
         {
             flower.transform.localScale = new Vector3(scale.x - shrinkAmount, scale.y - shrinkAmount, scale.z - shrinkAmount);
         }
-        ScoringSystem.instance.flowersPlanted--;
-        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

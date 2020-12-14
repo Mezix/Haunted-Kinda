@@ -21,8 +21,10 @@ MonoBehaviour:
     text: "All red and shiny-like. Ye\u2019ve found it fer me!"
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: cf7aeeb62ff228643b288dfe7d276f12, type: 2}
-    text: "Here, you can have some o\u2019 this salmon I hooked\u2019em meself the
-      other day.\r"
+    text: "Here, you can have some o\u2019 this salmon!"
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: cf7aeeb62ff228643b288dfe7d276f12, type: 2}
+    text: "I hooked\u2019em meself the other day.\r"
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: cf7aeeb62ff228643b288dfe7d276f12, type: 2}
     text: "Don\u2019t believe me?"
