@@ -261,6 +261,7 @@ public class LevelSceneManager : MonoBehaviour
 
     private void StartGame()
     {
+        _isPlayingTutorial = false;
         GameStart.Play();
         Unpause();
         StartCoroutine(_UIScript.FadeFromBlack());
@@ -275,6 +276,7 @@ public class LevelSceneManager : MonoBehaviour
         SetPlayerReferencesInScene();
         SpawnOfferings();
         SpawnQuestItems();
+        DayNightLighting.freezeDayNight = false;
 
         HasTalkedToGhost = false;
     }
@@ -504,6 +506,7 @@ public class LevelSceneManager : MonoBehaviour
 
         _UIScript.StartTutorial();
 
+        Unpause();
         SpawnPlayer();
         SetPlayerReferencesInScene();
         References.playerScript.HidePlayer();
@@ -637,13 +640,14 @@ public class LevelSceneManager : MonoBehaviour
             References.playerScript.lastMovementDir = References.playerScript.movement = (Robber.transform.position - References.playerScript.transform.position);
             yield return new WaitForFixedUpdate();
         }
-        Destroy(Robber.gameObject);
         References.playerScript.lastMovementDir = References.playerScript.movement = new Vector2(0, 1);
         yield return new WaitForSeconds(0.5f);
 
 
         //  Scene #7: Player defeated Robber, unlock possession, fix Cats Grave
 
+
+        Destroy(Robber.gameObject);
 
         TriggerDialogue(TutorialConversations[tutorialIndex]);
         tutorialIndex++;
@@ -679,6 +683,8 @@ public class LevelSceneManager : MonoBehaviour
         References.playerScript._possessionLocked = true;
         yield return new WaitForSeconds(1f);
 
+        References.playerScript.lastMovementDir = References.playerScript.movement = new Vector2(-1, 0);
+        print("left");
 
         //Scene #9: Player has depossessed, but theres a new robber on our left
 
@@ -732,6 +738,7 @@ public class LevelSceneManager : MonoBehaviour
         StartCoroutine(_UIScript.FadeOutPrompts());
         Robber.lockMovement = false;
         References.playerScript._dashLocked = true;
+        References.playerScript.lastMovementDir = References.playerScript.movement = new Vector2(1, 1);
 
         //Scene #12: Move to cool ghost, Cool Ghost compliments you asks you to pick up his shades
 
@@ -754,6 +761,7 @@ public class LevelSceneManager : MonoBehaviour
         _tutorialGhost.MoveToNextPos();
         yield return new WaitForSeconds(0.1f);
         References.playerScript.MoveToNextPos();
+        References.playerScript.lastMovementDir = References.playerScript.movement = new Vector2(0, 1);
         yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
         yield return new WaitWhile(() => !_tutorialGhost.reachedEndOfPath);
         yield return new WaitForSeconds(0.25f);
@@ -796,13 +804,19 @@ public class LevelSceneManager : MonoBehaviour
         References.playerScript._depossessionLocked = true;
         References.playerScript._possessionLocked = true;
 
+        References.playerScript.lastMovementDir = References.playerScript.movement = new Vector2(0, 1);
+
         //Scene #15: Cool ghost thanks you, move to the next location to talk more about possession
 
         TriggerDialogue(TutorialConversations[tutorialIndex]);
         tutorialIndex++;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
 
+
         _coolGhost.TryCompleteQuest(sunglasses);
+        _UIScript.QuestChecklist.GetComponent<UIQuestManager>().CheckOffQuest(_coolGhost);
+        _UIScript.QuestChecklist.SetActive(true);
+        _UIScript.QuestsHidden = true;
         _coolGhost.lootStolen = false;
 
         Instantiate(_allOfferingTypes[3], tutorialOffering.position, tutorialOffering.rotation);
@@ -811,6 +825,8 @@ public class LevelSceneManager : MonoBehaviour
         References.playerScript.MoveToNextPos();
         yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
         yield return new WaitWhile(() => !_tutorialGhost.reachedEndOfPath);
+
+        References.playerScript.lastMovementDir = References.playerScript.movement = new Vector2(1, 0);
         yield return new WaitForSeconds(0.25f);
 
         //Scene #16: Talk about possession and offerings, pick up offering
@@ -821,6 +837,8 @@ public class LevelSceneManager : MonoBehaviour
 
         References.playerScript.MoveToNextPos();
         yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
+
+        References.playerScript.lastMovementDir = References.playerScript.movement = new Vector2(0, 1);
         References.playerScript._interactionLocked = false;
         StartCoroutine(_UIScript.FadeInPrompts());
         _UIScript.PromptPickUp();
@@ -845,6 +863,9 @@ public class LevelSceneManager : MonoBehaviour
         References.playerScript.MoveToNextPos();
         yield return new WaitWhile(() => !References.playerScript.reachedEndOfPath);
         yield return new WaitWhile(() => !_tutorialGhost.reachedEndOfPath);
+
+        References.playerScript.lastMovementDir = References.playerScript.movement = new Vector2(1, 0);
+
         yield return new WaitForSeconds(0.25f);
 
         StartCoroutine(_UIScript.FadeInPrompts());
@@ -876,13 +897,14 @@ public class LevelSceneManager : MonoBehaviour
 
         _tutorialGhost.MoveToNextPos();
         yield return new WaitWhile(() => !_tutorialGhost.reachedEndOfPath);
+        References.playerScript.lastMovementDir = References.playerScript.movement = new Vector2(1, 1);
 
         //  FINAL SCENE! Play final dialogue, relinquish the lock on the player and then finally start the game!
 
         TriggerDialogue(TutorialConversations[tutorialIndex]);
         tutorialIndex++;
         yield return new WaitWhile(() => DialogueManager.playingConversation);
-        _tutorialGhost.animator.SetBool("HatOn", true);
+        _tutorialGhost.animator.SetBool("HatOn", false);
         References.playerScript.playerAnimator.SetBool("HatOn", true);
 
         StartCoroutine(_tutorialGhost.FadeOut());
@@ -910,17 +932,20 @@ public class LevelSceneManager : MonoBehaviour
 
         //  Reset graves to default values again
         EnableGraveghostFadein();
+
         _kittyGrave.InitMaxHealth(100f);
-        _kittyGrave.TakeDamage(50f);
         _coolGrave.InitMaxHealth(100f);
-        _coolGrave.TakeDamage(60f);
         _kittyGrave.InitHappiness(250f);
+        _kittyGrave.GetComponent<PossessableObject>().isRestoring = false;
+        _coolGrave.GetComponent<PossessableObject>().isRestoring = false;
         _coolGhost.timesGraveWasDestroyed = 0;
         _kitty.timesGraveWasDestroyed = 0;
 
+        _UIScript.TutorialPromptsBackground.color = _UIScript.PromptText.color = new Color(1, 1, 1, 0);
         _coolGhost._graveItem = null;
         SpawnQuestItems();
         SpawnOfferings();
+        HasTalkedToGhost = false;
 
         GameStart.Play();
     }
@@ -949,8 +974,6 @@ public class LevelSceneManager : MonoBehaviour
         _UIScript.InventoryHidden = true;
         _UIScript.portraitHidden = true;
         _UIScript.TimeDisplayHidden = true;
-        _UIScript.QuestChecklist.SetActive(false);
-        _UIScript.QuestsHidden = true;
 
         DisableGraveghostFadein();
         foreach (GameObject robberObj in _graveRobbers)

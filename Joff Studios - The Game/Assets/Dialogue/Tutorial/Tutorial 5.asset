@@ -24,7 +24,7 @@ MonoBehaviour:
     text: Grave robbers! Unusually early, even for them.
   - characterLeft: {fileID: 11400000, guid: 7ba39380327da4841bbed11620204fce, type: 2}
     characterRight: {fileID: 0}
-    text: Yes, quite unfortunate. But as I always say-
+    text: Quite unfortunate. But as I always say-
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
     text: Don't bother the young-uns with your useless proverbs again! It's hardly
@@ -34,8 +34,8 @@ MonoBehaviour:
     text: '*grumbles*'
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 8a4ecaeba65a7794c8327c6310aa1773, type: 2}
-    text: We're lucky we have this bottle of incense nearby in any case! They never
-      come near us!
+    text: We're lucky we have this bottle of incense nearby, they never come near
+      us!
   - characterLeft: {fileID: 11400000, guid: 7ba39380327da4841bbed11620204fce, type: 2}
     characterRight: {fileID: 0}
     text: '*grumbles louder*'

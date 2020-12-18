@@ -15,4 +15,4 @@ MonoBehaviour:
   lines:
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 507ccc1591ee5a34db8a48e55d45d7d6, type: 2}
-    text: Woah thx for the meal dawg
+    text: "Thanks for the meal dawg... (\u2310\u25A0_\u25A0)"

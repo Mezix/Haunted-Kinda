@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7199d1d7f5b2d024eb17d0a6cc04510f, type: 3}
   m_Name: Tutorial 6
   m_EditorClassIdentifier: 
-  speakerLeft: {fileID: 0}
-  speakerRight: {fileID: 0}
   lines:
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 6d25e88cf096cf049be5a6c1b92aea2a, type: 2}
@@ -26,10 +24,10 @@ MonoBehaviour:
     text: "MEOW. MROW MROWWW MEEEEEEEEEEEOWWWWW MROWWWW!!! (=\u0CA0\u11BD\u0CA0=)"
   - characterLeft: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
     characterRight: {fileID: 0}
-    text: My time is almost up im afraid, there's nothing I can do to this guy anymore.
+    text: There's nothing I can do to this guy anymore, my time is almost up...
   - characterLeft: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
     characterRight: {fileID: 0}
-    text: Quick, this is where you come in!
+    text: Quick! This is where you come in!
   - characterLeft: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
     characterRight: {fileID: 0}
     text: Do us ghosts proud and give this guy the scaring of a lifetime!

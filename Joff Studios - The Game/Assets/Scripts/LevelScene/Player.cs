@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     public float _moveSpeed = 1f; 
     public Vector2 movement; //the vector that controls where our player will move to
     public Vector2 lastMovementDir; //a vector that points in the direction we last faced, for idle animations/the dash function
-    private bool lockMovement; //stops our x and y movement vector from being changed
+    public bool lockMovement; //stops our x and y movement vector from being changed
     public float _dashSpeed; //the Velocity multiplier of our dash
     public float _dashTime; //how long does our dash last
     public float _dashCooldown; //the cooldown of our dash in seconds

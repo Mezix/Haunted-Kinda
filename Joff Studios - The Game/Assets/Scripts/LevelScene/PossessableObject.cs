@@ -9,7 +9,7 @@ public class PossessableObject : MonoBehaviour
     [SerializeField]
     public bool isPossessed;
     public Gravestone grave { get; private set; }
-    private bool isRestoring;
+    public bool isRestoring;
     private bool rotateRight;
     public GameObject CastShadow;
     public GameObject exclamation;
@@ -82,7 +82,6 @@ public class PossessableObject : MonoBehaviour
             }
         }
     }
-    
     
     private void Update()
     {
@@ -215,6 +214,7 @@ public class PossessableObject : MonoBehaviour
 
     IEnumerator RestoreGrave()
     {
+        print("restore");
         isRestoring = true;
         while(grave.currentHealth < grave.maxHealth)
         {

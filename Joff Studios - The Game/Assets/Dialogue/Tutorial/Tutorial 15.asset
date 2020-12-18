@@ -15,24 +15,33 @@ MonoBehaviour:
   lines:
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 507ccc1591ee5a34db8a48e55d45d7d6, type: 2}
-    text: Hell yeah dude, you're the best... Wait wait, lemme tell you a crazy story
-      about these bad boys, you earned it.
+    text: 'Hell yeah dude, you''re the best... '
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 507ccc1591ee5a34db8a48e55d45d7d6, type: 2}
-    text: Right, right, so check this. I was at my local Target one day, and I see
-      these original Raybans for like.... 5 Dollars...
+    text: Wait wait, before you go, lemme tell you a crazy story about these bad
+      boys, you earned it.
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 507ccc1591ee5a34db8a48e55d45d7d6, type: 2}
-    text: 'I know, I know, crazy bargain right? Hahahahah! '
+    text: Right, right, so check this.
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 507ccc1591ee5a34db8a48e55d45d7d6, type: 2}
-    text: When I was alive, I never once took them off...
+    text: ' I was browsing my local Target one day, and I see these original Raybans
+      for like.... 5 Dollars...'
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 507ccc1591ee5a34db8a48e55d45d7d6, type: 2}
+    text: I know, I know, crazy bargain right?
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 507ccc1591ee5a34db8a48e55d45d7d6, type: 2}
+    text: I bought a bunch of them, but they kept breaking...
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 507ccc1591ee5a34db8a48e55d45d7d6, type: 2}
+    text: ...all except for this one.
+  - characterLeft: {fileID: 0}
+    characterRight: {fileID: 11400000, guid: 507ccc1591ee5a34db8a48e55d45d7d6, type: 2}
+    text: I wore them until the day I died.
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 507ccc1591ee5a34db8a48e55d45d7d6, type: 2}
     text: They're my most prized possession...
-  - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 507ccc1591ee5a34db8a48e55d45d7d6, type: 2}
-    text: I don't think the afterlife vibe would be right without these by my side...
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 507ccc1591ee5a34db8a48e55d45d7d6, type: 2}
     text: Anyways, thanks for your help dude. IOU.

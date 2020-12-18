@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7199d1d7f5b2d024eb17d0a6cc04510f, type: 3}
   m_Name: Tutorial 7
   m_EditorClassIdentifier: 
-  speakerLeft: {fileID: 0}
-  speakerRight: {fileID: 0}
   lines:
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
@@ -27,9 +25,6 @@ MonoBehaviour:
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
     text: Yeah yeah, don't worry Mr. Meow. We'll sort this out for you.
-  - characterLeft: {fileID: 0}
-    characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
-    text: Just be happy we stopped him from stealing your precious Tuna can as well.
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 3b7d72efb2c3a5a4391fa6eb1e2e9ede, type: 2}
     text: Don't feel bad about the damage kid, you can fix that up easy enough.

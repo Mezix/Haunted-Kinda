@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7199d1d7f5b2d024eb17d0a6cc04510f, type: 3}
   m_Name: Tutorial 14
   m_EditorClassIdentifier: 
-  speakerLeft: {fileID: 0}
-  speakerRight: {fileID: 0}
   lines:
   - characterLeft: {fileID: 0}
     characterRight: {fileID: 11400000, guid: 7c8336ac0420e4a4ca7c5e34c00e43df, type: 2}
-    text: That's close enough, thanks
+    text: "That's close enough, drop em off for me will ya? (\u2310\u25A0_\u25A0)"
