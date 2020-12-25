@@ -629,7 +629,7 @@ public class UIScript : MonoBehaviour
 
     private void GetResolutions()
     {
-        resolutions = new Resolution[7];
+        resolutions = new Resolution[8];
 
         resolutions[0].width = 600;
         resolutions[0].height = 480;
@@ -643,14 +643,17 @@ public class UIScript : MonoBehaviour
         resolutions[3].width = 1280;
         resolutions[3].height = 960;
 
-        resolutions[4].width = 1600;
-        resolutions[4].height = 900;
+        resolutions[4].width = 1366;
+        resolutions[4].height = 768;
 
-        resolutions[5].width = 1920;
-        resolutions[5].height = 1080;
+        resolutions[5].width = 1600;
+        resolutions[5].height = 900;
 
-        resolutions[6].width = 3840;
-        resolutions[6].height = 2160;
+        resolutions[6].width = 1920;
+        resolutions[6].height = 1080;
+
+        resolutions[7].width = 3840;
+        resolutions[7].height = 2160;
 
         currentlySelectedResolution = 5;
         tempSelectedResolution = 5;

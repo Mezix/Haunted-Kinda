@@ -147,6 +147,7 @@ public class LevelSceneManager : MonoBehaviour
             StartGame();
         }
     }
+
     private void Update()
     {
         TimeDisplay.SetTime();
